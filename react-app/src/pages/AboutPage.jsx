@@ -1,29 +1,38 @@
+import { NitroButton } from "../components/nitro/NitroButton";
+import { NitroCta } from "../components/nitro/NitroCta";
+import { TaglineRow } from "../components/nitro/TaglineRow";
+import { ToolsList } from "../components/nitro/work/ToolsList";
+import { site } from "../data/site";
+
 export function AboutPage() {
   return (
-    <section>
-      <p className="eyebrow">About Me</p>
-      <h1>Hassan Amin</h1>
-      <p className="lead">
-        Senior UI/UX Designer based in Egypt, focused on building user-centered products that connect
-        business value to human needs.
-      </p>
-      <article className="card rich-copy">
-        <p>
-          My design path started with curiosity: understanding how systems work, then improving how
-          people move through them. I bring that same mindset to digital products by simplifying
-          complexity and making decisions traceable through research and outcomes.
-        </p>
-        <p>
-          I currently work as an AI Product Designer II at Procore, where I collaborate closely with
-          product, engineering, and research teams to design accessible and localization-ready
-          experiences for enterprise users.
-        </p>
-        <p>
-          Across previous roles at Deloitte, Caspian Digital Solutions, and Path2Live, I have led
-          teams, built design systems, and delivered measurable impact including improved efficiency,
-          stronger stakeholder alignment, and faster delivery confidence.
-        </p>
-      </article>
-    </section>
+    <>
+      <div className="container page-hero">
+        <TaglineRow>.about</TaglineRow>
+        <h1 className="page-title">about me</h1>
+      </div>
+
+      <section className="nitro-section container about-home">
+        <div className="about-home__grid">
+          <div className="about-home__copy">
+            <h3>{site.about.pageIntro}</h3>
+            {site.about.bio.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            <NitroButton to="/contact">get in touch</NitroButton>
+          </div>
+          <div className="about-home__image">
+            <img src={site.about.image} alt={site.about.imageAlt} loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section className="nitro-section container">
+        <TaglineRow>.tools</TaglineRow>
+        <ToolsList tools={site.about.tools} />
+      </section>
+
+      <NitroCta />
+    </>
   );
 }

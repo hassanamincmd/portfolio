@@ -1,0 +1,606 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meridian &mdash; Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #000000;
+      --surface: #111111;
+      --surface-2: #1a1a1a;
+      --surface-3: #222222;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.65);
+      --muted-2: rgba(255,255,255,0.6);
+      --border: rgba(255,255,255,0.12);
+      --accent: hsl(148,100%,50%);
+      --accent-dim: hsla(148,100%,50%,0.12);
+      --red: #ff4d4d;
+      --display: 'Manrope', system-ui, sans-serif;
+      --mono: 'DM Mono', ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--display); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+
+    /* Real screenshot wrappers */
+    .cs-img-wrap { border-radius: 6px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); line-height: 0; }
+    .cs-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .cs-img-wrap--wide  { height: 460px; }
+    .cs-img-wrap--tall  { height: 500px; }
+    .cs-img-wrap--mid   { height: 340px; }
+    .cs-img-wrap--short { height: 220px; }
+
+    /* Progress */
+    .progress-line { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 100; transition: width 0.1s linear; }
+
+    /* Cover */
+    .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 5rem 0 4rem; position: relative; overflow: hidden; }
+    .cover__bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .cover__bg-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, hsla(148,100%,50%,0.06) 0%, transparent 70%); pointer-events: none; }
+    .cover__top-bar { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem min(4%, 2.5rem); border-bottom: 1px solid var(--border); }
+    .cover__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--muted); transition: color 0.2s; }
+    .cover__brand:hover { color: var(--text); }
+    .cover__tag { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); padding: 0.3rem 0.75rem; border-radius: 3px; }
+    .cover__content { position: relative; z-index: 1; }
+    .cover__eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; }
+    .cover__dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: lowercase; }
+    .cover__title { font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
+    .cover__title span { color: var(--accent); }
+    .cover__subtitle { font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--muted); font-weight: 300; max-width: 60ch; line-height: 1.5; margin-bottom: 3rem; }
+    .cover__meta-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); white-space: nowrap; }
+    .pill--accent { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+    /* Overview bar */
+    .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
+    .overview-bar__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); }
+    .overview-item { background: var(--bg); padding: 1.5rem 1.75rem; }
+    .overview-item dt { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: lowercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+    .overview-item dd { font-size: 0.95rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+
+    /* Section */
+    .section { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border); }
+    .section__label { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1rem; display: block; }
+    .section__title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.1; }
+    .section__lead { margin-top: 1rem; font-size: 1.05rem; color: var(--muted); max-width: 60ch; line-height: 1.7; }
+    .section__header { margin-bottom: 3rem; }
+
+    /* Problem */
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .problem-card { background: var(--surface); padding: 2rem; }
+    .problem-card__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 1.25rem; display: block; }
+    .problem-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+    .problem-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+    /* Quote */
+    .insight-quote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 2px solid var(--accent); background: var(--surface); }
+    .insight-quote blockquote { font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.6; letter-spacing: -0.01em; }
+    .insight-quote cite { display: block; margin-top: 1rem; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); font-style: normal; }
+
+    /* Goal */
+    .goal-row { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+    .stat-hero { text-align: center; padding: 3rem 2rem; border: 1px solid var(--border); background: var(--surface); position: relative; overflow: hidden; }
+    .stat-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, hsla(148,100%,50%,0.08) 0%, transparent 60%); pointer-events: none; }
+    .stat-hero__num { font-size: clamp(4rem, 8vw, 6rem); font-weight: 700; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; position: relative; }
+    .stat-hero__label { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); text-transform: lowercase; letter-spacing: 0.06em; position: relative; }
+    .metrics-table { width: 100%; border-collapse: collapse; }
+    .metrics-table thead tr { border-bottom: 1px solid var(--border); }
+    .metrics-table th { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: lowercase; letter-spacing: 0.08em; text-align: left; padding: 0 0 0.75rem; }
+    .metrics-table td { font-size: 0.9rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--muted); }
+    .metrics-table td:first-child { color: var(--text); font-weight: 500; width: 40%; padding-right: 1.5rem; }
+    .placeholder-badge { display: inline-block; font-family: var(--mono); font-size: 0.75rem; color: rgba(255,200,0,0.9); background: rgba(255,200,0,0.1); border: 1px solid rgba(255,200,0,0.35); padding: 0.15rem 0.5rem; border-radius: 2px; margin-left: 0.5rem; vertical-align: middle; }
+
+    /* Process */
+    .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .process-card { background: var(--surface); padding: 2.25rem 2rem; }
+    .process-card__phase { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1rem; display: block; }
+    .process-card h3 { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .process-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+    .process-card__list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .process-card__list li { font-size: 0.8rem; font-family: var(--mono); color: var(--muted); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+    .process-card__list li::before { content: '--'; color: var(--accent); flex-shrink: 0; margin-top: 0.05em; }
+
+    /* Features */
+    .feature { padding: clamp(3rem, 6vw, 5rem) 0; border-bottom: 1px solid var(--border); }
+    .feature__inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; }
+    .feature__inner--reverse { grid-template-columns: 1.6fr 1fr; }
+    .feature__inner--reverse .feature__copy { order: 2; }
+    .feature__inner--reverse .feature__visual { order: 1; }
+    .feature__num { font-family: var(--mono); font-size: 0.75rem; color: var(--muted-2); letter-spacing: 0.1em; margin-bottom: 1.25rem; display: block; }
+    .feature__copy h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1.25rem; }
+    .feature__why-label { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; display: block; margin: 1.5rem 0 0.5rem; }
+    .feature__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+    .feature__visual { display: flex; flex-direction: column; gap: 0.75rem; }
+    .img-placeholder-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+    /* Outcomes */
+    .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-bottom: 3rem; }
+    .outcome-card { background: var(--surface); padding: 2rem; }
+    .outcome-card__value { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+    .outcome-card__label { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .outcome-card__desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* Learnings */
+    .learnings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .learning-block { padding: 2rem; border: 1px solid var(--border); background: var(--surface); position: relative; }
+    .learning-block::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: var(--accent); }
+    .learning-block h3 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .learning-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
+    .would-do-block { border-color: rgba(255,77,77,0.2); }
+    .would-do-block::before { background: var(--red); }
+
+    /* Interview prep */
+    .prep-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+    .prep-card { background: var(--surface-2); padding: 1.75rem 2rem; }
+    .prep-card__tag { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; text-transform: lowercase; margin-bottom: 0.75rem; display: block; }
+    .prep-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+    .prep-card p { font-size: 0.825rem; color: var(--muted); line-height: 1.7; }
+    .prep-card blockquote { margin-top: 0.75rem; padding: 0.75rem 1rem; background: var(--surface-3); border-left: 2px solid var(--accent); font-size: 0.8rem; color: var(--text); line-height: 1.6; font-style: italic; }
+
+    /* Footer */
+    .cs-footer { padding: 3rem 0; border-top: 1px solid var(--border); }
+    .cs-footer__inner { display: flex; justify-content: space-between; align-items: center; }
+    .cs-footer__brand { font-family: var(--mono); font-size: 0.875rem; color: var(--muted); }
+    .cs-footer__note { font-family: var(--mono); font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+
+    @media (max-width: 900px) {
+      .overview-bar__grid { grid-template-columns: repeat(3, 1fr); }
+      .problem-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .feature__inner, .feature__inner--reverse { grid-template-columns: 1fr; gap: 2rem; }
+      .feature__inner--reverse .feature__copy, .feature__inner--reverse .feature__visual { order: unset; }
+      .goal-row { grid-template-columns: 1fr; gap: 2rem; }
+      .learnings-grid { grid-template-columns: 1fr; }
+      .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+      .prep-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-line" id="progress"></div>
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover__bg-grid"></div>
+    <div class="cover__bg-glow"></div>
+    <div class="cover__top-bar">
+      <a class="cover__brand" href="/hassanamin-portfolio-site/index-portfolio.html">&larr; .amin</a>
+      <span class="cover__tag">case study &mdash; 2023&ndash;2024</span>
+    </div>
+    <div class="container cover__content">
+      <div class="cover__eyebrow">
+        <div class="cover__dot"></div>
+        <span class="label">product design &middot; ux &middot; design systems</span>
+      </div>
+      <h1 class="cover__title">Meridian<br /><span>Scheduling.</span><br />Reimagined.</h1>
+      <p class="cover__subtitle">From scheduling chaos to a single intelligent system &mdash; how we redesigned the way independent professionals manage time, clients, and their professional identity.</p>
+      <div class="cover__meta-row">
+        <span class="pill pill--accent">Design Lead</span>
+        <span class="pill">Team of 3 Designers</span>
+        <span class="pill">12 Months</span>
+        <span class="pill">Web &middot; Tablet &middot; Mobile</span>
+        <span class="pill">Figma &middot; Design System</span>
+        <span class="pill">Stakeholder-Validated</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cover image -->
+  <div class="container" style="padding: 2rem 0;">
+    <div class="cs-img-wrap cs-img-wrap--wide">
+      <img src="/ms-overview.png" alt="Meridian project overview" loading="eager" />
+    </div>
+  </div>
+
+  <!-- OVERVIEW BAR -->
+  <div class="overview-bar">
+    <div class="container">
+      <dl class="overview-bar__grid">
+        <div class="overview-item"><dt>role</dt><dd>Design Lead</dd></div>
+        <div class="overview-item"><dt>team</dt><dd>3 Product Designers</dd></div>
+        <div class="overview-item"><dt>timeline</dt><dd>12 Months</dd></div>
+        <div class="overview-item"><dt>platforms</dt><dd>Web &middot; Tablet &middot; Mobile</dd></div>
+        <div class="overview-item"><dt>tools</dt><dd>Figma &middot; Design System</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- THE PROBLEM -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.01 &mdash; the problem</span>
+        <h2 class="section__title">Three tools.<br />Three calendars.<br />Zero coherence.</h2>
+        <p class="section__lead">Independent professionals in creative, lifestyle, and healthcare industries were running a business and doing the work simultaneously &mdash; across too many fragmented tools with no unified workflow.</p>
+      </div>
+      <div class="insight-quote">
+        <blockquote>"I don't need another app. I need the apps I already use to talk to each other &mdash; and I need my clients to find me without me having to explain what I do every single time."</blockquote>
+        <cite>&mdash; Primary research insight, stakeholder sessions</cite>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-card__num">01 / scheduling fragmentation</span>
+          <h3>Manual coordination across everything</h3>
+          <p>Professionals were manually syncing multiple calendars, chasing meeting confirmations, and blocking availability by hand &mdash; work that had nothing to do with their actual craft.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">02 / broken booking experience</span>
+          <h3>No single path from discovery to booking</h3>
+          <p>Clients had no unified, trust-building way to discover a professional, understand their services, view live availability, and confirm &mdash; all in one experience.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">03 / invisible professional identity</span>
+          <h3>A static profile in a dynamic world</h3>
+          <p>A static LinkedIn or link-in-bio page couldn't carry the full weight of a professional's identity, services, or real-time availability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE GOAL -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.02 &mdash; the goal</span>
+        <h2 class="section__title">Measuring success.</h2>
+        <p class="section__lead">A single intelligent platform that consolidates scheduling, booking, client management, and personal branding &mdash; with clear metrics to validate every decision.</p>
+      </div>
+      <div class="goal-row">
+        <div>
+          <div class="stat-hero">
+            <div class="stat-hero__num">70%</div>
+            <div class="stat-hero__label">increase in stakeholder<br />satisfaction &mdash; from day one</div>
+          </div>
+          <p style="font-size:0.8rem;color:var(--muted);margin-top:1rem;line-height:1.6;font-family:var(--mono);">The most direct signal of the team's operational and output quality transformation, measured from the point of Design Lead transition.</p>
+        </div>
+        <div>
+          <table class="metrics-table">
+            <thead><tr><th>goal</th><th>metric</th><th>status</th></tr></thead>
+            <tbody>
+              <tr><td>Reduce scheduling friction</td><td>Time-to-book reduction vs. baseline <span class="placeholder-badge">TBD</span></td><td style="color:var(--muted-2);font-family:var(--mono);font-size:0.75rem;">placeholder</td></tr>
+              <tr><td>Drive adoption</td><td>Weekly Active Users at 3-month post-launch <span class="placeholder-badge">TBD</span></td><td style="color:var(--muted-2);font-family:var(--mono);font-size:0.75rem;">placeholder</td></tr>
+              <tr><td>Booking conversion</td><td>Profile booking completion rate <span class="placeholder-badge">TBD</span></td><td style="color:var(--muted-2);font-family:var(--mono);font-size:0.75rem;">placeholder</td></tr>
+              <tr><td>Subscription growth</td><td>Free &rarr; Pro upgrade conversion rate <span class="placeholder-badge">TBD</span></td><td style="color:var(--muted-2);font-family:var(--mono);font-size:0.75rem;">placeholder</td></tr>
+              <tr><td>Team velocity</td><td>Screens delivered per sprint (before/after) <span class="placeholder-badge">TBD</span></td><td style="color:var(--muted-2);font-family:var(--mono);font-size:0.75rem;">placeholder</td></tr>
+              <tr><td>Stakeholder satisfaction</td><td style="color:var(--accent);font-weight:600;">+70% from Design Lead transition</td><td style="color:var(--accent);font-family:var(--mono);font-size:0.75rem;">confirmed</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROCESS -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.03 &mdash; the process</span>
+        <h2 class="section__title">How we went from<br />chaos to clarity.</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-card">
+          <span class="process-card__phase">phase 01 / discovery</span>
+          <h3>Stakeholder Research &amp; Alignment</h3>
+          <p>Rather than jumping to solutions, we started by understanding the business and professional landscape through structured stakeholder sessions &mdash; the primary validation mechanism throughout the project.</p>
+          <ul class="process-card__list">
+            <li>Qualitative stakeholder interviews with business, product, and domain experts</li>
+            <li>Three professional archetypes: Creative, Healthcare, and Lifestyle</li>
+            <li>Journey maps for both the professional's path and the client's booking path</li>
+            <li>Competitive landscape mapped across scheduling, portfolio, and marketplace tools</li>
+          </ul>
+        </div>
+        <div class="process-card">
+          <span class="process-card__phase">phase 02 / ideation</span>
+          <h3>Design System First, Then Features</h3>
+          <p>One of the most consequential strategic decisions: halt feature work and invest in a shared component library before building any screen. This multiplied velocity for the remainder of the year.</p>
+          <ul class="process-card__list">
+            <li>Token-based design system: color, spacing, typography, elevation</li>
+            <li>Component library: cards, modals, forms, tables, empty states, notifications</li>
+            <li>Cross-platform component variants for Web, Tablet, and Mobile</li>
+            <li>User flows and IA architecture for both Pro and Client journeys</li>
+          </ul>
+        </div>
+        <div class="process-card">
+          <span class="process-card__phase">phase 03 / execution</span>
+          <h3>High-Velocity, Validated Output</h3>
+          <p>A structured design operation allowed three designers to work in parallel across six major feature areas while maintaining output quality and stakeholder alignment throughout.</p>
+          <ul class="process-card__list">
+            <li>Weekly structured critiques with tiered feedback frameworks</li>
+            <li>Stakeholder validation gate before every engineering handoff</li>
+            <li>Clear feature ownership per designer to build deep expertise</li>
+            <li>Figma file architecture organized by flow, not by designer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 1: HOME DASHBOARD -->
+  <section class="feature">
+    <div class="container">
+      <div class="feature__inner">
+        <div class="feature__copy">
+          <span class="feature__num">feature 01 / home dashboard</span>
+          <h2>A schedule that thinks in your format.</h2>
+          <p>The core challenge: give professionals a way to see their schedule in the format that matched their mental model. Some think in time blocks. Others in project pipelines. Others need raw data fast.</p>
+          <p style="margin-top:1rem;">Rather than defaulting everyone to a weekly calendar, we designed three distinct views with a persistent toggle: <strong>Calendar</strong>, <strong>Board/Gantt</strong>, and <strong>Table</strong>.</p>
+          <span class="feature__why-label">why it matters</span>
+          <p>A scheduling tool that forces a single view forces a single mental model. We gave professionals the ability to inhabit their work the way they actually think &mdash; without losing state between views.</p>
+        </div>
+        <div class="feature__visual">
+          <div class="cs-img-wrap cs-img-wrap--mid">
+            <img src="/ms-home-views.png" alt="Calendar view" loading="lazy" />
+          </div>
+          <div class="img-placeholder-row">
+            <div class="cs-img-wrap cs-img-wrap--short" style="flex:1">
+              <img src="/ms-home-views.png" alt="Board/Gantt view" loading="lazy" style="object-position: left 40%;" />
+            </div>
+            <div class="cs-img-wrap cs-img-wrap--short" style="flex:1">
+              <img src="/ms-booking-flow.png" alt="Table view" loading="lazy" style="object-position: left bottom;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 2: BOOKING PROFILE -->
+  <section class="feature">
+    <div class="container">
+      <div class="feature__inner feature__inner--reverse">
+        <div class="feature__visual">
+          <div class="cs-img-wrap cs-img-wrap--tall">
+            <img src="/ms-user-booking.png" alt="Public profile with calendar picker" loading="lazy" style="object-position: center top;" />
+          </div>
+          <div class="cs-img-wrap cs-img-wrap--short">
+            <img src="/ms-user-booking.png" alt="Sync your calendar modal" loading="lazy" style="object-position: center 15%;" />
+          </div>
+        </div>
+        <div class="feature__copy">
+          <span class="feature__num">feature 02 / smart booking profile</span>
+          <h2>Identity anchored. Booking frictionless.</h2>
+          <p>The client-facing booking experience sat at the intersection of personal brand, live calendar availability, and client trust &mdash; the most complex design problem on the project.</p>
+          <p style="margin-top:1rem;">We designed a <strong>two-panel layout</strong>: a persistent left panel with the professional's identity and social proof; and a dynamic right panel with a live calendar picker and time slots pulled from integrated calendars (Google, Zoom, Slack, Apple).</p>
+          <span class="feature__why-label">why it matters</span>
+          <p>The biggest conversion killer in booking flows is doubt. The architecture directly addressed: <em>"Is this person available? Is this the right service? What happens after I confirm?"</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 3: PROFILE BUILDER -->
+  <section class="feature">
+    <div class="container">
+      <div class="feature__inner">
+        <div class="feature__copy">
+          <span class="feature__num">feature 03 / portfolio section builder</span>
+          <h2>A professional identity that grows with you.</h2>
+          <p>For most users, the public profile page was not just a booking link &mdash; it was their professional identity on the internet. We designed it to feel like theirs.</p>
+          <p style="margin-top:1rem;">Fully modular, drag-and-drop section builder: hero, about, services, gallery, video, testimonials, available times, and company logos. Two distinct add-section paths &mdash; a <strong>guided step-by-step flow</strong> for new users, and a <strong>direct link-to-existing flow</strong> for power users.</p>
+          <span class="feature__why-label">why it matters</span>
+          <p>Cognitive load in profile builders spikes when users fear breaking something. The modular, reversible architecture &mdash; with deliberate delete/hide distinctions &mdash; gave users psychological safety to experiment without anxiety.</p>
+        </div>
+        <div class="feature__visual">
+          <div class="cs-img-wrap cs-img-wrap--mid">
+            <img src="/ms-section-builder.png" alt="Section builder drag and drop" loading="lazy" style="object-position: center top;" />
+          </div>
+          <div class="cs-img-wrap cs-img-wrap--short">
+            <img src="/ms-section-builder.png" alt="Available times configuration" loading="lazy" style="object-position: center 60%;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 4: ANALYTICS -->
+  <section class="feature">
+    <div class="container">
+      <div class="feature__inner feature__inner--reverse">
+        <div class="feature__visual">
+          <div class="cs-img-wrap cs-img-wrap--mid">
+            <img src="/ms-analytics.png" alt="Analytics dashboard" loading="lazy" style="object-position: center top;" />
+          </div>
+        </div>
+        <div class="feature__copy">
+          <span class="feature__num">feature 04 / analytics dashboard</span>
+          <h2>Data that answers real questions.</h2>
+          <p>The analytics feature was designed to answer one question professionals actually care about: <em>"Is my business growing?"</em> &mdash; not to present raw data for its own sake.</p>
+          <p style="margin-top:1rem;">Three insight layers: a <strong>summary view</strong> (key metrics at a glance), a <strong>trend view</strong> (booking and engagement over time), and a <strong>granular breakdown</strong> by service, client, or time period.</p>
+          <span class="feature__why-label">why it matters</span>
+          <p>Dashboards fail when they show designers' favorite charts instead of users' actual questions. Every metric displayed was mapped back to a specific question surfaced in stakeholder sessions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 5: SETTINGS -->
+  <section class="feature">
+    <div class="container">
+      <div class="feature__inner">
+        <div class="feature__copy">
+          <span class="feature__num">feature 05 / settings &amp; billing</span>
+          <h2>Settings as a trust signal, not a utility.</h2>
+          <p>Most designers treat settings as a utility. Users treat them as a trust signal. A well-organized settings architecture communicates: <em>"This product is in control. Your data is safe."</em></p>
+          <p style="margin-top:1rem;">Organized across: General, Integrations, Referrals &amp; Promo, Languages &amp; Location, FAQs, and Billing. The upgrade modal used a clear Free / Pro / Teams comparison with a deliberate &ldquo;Best Value&rdquo; indicator to increase Pro plan conversion.</p>
+          <span class="feature__why-label">why it matters</span>
+          <p>The upgrade modal is the highest-stakes screen in the product. Every element &mdash; copy, hierarchy, CTA placement &mdash; was designed to reduce anxiety at the moment of financial commitment without being manipulative.</p>
+        </div>
+        <div class="feature__visual">
+          <div class="cs-img-wrap cs-img-wrap--mid">
+            <img src="/ms-settings.png" alt="Settings overview" loading="lazy" style="object-position: center top;" />
+          </div>
+          <div class="cs-img-wrap cs-img-wrap--short">
+            <img src="/ms-billing.png" alt="Billing and upgrade modal" loading="lazy" style="object-position: center top;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 6: AUTH -->
+  <section class="feature">
+    <div class="container">
+      <div class="feature__inner feature__inner--reverse">
+        <div class="feature__visual">
+          <div class="cs-img-wrap cs-img-wrap--mid">
+            <img src="/ms-auth-flow.png" alt="Authentication flows" loading="lazy" style="object-position: center top;" />
+          </div>
+          <div class="cs-img-wrap cs-img-wrap--short">
+            <img src="/ms-auth-errors.png" alt="Error states" loading="lazy" style="object-position: center top;" />
+          </div>
+        </div>
+        <div class="feature__copy">
+          <span class="feature__num">feature 06 / authentication system</span>
+          <h2>The first impression is the product.</h2>
+          <p>Authentication is disproportionately responsible for first-session drop-off. We treated it as a product experience &mdash; not a technical prerequisite.</p>
+          <p style="margin-top:1rem;">Isometric illustrations served as the emotional anchor on each screen. Each <strong>error state was mapped to a specific failure mode</strong> with a clear, contextual recovery path. No generic &ldquo;Something went wrong.&rdquo;</p>
+          <span class="feature__why-label">why it matters</span>
+          <p>Stakeholder reviews confirmed that generic error messages were a primary driver of abandonment in comparable flows. Specific, recoverable errors reduced friction and built early trust.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.04 &mdash; outcomes</span>
+        <h2 class="section__title">The results.</h2>
+        <p class="section__lead">Across 12 months, three platforms, and six major feature areas &mdash; the work delivered at both the product and the team level.</p>
+        <p style="margin-top:1rem;font-size:0.85rem;color:var(--muted);font-family:var(--mono);border-left:2px solid rgba(255,77,77,0.5);padding-left:1rem;">
+          Note: The product was discontinued by executive decision before reaching live production. The work represented here reflects the full design lifecycle delivered during the project's active phase.
+        </p>
+      </div>
+      <div class="outcomes-grid">
+        <div class="outcome-card">
+          <div class="outcome-card__value">+70%</div>
+          <div class="outcome-card__label">Stakeholder Satisfaction</div>
+          <div class="outcome-card__desc">Measured from the point of Design Lead transition &mdash; a direct signal of improved design quality, process rigor, and cross-functional trust.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">3&times;</div>
+          <div class="outcome-card__label">Platforms Shipped</div>
+          <div class="outcome-card__desc">Web, Tablet, and Mobile &mdash; all from a single design system with platform-specific component variants and breakpoints.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">6</div>
+          <div class="outcome-card__label">Major Feature Areas</div>
+          <div class="outcome-card__desc">Auth, Home, Booking, Explore, Profile Builder, Analytics, Settings, and Billing &mdash; fully designed and delivered within the 12-month timeline.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">&uarr;</div>
+          <div class="outcome-card__label">Team Velocity <span class="placeholder-badge">TBD</span></div>
+          <div class="outcome-card__desc">Screens-per-sprint output increased significantly following design system implementation. Exact figures available from product analytics.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">&darr;</div>
+          <div class="outcome-card__label">Design QA Rework <span class="placeholder-badge">TBD</span></div>
+          <div class="outcome-card__desc">Component library maturity reduced inconsistency-driven rework cycles. Designers spent less time on repetitive decisions.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">1</div>
+          <div class="outcome-card__label">Unified Design Language</div>
+          <div class="outcome-card__desc">Where there were fragmented, inconsistent patterns, a single token-based system emerged &mdash; giving three designers the ability to work in parallel without divergence.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNINGS -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.05 &mdash; reflections</span>
+        <h2 class="section__title">What worked.<br />What I'd change.</h2>
+      </div>
+      <div class="learnings-grid">
+        <div class="learning-block">
+          <h3>The design system paid back every week.</h3>
+          <p>The upfront cost felt like a slowdown in months one and two. By month four, it was the single biggest multiplier on team velocity and output quality. Designers spent less time on repetitive decisions and more time on meaningful interaction design.</p>
+        </div>
+        <div class="learning-block">
+          <h3>Stakeholder alignment as a design accelerator.</h3>
+          <p>By making stakeholder reviews structured, frequent, and tied to specific decision questions, we turned them into a velocity tool &mdash; not a bottleneck. The 70% satisfaction increase reflected better process trust, not just better pixels.</p>
+        </div>
+        <div class="learning-block">
+          <h3>Ownership raised the floor.</h3>
+          <p>Assigning designers clear ownership of specific feature areas created accountability and deep expertise. By the end of the project, each designer had become the subject matter expert on their area &mdash; dramatically improving handoff quality.</p>
+        </div>
+        <div class="learning-block">
+          <h3>This project was design ops as much as design.</h3>
+          <p>The visible output &mdash; screens, flows, components &mdash; was only half the work. The invisible output was a team with a shared language, validated process, and the confidence to push back on decisions that couldn't survive scrutiny. That is the work I'm most proud of.</p>
+        </div>
+        <div class="learning-block would-do-block">
+          <h3>I'd add lightweight user testing earlier.</h3>
+          <p>Stakeholder alignment gave us speed, but there were moments where a 5-person usability session would have surfaced edge cases that only appeared post-launch. I'd advocate for guerrilla testing at key interaction decision points in future engagements.</p>
+        </div>
+        <div class="learning-block would-do-block">
+          <h3>I'd establish design metrics before the build.</h3>
+          <p>We were deep into the project before establishing a clear measurement framework. Defining what "design success" meant quantitatively before starting would have sharpened prioritization and given the team a crisper north star throughout iterations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERVIEW PREP -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.06 &mdash; interview guardrails</span>
+        <h2 class="section__title">Ready for the<br />hard questions.</h2>
+        <p class="section__lead">Prepared responses for the questions interviewers are most likely to ask about this project.</p>
+      </div>
+      <div class="prep-grid">
+        <div class="prep-card">
+          <span class="prep-card__tag">on validation approach</span>
+          <h4>Why stakeholders instead of direct user testing?</h4>
+          <blockquote>"Given our constraints, stakeholder validation was our primary mechanism &mdash; and we made it rigorous. The 70% satisfaction increase wasn't accidental. That said, I've built a clear perspective on where lightweight user testing would have added value, and I'd push for it earlier in future engagements."</blockquote>
+        </div>
+        <div class="prep-card">
+          <span class="prep-card__tag">on team leadership</span>
+          <h4>How did you manage a team of three designers?</h4>
+          <p>Prepare a specific story: a disagreement you resolved, a designer you unblocked, or a moment where your direction changed the outcome. Behavioral questions always want a concrete example &mdash; not a process description.</p>
+        </div>
+        <div class="prep-card">
+          <span class="prep-card__tag">on the design system</span>
+          <h4>What exactly did you build?</h4>
+          <p>Be specific: "A token-based system covering color, spacing, typography, and elevation &mdash; with components spanning cards, modals, forms, tables, empty states, and notifications &mdash; with variants across three platform breakpoints."</p>
+        </div>
+        <div class="prep-card">
+          <span class="prep-card__tag">on the metrics</span>
+          <h4>Do you have production numbers?</h4>
+          <p>Before any interview, pull whatever numbers you can from product analytics &mdash; even rough ones. The 70% stakeholder satisfaction figure is your anchor metric. Open with it every time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="cs-footer">
+    <div class="container cs-footer__inner">
+      <span class="cs-footer__brand">hassan.design &mdash; meridian case study</span>
+      <span class="cs-footer__note">confidential &middot; for portfolio use only</span>
+    </div>
+  </footer>
+
+  <script>
+    const bar = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      bar.style.width = pct + '%';
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

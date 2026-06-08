@@ -1,44 +1,71 @@
+import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { Briefcase01, HomeLine, User01 } from "@untitledui/icons";
+import { NitroFooter } from "./nitro/NitroFooter";
+import { site } from "../data/site";
 
 export function Layout() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="site-shell">
-      <header className="top-nav">
-        <div className="container nav-content">
-          <NavLink to="/" className="brand">
-            Hassan Amin
+    <div className="nitro-shell">
+      <header className="nitro-header">
+        <div className="nitro-header__bar">
+          <NavLink className="nitro-brand" to="/" onClick={() => setMenuOpen(false)}>
+            {site.brand}
           </NavLink>
-          <nav className="nav-links">
-            <NavLink to="/" className="nav-link">
-              <HomeLine />
-              Home
-            </NavLink>
-            <NavLink to="/work" className="nav-link">
-              <Briefcase01 />
-              Work
-            </NavLink>
-            <NavLink to="/about" className="nav-link">
-              <User01 />
-              About
-            </NavLink>
+
+          <nav className="nitro-header__nav" aria-label="Primary">
+            {site.nav.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) => (isActive ? "is-active" : undefined)}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </NavLink>
+            ))}
           </nav>
-          <a className="btn btn-primary" href="mailto:hassan.amin.elsayed@gmail.com">
-            Book Intro
+
+          <a className="nitro-header__cta" href={site.headerCta.href}>
+            {site.headerCta.label}
           </a>
+
+          <button
+            type="button"
+            className="nitro-header__menu"
+            aria-expanded={menuOpen}
+            aria-label="Toggle menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            menu
+          </button>
         </div>
+
+        {menuOpen ? (
+          <div className="nitro-header__mobile">
+            {site.nav.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className="nitro-header__mobile-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </NavLink>
+            ))}
+            <a className="nitro-header__mobile-link" href={site.headerCta.href}>
+              {site.headerCta.label}
+            </a>
+          </div>
+        ) : null}
       </header>
-      <main className="container">
+
+      <main>
         <Outlet />
       </main>
-      <footer className="site-footer">
-        <div className="container footer-content">
-          <span>All Rights Reserved hassanamin.net 2026</span>
-          <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">
-            LinkedIn
-          </a>
-        </div>
-      </footer>
+
+      <NitroFooter />
     </div>
   );
 }
