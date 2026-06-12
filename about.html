@@ -1,79 +1,508 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Hassan Amin | Senior UI/UX Designer</title>
-    <meta
-      name="description"
-      content="Learn about Hassan Amin, a Senior UI/UX Designer focused on intuitive, human-centered product experiences."
-    />
-    <link rel="canonical" href="https://hassanamin.net/about.html" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <a class="brand" href="index.html">Hassan Amin</a>
-        <nav aria-label="Primary navigation">
-          <ul class="nav-list">
-            <li><a href="work.html">Work</a></li>
-            <li><a href="uihighlights.html">UI Highlights</a></li>
-            <li><a href="about.html">About Me</a></li>
-          </ul>
-        </nav>
-        <a class="button button-small" href="mailto:hello@hassanamin.net">Book Intro</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About &mdash; Hassan Amin</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="Hassan Amin — Senior Product Designer with 5+ years experience across healthcare, SaaS, enterprise, and fintech." />
+  <link rel="canonical" href="https://hassanamin.net/about" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --bg:      #000;
+      --surface: #111;
+      --surface-2: #1a1a1a;
+      --text:    #fff;
+      --muted:   rgba(255,255,255,0.65);
+      --muted-2: rgba(255,255,255,0.35);
+      --border:  rgba(255,255,255,0.12);
+      --accent:  #ffffff;
+      --display: 'Manrope', system-ui, sans-serif;
+      --mono:    'DM Mono', ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  { font-family: var(--display); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a     { color: inherit; text-decoration: none; }
+    img   { max-width: 100%; display: block; }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+
+    /* Scroll progress */
+    #progress { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 200; transition: width 0.08s linear; }
+
+    /* ════════════════════
+       HEADER
+    ════════════════════ */
+    .header { position: sticky; top: 0; z-index: 100; background: rgb(0 0 0 / 90%); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 64px; width: min(1200px, 92%); margin: 0 auto; }
+    .header__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--text); justify-self: start; }
+    .header__nav { display: flex; justify-content: center; gap: clamp(1.25rem, 3vw, 2.5rem); }
+    .header__nav a { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--muted); transition: color 0.2s; }
+    .header__nav a { position: relative; padding-bottom: 6px; }
+    .header__nav a:hover, .header__nav a.active { color: var(--text); }
+    .header__nav a.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--text); }
+    .header__cta { justify-self: end; font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--text); padding: 0.45rem 0.85rem; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+    .header__cta:hover { background: var(--text); color: var(--bg); }
+
+    /* ════════════════════
+       HERO
+    ════════════════════ */
+    .page-hero { padding: clamp(4rem, 10vw, 8rem) 0 clamp(2rem, 5vw, 4rem); border-bottom: 1px solid var(--border); }
+    .page-hero__label { font-family: var(--mono); font-size: 0.875rem; color: var(--muted); margin-bottom: 1.5rem; display: block; }
+    .page-hero__title { font-size: clamp(4rem, 12vw, 9rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; }
+
+    /* ════════════════════
+       STATS BAR
+    ════════════════════ */
+    .stats-bar { border-bottom: 1px solid var(--border); }
+    .stats-bar__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+    .stat-item { background: var(--bg); padding: 2rem 2.5rem; }
+    .stat-item__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: lowercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; display: block; }
+    .stat-item__value { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; }
+
+    /* ════════════════════
+       HELLO / STATEMENT
+    ════════════════════ */
+    .statement { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border); }
+    .statement__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 2rem; display: block; }
+    .statement__text { font-size: clamp(1.25rem, 3vw, 1.9rem); font-weight: 400; line-height: 1.55; letter-spacing: -0.02em; color: var(--text); max-width: 72ch; }
+    .statement__text em { font-style: normal; color: var(--muted); }
+
+    /* ════════════════════
+       WORK EXPERIENCE
+    ════════════════════ */
+    .experience { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border); }
+    .experience__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 3rem; display: block; }
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-top: 1px solid var(--border); align-items: start; }
+    .exp-item__years { font-family: var(--mono); font-size: 0.875rem; color: var(--muted); padding-top: 0.2rem; }
+    .exp-item__company { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.25rem; }
+    .exp-item__role { font-family: var(--mono); font-size: 0.875rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .exp-item__desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; max-width: 60ch; }
+
+    /* ════════════════════
+       STACK MARQUEE
+    ════════════════════ */
+    .stack-section { padding: clamp(3rem, 6vw, 5rem) 0; border-bottom: 1px solid var(--border); overflow: hidden; }
+    .stack-section__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 2rem; width: min(1200px, 92%); margin-left: auto; margin-right: auto; display: block; }
+    .marquee-track { display: flex; gap: 0; width: max-content; animation: marquee 56s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item { font-family: var(--mono); font-size: 0.875rem; color: var(--muted); white-space: nowrap; padding: 0 2rem; display: flex; align-items: center; gap: 2rem; }
+    .marquee-item::after { content: '·'; color: var(--muted-2); }
+
+    /* ════════════════════
+       BRANDS
+    ════════════════════ */
+    .brands { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border); }
+    .brands__header { margin-bottom: 3rem; }
+    .brands__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.75rem; display: block; }
+    .brands__headline { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 500; letter-spacing: -0.03em; }
+    .brands-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+    .brand-cell { background: var(--bg); padding: 2rem 2.5rem; display: flex; align-items: center; gap: 1rem; transition: background 0.2s; }
+    .brand-cell:hover { background: var(--surface); }
+    .brand-cell__name { font-size: 1rem; font-weight: 500; letter-spacing: -0.02em; color: var(--text); }
+    .brand-cell__type { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+    .brand-logo { flex-shrink: 0; width: 48px; height: 32px; display: flex; align-items: center; justify-content: center; }
+    .brand-logo img { max-width: 100%; max-height: 100%; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.6; transition: opacity 0.2s; }
+    .brand-cell:hover .brand-logo img { opacity: 1; }
+    /* Logos with black-on-white artwork — invert flips white bg to black and black art to white */
+    .brand-logo--invert img { filter: invert(1); }
+    /* Logos with colored-on-white artwork — invert+grayscale+brightness makes content white, screen blend removes white bg */
+    .brand-logo--screen-invert img { filter: invert(1) grayscale(1) brightness(2); mix-blend-mode: screen; }
+
+    /* ════════════════════
+       CTA
+    ════════════════════ */
+    .cta { padding: 5rem 0 6rem; }
+    .cta__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 1.5rem; display: block; }
+    .cta__headline { font-size: clamp(2rem, 5vw, 4rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 2rem; max-width: 20ch; text-transform: lowercase; }
+    .cta__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.25rem; border: 1px solid var(--text); border-radius: 4px; font-family: var(--mono); font-size: 0.875rem; font-weight: 300; text-transform: lowercase; transition: background 0.2s, color 0.2s; cursor: pointer; }
+    .btn:hover { background: var(--text); color: var(--bg); }
+
+    /* ════════════════════
+       FOOTER
+    ════════════════════ */
+    .footer { border-top: 1px solid var(--border); padding: 2rem 0; }
+    .footer__grid { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; }
+    .footer__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--muted); }
+    .footer__copy { font-family: var(--mono); font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.25rem; }
+    .footer__nav { display: flex; justify-content: center; gap: 1.5rem; }
+    .footer__nav a { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); transition: color 0.2s; }
+    .footer__nav a:hover { color: var(--text); }
+    .footer__social { display: flex; justify-content: flex-end; gap: 1.25rem; }
+    .footer__social a { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); transition: color 0.2s; }
+    .footer__social a:hover { color: var(--text); }
+
+    /* ════════════════════
+       REVEAL
+    ════════════════════ */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    /* ════════════════════
+       RESPONSIVE
+    ════════════════════ */
+    @media (max-width: 900px) {
+      .stats-bar__grid { grid-template-columns: repeat(2, 1fr); }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .brands-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .stats-bar__grid { grid-template-columns: 1fr 1fr; }
+      .brands-grid { grid-template-columns: 1fr 1fr; }
+      .footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer__nav, .footer__social { justify-content: flex-start; }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/nav.css" />
+</head>
+<body>
+
+  <div id="progress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__bar">
+      <a class="header__brand" href="/">.h</a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="/work">selected work</a>
+        <a href="/contact">contact</a>
+        <a href="/about" class="active">about</a>
+      </nav>
+      <div class="header__actions">
+        <a class="header__cta" href="https://docs.google.com/document/d/1_IUqRnxJ4csZ5mCOj9Wk7nkvIixssomZ/edit?usp=sharing&ouid=108158393883342679834&rtpof=true&sd=true" target="_blank" rel="noreferrer">resume / cv</a>
+        <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    </header>
-    <main id="main-content" class="container">
-      <section class="page-hero">
-        <p class="breadcrumbs"><a href="index.html">Home</a> / About Me</p>
-        <h1>A Little About Me</h1>
-        <img
-          class="banner-image"
-          src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1300&q=80"
-          alt="Creative team collaboration in design studio"
-          loading="lazy"
-        />
-      </section>
-      <section class="content panel">
-        <p>
-          I've always been a tinkerer at heart, the kid who would dismantle toys just to see how
-          they worked, then rebuild them into something wildly impractical but fun. That curiosity
-          never left; it just evolved. Now, instead of toys, I take apart pixels and workflows,
-          asking, "How can this feel more alive?"
-        </p>
-        <p>
-          My path to design wasn't a straight line. I studied maps and landscapes in university,
-          fascinated by how they quietly guide us through the world. That obsession with clarity and
-          connection stuck with me. When I stumbled into UI/UX, it clicked: digital spaces are just
-          another kind of map. Every button, every transition, is a signpost helping someone find
-          their way.
-        </p>
-        <p>
-          Along the way, I've learned that the best designs start with stories, not wireframes. Like
-          the time I stayed up sketching a feature for a healthcare app, only to realize halfway
-          through that what users truly needed wasn't flashy tech, but simplicity. Or the thrill of
-          watching a shy junior designer on my team pitch an idea that lit up the room.
-        </p>
-        <p>
-          When I'm not designing, I'm probably brewing overly elaborate coffee, experimenting with AI
-          tools to see their "personality," or scribbling app ideas on napkins. Most are terrible,
-          but every now and then, there's gold.
-        </p>
-        <p>
-          I'm drawn to the messy, human side of tech, the gaps where empathy meets innovation.
-          Whether I'm mentoring, brainstorming, or geeking out over a slick interaction, I'm happiest
-          when solving puzzles that make life a little kinder and smoother.
-        </p>
-      </section>
-    </main>
-    <footer class="site-footer">
-      <div class="container footer-wrap">
-        <p>All Rights Reserved hassanamin.net 2026</p>
-        <a href="work.html">Work</a>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
+    <a href="/">home</a>
+    <a href="/work">selected work</a>
+    <a href="/contact">contact</a>
+    <a href="/about" class="active">about</a>
+    <a class="nav__resume" href="https://docs.google.com/document/d/1_IUqRnxJ4csZ5mCOj9Wk7nkvIixssomZ/edit?usp=sharing&ouid=108158393883342679834&rtpof=true&sd=true" target="_blank" rel="noreferrer">resume / cv ↗</a>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="page-hero__title">about</h1>
       </div>
-    </footer>
-  </body>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar reveal">
+      <dl class="stats-bar__grid">
+        <div class="stat-item">
+          <dt class="stat-item__label">.experience</dt>
+          <dd class="stat-item__value">5+ years</dd>
+        </div>
+        <div class="stat-item">
+          <dt class="stat-item__label">.location</dt>
+          <dd class="stat-item__value">Egypt &mdash; EMEA</dd>
+        </div>
+        <div class="stat-item">
+          <dt class="stat-item__label">.availability</dt>
+          <dd class="stat-item__value">Open to Work</dd>
+        </div>
+        <div class="stat-item">
+          <dt class="stat-item__label">.focus</dt>
+          <dd class="stat-item__value">Product Design</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- STATEMENT -->
+    <section class="statement reveal">
+      <div class="container">
+        <span class="statement__label">.hello</span>
+        <p class="statement__text">my craft is building digital experiences grounded in empathy and clarity. <em>I believe the best designs don&rsquo;t rely on flashy technology &mdash; they rely on understanding people.</em> I&rsquo;ve always been obsessed with how things work and how people find their way, from dismantling toys as a kid to studying geodetic surveying in university, to now dismantling workflows as a Design Lead. Let&rsquo;s skip the ego, focus on what actually matters, and make something people genuinely love using.</p>
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section class="experience">
+      <div class="container">
+        <span class="experience__label">.work experience</span>
+        <ul class="exp-list" role="list">
+
+          <li class="exp-item reveal">
+            <span class="exp-item__years">May 2025 &mdash; Present</span>
+            <div>
+              <h2 class="exp-item__company">Procore Technologies</h2>
+              <p class="exp-item__role">Product Designer &middot; Full-time</p>
+              <p class="exp-item__desc">Spearheading end-to-end design of intuitive, high-fidelity interfaces for enterprise construction management tools, prioritizing data clarity, WCAG accessibility, and localization. Partnering with UX researchers on generative studies and usability tests, and accelerating design-to-development workflows using AI tools — Claude, Cursor, and NotebookLM.</p>
+            </div>
+          </li>
+
+          <li class="exp-item reveal" style="transition-delay:0.08s;">
+            <span class="exp-item__years">Jan 2025 &mdash; Dec 2025</span>
+            <div>
+              <h2 class="exp-item__company">Deloitte</h2>
+              <p class="exp-item__role">Senior Product Designer &middot; Freelance</p>
+              <p class="exp-item__desc">Architected scalable, responsive UI components for the KSA Capital Market Authority design system. Translated complex business and compliance requirements into high-fidelity wireframes and UI layouts, achieving 100% alignment with client accessibility and brand standards.</p>
+            </div>
+          </li>
+
+          <li class="exp-item reveal" style="transition-delay:0.12s;">
+            <span class="exp-item__years">Jan 2024 &mdash; Dec 2024</span>
+            <div>
+              <h2 class="exp-item__company">Path2Live</h2>
+              <p class="exp-item__role">Senior Product Designer &middot; Part-time Consultant</p>
+              <p class="exp-item__desc">Directed a cross-functional UI/UX team, establishing a developer handoff protocol that reduced integration issues by 15%. Structured the company's design department, improving team efficiency by 40%, and built a centralized design system from the ground up. Reduced executive decision-making time by 30% through data-backed design presentations.</p>
+            </div>
+          </li>
+
+          <li class="exp-item reveal" style="transition-delay:0.16s;">
+            <span class="exp-item__years">May 2022 &mdash; Apr 2025</span>
+            <div>
+              <h2 class="exp-item__company">Caspian Digital Solutions</h2>
+              <p class="exp-item__role">Lead UI/UX Designer &middot; Full-time</p>
+              <p class="exp-item__desc">Managed and mentored a UX team of 4, delivering 20+ high-quality digital products annually with a 100% on-time rate and 90% first-round approval rate. Boosted client satisfaction by 35% through high-fidelity prototypes, and drove a 20% continuous improvement in team output via quarterly UX reviews. Established standardised component libraries reducing iteration time by 25%.</p>
+            </div>
+          </li>
+
+          <li class="exp-item reveal" style="transition-delay:0.20s;">
+            <span class="exp-item__years">Dec 2021 &mdash; May 2022</span>
+            <div>
+              <h2 class="exp-item__company">Spiritude</h2>
+              <p class="exp-item__role">UI/UX &amp; Product Designer &middot; Full-time</p>
+              <p class="exp-item__desc">Executed user research and competitor analysis identifying market gaps that drove a 20% improvement in product positioning. Developed targeted user personas leading to a 30% increase in core feature adoption, and delivered cohesive UI component libraries reducing visual inconsistencies by 40%.</p>
+            </div>
+          </li>
+
+          <li class="exp-item reveal" style="transition-delay:0.24s;">
+            <span class="exp-item__years">Mar 2018 &mdash; Mar 2021</span>
+            <div>
+              <h2 class="exp-item__company">VOIS_ &mdash; Vodafone Intelligent Solutions</h2>
+              <p class="exp-item__role">UK Account Advisor &middot; Subject Matter Expert &middot; Full-time</p>
+              <p class="exp-item__desc">Led the SME team in identifying friction points across the Customer Experience Cycle (CXX) and implementing workflow optimisations that measurably improved team productivity — laying the foundation in systems thinking that underpins current UX practice.</p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- STACK MARQUEE -->
+    <section class="stack-section">
+      <span class="stack-section__label">.stack</span>
+      <div class="marquee-track" aria-hidden="true">
+        <!-- First copy -->
+        <span class="marquee-item">Figma</span>
+        <span class="marquee-item">Claude</span>
+        <span class="marquee-item">Cursor</span>
+        <span class="marquee-item">NotebookLM</span>
+        <span class="marquee-item">Framer</span>
+        <span class="marquee-item">No-code Builders</span>
+        <span class="marquee-item">Jira</span>
+        <span class="marquee-item">Trello</span>
+        <span class="marquee-item">Notion</span>
+        <span class="marquee-item">FigJam</span>
+        <span class="marquee-item">Atlassian</span>
+        <span class="marquee-item">Wireframing</span>
+        <span class="marquee-item">Prototyping</span>
+        <span class="marquee-item">Interaction Design</span>
+        <span class="marquee-item">Information Architecture</span>
+        <span class="marquee-item">Design Systems</span>
+        <span class="marquee-item">Accessibility</span>
+        <span class="marquee-item">UX Writing</span>
+        <span class="marquee-item">Prompt Engineering</span>
+        <span class="marquee-item">AI Integration</span>
+        <span class="marquee-item">WCAG</span>
+        <span class="marquee-item">User Research</span>
+        <span class="marquee-item">Usability Testing</span>
+        <span class="marquee-item">Data-Driven Design</span>
+        <span class="marquee-item">Agile / Scrum</span>
+        <span class="marquee-item">Design Thinking</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="marquee-item">Figma</span>
+        <span class="marquee-item">Claude</span>
+        <span class="marquee-item">Cursor</span>
+        <span class="marquee-item">NotebookLM</span>
+        <span class="marquee-item">Framer</span>
+        <span class="marquee-item">No-code Builders</span>
+        <span class="marquee-item">Jira</span>
+        <span class="marquee-item">Trello</span>
+        <span class="marquee-item">Notion</span>
+        <span class="marquee-item">FigJam</span>
+        <span class="marquee-item">Atlassian</span>
+        <span class="marquee-item">Wireframing</span>
+        <span class="marquee-item">Prototyping</span>
+        <span class="marquee-item">Interaction Design</span>
+        <span class="marquee-item">Information Architecture</span>
+        <span class="marquee-item">Design Systems</span>
+        <span class="marquee-item">Accessibility</span>
+        <span class="marquee-item">UX Writing</span>
+        <span class="marquee-item">Prompt Engineering</span>
+        <span class="marquee-item">AI Integration</span>
+        <span class="marquee-item">WCAG</span>
+        <span class="marquee-item">User Research</span>
+        <span class="marquee-item">Usability Testing</span>
+        <span class="marquee-item">Data-Driven Design</span>
+        <span class="marquee-item">Agile / Scrum</span>
+        <span class="marquee-item">Design Thinking</span>
+      </div>
+    </section>
+
+    <!-- BRANDS -->
+    <section class="brands">
+      <div class="container">
+        <div class="brands__header reveal">
+          <span class="brands__label">.worked with</span>
+          <h2 class="brands__headline">brands &amp; companies i&rsquo;ve designed for</h2>
+        </div>
+        <div class="brands-grid reveal" style="transition-delay:0.1s;">
+
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-novartis.png" alt="Novartis" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Novartis</p>
+              <p class="brand-cell__type">Healthcare &middot; Global</p>
+            </div>
+          </div>
+
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-petronas.png" alt="Petronas" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Petronas</p>
+              <p class="brand-cell__type">Energy &middot; Malaysia</p>
+            </div>
+          </div>
+
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-vodafone.png" alt="Vodafone" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Vodafone</p>
+              <p class="brand-cell__type">Telecom &middot; Global</p>
+            </div>
+          </div>
+
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-procore.png" alt="Procore" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Procore</p>
+              <p class="brand-cell__type">Construction Tech &middot; Enterprise</p>
+            </div>
+          </div>
+
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-cma.png" alt="Capital Market Authority" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Saudi Capital Market Authority</p>
+              <p class="brand-cell__type">Finance &middot; Government</p>
+            </div>
+          </div>
+
+          <div class="brand-cell">
+            <div class="brand-logo brand-logo--screen-invert">
+              <img src="/assets/logo-investview.png" alt="Investview" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Investview</p>
+              <p class="brand-cell__type">Fintech &middot; Investment</p>
+            </div>
+          </div>
+
+          <div class="brand-cell">
+            <div class="brand-logo brand-logo--invert">
+              <img src="/assets/logo-malaysia.png" alt="Ministry of Digital" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Ministry of Digital</p>
+              <p class="brand-cell__type">Public Sector &middot; Malaysia</p>
+            </div>
+          </div>
+
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-deloitte.svg" alt="Deloitte" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Deloitte</p>
+              <p class="brand-cell__type">Consulting &middot; Global</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta reveal">
+      <div class="container">
+        <span class="cta__label">.say hello</span>
+        <h2 class="cta__headline">i&rsquo;m open to new opportunities &mdash; let&rsquo;s talk</h2>
+        <div class="cta__actions">
+          <a class="btn" href="https://docs.google.com/document/d/1_IUqRnxJ4csZ5mCOj9Wk7nkvIixssomZ/edit?usp=sharing&ouid=108158393883342679834&rtpof=true&sd=true" target="_blank" rel="noreferrer">resume / cv</a>
+          <a class="btn" href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
+          <a class="btn" href="mailto:contact.hassan.amin@gmail.com">email me</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <span class="footer__brand">hassanamin.net</span>
+        <p class="footer__copy">&copy; 2026 Hassan Amin</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="/work">selected work</a>
+        <a href="/about">about</a>
+        <a href="/contact">contact</a>
+      </nav>
+      <div class="footer__social">
+        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
+        <a href="mailto:contact.hassan.amin@gmail.com">email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Scroll progress */
+    const bar = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+    }, { passive: true });
+
+    /* Reveal on scroll */
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+
+  </script>
+  <script src="/assets/nav.js"></script>
+</body>
 </html>

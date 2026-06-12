@@ -1,0 +1,169 @@
+/* ─────────────────────────────────────────
+   Shared Navigation — Desktop + Mobile Overlay
+───────────────────────────────────────── */
+
+/* Actions wrapper */
+.header__actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Hamburger button — hidden on desktop */
+.header__menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header__menu-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+/* ─────────────────────────────────────────
+   Mobile overlay — lives as a <body> child,
+   completely outside <header> so that the
+   header's backdrop-filter does NOT make it
+   a containing block for this fixed element.
+───────────────────────────────────────── */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  position: fixed;
+  inset: 0;
+  padding-top: 64px;      /* clear the sticky header bar */
+  background: #000;
+  z-index: 500;           /* above everything; header is z-index 100 */
+  /* Hidden state */
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+}
+
+.mobile-nav.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.mobile-nav a {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: -0.02em;
+  transition: color 0.15s;
+  text-decoration: none;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a.active {
+  color: #fff;
+}
+
+/* Resume pill */
+.mobile-nav .nav__resume {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.35);
+  padding: 0.45rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  transition: color 0.15s, border-color 0.15s;
+  letter-spacing: 0.02em;
+}
+
+.mobile-nav .nav__resume:hover {
+  color: rgba(255, 255, 255, 0.75);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Only render the mobile overlay on small screens */
+@media (min-width: 769px) {
+  .mobile-nav { display: none !important; }
+}
+
+/* Close button inside the overlay */
+.mobile-nav__close {
+  position: absolute;
+  top: 1rem;
+  right: var(--site-pad, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  width: 38px;
+  height: 38px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav__close span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  position: absolute;
+  transition: background 0.15s;
+}
+
+.mobile-nav__close span:nth-child(1) { transform: rotate(45deg); }
+.mobile-nav__close span:nth-child(2) { transform: rotate(-45deg); }
+
+.mobile-nav__close:hover span { background: #fff; }
+
+/* ── Mobile (≤ 768px) ───────────────────── */
+@media (max-width: 768px) {
+  /* Collapse header to 2 cols: brand | hamburger — keeps button on the right */
+  .header__bar {
+    grid-template-columns: 1fr auto;
+  }
+
+  /* Hide the desktop nav (middle col) */
+  .header__nav { display: none !important; }
+
+  /* Hide desktop CTA */
+  .header__cta { display: none !important; }
+
+  /* Show hamburger */
+  .header__menu-btn { display: flex; }
+
+  /* Hamburger → ✕ */
+  .header__menu-btn.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .header__menu-btn.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .header__menu-btn.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
