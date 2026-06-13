@@ -3,25 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Safety Hub Dashboard Cards &mdash; Case Study</title>
+  <title>Safety Hub &mdash; Case Study &mdash; Hassan Amin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <style>
     :root {
-      --bg: #000000;
-      --surface: #111111;
+      --bg: #000;
+      --surface: #111;
       --surface-2: #1a1a1a;
-      --surface-3: #222222;
-      --text: #ffffff;
+      --surface-3: #222;
+      --text: #fff;
       --muted: rgba(255,255,255,0.65);
-      --muted-2: rgba(255,255,255,0.6);
+      --muted-2: rgba(255,255,255,0.45);
       --border: rgba(255,255,255,0.12);
       --accent: #F97316;
       --accent-dim: rgba(249,115,22,0.10);
-      --red: #ff4d4d;
-      --green: #22c55e;
       --display: 'Manrope', system-ui, sans-serif;
       --mono: 'DM Mono', ui-monospace, monospace;
     }
@@ -32,21 +30,13 @@
     img { max-width: 100%; display: block; }
     .container { width: min(1200px, 92%); margin: 0 auto; }
 
-    .cs-img-wrap { border-radius: 10px; overflow: hidden; line-height: 0; }
-    .cs-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-    .cs-img-wrap--wide  { height: 460px; }
-    .cs-img-wrap--tall  { height: 500px; }
-    .cs-img-wrap--mid   { height: 340px; }
-    .cs-img-wrap--short { height: 220px; }
-    .cs-img-wrap--placeholder { background: var(--surface); display: flex; align-items: center; justify-content: center; }
-    .placeholder-label { font-family: var(--mono); font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+    /* ‚îÄ‚îÄ Progress ‚îÄ‚îÄ */
+    .progress-line { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 200; transition: width 0.1s linear; }
 
-    .progress-line { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 100; transition: width 0.1s linear; }
-
-    /* Header */
+    /* ‚îÄ‚îÄ Header ‚îÄ‚îÄ */
     .header { position: sticky; top: 0; z-index: 100; background: rgb(0 0 0 / 90%); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 64px; width: min(1200px, 92%); margin: 0 auto; }
-    .header__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--text); justify-self: start; }
+    .header__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; justify-self: start; }
     .header__nav { display: flex; justify-content: center; gap: clamp(1.25rem, 3vw, 2.5rem); }
     .header__nav a { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--muted); transition: color 0.2s; position: relative; padding-bottom: 6px; }
     .header__nav a:hover, .header__nav a.active { color: var(--text); }
@@ -54,7 +44,7 @@
     .header__cta { justify-self: end; font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--text); padding: 0.45rem 0.85rem; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
     .header__cta:hover { background: var(--text); color: var(--bg); }
 
-    /* Cover */
+    /* ‚îÄ‚îÄ Cover ‚îÄ‚îÄ */
     .cover { min-height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: flex-end; padding: 5rem 0 4rem; position: relative; overflow: hidden; }
     .cover__bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
     .cover__bg-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
@@ -64,97 +54,158 @@
     .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: lowercase; }
     .cover__title { font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
     .cover__title span { color: var(--accent); }
-    .cover__subtitle { font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--muted); font-weight: 300; max-width: 60ch; line-height: 1.5; margin-bottom: 3rem; }
-    .cover__meta-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .cover__subtitle { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--muted); font-weight: 300; max-width: 68ch; line-height: 1.65; margin-bottom: 3rem; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); white-space: nowrap; }
     .pill--accent { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
-    /* Overview bar */
-    .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
-    .overview-bar__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); }
-    .overview-item { background: var(--bg); padding: 1.5rem 1.75rem; }
-    .overview-item dt { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: lowercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
-    .overview-item dd { font-size: 0.95rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+    /* ‚îÄ‚îÄ Image wrappers ‚îÄ‚îÄ */
+    .cs-img-wrap { border-radius: 10px; overflow: hidden; line-height: 0; }
+    .cs-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .cs-img-wrap--wide  { height: 460px; }
+    .cs-img-wrap--tall  { height: 520px; }
+    .cs-img-wrap--mid   { height: 340px; }
+    .cs-img-wrap--short { height: 220px; }
+    .cs-img-wrap--placeholder {
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 2rem;
+      text-align: center;
+      border: 1px dashed rgba(255,255,255,0.14);
+    }
+    .placeholder-label { font-family: var(--mono); font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.03em; line-height: 1.5; max-width: 28ch; }
+    .placeholder-file  { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); opacity: 0.85; word-break: break-all; }
 
-    /* Section */
+    /* ‚îÄ‚îÄ Overview bar ‚îÄ‚îÄ */
+    .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
+    .overview-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--border); }
+    .overview-item { background: var(--bg); padding: 1.5rem 1.5rem; }
+    .overview-item dt { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); text-transform: lowercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .overview-item dd { font-size: 0.9rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+
+    /* ‚îÄ‚îÄ Section ‚îÄ‚îÄ */
     .section { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border); }
     .section__label { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1rem; display: block; }
     .section__title { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1.25rem; }
-    .section__lead { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 64ch; line-height: 1.7; }
-    .section__header { max-width: 780px; margin-bottom: 3.5rem; }
+    .section__lead { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 66ch; line-height: 1.75; }
+    .section__header { max-width: 820px; margin-bottom: 3.5rem; }
 
-    /* Feature sections */
-    .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .feature--flip { direction: rtl; }
-    .feature--flip > * { direction: ltr; }
-    .feature__copy { display: flex; flex-direction: column; gap: 1rem; }
-    .feature__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; }
-    .feature__copy h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
-    .feature__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 48ch; }
-    .feature__why-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); letter-spacing: 0.12em; }
-    .feature__visual {}
+    /* ‚îÄ‚îÄ Pull quote ‚îÄ‚îÄ */
+    .pull-quote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 2px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0; }
+    .pull-quote blockquote { font-size: clamp(1.1rem, 2.5vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.6; letter-spacing: -0.01em; }
+    .pull-quote cite { display: block; margin-top: 0.85rem; font-family: var(--mono); font-size: 0.75rem; color: var(--muted-2); font-style: normal; }
 
-    /* Quote block */
-    .quote-block { border-left: 2px solid var(--accent); padding: 0.85rem 1.25rem; background: var(--accent-dim); border-radius: 0 6px 6px 0; margin: 1rem 0; }
+    /* ‚îÄ‚îÄ Problem grid ‚îÄ‚îÄ */
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .problem-card { background: var(--surface); padding: 2rem; }
+    .problem-card__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 1.25rem; display: block; }
+    .problem-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+    .problem-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
+
+    /* ‚îÄ‚îÄ Role grid ‚îÄ‚îÄ */
+    .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .role-item { background: var(--surface); padding: 2rem; display: flex; gap: 1.25rem; }
+    .role-item__icon { font-family: var(--mono); font-size: 1.1rem; color: var(--accent); flex-shrink: 0; margin-top: 0.15rem; }
+    .role-item__body {}
+    .role-item h3 { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .role-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    /* ‚îÄ‚îÄ Phase steps (numbered, in a column) ‚îÄ‚îÄ */
+    .phase-steps { display: flex; flex-direction: column; gap: 4rem; }
+    .phase-step { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .phase-step--flip { direction: rtl; }
+    .phase-step--flip > * { direction: ltr; }
+    .phase-step__copy { display: flex; flex-direction: column; gap: 1rem; }
+    .step-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; }
+    .step-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+    .phase-step__copy h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
+    .phase-step__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 50ch; }
+    .step-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); letter-spacing: 0.12em; }
+    .phase-step__visual {}
+
+
+    /* ‚îÄ‚îÄ Research methodology block ‚îÄ‚îÄ */
+    .research-method {
+      margin: 3rem 0;
+      padding: 2.5rem;
+      background: var(--surface-2);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .research-method__label { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 1.5rem; display: block; }
+    .research-method__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .research-stat { }
+    .research-stat__value { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 600; letter-spacing: -0.04em; color: var(--text); margin-bottom: 0.3rem; }
+    .research-stat__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+
+    /* ‚îÄ‚îÄ Findings ‚îÄ‚îÄ */
+    .findings { display: flex; flex-direction: column; gap: 5rem; margin-top: 3rem; }
+    .finding { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .finding--flip { direction: rtl; }
+    .finding--flip > * { direction: ltr; }
+    .finding__copy { display: flex; flex-direction: column; gap: 1rem; }
+    .finding__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; }
+    .finding__copy h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
+    .finding__section-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); letter-spacing: 0.1em; }
+    .finding__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 50ch; }
+    .quote-block { border-left: 2px solid var(--accent); padding: 0.85rem 1.25rem; background: var(--accent-dim); border-radius: 0 6px 6px 0; margin: 0.5rem 0; }
     .quote-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; font-style: italic; }
     .quote-block cite { font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.4); font-style: normal; display: block; margin-top: 0.5rem; }
+    .finding__visual { display: flex; flex-direction: column; gap: 1rem; }
 
-    /* Hypothesis row */
-    .hypothesis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-bottom: 3.5rem; }
-    .hypothesis-card { background: var(--surface); padding: 2rem 1.75rem; }
-    .hypothesis-card__id { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.75rem; display: block; }
-    .hypothesis-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
-    .hypothesis-card p { font-size: 0.825rem; color: var(--muted); line-height: 1.7; }
-    .verdict { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--mono); font-size: 0.7rem; margin-top: 1rem; padding: 0.3rem 0.7rem; border-radius: 2rem; }
-    .verdict--supported { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
-    .verdict--partial { background: rgba(249,115,22,0.1); color: var(--accent); border: 1px solid rgba(249,115,22,0.25); }
-    .verdict--inconclusive { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); }
+    /* ‚îÄ‚îÄ Benchmark callout ‚îÄ‚îÄ */
+    .benchmark-block {
+      margin-top: 3rem;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 8px;
+      background: rgba(34,197,94,0.05);
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .benchmark-block__dot { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; flex-shrink: 0; margin-top: 0.35rem; }
+    .benchmark-block p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+    .benchmark-block strong { color: var(--text); }
 
-    /* Card comparison table */
-    .cards-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin-bottom: 3.5rem; }
-    .cards-table th { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-align: left; padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border); font-weight: 300; }
-    .cards-table td { padding: 1.1rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; line-height: 1.55; }
-    .cards-table tr:last-child td { border-bottom: none; }
-    .cards-table tr:hover td { background: rgba(255,255,255,0.02); }
-    .status-badge { font-family: var(--mono); font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 2rem; white-space: nowrap; }
-    .status-badge--pass { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
-    .status-badge--changed { background: rgba(249,115,22,0.1); color: var(--accent); border: 1px solid rgba(249,115,22,0.2); }
+    /* ‚îÄ‚îÄ Capability cards ‚îÄ‚îÄ */
+    .capability-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+    .capability-card { background: var(--surface); padding: 2.5rem 2rem; }
+    .capability-card__num { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1.25rem; display: block; }
+    .capability-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.02em; line-height: 1.3; }
+    .capability-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
 
-    /* Stat hero */
-    .stat-hero { text-align: center; padding: 4rem 0; border-bottom: 1px solid var(--border); }
-    .stat-hero__num { font-size: clamp(6rem, 18vw, 16rem); font-weight: 700; letter-spacing: -0.06em; line-height: 0.85; color: var(--accent); }
-    .stat-hero__label { font-family: var(--mono); font-size: 0.875rem; color: var(--muted); margin-top: 1.5rem; letter-spacing: 0.06em; }
-
-    /* Outcomes grid */
-    .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
-    .outcome-card { background: var(--surface); padding: 2.5rem 2rem; }
-    .outcome-card__value { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.75rem; }
-    .outcome-card__label { font-family: var(--mono); font-size: 0.75rem; color: var(--text); letter-spacing: 0.06em; margin-bottom: 0.75rem; }
-    .outcome-card__desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
-
-    /* Metrics table */
-    .metrics-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    .metrics-table th { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-weight: 300; }
-    .metrics-table td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
-    .metrics-table tr:last-child td { border-bottom: none; }
-
-    /* Learnings */
-    .learnings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    /* ‚îÄ‚îÄ Reflections ‚îÄ‚îÄ */
+    .learnings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
     .learning-block { padding: 2rem; border: 1px solid var(--border); border-radius: 8px; }
-    .learning-block h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
-    .learning-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
-    .would-do-block { border-color: rgba(255,255,255,0.06); background: var(--surface); }
+    .learning-block h3 { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.35; }
+    .learning-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
 
+    /* ‚îÄ‚îÄ Responsive ‚îÄ‚îÄ */
     @media (max-width: 900px) {
       .overview-bar__grid { grid-template-columns: repeat(3, 1fr); }
-      .feature { grid-template-columns: 1fr; gap: 3rem; }
-      .feature--flip { direction: ltr; }
-      .outcomes-grid { grid-template-columns: 1fr 1fr; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .role-grid { grid-template-columns: 1fr; }
+      .phase-step { grid-template-columns: 1fr; gap: 2.5rem; }
+      .phase-step--flip { direction: ltr; }
+      .finding { grid-template-columns: 1fr; gap: 2.5rem; }
+      .finding--flip { direction: ltr; }
+      .research-method__grid { grid-template-columns: repeat(2, 1fr); }
+      .capability-grid { grid-template-columns: 1fr; }
       .learnings-grid { grid-template-columns: 1fr; }
-      .hypothesis-grid { grid-template-columns: 1fr; }
+
+    }
+    @media (max-width: 600px) {
+      .research-method__grid { grid-template-columns: repeat(2, 1fr); }
+      .pull-quote { padding: 1.75rem 1.5rem; }
     }
   </style>
   <link rel="stylesheet" href="/assets/nav.css" />
+  <link rel="stylesheet" href="/assets/site.css" />
 </head>
 <body>
 
@@ -184,7 +235,7 @@
     <a href="/work" class="active">selected work</a>
     <a href="/contact">contact</a>
     <a href="/about">about</a>
-    <a class="nav__resume" href="https://docs.google.com/document/d/1_IUqRnxJ4csZ5mCOj9Wk7nkvIixssomZ/edit?usp=sharing&ouid=108158393883342679834&rtpof=true&sd=true" target="_blank" rel="noreferrer">resume / cv</a>
+    <a class="nav__resume" href="https://docs.google.com/document/d/1_IUqRnxJ4csZ5mCOj9Wk7nkvIixssomZ/edit?usp=sharing&ouid=108158393883342679834&rtpof=true&sd=true" target="_blank" rel="noreferrer">resume / cv ‚Üó</a>
   </nav>
 
   <!-- COVER -->
@@ -194,16 +245,17 @@
     <div class="container cover__content">
       <div class="cover__eyebrow">
         <span class="cover__dot"></span>
-        <span class="label">case study &mdash; product design &amp; research</span>
+        <span class="label">product design &middot; ux research &middot; mobile &amp; web</span>
       </div>
       <h1 class="cover__title">Safety<br /><span>Hub.</span></h1>
-      <p class="cover__subtitle">Designing and validating five data visualization cards for Procore's Safety Hub ù from requirements intake through unmoderated usability testing to research-backed shipped designs.</p>
-      <div class="cover__meta-row">
-        <span class="pill pill--accent">Product Designer &amp; Researcher</span>
-        <span class="pill">2026</span>
-        <span class="pill">Web + Mobile</span>
+      <p class="cover__subtitle">A year of design leadership on a construction SaaS product used by safety managers on active job sites. I led mobile design across two phases &mdash; defining and building the hub in Phase 1, then running a full usability study and redesigning the dashboard card system in Phase 2.</p>
+      <div class="pill-row">
+        <span class="pill pill--accent">Design Lead</span>
+        <span class="pill">Mobile &amp; Web</span>
+        <span class="pill">UX Research</span>
+        <span class="pill">Usability Testing</span>
+        <span class="pill">Multi-Phase</span>
         <span class="pill">Construction SaaS</span>
-        <span class="pill">Self-Perform Research</span>
       </div>
     </div>
   </section>
@@ -212,8 +264,8 @@
   <div style="background:#0a0a0a; line-height:0;">
     <div class="container" style="padding: 4rem 0;">
       <div class="cs-img-wrap cs-img-wrap--wide cs-img-wrap--placeholder">
-        <!-- Replace with: <img src="/assets/safety-hub-cover.png" alt="Safety Hub Dashboard" style="object-fit:cover;" /> -->
-        <span class="placeholder-label">dashboard overview ù cover image</span>
+        <span class="placeholder-label">Cover hero &mdash; Safety Hub final mobile designs</span>
+        <span class="placeholder-file">assets/safety-hub-phase1-final.png</span>
       </div>
     </div>
   </div>
@@ -222,385 +274,343 @@
   <div class="overview-bar">
     <div class="container">
       <dl class="overview-bar__grid">
-        <div class="overview-item">
-          <dt>client</dt>
-          <dd>Procore Technologies</dd>
-        </div>
-        <div class="overview-item">
-          <dt>my role</dt>
-          <dd>Product Designer &amp; Researcher</dd>
-        </div>
-        <div class="overview-item">
-          <dt>timeline</dt>
-          <dd>~1 month<br />(AprùMay 2026)</dd>
-        </div>
-        <div class="overview-item">
-          <dt>platform</dt>
-          <dd>Web + Mobile</dd>
-        </div>
-        <div class="overview-item">
-          <dt>stakeholders</dt>
-          <dd>Kevin Chu<br />Amber Wilks</dd>
-        </div>
+        <div class="overview-item"><dt>duration</dt><dd>12 months<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">2025 &ndash; 2026</span></dd></div>
+        <div class="overview-item"><dt>my role</dt><dd>Design Lead<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">Mobile-first</span></dd></div>
+        <div class="overview-item"><dt>platforms</dt><dd>iOS &middot; Android<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ Web</span></dd></div>
+        <div class="overview-item"><dt>phases</dt><dd>2<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">Hub &rarr; Dashboard cards</span></dd></div>
+        <div class="overview-item"><dt>research</dt><dd>Interviews<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ Usability study</span></dd></div>
+        <div class="overview-item"><dt>collaborators</dt><dd>PM &middot; Researcher<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ Engineering</span></dd></div>
       </dl>
     </div>
   </div>
 
-  <!-- .01 CONTEXT -->
+  <!-- .01 WHERE IT STARTED -->
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.01 &mdash; context</span>
-        <h2 class="section__title">Five cards.<br />One month.<br />Zero assumptions.</h2>
-        <p class="section__lead">Procore's Safety Hub is the command center for safety managers and project stakeholders on active construction sites. As part of a broader safety intelligence initiative, five new dashboard cards were scoped ù each surfacing a different slice of site safety data across both web and mobile.</p>
+        <span class="section__label">.01 &mdash; where it started</span>
+        <h2 class="section__title">A research brief,<br />not a design spec.</h2>
+        <p class="section__lead">I was brought into this project before any designs existed. The ask was to benchmark mobile data visualization best practices and figure out how to make safety data actionable on a phone in a construction environment. That framing &mdash; research first, design second &mdash; set the tone for everything that followed.</p>
       </div>
-      <div class="feature">
-        <div class="feature__copy">
-          <p>The five cards covered: incident tracking by contractor, time lost to injury, daily hazard assessment status, financial claims, and toolbox talk attendance. All five had detailed product requirements and acceptance criteria ù but none had been user-validated before design began.</p>
-          <p style="margin-top:0.5rem;">Three cards were formally flagged for a research plan due to novel visualization types. After reviewing the full set, I expanded the scope to include all five ù anchoring the work in evidence before a single pixel reached development.</p>
-          <span class="feature__why-label">why self-perform research</span>
-          <p>This was an SPR (Self-Perform Research) engagement, meaning I owned both the design and the research end-to-end. No dedicated researcher ù the same person who designed the cards planned the study, recruited participants, synthesized findings, and shipped the updates.</p>
+
+      <div class="pull-quote">
+        <blockquote>&ldquo;I don&rsquo;t want to hunt for safety data. I want to open one screen, see what needs attention, and go.&rdquo;</blockquote>
+        <cite>&mdash; Recurring pattern from live user interviews, Phase 1</cite>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-card__num">01 &mdash; fragmented access</span>
+          <h3>Safety data lived in separate corners of the product</h3>
+          <p>Incidents, observations, inspections, toolbox talks &mdash; all existed as separate modules. For a safety manager arriving on site at 7am, getting the full picture meant visiting four different areas of the app before they could walk the floor.</p>
         </div>
-        <div class="feature__visual">
-          <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
-            <!-- Replace with: <img src="/assets/safety-hub-context.png" alt="Safety Hub cards overview" loading="lazy" /> -->
-            <span class="placeholder-label">5 cards overview / requirements doc</span>
+        <div class="problem-card">
+          <span class="problem-card__num">02 &mdash; no signal surfacing</span>
+          <h3>The product didn&rsquo;t triage. The user had to.</h3>
+          <p>There was no view that answered: what&rsquo;s open, what&rsquo;s trending, who are the repeat offenders. Managers were doing the mental assembly work on top of a product that should have done it for them.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">03 &mdash; mobile-hostile data</span>
+          <h3>Dense dashboards designed for desktops</h3>
+          <p>Safety work happens on-site, on mobile, often in glare, wearing gloves, with 30 seconds to spare. The existing data views weren&rsquo;t designed for those conditions. They required sustained attention the environment didn&rsquo;t allow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- .02 MY ROLE -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.02 &mdash; my role</span>
+        <h2 class="section__title">What I actually owned.</h2>
+        <p class="section__lead">My title was Design Lead on mobile, but the role spanned more than screens. Across twelve months and two phases, I was involved in research, product definition, cross-platform design execution, and stakeholder alignment &mdash; often all at once.</p>
+      </div>
+      <div class="role-grid">
+        <div class="role-item">
+          <span class="role-item__icon">&#x2197;</span>
+          <div class="role-item__body">
+            <h3>UX Research participation &amp; ownership</h3>
+            <p>Attended live discovery interviews in Phase 1 alongside the UX researcher, extracting patterns that shaped the hub architecture. In Phase 2, planned and ran my own unmoderated usability study with 12 construction professionals, then led synthesis.</p>
+          </div>
+        </div>
+        <div class="role-item">
+          <span class="role-item__icon">&#x25A6;</span>
+          <div class="role-item__body">
+            <h3>Product definition &amp; requirements shaping</h3>
+            <p>Worked directly with the PM to translate user interview findings into product requirements in Phase 1. In Phase 2, I received the PM&rsquo;s requirements brief for five new cards and owned the full design process from there &mdash; concept design, research planning, synthesis, and redesign.</p>
+          </div>
+        </div>
+        <div class="role-item">
+          <span class="role-item__icon">&#x25AF;</span>
+          <div class="role-item__body">
+            <h3>Mobile-first design, end to end</h3>
+            <p>Led all mobile design across both phases &mdash; hub architecture, overview cards per safety module, navigation flows, and five dashboard data visualization cards. Every design decision was made for field use: glanceable, tappable, minimal cognitive load.</p>
+          </div>
+        </div>
+        <div class="role-item">
+          <span class="role-item__icon">&#x2609;</span>
+          <div class="role-item__body">
+            <h3>Cross-platform extension &amp; stakeholder alignment</h3>
+            <p>Extended Phase 2 dashboard cards to web in parallel with mobile, requiring different density and layout decisions for each surface. Presented concepts to customers at a preview session and maintained alignment with engineering through both phases.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- .02 CHALLENGE -->
+  <!-- .03 PHASE 1 -->
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.02 &mdash; challenge</span>
-        <h2 class="section__title">Built to spec.<br />But does it work?</h2>
-        <p class="section__lead">The core design risk wasn't whether the cards could be built ù it was whether they'd communicate the right thing once they were. All five used visualization patterns not previously validated in the Safety Hub context. Without research, the team risked shipping cards that were technically correct but practically unusable.</p>
+        <span class="section__label">.03 &mdash; phase 1 &middot; months 1&ndash;6</span>
+        <h2 class="section__title">From a research brief<br />to a shipped hub.</h2>
+        <p class="section__lead">Phase 1 was the foundation. Before any designs existed, I needed to understand what safety managers actually do on site, what they look for first, and what structure would let them get in and out of the app in under a minute.</p>
       </div>
-      <div class="feature feature--flip">
-        <div class="feature__copy">
-          <p>The most complex cases weren't bugs ù they were subtle comprehension failures that only surface when real users try to act on real data. A stacked bar chart showing "Projected Work" vs "Actual Work" is technically unambiguous. To a safety manager opening a dashboard at 7am, it wasn't.</p>
-          <div class="quote-block">
-            <p>"You should really see the graph and think about it for a moment before understanding it."</p>
-            <cite>ù P7, Construction Finance, France</cite>
+
+      <div class="phase-steps">
+
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">Discovery</span>
+            <h2>I attended the interviews to extract architecture, not just quotes.</h2>
+            <p>The UX researcher ran the sessions. My job was to listen for information hierarchy signals &mdash; what do managers look for first when they arrive on site? What do they scan, what do they skip, what makes them pull out their phone mid-walk?</p>
+            <span class="step-label">what I observed</span>
+            <p>Safety managers operate in triage mode in the mornings. They don&rsquo;t analyze &mdash; they check status. Open items, trend direction, and top offenders were the three things every participant referenced without being prompted. That pattern became the information model for every card in the hub.</p>
           </div>
-          <span class="feature__why-label">the research question</span>
-          <p>Three hypotheses were formed before the study launched ù covering the Daily Hazard gauge, the Claimed to Date filter behavior, and the Toolbox Talk attendance chart. All three were tested against a static Figma prototype with 12 construction professionals.</p>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
+              <span class="placeholder-label">Phase 1 &mdash; Exploration &mdash; early card research board</span>
+              <span class="placeholder-file">assets/safety-hub-phase1-exploration.png</span>
+            </div>
+          </div>
         </div>
-        <div class="feature__visual">
-          <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
-            <!-- Replace with: <img src="/assets/safety-hub-challenge.png" alt="Initial design before research" loading="lazy" /> -->
-            <span class="placeholder-label">initial designs ù pre-research</span>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">Requirements</span>
+            <h2>Turning interview findings into a product scope.</h2>
+            <p>After interviews, I worked with the PM to translate the patterns I&rsquo;d observed into requirements. We defined two core decisions: (1) consolidate all safety modules into a single scrollable hub, and (2) give each module an overview card with the metrics that actually mattered &mdash; not every available data point.</p>
+            <span class="step-label">my contribution</span>
+            <p>I defined the information hierarchy for each card type based on what managers reached for first. The structure wasn&rsquo;t pulled from a product backlog &mdash; it came from watching twelve safety managers describe their mornings.</p>
           </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
+              <span class="placeholder-label">Phase 1 &mdash; Iteration &mdash; card system explorations</span>
+              <span class="placeholder-file">assets/safety-hub-phase1-iteration.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">Design</span>
+            <h2>One hub. A card for every safety module.</h2>
+            <p>I designed the main Safety Hub page &mdash; a scrollable feed where each safety module had a dedicated overview card. Each card had to answer three questions at a glance: what&rsquo;s the status, what&rsquo;s the trend, and where do I go if something needs attention.</p>
+            <span class="step-label">what I explored</span>
+            <p>I worked through multiple structural approaches: hub-first navigation, fixed vs. customizable module order, card stacking behavior on scroll. Flows mapped the three-tap path from hub entry to individual incident &mdash; the maximum depth a manager should need to confirm something was handled.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
+              <span class="placeholder-label">Phase 1 &mdash; Flows &mdash; hub architecture &amp; navigation</span>
+              <span class="placeholder-file">assets/safety-hub-phase1-flows.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">Validation</span>
+            <h2>Strong signal at a customer preview session.</h2>
+            <p>I presented the hub and card system to customers. The response was immediate &mdash; safety managers recognized the morning briefing pattern, several asked when it would be in the product. The concept didn&rsquo;t need explaining; it just made sense to them.</p>
+            <span class="step-label">why it mattered</span>
+            <p>Phase 1 closing with strong customer validation meant Phase 2 could take on harder problems &mdash; richer data cards, more complex visualizations &mdash; without re-litigating whether the hub structure itself was right. We had user confidence in the foundation before building on top of it.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
+              <span class="placeholder-label">Phase 1 &mdash; Final mobile designs &mdash; hub &amp; cards</span>
+              <span class="placeholder-file">assets/safety-hub-phase1-hub-v2.png</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- .04 PHASE 2 -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.04 &mdash; phase 2 &middot; months 6&ndash;12</span>
+        <h2 class="section__title">Designed once.<br />Tested. Redesigned.</h2>
+        <p class="section__lead">The PM handed off requirements for five new dashboard data visualization cards &mdash; for both web and mobile. I took those requirements, designed the first versions, then planned and ran a usability study before a single card went to engineering. What the research surfaced made four of five cards significantly better.</p>
+      </div>
+
+      <!-- Research methodology -->
+      <div class="research-method">
+        <span class="research-method__label">.the research study</span>
+        <div class="research-method__grid">
+          <div class="research-stat">
+            <div class="research-stat__value">12</div>
+            <div class="research-stat__label">Construction professionals<br />recruited to usability study</div>
+          </div>
+          <div class="research-stat">
+            <div class="research-stat__value">5</div>
+            <div class="research-stat__label">Dashboard cards tested<br />(all of them, not just the &ldquo;risky&rdquo; ones)</div>
+          </div>
+          <div class="research-stat">
+            <div class="research-stat__value">4/5</div>
+            <div class="research-stat__label">Cards identified as needing<br />redesign before development</div>
+          </div>
+          <div class="research-stat">
+            <div class="research-stat__value">3</div>
+            <div class="research-stat__label">Distinct failure modes identified<br />across all five cards</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:66ch;margin-bottom:4rem;">I designed the study to test one question: can a construction safety manager understand what a card is showing, and what to do next, within a realistic time window? I wrote the tasks, defined success criteria, ran synthesis, and organized findings by failure pattern &mdash; not by card. That reframing is what made the insights actionable.</p>
+
+      <!-- Findings -->
+      <div class="findings">
+
+        <div class="finding">
+          <div class="finding__copy">
+            <span class="finding__num">finding 01</span>
+            <h2>Don&rsquo;t make users do math.</h2>
+            <span class="finding__section-label">what participants did</span>
+            <p>The &ldquo;Time Lost to Injury&rdquo; card displayed projected vs. actual work hours as a stacked bar. The gap between them was meant to represent lost time. Participants consistently stared at the chart without answering &mdash; they were trying to do subtraction in their head.</p>
+            <div class="quote-block">
+              <p>&ldquo;I&rsquo;d expect lost hours or days due to incidents &mdash; not projected vs. actual work.&rdquo;</p>
+              <cite>&mdash; Usability study participant</cite>
+            </div>
+            <span class="finding__section-label">what changed</span>
+            <p>Replaced the comparison chart with a direct &ldquo;hours lost per month&rdquo; visualization. The math now happens in the backend. The card title was renamed to match the unit the user expected. The number became the message &mdash; no derivation required.</p>
+          </div>
+          <div class="finding__visual">
+            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
+              <span class="placeholder-label">Hours lost &mdash; before: stacked comparison chart</span>
+              <span class="placeholder-file">assets/safety-hub-phase2-hours-before.png</span>
+            </div>
+            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
+              <span class="placeholder-label">Hours lost &mdash; after: direct monthly chart</span>
+              <span class="placeholder-file">assets/safety-hub-phase2-hours-after.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="finding finding--flip">
+          <div class="finding__copy">
+            <span class="finding__num">finding 02</span>
+            <h2>Seeing the problem isn&rsquo;t the same as solving it.</h2>
+            <span class="finding__section-label">what participants did</span>
+            <p>The hazard assessment gauge showed the volume of open hazards clearly &mdash; participants understood something was wrong. But they couldn&rsquo;t do anything about it. The card gave them a status but no path forward. Labels compounded it: &ldquo;project total&rdquo; was interpreted differently by nearly every participant.</p>
+            <span class="finding__section-label">what changed</span>
+            <p>Changed the full-circle gauge to a semicircle (reduces visual noise, creates natural reading direction), clarified all labels to remove ambiguity, added timeframe context, and paired percentages with raw numbers. The card now tells you the status and gives you enough context to decide whether to act.</p>
+          </div>
+          <div class="finding__visual">
+            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
+              <span class="placeholder-label">Hazard gauge &mdash; before: full donut, ambiguous labels</span>
+              <span class="placeholder-file">assets/safety-hub-phase2-hazard-before.png</span>
+            </div>
+            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
+              <span class="placeholder-label">Hazard gauge &mdash; after: semicircle, clear labels + counts</span>
+              <span class="placeholder-file">assets/safety-hub-phase2-hazard-after.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding__copy">
+            <span class="finding__num">finding 03</span>
+            <h2>Right data. Wrong frame. Misread every time.</h2>
+            <span class="finding__section-label">what participants did</span>
+            <p>Two separate cards had framing problems. The workers&rsquo; compensation claims card was read as contractor billing by multiple participants &mdash; the word &ldquo;injury&rdquo; didn&rsquo;t appear in the title. The toolbox talk attendance chart required users to subtract two bars to get the attendance ratio &mdash; a calculation that nobody should be doing at 7am before walking a job site.</p>
+            <div class="quote-block">
+              <p>&ldquo;This looks like it&rsquo;s tracking money. Is this contractor payments?&rdquo;</p>
+              <cite>&mdash; Usability study participant, on the claims card</cite>
+            </div>
+            <span class="finding__section-label">what changed</span>
+            <p>Made injury context explicit in the card name and description. Added a trend sparkline so direction is visible before any numbers are read. Replaced the dual-bar attendance chart with a single percentage bar: attended vs. total, stated plainly. No arithmetic required.</p>
+          </div>
+          <div class="finding__visual">
+            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
+              <span class="placeholder-label">Claims card &mdash; before &amp; after</span>
+              <span class="placeholder-file">assets/safety-hub-phase2-claims.png</span>
+            </div>
+            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
+              <span class="placeholder-label">Attendance card &mdash; before &amp; after</span>
+              <span class="placeholder-file">assets/safety-hub-phase2-attendance.png</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="benchmark-block">
+        <div class="benchmark-block__dot"></div>
+        <p><strong>One card passed without changes.</strong> It became the benchmark. When I started redesigning the others, I used it as the reference point for what &ldquo;clear&rdquo; actually looked like &mdash; direct labelling, matched title-to-unit, a single dominant number. Every redesign was measured against it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- .05 WHAT THIS DEMONSTRATES -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.05 &mdash; what this demonstrates</span>
+        <h2 class="section__title">Skills in practice,<br />not in theory.</h2>
+        <p class="section__lead">This wasn&rsquo;t a sprint or a single feature. It was a sustained year of design leadership on a complex enterprise product &mdash; research-heavy, cross-platform, multi-phase, and shaped by real user behavior.</p>
+      </div>
+      <div class="capability-grid">
+        <div class="capability-card">
+          <span class="capability-card__num">01</span>
+          <h3>Research-led design, from brief to synthesis</h3>
+          <p>I didn&rsquo;t receive insights from a researcher and translate them. In Phase 1, I attended live interviews and extracted the patterns that shaped the architecture myself. In Phase 2, I planned and ran the study, wrote the tasks, and organized findings into three actionable failure modes that drove four redesigns. The research wasn&rsquo;t a separate workstream &mdash; it was my workstream.</p>
+        </div>
+        <div class="capability-card">
+          <span class="capability-card__num">02</span>
+          <h3>Mobile-first with real constraints, extended to web</h3>
+          <p>Every Phase 1 design decision was made for field conditions: glare, gloves, 30-second windows, one-thumb use. Phase 2 extended each card to web simultaneously &mdash; different density, different layout, different interaction patterns &mdash; designed in parallel, not as an afterthought. Cross-platform here meant two genuinely different design problems, not just a resize.</p>
+        </div>
+        <div class="capability-card">
+          <span class="capability-card__num">03</span>
+          <h3>Stakeholder collaboration and mid-project ownership</h3>
+          <p>I shaped requirements with the PM in Phase 1 rather than receiving a spec &mdash; translating user interview findings into product decisions directly. In Phase 2, I received the PM&rsquo;s requirements brief and ran the entire process end-to-end: concept design, study planning, synthesis, and redesign. The continuity between both phases &mdash; the card grammar, the user mental model, the design decisions &mdash; held because I had context from day one.</p>
+        </div>
+        <div class="capability-card">
+          <span class="capability-card__num">04</span>
+          <h3>Systems thinking over screen design</h3>
+          <p>The Safety Hub is an information architecture, not a feature. One scrollable hub, six-plus safety modules, a consistent card grammar, drill-through flows into existing product areas &mdash; all of it had to hold together. The card system had rules: open count, trend, top offenders, direct path forward. Those rules meant the system could scale to any module without requiring a new design decision each time.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- .03 THE WORK -->
+  <!-- .06 REFLECTIONS -->
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.03 &mdash; the work</span>
-        <h2 class="section__title">Research-driven<br />design.</h2>
-        <p class="section__lead">The project moved through three distinct phases: initial design from requirements, a structured unmoderated usability study, and a round of research-backed redesigns. Here's how each played out.</p>
-      </div>
-
-      <!-- Feature 01: Research setup -->
-      <div class="feature" style="margin-bottom:5rem;">
-        <div class="feature__copy">
-          <span class="feature__num">phase 01 / research setup</span>
-          <h2>Testing before building.</h2>
-          <p>The research plan defined 5 goals, 12 research questions, and 3 explicit hypotheses ù then went live on UserTesting.com with a screener filtering for active construction professionals who use dashboards weekly or more.</p>
-          <span class="feature__why-label">method</span>
-          <p>Unmoderated remote usability test. 12 participants. 20ù25 minute sessions. Static Figma prototype with think-aloud. No facilitator ù participants worked through a scenario as a Safety Manager starting their morning site review in Procore.</p>
-        </div>
-        <div class="feature__visual">
-          <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
-            <!-- Replace with: <img src="/assets/safety-hub-research-plan.png" alt="Research plan" loading="lazy" /> -->
-            <span class="placeholder-label">research plan / UserTesting setup</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Hypotheses -->
-      <div style="margin-bottom:5rem;">
-        <p style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:1.75rem;">three hypotheses tested</p>
-        <div class="hypothesis-grid">
-          <div class="hypothesis-card">
-            <span class="hypothesis-card__id">H1 ù Daily Hazard Assessments</span>
-            <h3>Open hazards with no path to act.</h3>
-            <p>If safety managers see a high proportion of Open assessments, they will want to take immediate corrective action ù but be unable to complete it without a drill-through link.</p>
-            <span class="verdict verdict--supported">? supported</span>
-          </div>
-          <div class="hypothesis-card">
-            <span class="hypothesis-card__id">H2 ù Claimed to Date</span>
-            <h3>Quick Filter drives misread of trend %.</h3>
-            <p>If the Quick Filter doesn't surface cost code or vendor as defaults, project stakeholders will misinterpret the trend percentage as a project-wide figure rather than a filtered one.</p>
-            <span class="verdict verdict--inconclusive">ù inconclusive</span>
-          </div>
-          <div class="hypothesis-card">
-            <span class="hypothesis-card__id">H3 ù Toolbox Talk Attendance</span>
-            <h3>Total vs. Attended ù same thing?</h3>
-            <p>If the stacked bar doesn't clearly differentiate Total Possible Attendees from Attended, safety officers won't be able to identify low-attendance talks without additional context.</p>
-            <span class="verdict verdict--partial">? partially supported</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 02: The anchor card -->
-      <div class="feature feature--flip" style="margin-bottom:5rem;">
-        <div class="feature__copy">
-          <span class="feature__num">card 01 / incidents per manpower log</span>
-          <h2>The anchor card.</h2>
-          <p>The stacked bar + trend line card for tracking incidents by contractor was the clearest, most action-driving card on the dashboard. 11 of 12 participants understood it on first pass. All 12 correctly read the trend line.</p>
-          <div class="quote-block">
-            <p>"If something is super high here, that's like an emergency ù that needs to be dealt with before anything else."</p>
-            <cite>ù P1, Operations Manager, CA</cite>
-          </div>
-          <span class="feature__why-label">decision</span>
-          <p>No structural changes to web. A card that works for 11/12 on the first pass and drives immediate action shouldn't be changed without a research-backed reason. One mobile update was added: a unified tap interaction so a single tap on any data point triggers a combined tooltip for that day ù removing the need to distinguish between two separate tap targets.</p>
-        </div>
-        <div class="feature__visual">
-          <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
-            <!-- Replace with: <img src="/assets/safety-hub-card1.png" alt="Incidents per Manpower Log" loading="lazy" /> -->
-            <span class="placeholder-label">card 01 ù incidents per manpower log</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 03: Daily Hazard Assessments -->
-      <div class="feature" style="margin-bottom:5rem;">
-        <div class="feature__copy">
-          <span class="feature__num">card 02 / daily hazard assessments</span>
-          <h2>Users saw the problem.<br />But had no way out.</h2>
-          <p>11 of 12 participants expressed intent to drill into open hazards ù to see who owned them, why they were still open, and what needed immediate attention. Action completion: 0 of 12. The drill-through path didn't exist.</p>
-          <div class="quote-block">
-            <p>"Next steps I would do is drill into open items ù what's high risk, who owns it, and why it's still open."</p>
-            <cite>ù P2, Senior Designer, WA</cite>
-          </div>
-          <span class="feature__why-label">design changes</span>
-          <p>The full 360ù donut was replaced with the spec's intended semicircular gauge. The center label "Project Total: 247" ù misread by 8/12 ù was renamed to "247 Assessments." "Year-to-Date" was added as a subtitle to address the absence of timeframe context raised unprompted by multiple participants. Raw counts were added alongside percentages in the legend (e.g., "42 Open (17%)").</p>
-        </div>
-        <div class="feature__visual" style="display:flex;flex-direction:column;gap:1rem;">
-          <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-            <!-- Replace with before image -->
-            <span class="placeholder-label">before ù 360ù donut / "Project Total: 247"</span>
-          </div>
-          <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-            <!-- Replace with after image -->
-            <span class="placeholder-label">after ù semicircular gauge / "247 Assessments"</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 04: Hours Lost to Injury -->
-      <div class="feature feature--flip" style="margin-bottom:5rem;">
-        <div class="feature__copy">
-          <span class="feature__num">card 03 / hours lost to injury</span>
-          <h2>The indirect calculation that didn't land.</h2>
-          <p>The original "Time Lost to Injury" card used a stacked bar showing Projected Work vs Actual Work ù with the gap between them representing hours lost. Only 3 of 12 participants interpreted it correctly on the first or second pass.</p>
-          <div class="quote-block">
-            <p>"Actual work vs projected work doesn't directly translate to time lost to injury. I'd expect lost hours or days due to incidents."</p>
-            <cite>ù P2, Senior Designer, WA</cite>
-          </div>
-          <span class="feature__why-label">complete redesign</span>
-          <p>The stacked bar was replaced with a single-series red bar chart showing hours lost per month directly. The card was renamed from "Time Lost to Injury" to "Hours Lost to Injury" ù making the unit explicit and removing the mismatch between title and content. "Year-to-Date: X Hours" was surfaced as a subtitle. Nothing to derive; the number is the card.</p>
-        </div>
-        <div class="feature__visual" style="display:flex;flex-direction:column;gap:1rem;">
-          <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-            <!-- Replace with before image -->
-            <span class="placeholder-label">before ù "Projected Work" vs "Actual Work"</span>
-          </div>
-          <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-            <!-- Replace with after image -->
-            <span class="placeholder-label">after ù direct "Hours Lost" red bar chart</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 05: Claims + Toolbox Talk -->
-      <div class="feature" style="margin-bottom:5rem;">
-        <div class="feature__copy">
-          <span class="feature__num">cards 04 &amp; 05 / claims due to injury + toolbox talk</span>
-          <h2>Correct data.<br />Wrong frame.</h2>
-          <p>The "Claimed to Date" card showed $924M ù a figure that caused 3 of 12 participants to disengage before evaluating the data. A separate 3 misread the card as contractor billing. The trend percentage itself was correctly interpreted by 10/12.</p>
-          <span class="feature__why-label">claims due to injury changes</span>
-          <p>Renamed "Claims Due to Injury" to make injury context explicit and eliminate the most common billing misread. Prototype value updated to a plausible $92K. A sparkline was added to the right of the primary metric ù red when claims are increasing, green when decreasing. "vs. past month" added as a comparison label.</p>
-          <span class="feature__why-label" style="margin-top:0.5rem;">toolbox talk attendance changes</span>
-          <p>The stacked bar was replaced with a single-series bar chart showing attendance rate (%) per talk. The primary signal ù who attended and by how much ù is now directly readable without requiring users to compare two bars or calculate a ratio. Y-axis changed from "People" to "Attended %" (0ù100%).</p>
-        </div>
-        <div class="feature__visual" style="display:flex;flex-direction:column;gap:1rem;">
-          <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-            <!-- Replace with Claims before/after -->
-            <span class="placeholder-label">claims due to injury ù before &amp; after</span>
-          </div>
-          <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-            <!-- Replace with Toolbox Talk before/after -->
-            <span class="placeholder-label">toolbox talk ù stacked bar ? % bar chart</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- All 5 cards summary table -->
-      <p style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:1.75rem;">all 5 cards ù research outcomes</p>
-      <table class="cards-table">
-        <thead>
-          <tr>
-            <th>Card</th>
-            <th>Original Name</th>
-            <th>Shipped Name</th>
-            <th>Key Finding</th>
-            <th>Outcome</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="font-weight:500;">Incidents per Manpower Log</td>
-            <td style="color:var(--muted);">Same</td>
-            <td style="color:var(--muted);">Same</td>
-            <td style="color:var(--muted);">11/12 correct on first pass. Anchor card.</td>
-            <td><span class="status-badge status-badge--pass">no changes</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:500;">Daily Hazard Assessments</td>
-            <td style="color:var(--muted);">Same</td>
-            <td style="color:var(--muted);">Same</td>
-            <td style="color:var(--muted);">0/12 action completion. 8/12 misread center label. No timeframe.</td>
-            <td><span class="status-badge status-badge--changed">redesigned</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:500;">Time Lost to Injury</td>
-            <td style="color:var(--muted);">Time Lost to Injury</td>
-            <td style="color:var(--accent);">Hours Lost to Injury</td>
-            <td style="color:var(--muted);">Only 3/12 correctly interpreted. Indirect calculation failed.</td>
-            <td><span class="status-badge status-badge--changed">complete redesign</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:500;">Claimed to Date</td>
-            <td style="color:var(--muted);">Claimed to Date</td>
-            <td style="color:var(--accent);">Claims Due to Injury</td>
-            <td style="color:var(--muted);">3/12 disengaged on scale. 3/12 misread as billing.</td>
-            <td><span class="status-badge status-badge--changed">redesigned</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:500;">Toolbox Talk Attendance</td>
-            <td style="color:var(--muted);">Same</td>
-            <td style="color:var(--muted);">Same</td>
-            <td style="color:var(--muted);">No participant independently identified low-attendance talks without prompting.</td>
-            <td><span class="status-badge status-badge--changed">chart type changed</span></td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
-  </section>
-
-  <!-- STAT HERO -->
-  <div class="stat-hero">
-    <div class="container">
-      <div class="stat-hero__num">0/12</div>
-      <p class="stat-hero__label">action completions on the Daily Hazard card before the redesign ù the finding that forced a drill-through path into scope</p>
-    </div>
-  </div>
-
-  <!-- .04 OUTCOMES -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.04 &mdash; outcomes</span>
-        <h2 class="section__title">What shipped.</h2>
-        <p class="section__lead">Five cards designed, five cards tested, four redesigned. Every change traced directly to a specific research finding, with a Jira ticket to match. The study also surfaced a roadmap of missing features ù from drill-through panels to alert states ù giving product a prioritized list to work from next.</p>
-      </div>
-
-      <table class="metrics-table" style="margin-bottom:3.5rem;">
-        <thead>
-          <tr>
-            <th>Card</th>
-            <th>Web Ticket</th>
-            <th>Mobile Ticket</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="font-weight:500;">Incidents per Manpower Log</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4925</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4926</td>
-            <td style="color:var(--green);font-family:var(--mono);font-size:0.75rem;">shipped ù no design changes</td>
-          </tr>
-          <tr>
-            <td style="font-weight:500;">Hours Lost to Injury</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4927</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4928</td>
-            <td style="color:var(--accent);font-family:var(--mono);font-size:0.75rem;">complete redesign</td>
-          </tr>
-          <tr>
-            <td style="font-weight:500;">Daily Hazard Assessments</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4929</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4930</td>
-            <td style="color:var(--accent);font-family:var(--mono);font-size:0.75rem;">gauge + label + legend redesigned</td>
-          </tr>
-          <tr>
-            <td style="font-weight:500;">Claims Due to Injury</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4931</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4932</td>
-            <td style="color:var(--accent);font-family:var(--mono);font-size:0.75rem;">renamed + sparkline added</td>
-          </tr>
-          <tr>
-            <td style="font-weight:500;">Toolbox Talk Attendance</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4933</td>
-            <td style="font-family:var(--mono);font-size:0.8rem;">PEPD-4934</td>
-            <td style="color:var(--accent);font-family:var(--mono);font-size:0.75rem;">chart type changed to % bar</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="outcomes-grid">
-        <div class="outcome-card">
-          <div class="outcome-card__value">12</div>
-          <div class="outcome-card__label">RESEARCH PARTICIPANTS</div>
-          <div class="outcome-card__desc">Construction professionals ù safety managers, project managers, engineers, and owners ù recruited via UserTesting.com across the US, Europe, UAE, and Mexico.</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-card__value">4/5</div>
-          <div class="outcome-card__label">CARDS REDESIGNED</div>
-          <div class="outcome-card__desc">Four of five cards underwent design changes directly driven by research findings. Every change was scoped to a specific hypothesis result or research question outcome.</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-card__value">10</div>
-          <div class="outcome-card__label">JIRA TICKETS RAISED</div>
-          <div class="outcome-card__desc">Ten development tickets across web and mobile, covering all five cards. Each ticket links back to the validated Figma designs and the findings that informed them.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- .05 REFLECTIONS -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.05 &mdash; reflections</span>
-        <h2 class="section__title">What worked.<br />What I&rsquo;d change.</h2>
+        <span class="section__label">.06 &mdash; reflections</span>
+        <h2 class="section__title">What I&rsquo;d carry forward.</h2>
       </div>
       <div class="learnings-grid">
         <div class="learning-block">
-          <h3>Expanding scope to all 5 cards was the right call.</h3>
-          <p>Only 3 cards were formally required for research. Bringing all 5 revealed that even the "simple" cards carried comprehension risks ù and validated the one card (Incidents per Manpower Log) that was clearly working. Having an anchor card to benchmark against made every other finding sharper.</p>
+          <h3>Phase sequencing is a research strategy.</h3>
+          <p>Testing the hub concept with users before Phase 2 began meant we weren&rsquo;t building complex data visualizations on top of an unvalidated structure. That sequencing was a deliberate risk reduction move, not just a project plan. Phase 1&rsquo;s validation made Phase 2&rsquo;s research riskier and more interesting &mdash; we were testing harder things on a solid foundation.</p>
         </div>
         <div class="learning-block">
-          <h3>Owning both design and research removed friction.</h3>
-          <p>In a Self-Perform Research model, the designer who built the cards also ran the study. The context switch was demanding ù but it meant findings were translated into design decisions immediately, without a handoff gap. The synthesis-to-redesign cycle happened in days, not weeks.</p>
+          <h3>Test the &ldquo;safe&rdquo; cards too.</h3>
+          <p>Only three of the five cards were initially flagged for usability risk. I advocated to test all five. The two that seemed straightforward had the most consistent comprehension failures. And the one that passed cleanly &mdash; the one nobody was worried about &mdash; became the design benchmark everything else was measured against.</p>
         </div>
-        <div class="learning-block would-do-block">
-          <h3>I'd have run an interactive prototype for Claims Due to Injury.</h3>
-          <p>The static prototype prevented Quick Filter interaction ù the second hypothesis couldn't be fully tested, and came back inconclusive. The scale confusion ($924M) was a more critical finding anyway, but an interactive prototype would have surfaced both problems simultaneously and saved a follow-up round.</p>
+        <div class="learning-block">
+          <h3>Synthesis organization is part of the design work.</h3>
+          <p>Organizing findings by failure mode rather than by card was a deliberate choice. &ldquo;4 of 5 cards had problems&rdquo; is a stat. &ldquo;Three failure modes appear across all five cards&rdquo; is a design brief. The way you structure what you learned shapes what people are able to act on. Synthesis is design.</p>
         </div>
-        <div class="learning-block would-do-block">
-          <h3>Mobile should have been included from the start.</h3>
-          <p>This round of research covered web only. Mobile designs existed but weren't tested. A significant portion of Procore's Safety Hub usage happens in the field on mobile ù where touch targets, panning behavior, and tap tooltips all introduce new failure modes. Round 2 is scoped; it should have been round 1.</p>
+        <div class="learning-block">
+          <h3>Owning a brief end-to-end is different from executing screens.</h3>
+          <p>Taking the PM&rsquo;s requirements for Phase 2 and running every step from there &mdash; concept design, study planning, synthesis, redesign &mdash; with no separate handoffs between research and design meant the findings went directly into decisions. There was no translation gap. That continuity is what made the redesigns specific rather than generic.</p>
         </div>
       </div>
     </div>
@@ -610,26 +620,26 @@
   <section style="padding: clamp(4rem,8vw,7rem) 0; border-top: 1px solid var(--border);">
     <div class="container">
       <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">.more work</span>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);">
+      <div class="more-work__grid">
 
-        <a href="/case-study-meridian" style="background:#00ff77;padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;transition:opacity 0.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+        <a class="more-work__card" href="/case-study-meridian" style="background:#00ff77;color:#000;">
           <div>
-            <p style="font-family:var(--mono);font-size:0.75rem;color:rgba(0,0,0,0.6);margin-bottom:1rem;">2023&ndash;2024 &middot; SaaS &middot; Design Lead</p>
-            <h3 style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:600;letter-spacing:-0.03em;color:#000;line-height:1.1;">Meridian &mdash; Smart Scheduling &amp; Personal Brand</h3>
+            <p class="more-work__meta" style="color:rgba(0,0,0,0.6);">2023&ndash;2024 &middot; SaaS &middot; Design Lead</p>
+            <h3 class="more-work__title">Meridian &mdash; Smart Scheduling &amp; Personal Brand</h3>
           </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;">
-            <span style="font-family:var(--mono);font-size:0.75rem;color:rgba(0,0,0,0.5);">view case study</span>
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="more-work__footer">
+            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">view case study</span>
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
 
-        <a href="/work" style="background:var(--surface);padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;transition:background 0.2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='var(--surface)'">
+        <a class="more-work__card" href="/work" style="background:var(--surface);color:var(--text);">
           <div>
-            <p style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);margin-bottom:1rem;">.all projects</p>
-            <h3 style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:600;letter-spacing:-0.03em;color:var(--text);line-height:1.1;">View all selected work &rarr;</h3>
+            <p class="more-work__meta" style="color:var(--muted);">.all projects</p>
+            <h3 class="more-work__title">View all selected work &rarr;</h3>
           </div>
-          <div style="display:flex;align-items:center;justify-content:flex-end;margin-top:1.5rem;">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="more-work__footer" style="justify-content:flex-end;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
 
@@ -638,20 +648,20 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer" style="border-top:1px solid var(--border);padding:2rem 0;">
-    <div class="container" style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;">
+  <footer class="footer">
+    <div class="container footer__grid">
       <div>
-        <span style="font-family:var(--mono);font-size:0.875rem;font-weight:300;color:var(--muted);">hassanamin.net</span>
-        <p style="font-family:var(--mono);font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:0.25rem;">&copy; 2026 Hassan Amin</p>
+        <span class="footer__brand">hassanamin.net</span>
+        <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
-      <nav style="display:flex;justify-content:center;gap:1.5rem;">
-        <a href="/work" style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">selected work</a>
-        <a href="/about" style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">about</a>
-        <a href="/contact" style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">contact</a>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="/work">selected work</a>
+        <a href="/about">about</a>
+        <a href="/contact">contact</a>
       </nav>
-      <div style="display:flex;justify-content:flex-end;gap:1.25rem;">
-        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer" style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">linkedin</a>
-        <a href="mailto:contact.hassan.amin@gmail.com" style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">email</a>
+      <div class="footer__social">
+        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
+        <a href="mailto:contact.hassan.amin@gmail.com">email</a>
       </div>
     </div>
   </footer>
@@ -665,7 +675,6 @@
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-
   </script>
   <script src="/assets/nav.js"></script>
 
