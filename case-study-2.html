@@ -45,7 +45,7 @@
     .header__cta:hover { background: var(--text); color: var(--bg); }
 
     /* ── Cover ── */
-    .cover { min-height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: flex-end; padding: 5rem 0 4rem; position: relative; overflow: hidden; }
+    .cover { display: flex; flex-direction: column; justify-content: flex-start; padding: clamp(2.5rem, 5vw, 3.5rem) 0 clamp(3rem, 6vw, 4rem); position: relative; overflow: hidden; }
     .cover__bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
     .cover__bg-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
     .cover__content { position: relative; z-index: 1; }
@@ -59,7 +59,6 @@
     .pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); white-space: nowrap; }
     .pill--accent { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
-    /* ── Image wrappers → assets/case-study.css ── */
     .cs-img-wrap--placeholder {
       background: var(--surface);
       display: flex;
@@ -223,7 +222,6 @@
   <link rel="stylesheet" href="/assets/nav.css" />
   <link rel="stylesheet" href="/assets/site.css" />
   <link rel="stylesheet" href="/assets/case-study.css" />
-  <link rel="preload" as="image" href="/assets/safety-hub-p2-mobile-guess-free.webp" type="image/webp" fetchpriority="high" />
 </head>
 <body>
 
@@ -277,18 +275,6 @@
       </div>
     </div>
   </section>
-
-  <!-- COVER IMAGE -->
-  <div style="background:#0a0a0a;">
-    <div class="container" style="padding: 4rem 0;">
-      <div class="cs-img-wrap cs-img-wrap--auto">
-        <picture>
-          <source srcset="/assets/safety-hub-p2-mobile-guess-free.webp" type="image/webp" />
-          <img src="/assets/safety-hub-p2-mobile-guess-free.png" alt="Site Safety Command — guess-free mobile dashboard" width="1275" height="832" loading="eager" fetchpriority="high" decoding="async" />
-        </picture>
-      </div>
-    </div>
-  </div>
 
   <!-- OVERVIEW BAR -->
   <div class="overview-bar">

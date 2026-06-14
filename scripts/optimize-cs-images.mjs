@@ -8,6 +8,8 @@ const MAX_TALL = 1120;
 const QUALITY = 82;
 
 const WIDE = new Set([
+  'meridian-hero.png',
+  'safety-hero.png',
   'safety-hub-p2-mobile-guess-free.png',
   'ms-overview.png',
 ]);
@@ -34,7 +36,7 @@ async function optimize(file) {
 }
 
 const files = (await readdir(ASSETS)).filter((f) => f.endsWith('.png'));
-const targets = files.filter((f) => f.startsWith('safety-hub-') || f.startsWith('ms-') || ['dashboard.png', 'guest booking 1.png', 'public profile.png', 'analytics (2).png', 'settings.png', 'login (2).png'].includes(f));
+const targets = files.filter((f) => f.startsWith('safety-') || f.startsWith('safety-hub-') || f.startsWith('ms-') || ['dashboard.png', 'guest booking 1.png', 'public profile.png', 'analytics (2).png', 'settings.png', 'login (2).png'].includes(f));
 
 for (const file of targets) {
   await optimize(file);
