@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Safety Hub &mdash; Case Study &mdash; Hassan Amin</title>
+  <title>Site Safety Command &mdash; Case Study &mdash; Hassan Amin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
@@ -18,8 +18,8 @@
       --muted: rgba(255,255,255,0.65);
       --muted-2: rgba(255,255,255,0.45);
       --border: rgba(255,255,255,0.12);
-      --accent: #F97316;
-      --accent-dim: rgba(249,115,22,0.10);
+      --accent: #A259FF;
+      --accent-dim: rgba(162,89,255,0.10);
       --display: 'Manrope', system-ui, sans-serif;
       --mono: 'DM Mono', ui-monospace, monospace;
     }
@@ -59,13 +59,7 @@
     .pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); white-space: nowrap; }
     .pill--accent { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
-    /* ── Image wrappers ── */
-    .cs-img-wrap { border-radius: 10px; overflow: hidden; line-height: 0; }
-    .cs-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-    .cs-img-wrap--wide  { height: 460px; }
-    .cs-img-wrap--tall  { height: 520px; }
-    .cs-img-wrap--mid   { height: 340px; }
-    .cs-img-wrap--short { height: 220px; }
+    /* ── Image wrappers → assets/case-study.css ── */
     .cs-img-wrap--placeholder {
       background: var(--surface);
       display: flex;
@@ -76,9 +70,22 @@
       padding: 2rem;
       text-align: center;
       border: 1px dashed rgba(255,255,255,0.14);
+      line-height: normal;
     }
-    .placeholder-label { font-family: var(--mono); font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.03em; line-height: 1.5; max-width: 28ch; }
-    .placeholder-file  { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); opacity: 0.85; word-break: break-all; }
+    .placeholder-label { font-family: var(--mono); font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.03em; line-height: 1.5; max-width: 32ch; }
+    .placeholder-file  { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); opacity: 0.85; word-break: break-all; max-width: 36ch; }
+
+    /* ── Process timeline ── */
+    .process-timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 2.5rem; }
+    .process-timeline--5 { grid-template-columns: repeat(5, 1fr); }
+    .timeline-step { background: var(--surface); padding: 1.75rem 1.25rem; }
+    .timeline-step__num { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.75rem; display: block; }
+    .timeline-step h3 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.45rem; letter-spacing: -0.02em; }
+    .timeline-step p { font-size: 0.75rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── Platform deliverable ── */
+    .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+    .platform-item__label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); letter-spacing: 0.1em; margin-bottom: 0.75rem; display: block; }
 
     /* ── Overview bar ── */
     .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
@@ -143,15 +150,23 @@
     .research-stat__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
 
     /* ── Findings ── */
-    .findings { display: flex; flex-direction: column; gap: 5rem; margin-top: 3rem; }
+    .findings { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 3rem; }
     .finding { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .finding.finding--solo {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+    }
     .finding--flip { direction: rtl; }
     .finding--flip > * { direction: ltr; }
     .finding__copy { display: flex; flex-direction: column; gap: 1rem; }
     .finding__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; }
     .finding__copy h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
     .finding__section-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); letter-spacing: 0.1em; }
-    .finding__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 50ch; }
+    .finding__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 72ch; }
     .quote-block { border-left: 2px solid var(--accent); padding: 0.85rem 1.25rem; background: var(--accent-dim); border-radius: 0 6px 6px 0; margin: 0.5rem 0; }
     .quote-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; font-style: italic; }
     .quote-block cite { font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.4); font-style: normal; display: block; margin-top: 0.5rem; }
@@ -197,7 +212,8 @@
       .research-method__grid { grid-template-columns: repeat(2, 1fr); }
       .capability-grid { grid-template-columns: 1fr; }
       .learnings-grid { grid-template-columns: 1fr; }
-
+      .process-timeline, .process-timeline--5 { grid-template-columns: 1fr 1fr; }
+      .platform-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .research-method__grid { grid-template-columns: repeat(2, 1fr); }
@@ -206,6 +222,8 @@
   </style>
   <link rel="stylesheet" href="/assets/nav.css" />
   <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="stylesheet" href="/assets/case-study.css" />
+  <link rel="preload" as="image" href="/assets/safety-hub-p2-mobile-guess-free.webp" type="image/webp" fetchpriority="high" />
 </head>
 <body>
 
@@ -247,8 +265,8 @@
         <span class="cover__dot"></span>
         <span class="label">product design &middot; ux research &middot; mobile &amp; web</span>
       </div>
-      <h1 class="cover__title">Safety<br /><span>Hub.</span></h1>
-      <p class="cover__subtitle">A year of design leadership on a construction SaaS product used by safety managers on active job sites. I led mobile design across two phases &mdash; defining and building the hub in Phase 1, then running a full usability study and redesigning the dashboard card system in Phase 2.</p>
+      <h1 class="cover__title">Site Safety<br /><span>Command.</span></h1>
+      <p class="cover__subtitle">Two phases over twelve months on a construction SaaS product. Phase 1: user feedback became PM requirements, I turned those into a design brief and built a mobile command center for job-site safety. Phase 2: a new requirements doc became a UserTesting study, a first iteration, synthesis, and a guess-free dashboard system on web and mobile.</p>
       <div class="pill-row">
         <span class="pill pill--accent">Design Lead</span>
         <span class="pill">Mobile &amp; Web</span>
@@ -261,11 +279,13 @@
   </section>
 
   <!-- COVER IMAGE -->
-  <div style="background:#0a0a0a; line-height:0;">
+  <div style="background:#0a0a0a;">
     <div class="container" style="padding: 4rem 0;">
-      <div class="cs-img-wrap cs-img-wrap--wide cs-img-wrap--placeholder">
-        <span class="placeholder-label">Cover hero &mdash; Safety Hub final mobile designs</span>
-        <span class="placeholder-file">assets/safety-hub-phase1-final.png</span>
+      <div class="cs-img-wrap cs-img-wrap--auto">
+        <picture>
+          <source srcset="/assets/safety-hub-p2-mobile-guess-free.webp" type="image/webp" />
+          <img src="/assets/safety-hub-p2-mobile-guess-free.png" alt="Site Safety Command — guess-free mobile dashboard" width="1275" height="832" loading="eager" fetchpriority="high" decoding="async" />
+        </picture>
       </div>
     </div>
   </div>
@@ -277,8 +297,8 @@
         <div class="overview-item"><dt>duration</dt><dd>12 months<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">2025 &ndash; 2026</span></dd></div>
         <div class="overview-item"><dt>my role</dt><dd>Design Lead<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">Mobile-first</span></dd></div>
         <div class="overview-item"><dt>platforms</dt><dd>iOS &middot; Android<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ Web</span></dd></div>
-        <div class="overview-item"><dt>phases</dt><dd>2<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">Hub &rarr; Dashboard cards</span></dd></div>
-        <div class="overview-item"><dt>research</dt><dd>Interviews<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ Usability study</span></dd></div>
+        <div class="overview-item"><dt>phases</dt><dd>2<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">Command center &rarr; Dashboard cards</span></dd></div>
+        <div class="overview-item"><dt>research</dt><dd>UserTesting<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">unmoderated study</span></dd></div>
         <div class="overview-item"><dt>collaborators</dt><dd>PM &middot; Researcher<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ Engineering</span></dd></div>
       </dl>
     </div>
@@ -289,20 +309,38 @@
     <div class="container">
       <div class="section__header">
         <span class="section__label">.01 &mdash; where it started</span>
-        <h2 class="section__title">A research brief,<br />not a design spec.</h2>
-        <p class="section__lead">I was brought into this project before any designs existed. The ask was to benchmark mobile data visualization best practices and figure out how to make safety data actionable on a phone in a construction environment. That framing &mdash; research first, design second &mdash; set the tone for everything that followed.</p>
+        <h2 class="section__title">User feedback in.<br />Requirements out.<br />Design brief next.</h2>
+        <p class="section__lead">The project didn&rsquo;t start with a Figma file. It started with user requirements and raw feedback from safety managers on active job sites. The PM translated that into structured requirements. My job was to turn those requirements into a design brief &mdash; and then into a mobile command center that made sense in the field.</p>
       </div>
 
-      <div class="pull-quote">
-        <blockquote>&ldquo;I don&rsquo;t want to hunt for safety data. I want to open one screen, see what needs attention, and go.&rdquo;</blockquote>
-        <cite>&mdash; Recurring pattern from live user interviews, Phase 1</cite>
+      <div class="process-timeline">
+        <div class="timeline-step">
+          <span class="timeline-step__num">01</span>
+          <h3>User requirements &amp; raw feedback</h3>
+          <p>Safety managers needed faster access to scattered safety tools &mdash; incidents, observations, inspections, hazards &mdash; from one place on mobile.</p>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-step__num">02</span>
+          <h3>PM requirements</h3>
+          <p>The PM consolidated feedback into product requirements: one command center, overview cards per safety module, scannable stats and drill-through paths.</p>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-step__num">03</span>
+          <h3>Design brief</h3>
+          <p>I translated requirements into a mobile design brief &mdash; information hierarchy, card grammar, navigation depth, and what &ldquo;done&rdquo; looked like for Phase 1.</p>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-step__num">04</span>
+          <h3>Site Safety Command</h3>
+          <p>Exploration through iteration to a validated command center with flows into every safety module.</p>
+        </div>
       </div>
 
-      <div class="problem-grid">
+      <div class="problem-grid" style="margin-top:3rem;">
         <div class="problem-card">
           <span class="problem-card__num">01 &mdash; fragmented access</span>
           <h3>Safety data lived in separate corners of the product</h3>
-          <p>Incidents, observations, inspections, toolbox talks &mdash; all existed as separate modules. For a safety manager arriving on site at 7am, getting the full picture meant visiting four different areas of the app before they could walk the floor.</p>
+          <p>Incidents, observations, inspections, toolbox talks &mdash; all existed as separate modules. For a safety manager arriving on site at 7am, getting the full picture meant visiting four different areas of the app before walking the floor.</p>
         </div>
         <div class="problem-card">
           <span class="problem-card__num">02 &mdash; no signal surfacing</span>
@@ -312,7 +350,7 @@
         <div class="problem-card">
           <span class="problem-card__num">03 &mdash; mobile-hostile data</span>
           <h3>Dense dashboards designed for desktops</h3>
-          <p>Safety work happens on-site, on mobile, often in glare, wearing gloves, with 30 seconds to spare. The existing data views weren&rsquo;t designed for those conditions. They required sustained attention the environment didn&rsquo;t allow.</p>
+          <p>Safety work happens on-site, on mobile, often in glare, wearing gloves, with 30 seconds to spare. The existing data views weren&rsquo;t designed for those conditions.</p>
         </div>
       </div>
     </div>
@@ -324,35 +362,35 @@
       <div class="section__header">
         <span class="section__label">.02 &mdash; my role</span>
         <h2 class="section__title">What I actually owned.</h2>
-        <p class="section__lead">My title was Design Lead on mobile, but the role spanned more than screens. Across twelve months and two phases, I was involved in research, product definition, cross-platform design execution, and stakeholder alignment &mdash; often all at once.</p>
+        <p class="section__lead">I owned the translation layer between requirements and design across both phases &mdash; writing the brief, designing the command center, planning the study, running synthesis, and delivering cross-platform dashboard cards.</p>
       </div>
       <div class="role-grid">
         <div class="role-item">
           <span class="role-item__icon">&#x2197;</span>
           <div class="role-item__body">
-            <h3>UX Research participation &amp; ownership</h3>
-            <p>Attended live discovery interviews in Phase 1 alongside the UX researcher, extracting patterns that shaped the hub architecture. In Phase 2, planned and ran my own unmoderated usability study with 12 construction professionals, then led synthesis.</p>
+            <h3>Requirements &rarr; design brief</h3>
+            <p>In Phase 1, I took the PM&rsquo;s requirements and wrote the mobile design brief that defined command center structure, card grammar, and navigation depth. In Phase 2, I received a separate requirements doc for five dashboard cards and turned it into a research-backed design process.</p>
           </div>
         </div>
         <div class="role-item">
           <span class="role-item__icon">&#x25A6;</span>
           <div class="role-item__body">
-            <h3>Product definition &amp; requirements shaping</h3>
-            <p>Worked directly with the PM to translate user interview findings into product requirements in Phase 1. In Phase 2, I received the PM&rsquo;s requirements brief for five new cards and owned the full design process from there &mdash; concept design, research planning, synthesis, and redesign.</p>
+            <h3>UX research: plan, test, synthesize</h3>
+            <p>Phase 2 was mine end-to-end. I converted requirements into a UserTesting unmoderated study &mdash; wrote the plan, designed the first iteration prototypes, ran the sessions, and led synthesis into a guess-free redesign.</p>
           </div>
         </div>
         <div class="role-item">
           <span class="role-item__icon">&#x25AF;</span>
           <div class="role-item__body">
-            <h3>Mobile-first design, end to end</h3>
-            <p>Led all mobile design across both phases &mdash; hub architecture, overview cards per safety module, navigation flows, and five dashboard data visualization cards. Every design decision was made for field use: glanceable, tappable, minimal cognitive load.</p>
+            <h3>Mobile-first command center</h3>
+            <p>Led all Phase 1 mobile design: command center architecture, overview cards per safety module, drill-down flows from category to process to individual reports. Every screen answered status, trend, and next action at a glance.</p>
           </div>
         </div>
         <div class="role-item">
           <span class="role-item__icon">&#x2609;</span>
           <div class="role-item__body">
-            <h3>Cross-platform extension &amp; stakeholder alignment</h3>
-            <p>Extended Phase 2 dashboard cards to web in parallel with mobile, requiring different density and layout decisions for each surface. Presented concepts to customers at a preview session and maintained alignment with engineering through both phases.</p>
+            <h3>Cross-platform dashboard cards</h3>
+            <p>Phase 2 extended to web and mobile in parallel. After synthesis, I designed the guess-free card system for both surfaces &mdash; same data, different density and layout decisions for each platform.</p>
           </div>
         </div>
       </div>
@@ -363,73 +401,57 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.03 &mdash; phase 1 &middot; months 1&ndash;6</span>
-        <h2 class="section__title">From a research brief<br />to a shipped hub.</h2>
-        <p class="section__lead">Phase 1 was the foundation. Before any designs existed, I needed to understand what safety managers actually do on site, what they look for first, and what structure would let them get in and out of the app in under a minute.</p>
+        <span class="section__label">.03 &mdash; phase 1 &middot; mobile command center</span>
+        <h2 class="section__title">From requirements<br />to a working command center.</h2>
+        <p class="section__lead">Phase 1 was mobile-only. Starting from the PM&rsquo;s requirements and my design brief, I explored what belonged in the command center, iterated on how data should surface, and mapped a single navigation pattern across every safety module.</p>
       </div>
 
       <div class="phase-steps">
 
         <div class="phase-step">
           <div class="phase-step__copy">
-            <span class="step-tag">Discovery</span>
-            <h2>I attended the interviews to extract architecture, not just quotes.</h2>
-            <p>The UX researcher ran the sessions. My job was to listen for information hierarchy signals &mdash; what do managers look for first when they arrive on site? What do they scan, what do they skip, what makes them pull out their phone mid-walk?</p>
-            <span class="step-label">what I observed</span>
-            <p>Safety managers operate in triage mode in the mornings. They don&rsquo;t analyze &mdash; they check status. Open items, trend direction, and top offenders were the three things every participant referenced without being prompted. That pattern became the information model for every card in the hub.</p>
+            <span class="step-tag">01 &mdash; exploration</span>
+            <h2>Early concepts: what belongs in a site safety command center?</h2>
+            <p>First explorations tested how to surface safety features as scannable list items &mdash; emergency contacts, safety checks, trip sharing, and module-specific entry points. The question wasn&rsquo;t layout yet; it was what managers expected to see when they opened the app.</p>
           </div>
           <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
-              <span class="placeholder-label">Phase 1 &mdash; Exploration &mdash; early card research board</span>
-              <span class="placeholder-file">assets/safety-hub-phase1-exploration.png</span>
+            <div class="cs-img-wrap cs-img-wrap--tall">
+              <picture>
+                <source srcset="/assets/safety-hub-p1-01-exploration.webp" type="image/webp" />
+                <img src="/assets/safety-hub-p1-01-exploration.png" alt="Phase 1 exploration — site safety command center modules" width="1120" height="520" loading="lazy" decoding="async" />
+              </picture>
             </div>
           </div>
         </div>
 
         <div class="phase-step phase-step--flip">
           <div class="phase-step__copy">
-            <span class="step-tag">Requirements</span>
-            <h2>Turning interview findings into a product scope.</h2>
-            <p>After interviews, I worked with the PM to translate the patterns I&rsquo;d observed into requirements. We defined two core decisions: (1) consolidate all safety modules into a single scrollable hub, and (2) give each module an overview card with the metrics that actually mattered &mdash; not every available data point.</p>
-            <span class="step-label">my contribution</span>
-            <p>I defined the information hierarchy for each card type based on what managers reached for first. The structure wasn&rsquo;t pulled from a product backlog &mdash; it came from watching twelve safety managers describe their mornings.</p>
+            <span class="step-tag">02 &mdash; dashboard iterations</span>
+            <h2>Adding data: safety scores, incidents, and status.</h2>
+            <p>Once the command center structure was defined, I explored how to layer data onto it &mdash; safety score trends, open incident counts, critical items, and equipment status. Multiple iterations tested graph placement, card density, and how much a manager could absorb in one scroll.</p>
           </div>
           <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
-              <span class="placeholder-label">Phase 1 &mdash; Iteration &mdash; card system explorations</span>
-              <span class="placeholder-file">assets/safety-hub-phase1-iteration.png</span>
+            <div class="cs-img-wrap cs-img-wrap--tall">
+              <picture>
+                <source srcset="/assets/safety-hub-p1-02-dashboard-iterations.webp" type="image/webp" />
+                <img src="/assets/safety-hub-p1-02-dashboard-iterations.png" alt="Phase 1 dashboard iterations — safety score and status cards" width="1120" height="520" loading="lazy" decoding="async" />
+              </picture>
             </div>
           </div>
         </div>
 
         <div class="phase-step">
           <div class="phase-step__copy">
-            <span class="step-tag">Design</span>
-            <h2>One hub. A card for every safety module.</h2>
-            <p>I designed the main Safety Hub page &mdash; a scrollable feed where each safety module had a dedicated overview card. Each card had to answer three questions at a glance: what&rsquo;s the status, what&rsquo;s the trend, and where do I go if something needs attention.</p>
-            <span class="step-label">what I explored</span>
-            <p>I worked through multiple structural approaches: hub-first navigation, fixed vs. customizable module order, card stacking behavior on scroll. Flows mapped the three-tap path from hub entry to individual incident &mdash; the maximum depth a manager should need to confirm something was handled.</p>
+            <span class="step-tag">03 &mdash; navigation flows</span>
+            <h2>One pattern, every module.</h2>
+            <p>I mapped a consistent three-tap path from the command center into hazards, observations, incidents, inspections, and safety checks: status and counts at the list level, detail only when something needs action. Deeper modules extended the same logic &mdash; inspections grouped by site, project, then unit; safety checks by category, process, then report. Managers see status at the top and act at the bottom, never the other way around.</p>
           </div>
           <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
-              <span class="placeholder-label">Phase 1 &mdash; Flows &mdash; hub architecture &amp; navigation</span>
-              <span class="placeholder-file">assets/safety-hub-phase1-flows.png</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="phase-step phase-step--flip">
-          <div class="phase-step__copy">
-            <span class="step-tag">Validation</span>
-            <h2>Strong signal at a customer preview session.</h2>
-            <p>I presented the hub and card system to customers. The response was immediate &mdash; safety managers recognized the morning briefing pattern, several asked when it would be in the product. The concept didn&rsquo;t need explaining; it just made sense to them.</p>
-            <span class="step-label">why it mattered</span>
-            <p>Phase 1 closing with strong customer validation meant Phase 2 could take on harder problems &mdash; richer data cards, more complex visualizations &mdash; without re-litigating whether the hub structure itself was right. We had user confidence in the foundation before building on top of it.</p>
-          </div>
-          <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder">
-              <span class="placeholder-label">Phase 1 &mdash; Final mobile designs &mdash; hub &amp; cards</span>
-              <span class="placeholder-file">assets/safety-hub-phase1-hub-v2.png</span>
+            <div class="cs-img-wrap cs-img-wrap--tall">
+              <picture>
+                <source srcset="/assets/safety-hub-p1-03-hub-flows.webp" type="image/webp" />
+                <img src="/assets/safety-hub-p1-03-hub-flows.png" alt="Phase 1 navigation flows — pattern across safety modules" width="1120" height="520" loading="lazy" decoding="async" />
+              </picture>
             </div>
           </div>
         </div>
@@ -442,18 +464,46 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.04 &mdash; phase 2 &middot; months 6&ndash;12</span>
-        <h2 class="section__title">Designed once.<br />Tested. Redesigned.</h2>
-        <p class="section__lead">The PM handed off requirements for five new dashboard data visualization cards &mdash; for both web and mobile. I took those requirements, designed the first versions, then planned and ran a usability study before a single card went to engineering. What the research surfaced made four of five cards significantly better.</p>
+        <span class="section__label">.04 &mdash; phase 2 &middot; dashboard cards</span>
+        <h2 class="section__title">Requirements in.<br />Study out.<br />Guess-free designs.</h2>
+        <p class="section__lead">Phase 2 started with a new requirements document for five dashboard data visualization cards. I turned those requirements into a UserTesting unmoderated study, designed a first iteration, ran the tests, synthesized the findings, and redesigned everything into a guess-free version on both web and mobile.</p>
+      </div>
+
+      <div class="process-timeline process-timeline--5">
+        <div class="timeline-step">
+          <span class="timeline-step__num">01</span>
+          <h3>Requirements doc</h3>
+          <p>PM handed off requirements for five dashboard cards covering claims, hazards, incidents, hours lost, and attendance.</p>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-step__num">02</span>
+          <h3>Study plan</h3>
+          <p>I converted requirements into a UserTesting unmoderated study &mdash; tasks, success criteria, and comprehension questions for each card.</p>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-step__num">03</span>
+          <h3>First iteration</h3>
+          <p>Designed the initial card set from requirements and built prototypes for the study.</p>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-step__num">04</span>
+          <h3>Test &amp; synthesize</h3>
+          <p>Ran unmoderated sessions with construction professionals, then organized findings by failure pattern in a synthesis doc.</p>
+        </div>
+        <div class="timeline-step">
+          <span class="timeline-step__num">05</span>
+          <h3>Guess-free redesign</h3>
+          <p>Redesigned all five cards so users didn&rsquo;t have to infer, calculate, or guess what they were looking at.</p>
+        </div>
       </div>
 
       <!-- Research methodology -->
-      <div class="research-method">
+      <div class="research-method" style="margin-top:3rem;">
         <span class="research-method__label">.the research study</span>
         <div class="research-method__grid">
           <div class="research-stat">
             <div class="research-stat__value">12</div>
-            <div class="research-stat__label">Construction professionals<br />recruited to usability study</div>
+            <div class="research-stat__label">Construction professionals<br />in unmoderated UserTesting study</div>
           </div>
           <div class="research-stat">
             <div class="research-stat__value">5</div>
@@ -461,88 +511,58 @@
           </div>
           <div class="research-stat">
             <div class="research-stat__value">4/5</div>
-            <div class="research-stat__label">Cards identified as needing<br />redesign before development</div>
+            <div class="research-stat__label">Cards redesigned after synthesis<br />before development handoff</div>
           </div>
           <div class="research-stat">
-            <div class="research-stat__value">3</div>
-            <div class="research-stat__label">Distinct failure modes identified<br />across all five cards</div>
+            <div class="research-stat__value">2</div>
+            <div class="research-stat__label">Platforms delivered<br />web and mobile in parallel</div>
           </div>
         </div>
       </div>
 
-      <p style="font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:66ch;margin-bottom:4rem;">I designed the study to test one question: can a construction safety manager understand what a card is showing, and what to do next, within a realistic time window? I wrote the tasks, defined success criteria, ran synthesis, and organized findings by failure pattern &mdash; not by card. That reframing is what made the insights actionable.</p>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:66ch;margin:3rem 0 4rem;">The study tested one question per card: can a construction safety manager understand what this is showing, and what to do next, without guessing? I wrote the plan, ran synthesis, and organized findings into three failure modes &mdash; not by card, but by the type of comprehension breakdown. That structure is what made the redesign decisions specific instead of generic.</p>
 
       <!-- Findings -->
       <div class="findings">
 
-        <div class="finding">
+        <div class="finding finding--solo">
           <div class="finding__copy">
-            <span class="finding__num">finding 01</span>
-            <h2>Don&rsquo;t make users do math.</h2>
+            <span class="finding__num">finding 01 &mdash; don&rsquo;t make users do math</span>
+            <h2>Hours lost should be a number, not a calculation.</h2>
             <span class="finding__section-label">what participants did</span>
-            <p>The &ldquo;Time Lost to Injury&rdquo; card displayed projected vs. actual work hours as a stacked bar. The gap between them was meant to represent lost time. Participants consistently stared at the chart without answering &mdash; they were trying to do subtraction in their head.</p>
+            <p>The first iteration showed &ldquo;time lost to injury&rdquo; as projected vs. actual work hours. Participants stared at the chart without answering &mdash; they were trying to subtract in their head. They expected to see hours lost directly.</p>
             <div class="quote-block">
               <p>&ldquo;I&rsquo;d expect lost hours or days due to incidents &mdash; not projected vs. actual work.&rdquo;</p>
-              <cite>&mdash; Usability study participant</cite>
+              <cite>&mdash; UserTesting participant</cite>
             </div>
-            <span class="finding__section-label">what changed</span>
-            <p>Replaced the comparison chart with a direct &ldquo;hours lost per month&rdquo; visualization. The math now happens in the backend. The card title was renamed to match the unit the user expected. The number became the message &mdash; no derivation required.</p>
-          </div>
-          <div class="finding__visual">
-            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-              <span class="placeholder-label">Hours lost &mdash; before: stacked comparison chart</span>
-              <span class="placeholder-file">assets/safety-hub-phase2-hours-before.png</span>
-            </div>
-            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-              <span class="placeholder-label">Hours lost &mdash; after: direct monthly chart</span>
-              <span class="placeholder-file">assets/safety-hub-phase2-hours-after.png</span>
-            </div>
+            <span class="finding__section-label">guess-free fix</span>
+            <p>Direct monthly bar chart showing hours lost. Title matches the unit. The number is the message &mdash; no derivation required.</p>
           </div>
         </div>
 
-        <div class="finding finding--flip">
+        <div class="finding finding--solo">
           <div class="finding__copy">
-            <span class="finding__num">finding 02</span>
-            <h2>Seeing the problem isn&rsquo;t the same as solving it.</h2>
+            <span class="finding__num">finding 02 &mdash; seeing isn&rsquo;t solving</span>
+            <h2>Status without context is just noise.</h2>
             <span class="finding__section-label">what participants did</span>
-            <p>The hazard assessment gauge showed the volume of open hazards clearly &mdash; participants understood something was wrong. But they couldn&rsquo;t do anything about it. The card gave them a status but no path forward. Labels compounded it: &ldquo;project total&rdquo; was interpreted differently by nearly every participant.</p>
-            <span class="finding__section-label">what changed</span>
-            <p>Changed the full-circle gauge to a semicircle (reduces visual noise, creates natural reading direction), clarified all labels to remove ambiguity, added timeframe context, and paired percentages with raw numbers. The card now tells you the status and gives you enough context to decide whether to act.</p>
-          </div>
-          <div class="finding__visual">
-            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-              <span class="placeholder-label">Hazard gauge &mdash; before: full donut, ambiguous labels</span>
-              <span class="placeholder-file">assets/safety-hub-phase2-hazard-before.png</span>
-            </div>
-            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-              <span class="placeholder-label">Hazard gauge &mdash; after: semicircle, clear labels + counts</span>
-              <span class="placeholder-file">assets/safety-hub-phase2-hazard-after.png</span>
-            </div>
+            <p>The hazard assessment gauge showed open items clearly, but labels were misread &mdash; &ldquo;project total&rdquo; meant different things to different participants. They understood something was wrong but couldn&rsquo;t decide what to do.</p>
+            <span class="finding__section-label">guess-free fix</span>
+            <p>Semicircular gauge with clarified labels, timeframe context, and percentages paired with raw counts. Status and action path in one glance.</p>
           </div>
         </div>
 
-        <div class="finding">
+        <div class="finding finding--solo">
           <div class="finding__copy">
-            <span class="finding__num">finding 03</span>
-            <h2>Right data. Wrong frame. Misread every time.</h2>
+            <span class="finding__num">finding 03 &mdash; right data, wrong frame</span>
+            <h2>If the title doesn&rsquo;t say injury, users read billing.</h2>
             <span class="finding__section-label">what participants did</span>
-            <p>Two separate cards had framing problems. The workers&rsquo; compensation claims card was read as contractor billing by multiple participants &mdash; the word &ldquo;injury&rdquo; didn&rsquo;t appear in the title. The toolbox talk attendance chart required users to subtract two bars to get the attendance ratio &mdash; a calculation that nobody should be doing at 7am before walking a job site.</p>
+            <p>The claims card was read as contractor billing because &ldquo;injury&rdquo; didn&rsquo;t appear in the title. The attendance chart required subtracting two bars to get a ratio &mdash; arithmetic nobody should do at 7am on a job site.</p>
             <div class="quote-block">
               <p>&ldquo;This looks like it&rsquo;s tracking money. Is this contractor payments?&rdquo;</p>
-              <cite>&mdash; Usability study participant, on the claims card</cite>
+              <cite>&mdash; UserTesting participant, on the claims card</cite>
             </div>
-            <span class="finding__section-label">what changed</span>
-            <p>Made injury context explicit in the card name and description. Added a trend sparkline so direction is visible before any numbers are read. Replaced the dual-bar attendance chart with a single percentage bar: attended vs. total, stated plainly. No arithmetic required.</p>
-          </div>
-          <div class="finding__visual">
-            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-              <span class="placeholder-label">Claims card &mdash; before &amp; after</span>
-              <span class="placeholder-file">assets/safety-hub-phase2-claims.png</span>
-            </div>
-            <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder">
-              <span class="placeholder-label">Attendance card &mdash; before &amp; after</span>
-              <span class="placeholder-file">assets/safety-hub-phase2-attendance.png</span>
-            </div>
+            <span class="finding__section-label">guess-free fix</span>
+            <p>Injury context made explicit in naming. Trend sparkline for at-a-glance direction. Attendance replaced with a single percentage bar &mdash; attended vs. total, stated plainly.</p>
           </div>
         </div>
 
@@ -550,7 +570,34 @@
 
       <div class="benchmark-block">
         <div class="benchmark-block__dot"></div>
-        <p><strong>One card passed without changes.</strong> It became the benchmark. When I started redesigning the others, I used it as the reference point for what &ldquo;clear&rdquo; actually looked like &mdash; direct labelling, matched title-to-unit, a single dominant number. Every redesign was measured against it.</p>
+        <p><strong>One card passed without changes.</strong> It became the benchmark for the guess-free redesign. Every other card was measured against it: direct labelling, matched title-to-unit, a single dominant number.</p>
+      </div>
+
+      <!-- Final deliverable -->
+      <div style="margin-top:4rem;">
+        <span class="step-tag">guess-free deliverable</span>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.5rem);font-weight:500;letter-spacing:-0.04em;line-height:1.15;margin:1rem 0 0.75rem;">Five cards. Two platforms. Zero guesswork.</h2>
+        <p style="font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:60ch;margin-bottom:0.5rem;">The final designs applied every synthesis finding across web and mobile &mdash; same card grammar, platform-appropriate density.</p>
+        <div class="platform-grid">
+          <div class="platform-item">
+            <span class="platform-item__label">web &mdash; safety dashboard</span>
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--contain-top">
+              <picture>
+                <source srcset="/assets/safety-hub-p2-web-guess-free.webp" type="image/webp" />
+                <img src="/assets/safety-hub-p2-web-guess-free.png" alt="Phase 2 guess-free web safety dashboard" width="1120" height="520" loading="lazy" decoding="async" />
+              </picture>
+            </div>
+          </div>
+          <div class="platform-item">
+            <span class="platform-item__label">mobile &mdash; safety dashboard</span>
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--contain-top">
+              <picture>
+                <source srcset="/assets/safety-hub-p2-mobile-guess-free.webp" type="image/webp" />
+                <img src="/assets/safety-hub-p2-mobile-guess-free.png" alt="Phase 2 guess-free mobile safety dashboard" width="1275" height="832" loading="lazy" decoding="async" />
+              </picture>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -566,23 +613,23 @@
       <div class="capability-grid">
         <div class="capability-card">
           <span class="capability-card__num">01</span>
-          <h3>Research-led design, from brief to synthesis</h3>
-          <p>I didn&rsquo;t receive insights from a researcher and translate them. In Phase 1, I attended live interviews and extracted the patterns that shaped the architecture myself. In Phase 2, I planned and ran the study, wrote the tasks, and organized findings into three actionable failure modes that drove four redesigns. The research wasn&rsquo;t a separate workstream &mdash; it was my workstream.</p>
+          <h3>Requirements to design brief to screens</h3>
+          <p>Phase 1 started with user feedback and PM requirements &mdash; I wrote the design brief and designed the mobile command center from scratch. Phase 2 started with a separate requirements doc &mdash; I converted it into a research plan, tested a first iteration, and redesigned based on synthesis. In both phases, I was the person who translated requirements into design decisions.</p>
         </div>
         <div class="capability-card">
           <span class="capability-card__num">02</span>
-          <h3>Mobile-first with real constraints, extended to web</h3>
-          <p>Every Phase 1 design decision was made for field conditions: glare, gloves, 30-second windows, one-thumb use. Phase 2 extended each card to web simultaneously &mdash; different density, different layout, different interaction patterns &mdash; designed in parallel, not as an afterthought. Cross-platform here meant two genuinely different design problems, not just a resize.</p>
+          <h3>End-to-end UX research ownership</h3>
+          <p>Phase 2 research was fully mine: study plan, UserTesting setup, first-iteration prototypes, unmoderated sessions, synthesis doc, and redesign. Findings were organized by failure mode, not by card &mdash; which turned a list of problems into a design brief with three clear principles.</p>
         </div>
         <div class="capability-card">
           <span class="capability-card__num">03</span>
-          <h3>Stakeholder collaboration and mid-project ownership</h3>
-          <p>I shaped requirements with the PM in Phase 1 rather than receiving a spec &mdash; translating user interview findings into product decisions directly. In Phase 2, I received the PM&rsquo;s requirements brief and ran the entire process end-to-end: concept design, study planning, synthesis, and redesign. The continuity between both phases &mdash; the card grammar, the user mental model, the design decisions &mdash; held because I had context from day one.</p>
+          <h3>Cross-platform design execution</h3>
+          <p>Phase 1 was mobile-only. Phase 2 delivered the same five dashboard cards on web and mobile simultaneously &mdash; same data grammar, different density and layout per surface. Not a resize; two genuinely different design problems solved in parallel.</p>
         </div>
         <div class="capability-card">
           <span class="capability-card__num">04</span>
-          <h3>Systems thinking over screen design</h3>
-          <p>The Safety Hub is an information architecture, not a feature. One scrollable hub, six-plus safety modules, a consistent card grammar, drill-through flows into existing product areas &mdash; all of it had to hold together. The card system had rules: open count, trend, top offenders, direct path forward. Those rules meant the system could scale to any module without requiring a new design decision each time.</p>
+          <h3>Multi-phase systems thinking</h3>
+          <p>The command center architecture from Phase 1 &mdash; category overview, process drill-down, report detail &mdash; informed how Phase 2 cards were structured. Status at the top, action at the bottom. That hierarchy carried from mobile navigation into dashboard data visualization across both platforms.</p>
         </div>
       </div>
     </div>
@@ -597,20 +644,20 @@
       </div>
       <div class="learnings-grid">
         <div class="learning-block">
-          <h3>Phase sequencing is a research strategy.</h3>
-          <p>Testing the hub concept with users before Phase 2 began meant we weren&rsquo;t building complex data visualizations on top of an unvalidated structure. That sequencing was a deliberate risk reduction move, not just a project plan. Phase 1&rsquo;s validation made Phase 2&rsquo;s research riskier and more interesting &mdash; we were testing harder things on a solid foundation.</p>
+          <h3>Write the brief before you open Figma.</h3>
+          <p>Phase 1 worked because I translated PM requirements into a design brief first &mdash; defining hierarchy, card grammar, and navigation depth before any screens existed. That brief became the reference point for every iteration decision that followed.</p>
         </div>
         <div class="learning-block">
-          <h3>Test the &ldquo;safe&rdquo; cards too.</h3>
-          <p>Only three of the five cards were initially flagged for usability risk. I advocated to test all five. The two that seemed straightforward had the most consistent comprehension failures. And the one that passed cleanly &mdash; the one nobody was worried about &mdash; became the design benchmark everything else was measured against.</p>
+          <h3>Turn requirements into a study, not straight into pixels.</h3>
+          <p>Phase 2 could have gone straight from requirements to final designs. Instead, I built a UserTesting study first. That one decision &mdash; testing before committing &mdash; caught comprehension failures in four of five cards that looked fine on paper.</p>
         </div>
         <div class="learning-block">
-          <h3>Synthesis organization is part of the design work.</h3>
-          <p>Organizing findings by failure mode rather than by card was a deliberate choice. &ldquo;4 of 5 cards had problems&rdquo; is a stat. &ldquo;Three failure modes appear across all five cards&rdquo; is a design brief. The way you structure what you learned shapes what people are able to act on. Synthesis is design.</p>
+          <h3>Synthesis structure determines what gets fixed.</h3>
+          <p>Organizing findings by failure mode (&ldquo;users had to do math,&rdquo; &ldquo;labels were misread,&rdquo; &ldquo;title didn&rsquo;t match content&rdquo;) instead of by card turned a research report into a redesign brief. The way you organize what you learned shapes what people can act on.</p>
         </div>
         <div class="learning-block">
-          <h3>Owning a brief end-to-end is different from executing screens.</h3>
-          <p>Taking the PM&rsquo;s requirements for Phase 2 and running every step from there &mdash; concept design, study planning, synthesis, redesign &mdash; with no separate handoffs between research and design meant the findings went directly into decisions. There was no translation gap. That continuity is what made the redesigns specific rather than generic.</p>
+          <h3>Guess-free is a design standard, not a polish pass.</h3>
+          <p>The guess-free redesign wasn&rsquo;t a visual cleanup &mdash; it was a comprehension standard. Every card had to pass one test: can a manager understand this in 10 seconds without inferring anything? That principle applied equally to web and mobile, even though the layouts were completely different.</p>
         </div>
       </div>
     </div>

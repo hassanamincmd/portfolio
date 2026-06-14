@@ -31,13 +31,7 @@
     img { max-width: 100%; display: block; }
     .container { width: min(1200px, 92%); margin: 0 auto; }
 
-    /* Real screenshot wrappers ? no border/bg, image fills cleanly */
-    .cs-img-wrap { border-radius: 10px; overflow: hidden; line-height: 0; }
-    .cs-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-    .cs-img-wrap--wide  { height: 460px; }
-    .cs-img-wrap--tall  { height: 500px; }
-    .cs-img-wrap--mid   { height: 340px; }
-    .cs-img-wrap--short { height: 220px; }
+    /* Screenshot wrappers → assets/case-study.css */
 
     /* Progress */
     .progress-line { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 100; transition: width 0.1s linear; }
@@ -175,6 +169,8 @@
   </style>
   <link rel="stylesheet" href="/assets/nav.css" />
   <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="stylesheet" href="/assets/case-study.css" />
+  <link rel="preload" as="image" href="/ms-overview.webp" type="image/webp" fetchpriority="high" />
 </head>
 <body>
 
@@ -230,8 +226,11 @@
 
   <!-- Cover image -->
   <div class="container" style="padding: 2rem 0;">
-    <div class="cs-img-wrap cs-img-wrap--wide" style="background:#141414;">
-      <img src="/ms-overview.png" alt="Meridian dashboard mockup across devices" loading="eager" style="object-fit: contain; object-position: center;" />
+    <div class="cs-img-wrap cs-img-wrap--wide cs-img-wrap--contain">
+      <picture>
+        <source srcset="/ms-overview.webp" type="image/webp" />
+        <img src="/ms-overview.png" alt="Meridian dashboard mockup across devices" width="1200" height="460" loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
     </div>
   </div>
 
@@ -371,7 +370,10 @@
         </div>
         <div class="feature__visual">
           <div class="cs-img-wrap cs-img-wrap--tall">
-            <img src="/assets/dashboard.png" alt="Calendar view" loading="lazy" style="object-position: center top;" />
+            <picture>
+              <source srcset="/assets/dashboard.webp" type="image/webp" />
+              <img src="/assets/dashboard.png" alt="Calendar view" width="1120" height="520" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
       </div>
@@ -384,7 +386,10 @@
       <div class="feature__inner feature__inner--reverse">
         <div class="feature__visual">
           <div class="cs-img-wrap cs-img-wrap--tall">
-            <img src="/assets/guest booking 1.png" alt="Public profile with calendar picker" loading="lazy" style="object-position: center top;" />
+            <picture>
+              <source srcset="/assets/guest booking 1.webp" type="image/webp" />
+              <img src="/assets/guest booking 1.png" alt="Public profile with calendar picker" width="1120" height="520" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
         <div class="feature__copy">
@@ -413,7 +418,10 @@
         </div>
         <div class="feature__visual">
           <div class="cs-img-wrap cs-img-wrap--tall">
-            <img src="/assets/public profile.png" alt="Public profile builder" loading="lazy" style="object-position: center top;" />
+            <picture>
+              <source srcset="/assets/public profile.webp" type="image/webp" />
+              <img src="/assets/public profile.png" alt="Public profile builder" width="1120" height="520" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
       </div>
@@ -426,7 +434,10 @@
       <div class="feature__inner feature__inner--reverse">
         <div class="feature__visual">
           <div class="cs-img-wrap cs-img-wrap--tall">
-            <img src="/assets/analytics (2).png" alt="Analytics dashboard" loading="lazy" style="object-position: center top;" />
+            <picture>
+              <source srcset="/assets/analytics (2).webp" type="image/webp" />
+              <img src="/assets/analytics (2).png" alt="Analytics dashboard" width="1120" height="520" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
         <div class="feature__copy">
@@ -455,7 +466,10 @@
         </div>
         <div class="feature__visual">
           <div class="cs-img-wrap cs-img-wrap--tall">
-            <img src="/assets/settings.png" alt="Settings overview" loading="lazy" style="object-position: center top;" />
+            <picture>
+              <source srcset="/assets/settings.webp" type="image/webp" />
+              <img src="/assets/settings.png" alt="Settings overview" width="1120" height="520" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
       </div>
@@ -468,7 +482,10 @@
       <div class="feature__inner feature__inner--reverse">
         <div class="feature__visual">
           <div class="cs-img-wrap cs-img-wrap--tall">
-            <img src="/assets/login (2).png" alt="Authentication flows" loading="lazy" style="object-position: center top;" />
+            <picture>
+              <source srcset="/assets/login (2).webp" type="image/webp" />
+              <img src="/assets/login (2).png" alt="Authentication flows" width="1120" height="520" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
         <div class="feature__copy">
@@ -571,10 +588,10 @@
       <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">.more work</span>
       <div class="more-work__grid">
 
-        <a class="more-work__card" href="/case-study-2" style="background:#F97316;color:#000;">
+        <a class="more-work__card" href="/case-study-2" style="background:#A259FF;color:#000;">
           <div>
             <p class="more-work__meta" style="color:rgba(0,0,0,0.6);">2026 &middot; Construction SaaS &middot; Design Lead</p>
-            <h3 class="more-work__title">Safety Hub &mdash; Mobile Command Center</h3>
+            <h3 class="more-work__title">Site Safety Command</h3>
           </div>
           <div class="more-work__footer">
             <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">view case study</span>

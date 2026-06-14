@@ -1,0 +1,68 @@
+/* Case study — screenshot frames */
+
+.cs-img-wrap {
+  border-radius: 10px;
+  overflow: hidden;
+  line-height: 0;
+  position: relative;
+}
+
+.cs-img-wrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cs-img-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.cs-img-wrap--wide  { height: 460px; }
+.cs-img-wrap--tall  { height: 520px; }
+.cs-img-wrap--mid   { height: 340px; }
+.cs-img-wrap--short { height: 220px; }
+
+.cs-img-wrap--auto {
+  height: auto;
+}
+
+.cs-img-wrap--auto picture,
+.cs-img-wrap--auto img {
+  height: auto;
+  object-fit: unset;
+}
+
+.cs-img-wrap--contain {
+  background: #141414;
+}
+
+.cs-img-wrap--contain img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.cs-img-wrap--contain-top {
+  background: #141414;
+}
+
+.cs-img-wrap--contain-top img {
+  object-fit: contain;
+  object-position: top center;
+}
+
+.cs-img-wrap--placeholder {
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 2rem;
+  text-align: center;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  line-height: normal;
+}
