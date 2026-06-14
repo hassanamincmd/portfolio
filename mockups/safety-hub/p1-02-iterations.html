@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phase 1 — 02 Iterations</title>
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body class="canvas--flow">
+
+<div class="flow-row">
+  <div>
+    <div class="device device--flat">
+      <div class="device__status"><span>9:41</span><span>●●●</span></div>
+      <nav class="device__nav">
+        <button class="device__nav-btn"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M8 2L2 8l6 6"/></svg></button>
+        <h1 class="device__nav-title">Safety Hub</h1><span></span>
+      </nav>
+      <div class="device__scroll">
+        <div class="hero-stat">
+          <div class="hero-stat__label">Project safety score</div>
+          <div class="hero-stat__num">87</div>
+          <div class="hero-stat__delta">↑ 4 pts vs. last month</div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-box"><div class="stat-box__num" style="color:var(--red)">12</div><div class="stat-box__lbl">Open hazards</div></div>
+          <div class="stat-box"><div class="stat-box__num">3</div><div class="stat-box__lbl">Incidents</div></div>
+          <div class="stat-box"><div class="stat-box__num" style="color:var(--green)">94%</div><div class="stat-box__lbl">Attendance</div></div>
+        </div>
+        <article class="m-card">
+          <header class="m-card__top"><h2 class="m-card__title">Safety score trend</h2></header>
+          <div class="m-card__body">
+            <svg viewBox="0 0 320 72" height="72" style="width:100%"><polyline points="8,48 64,40 120,44 176,28 232,32 288,18" fill="none" stroke="#a259ff" stroke-width="2.5" stroke-linecap="round"/><circle cx="288" cy="18" r="3.5" fill="#a259ff"/></svg>
+          </div>
+        </article>
+        <article class="m-card">
+          <header class="m-card__top"><h2 class="m-card__title">Critical items</h2><span class="badge badge--danger">2 urgent</span></header>
+          <div class="m-card__body" style="padding-top:0">
+            <div class="list__row" style="padding:0.65rem 0;border-bottom:1px solid var(--line)">
+              <div class="list__main"><div class="list__title" style="font-size:0.8rem">Fall protection audit overdue</div><div class="list__sub">Building C · Due yesterday</div></div>
+            </div>
+            <div class="list__row" style="padding:0.65rem 0">
+              <div class="list__main"><div class="list__title" style="font-size:0.8rem">Electrical hazard — open 5 days</div><div class="list__sub">Level 4 · Ridge Co.</div></div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <nav class="device__tabbar">
+        <span class="device__tab device__tab--on"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/></svg>Tools</span>
+        <span class="device__tab"><svg viewBox="0 0 24 24"><path d="M4 20h16"/></svg>Drawings</span>
+        <span class="device__tab"><svg viewBox="0 0 24 24"><path d="M5 8a7 7 0 1 1 14 0"/></svg>Camera</span>
+        <span class="device__tab"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H4z"/></svg>Chat</span>
+      </nav>
+    </div>
+    <p class="flow-label">02 · dashboard iterations</p>
+  </div>
+</div>
+
+</body>
+</html>

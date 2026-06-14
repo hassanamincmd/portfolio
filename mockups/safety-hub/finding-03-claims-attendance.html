@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finding 03 — Claims &amp; Attendance</title>
+  <link rel="stylesheet" href="shared.css" />
+  <style>.compare-stack { display:flex; flex-direction:column; gap:0.75rem; }</style>
+</head>
+<body class="canvas--compare">
+
+<div class="compare">
+  <div class="compare__col">
+    <span class="compare__tag compare__tag--before">Before</span>
+    <div class="compare-stack">
+      <article class="card card--legacy">
+        <header class="card__top"><h2 class="card__title">Claimed to Date</h2></header>
+        <div class="card__body"><div class="kpi__num kpi__num--md">$924K</div></div>
+      </article>
+      <article class="card card--legacy">
+        <header class="card__top"><h2 class="card__title">Toolbox Talk Attendance</h2></header>
+        <div class="card__body">
+          <svg class="chart-svg" viewBox="0 0 280 120" height="120">
+            <rect x="40" y="30" width="12" height="70" fill="#c7d7ff" rx="2"/><rect x="54" y="44" width="12" height="56" fill="#4a5cff" rx="2"/>
+            <rect x="78" y="22" width="12" height="78" fill="#c7d7ff" rx="2"/><rect x="92" y="22" width="12" height="78" fill="#4a5cff" rx="2"/>
+            <rect x="116" y="36" width="12" height="64" fill="#c7d7ff" rx="2"/><rect x="130" y="44" width="12" height="56" fill="#4a5cff" rx="2"/>
+          </svg>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="compare__col">
+    <span class="compare__tag compare__tag--after">After</span>
+    <div class="compare-stack">
+      <article class="card">
+        <header class="card__top"><div><h2 class="card__title">Claims Due to Injury</h2><p class="card__desc">Year-to-date</p></div></header>
+        <div class="card__body">
+          <div class="kpi__num kpi__num--md">$92K</div>
+          <span class="kpi__delta kpi__delta--bad" style="margin-top:0.45rem">↑ 17% vs. last month</span>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card__top"><div><h2 class="card__title">Toolbox Talk Attendance</h2><p class="card__desc">Past 6 months</p></div></header>
+        <div class="card__body">
+          <svg class="chart-svg" viewBox="0 0 280 120" height="120">
+            <rect x="36" y="18" width="36" height="82" fill="#edf1ff" rx="4"/><rect x="36" y="26" width="36" height="74" fill="#4a5cff" rx="4"/>
+            <text x="54" y="14" class="chart-val--hi" text-anchor="middle">90%</text>
+            <text x="54" y="112" class="chart-label" text-anchor="middle">90/100</text>
+            <rect x="84" y="18" width="36" height="82" fill="#4a5cff" rx="4"/>
+            <text x="102" y="14" class="chart-val--hi" text-anchor="middle">100%</text>
+            <rect x="132" y="18" width="36" height="82" fill="#edf1ff" rx="4"/><rect x="132" y="48" width="36" height="52" fill="#4a5cff" rx="4"/>
+            <text x="150" y="14" class="chart-val" text-anchor="middle" fill="#b45309">50%</text>
+            <text x="150" y="112" class="chart-label" text-anchor="middle">5/10</text>
+          </svg>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

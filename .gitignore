@@ -7,3 +7,4 @@ react-app/
 .agents/
 .baoyu-skills/
 skills-lock.json
+.vercel

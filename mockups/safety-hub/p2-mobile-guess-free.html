@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety Hub — Mobile Guess-Free</title>
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body class="canvas--mobile">
+
+<div class="device">
+  <div class="device__status"><span>9:41</span><span>●●●</span></div>
+  <nav class="device__nav">
+    <button class="device__nav-btn" aria-label="Back"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M8 2L2 8l6 6"/></svg></button>
+    <h1 class="device__nav-title">Safety Hub</h1>
+    <span></span>
+  </nav>
+
+  <div class="device__scroll">
+
+    <article class="m-card">
+      <header class="m-card__top">
+        <div>
+          <h2 class="m-card__title">Claims Due to Injury</h2>
+          <p class="m-card__desc">Year-to-date</p>
+        </div>
+        <a class="card__action" href="#">All claims</a>
+      </header>
+      <div class="m-card__body">
+        <div class="kpi">
+          <div>
+            <div class="kpi__num" style="font-size:1.9rem">$92K</div>
+            <span class="kpi__delta kpi__delta--bad" style="font-size:0.68rem">↑ 17% vs. last month</span>
+          </div>
+          <svg width="100" height="48" viewBox="0 0 100 48">
+            <path d="M0,34 C16,30 30,32 50,20 S78,14 100,8" fill="none" stroke="#d14343" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <article class="m-card">
+      <header class="m-card__top">
+        <div>
+          <h2 class="m-card__title">Daily Hazard Assessment</h2>
+          <p class="m-card__desc">Year-to-date</p>
+        </div>
+        <a class="card__action" href="#">More</a>
+      </header>
+      <div class="m-card__body">
+        <div class="gauge">
+          <svg width="190" height="105" viewBox="0 0 190 105">
+            <path d="M18 88 A 77 77 0 0 1 172 88" fill="none" stroke="#f0efec" stroke-width="15" stroke-linecap="round"/>
+            <path d="M18 88 A 77 77 0 0 1 62 28" fill="none" stroke="#4a5cff" stroke-width="15" stroke-linecap="round"/>
+            <path d="M62 28 A 77 77 0 0 1 128 28" fill="none" stroke="#8b5cf6" stroke-width="15"/>
+            <path d="M128 28 A 77 77 0 0 1 172 88" fill="none" stroke="#12a594" stroke-width="15" stroke-linecap="round"/>
+          </svg>
+          <div class="gauge__label">
+            <div class="gauge__num" style="font-size:1.35rem">291</div>
+            <div class="gauge__sub">Assessments</div>
+          </div>
+        </div>
+        <div class="legend" style="gap:0.4rem 0.75rem;font-size:0.66rem">
+          <span class="legend__item"><span class="legend__swatch" style="background:#4a5cff"></span>Open <b>42</b></span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#8b5cf6"></span>In prog. <b>93</b></span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#12a594"></span>Done <b>156</b></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="m-card">
+      <header class="m-card__top">
+        <div>
+          <h2 class="m-card__title">Incidents per Manpower</h2>
+          <p class="m-card__desc">Apr 12 – Apr 17</p>
+        </div>
+        <a class="card__action" href="#">More</a>
+      </header>
+      <div class="m-card__body">
+        <svg class="chart-svg" viewBox="0 0 340 130" height="130">
+          <line x1="28" y1="8" x2="28" y2="100" class="chart-grid"/>
+          <line x1="28" y1="100" x2="320" y2="100" class="chart-grid"/>
+          <rect x="40" y="48" width="22" height="52" fill="#4a5cff" rx="4" opacity="0.9"/>
+          <rect x="70" y="62" width="22" height="38" fill="#8b5cf6" rx="4" opacity="0.85"/>
+          <rect x="100" y="32" width="22" height="68" fill="#4a5cff" rx="4"/>
+          <rect x="130" y="55" width="22" height="45" fill="#12a594" rx="4" opacity="0.85"/>
+          <rect x="160" y="42" width="22" height="58" fill="#4a5cff" rx="4"/>
+          <rect x="190" y="68" width="22" height="32" fill="#c27803" rx="4" opacity="0.85"/>
+          <polyline points="51,38 81,52 111,28 141,48 171,35 201,58" fill="none" stroke="#178a5c" stroke-width="2" stroke-linecap="round"/>
+          <text x="51" y="118" class="chart-axis" text-anchor="middle">04/12</text>
+          <text x="141" y="118" class="chart-axis" text-anchor="middle">04/15</text>
+          <text x="201" y="118" class="chart-axis" text-anchor="middle">04/17</text>
+        </svg>
+      </div>
+    </article>
+
+    <article class="m-card">
+      <header class="m-card__top">
+        <div>
+          <h2 class="m-card__title">Hours Lost to Injury</h2>
+          <p class="m-card__desc">YTD · <strong style="color:var(--text)">145 hrs</strong></p>
+        </div>
+        <a class="card__action" href="#">Details</a>
+      </header>
+      <div class="m-card__body">
+        <svg class="chart-svg" viewBox="0 0 340 115" height="115">
+          <line x1="28" y1="6" x2="28" y2="88" class="chart-grid"/>
+          <line x1="28" y1="88" x2="310" y2="88" class="chart-grid"/>
+          <rect x="44" y="62" width="26" height="26" fill="#d14343" rx="4" opacity="0.85"/>
+          <rect x="80" y="48" width="26" height="40" fill="#d14343" rx="4" opacity="0.85"/>
+          <rect x="116" y="72" width="26" height="16" fill="#d14343" rx="4" opacity="0.85"/>
+          <rect x="152" y="80" width="26" height="8" fill="#f0efec" rx="3"/>
+          <rect x="188" y="22" width="26" height="66" fill="#d14343" rx="4"/>
+          <text x="201" y="18" class="chart-val--hi" text-anchor="middle" style="font-size:9px">54</text>
+          <text x="57" y="104" class="chart-axis" text-anchor="middle">Jan</text>
+          <text x="129" y="104" class="chart-axis" text-anchor="middle">Mar</text>
+          <text x="201" y="104" class="chart-axis" text-anchor="middle">May</text>
+        </svg>
+      </div>
+    </article>
+
+    <article class="m-card">
+      <header class="m-card__top">
+        <div>
+          <h2 class="m-card__title">Toolbox Talk Attendance</h2>
+          <p class="m-card__desc">Past 6 months</p>
+        </div>
+        <a class="card__action" href="#">Details</a>
+      </header>
+      <div class="m-card__body">
+        <svg class="chart-svg" viewBox="0 0 340 115" height="115">
+          <line x1="28" y1="6" x2="28" y2="88" class="chart-grid"/>
+          <line x1="28" y1="88" x2="310" y2="88" class="chart-grid"/>
+          <rect x="38" y="18" width="34" height="70" fill="#edf1ff" rx="4"/><rect x="38" y="25" width="34" height="63" fill="#4a5cff" rx="4"/>
+          <text x="55" y="14" class="chart-val--hi" text-anchor="middle" style="font-size:9px">90%</text>
+          <rect x="82" y="18" width="34" height="70" fill="#4a5cff" rx="4"/>
+          <text x="99" y="14" class="chart-val--hi" text-anchor="middle" style="font-size:9px">100%</text>
+          <rect x="126" y="18" width="34" height="70" fill="#edf1ff" rx="4"/><rect x="126" y="25" width="34" height="63" fill="#4a5cff" rx="4"/>
+          <text x="143" y="14" class="chart-val--hi" text-anchor="middle" style="font-size:9px">90%</text>
+          <rect x="170" y="18" width="34" height="70" fill="#edf1ff" rx="4"/><rect x="170" y="48" width="34" height="40" fill="#4a5cff" rx="4"/>
+          <text x="187" y="14" class="chart-val" text-anchor="middle" style="font-size:9px" fill="#b45309">50%</text>
+          <rect x="214" y="18" width="34" height="70" fill="#edf1ff" rx="4"/><rect x="214" y="38" width="34" height="50" fill="#4a5cff" rx="4"/>
+          <text x="231" y="14" class="chart-val--hi" text-anchor="middle" style="font-size:9px">64%</text>
+          <text x="55" y="104" class="chart-axis" text-anchor="middle">Fall</text>
+          <text x="143" y="104" class="chart-axis" text-anchor="middle">Fire</text>
+          <text x="187" y="104" class="chart-axis" text-anchor="middle">Elec.</text>
+        </svg>
+      </div>
+    </article>
+
+  </div>
+
+  <nav class="device__tabbar">
+    <span class="device__tab device__tab--on">
+      <svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/><path d="M8 7V5h8v2"/></svg>
+      Tools
+    </span>
+    <span class="device__tab">
+      <svg viewBox="0 0 24 24"><path d="M4 20h16M6 16l4-8 4 5 4-9"/></svg>
+      Drawings
+    </span>
+    <span class="device__tab">
+      <svg viewBox="0 0 24 24"><path d="M5 8a7 7 0 1 1 14 0"/><path d="M12 15v6"/></svg>
+      Camera
+    </span>
+    <span class="device__tab">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16v10H4z"/><path d="M8 18l-2 3M16 18l2 3"/></svg>
+      Chat
+    </span>
+  </nav>
+</div>
+
+</body>
+</html>

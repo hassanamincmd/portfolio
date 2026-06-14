@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phase 1 — 05 Category Flow</title>
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body class="canvas--flow">
+
+<div class="flow-row">
+  <div>
+    <div class="device device--flat">
+      <div class="device__status"><span>9:41</span><span>●●●</span></div>
+      <nav class="device__nav"><button class="device__nav-btn"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M8 2L2 8l6 6"/></svg></button><h1 class="device__nav-title">Safety Checks</h1><span></span></nav>
+      <div class="stat-grid" style="padding:0.75rem 1rem;background:#fff;border-bottom:1px solid var(--line)">
+        <div class="stat-box"><div class="stat-box__num">24</div><div class="stat-box__lbl">Total</div></div>
+        <div class="stat-box"><div class="stat-box__num" style="color:var(--green)">18</div><div class="stat-box__lbl">Complete</div></div>
+        <div class="stat-box"><div class="stat-box__num" style="color:var(--red)">4</div><div class="stat-box__lbl">Overdue</div></div>
+      </div>
+      <div class="device__scroll" style="padding:0"><div class="section-label">Categories</div><div class="list">
+        <div class="list__row"><div class="list__main"><div class="list__title">Fall Protection</div><div class="list__sub">6 processes · 2 overdue</div></div></div>
+        <div class="list__row"><div class="list__main"><div class="list__title">Electrical Safety</div><div class="list__sub">4 processes · all current</div></div></div>
+        <div class="list__row"><div class="list__main"><div class="list__title">PPE Compliance</div><div class="list__sub">5 processes · 1 in progress</div></div></div>
+      </div></div>
+      <nav class="device__tabbar"><span class="device__tab device__tab--on"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/></svg>Tools</span><span class="device__tab"><svg viewBox="0 0 24 24"><path d="M4 20h16"/></svg>Drawings</span><span class="device__tab"><svg viewBox="0 0 24 24"><path d="M5 8a7 7 0 1 1 14 0"/></svg>Camera</span><span class="device__tab"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H4z"/></svg>Chat</span></nav>
+    </div>
+    <p class="flow-label">Category</p>
+  </div>
+  <span class="flow-arrow">→</span>
+  <div>
+    <div class="device device--flat">
+      <div class="device__status"><span>9:41</span><span>●●●</span></div>
+      <nav class="device__nav"><button class="device__nav-btn"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M8 2L2 8l6 6"/></svg></button><h1 class="device__nav-title">Fall Protection</h1><span></span></nav>
+      <div class="crumbs">Safety Checks › <b>Fall Protection</b></div>
+      <div class="device__scroll" style="padding:0"><div class="list">
+        <div class="list__row"><div class="list__main"><div class="list__title">Scaffold inspection</div><div class="list__sub">Building A · Weekly</div></div><div style="font-size:0.68rem;text-align:right"><div style="color:var(--green);font-weight:600">4 done</div><div style="color:var(--red);font-weight:600">1 overdue</div></div></div>
+        <div class="list__row"><div class="list__main"><div class="list__title">Guardrail compliance</div><div class="list__sub">Building C · Bi-weekly</div></div><div style="font-size:0.68rem;text-align:right"><div style="color:var(--green);font-weight:600">3 done</div><div style="color:var(--red);font-weight:600">1 overdue</div></div></div>
+        <div class="list__row"><div class="list__main"><div class="list__title">Harness certification</div><div class="list__sub">All sites · Monthly</div></div><div style="font-size:0.68rem;color:var(--green);font-weight:600">6 done</div></div>
+      </div></div>
+      <nav class="device__tabbar"><span class="device__tab device__tab--on"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/></svg>Tools</span><span class="device__tab"><svg viewBox="0 0 24 24"><path d="M4 20h16"/></svg>Drawings</span><span class="device__tab"><svg viewBox="0 0 24 24"><path d="M5 8a7 7 0 1 1 14 0"/></svg>Camera</span><span class="device__tab"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H4z"/></svg>Chat</span></nav>
+    </div>
+    <p class="flow-label">Process</p>
+  </div>
+  <span class="flow-arrow">→</span>
+  <div>
+    <div class="device device--flat">
+      <div class="device__status"><span>9:41</span><span>●●●</span></div>
+      <nav class="device__nav"><button class="device__nav-btn"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M8 2L2 8l6 6"/></svg></button><h1 class="device__nav-title">Report</h1><span></span></nav>
+      <div class="crumbs">Fall Protection › <b>Scaffold inspection</b></div>
+      <div class="device__scroll" style="padding:0">
+        <div style="padding:1rem;background:#fff;border-bottom:1px solid var(--line)">
+          <span class="badge badge--danger" style="margin-bottom:0.5rem;display:inline-block">Overdue</span>
+          <h2 style="font-size:1rem;font-weight:600">Scaffold inspection — Building A</h2>
+          <p style="font-size:0.72rem;color:var(--text-3);margin-top:0.25rem">Due Mar 12 · Ridge Co.</p>
+        </div>
+        <div class="list">
+          <div class="list__row" style="flex-direction:column;align-items:flex-start;gap:0.2rem"><span style="font-size:0.66rem;color:var(--text-3)">Last completed</span><span>Feb 28, 2026 — Passed</span></div>
+          <div class="list__row" style="flex-direction:column;align-items:flex-start;gap:0.2rem"><span style="font-size:0.66rem;color:var(--text-3)">Findings</span><span style="font-size:0.84rem">Guardrails missing on east-facing scaffold, Level 4.</span></div>
+          <div class="list__row" style="flex-direction:column;align-items:flex-start;gap:0.2rem"><span style="font-size:0.66rem;color:var(--text-3)">Required action</span><strong style="color:var(--accent)">Complete inspection</strong></div>
+        </div>
+      </div>
+      <nav class="device__tabbar"><span class="device__tab device__tab--on"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/></svg>Tools</span><span class="device__tab"><svg viewBox="0 0 24 24"><path d="M4 20h16"/></svg>Drawings</span><span class="device__tab"><svg viewBox="0 0 24 24"><path d="M5 8a7 7 0 1 1 14 0"/></svg>Camera</span><span class="device__tab"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H4z"/></svg>Chat</span></nav>
+    </div>
+    <p class="flow-label">Report</p>
+  </div>
+</div>
+
+</body>
+</html>

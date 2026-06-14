@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finding 01 — Hours Lost</title>
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body class="canvas--compare">
+
+<div class="compare">
+  <div class="compare__col">
+    <span class="compare__tag compare__tag--before">Before</span>
+    <article class="card card--legacy">
+      <header class="card__top"><h2 class="card__title">Time Lost to Injury</h2></header>
+      <div class="card__body">
+        <svg class="chart-svg" viewBox="0 0 300 170" height="170">
+          <line x1="32" y1="12" x2="32" y2="138" class="chart-grid"/><line x1="32" y1="138" x2="280" y2="138" class="chart-grid"/>
+          <rect x="48" y="62" width="12" height="76" fill="#c7d7ff" rx="2"/><rect x="62" y="88" width="12" height="50" fill="#4a5cff" rx="2"/>
+          <rect x="82" y="48" width="12" height="90" fill="#c7d7ff" rx="2"/><rect x="96" y="72" width="12" height="66" fill="#4a5cff" rx="2"/>
+          <rect x="116" y="34" width="12" height="104" fill="#c7d7ff" rx="2"/><rect x="130" y="58" width="12" height="80" fill="#4a5cff" rx="2"/>
+          <rect x="150" y="28" width="12" height="110" fill="#c7d7ff" rx="2"/><rect x="164" y="48" width="12" height="90" fill="#4a5cff" rx="2"/>
+        </svg>
+        <div class="legend"><span class="legend__item"><span class="legend__swatch" style="background:#c7d7ff"></span>Projected Work</span><span class="legend__item"><span class="legend__swatch" style="background:#4a5cff"></span>Actual Work</span></div>
+      </div>
+    </article>
+  </div>
+  <div class="compare__col">
+    <span class="compare__tag compare__tag--after">After</span>
+    <article class="card">
+      <header class="card__top">
+        <div><h2 class="card__title">Hours Lost to Injury</h2><p class="card__desc">Year-to-date · <strong style="color:var(--text)">145 hours</strong></p></div>
+      </header>
+      <div class="card__body">
+        <svg class="chart-svg" viewBox="0 0 300 170" height="170">
+          <line x1="32" y1="12" x2="32" y2="138" class="chart-grid"/><line x1="32" y1="138" x2="280" y2="138" class="chart-grid"/>
+          <rect x="52" y="108" width="22" height="30" fill="#d14343" rx="4" opacity="0.85"/><text x="63" y="102" class="chart-val" text-anchor="middle">10</text>
+          <rect x="88" y="82" width="22" height="56" fill="#d14343" rx="4" opacity="0.85"/><text x="99" y="76" class="chart-val" text-anchor="middle">20</text>
+          <rect x="124" y="118" width="22" height="20" fill="#d14343" rx="4" opacity="0.85"/><text x="135" y="112" class="chart-val" text-anchor="middle">5</text>
+          <rect x="160" y="38" width="22" height="100" fill="#d14343" rx="4"/><text x="171" y="32" class="chart-val--hi" text-anchor="middle">54</text>
+          <text x="63" y="154" class="chart-axis" text-anchor="middle">Jan</text>
+          <text x="135" y="154" class="chart-axis" text-anchor="middle">Mar</text>
+          <text x="171" y="154" class="chart-axis" text-anchor="middle">May</text>
+        </svg>
+      </div>
+    </article>
+  </div>
+</div>
+
+</body>
+</html>

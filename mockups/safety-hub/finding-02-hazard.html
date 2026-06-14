@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finding 02 — Hazard</title>
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body class="canvas--compare">
+
+<div class="compare">
+  <div class="compare__col">
+    <span class="compare__tag compare__tag--before">Before</span>
+    <article class="card card--legacy">
+      <header class="card__top"><h2 class="card__title">Daily Hazard Assessment</h2></header>
+      <div class="card__body">
+        <div class="gauge">
+          <svg width="200" height="110" viewBox="0 0 200 110">
+            <path d="M20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#f0efec" stroke-width="14"/>
+            <path d="M20 100 A 80 80 0 0 1 68 36" fill="none" stroke="#4a5cff" stroke-width="14"/>
+            <path d="M68 36 A 80 80 0 0 1 132 36" fill="none" stroke="#8b5cf6" stroke-width="14"/>
+            <path d="M132 36 A 80 80 0 0 1 180 100" fill="none" stroke="#12a594" stroke-width="14"/>
+          </svg>
+          <div class="gauge__label"><div class="gauge__num">247</div><div class="gauge__sub">Project Total</div></div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="compare__col">
+    <span class="compare__tag compare__tag--after">After</span>
+    <article class="card">
+      <header class="card__top"><div><h2 class="card__title">Daily Hazard Assessment</h2><p class="card__desc">Year-to-date</p></div></header>
+      <div class="card__body">
+        <div class="gauge">
+          <svg width="200" height="110" viewBox="0 0 200 110">
+            <path d="M20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#f0efec" stroke-width="16" stroke-linecap="round"/>
+            <path d="M20 100 A 80 80 0 0 1 68 36" fill="none" stroke="#4a5cff" stroke-width="16" stroke-linecap="round"/>
+            <path d="M68 36 A 80 80 0 0 1 132 36" fill="none" stroke="#8b5cf6" stroke-width="16"/>
+            <path d="M132 36 A 80 80 0 0 1 180 100" fill="none" stroke="#12a594" stroke-width="16" stroke-linecap="round"/>
+          </svg>
+          <div class="gauge__label"><div class="gauge__num">291</div><div class="gauge__sub">Assessments</div></div>
+        </div>
+        <div class="legend" style="justify-content:center">
+          <span class="legend__item"><span class="legend__swatch" style="background:#4a5cff"></span>Open <b>42</b> (17%)</span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#8b5cf6"></span>In progress <b>93</b> (31%)</span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#12a594"></span>Complete <b>156</b> (52%)</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+</body>
+</html>

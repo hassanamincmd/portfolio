@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety Hub — Web Guess-Free</title>
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body class="canvas--web">
+
+<div class="web-app">
+  <header class="shell-bar">
+    <div class="shell-bar__mark"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+    <div class="shell-bar__crumb">Riverside Holdings / <strong>001 — Riverside Tower</strong></div>
+    <div class="shell-bar__search">Search tools, people, drawings…</div>
+    <div class="shell-bar__avatar">HA</div>
+  </header>
+
+  <div class="page-head">
+    <div class="page-head__row">
+      <div>
+        <h1>Safety Hub</h1>
+        <p class="page-head__meta">001 — Riverside Tower · Updated today 8:42 AM</p>
+      </div>
+      <div class="page-head__actions">
+        <button class="btn btn--solid">Quick Create</button>
+        <button class="btn btn--line">Feedback</button>
+      </div>
+    </div>
+    <nav class="tabs">
+      <span class="tab">Filter</span>
+      <span class="tab">Overview</span>
+      <span class="tab tab--on">Safety Hub</span>
+      <span class="tab">Resource Management</span>
+      <span class="tab">+ Create</span>
+    </nav>
+  </div>
+
+  <main class="web-main">
+
+    <article class="card card--span-7">
+      <header class="card__top">
+        <div>
+          <h2 class="card__title">Incidents per Manpower Log</h2>
+          <p class="card__desc">By subcontractor · Apr 7 – Apr 18</p>
+        </div>
+        <div class="card__actions">
+          <a class="card__action" href="#">View more</a>
+        </div>
+      </header>
+      <div class="card__body">
+        <svg class="chart-svg" viewBox="0 0 720 220" height="220">
+          <defs>
+            <linearGradient id="b1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a5cff"/><stop offset="100%" stop-color="#4a5cff" stop-opacity="0.75"/></linearGradient>
+            <linearGradient id="b2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.75"/></linearGradient>
+            <linearGradient id="b3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#12a594"/><stop offset="100%" stop-color="#12a594" stop-opacity="0.75"/></linearGradient>
+            <linearGradient id="b4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c27803"/><stop offset="100%" stop-color="#c27803" stop-opacity="0.75"/></linearGradient>
+          </defs>
+          <line x1="48" y1="24" x2="48" y2="172" class="chart-grid"/>
+          <line x1="48" y1="172" x2="690" y2="172" class="chart-grid"/>
+          <line x1="48" y1="136" x2="690" y2="136" stroke="rgba(20,20,20,0.04)" stroke-dasharray="4 6"/>
+          <line x1="48" y1="100" x2="690" y2="100" stroke="rgba(20,20,20,0.04)" stroke-dasharray="4 6"/>
+          <line x1="48" y1="64" x2="690" y2="64" stroke="rgba(20,20,20,0.04)" stroke-dasharray="4 6"/>
+          <text x="14" y="100" class="chart-label" transform="rotate(-90 14 100)">Incidents</text>
+          <g transform="translate(64,0)">
+            <rect x="0" y="118" width="34" height="54" fill="url(#b1)" rx="5"/>
+            <rect x="0" y="98" width="34" height="20" fill="url(#b2)" rx="0"/>
+            <rect x="0" y="82" width="34" height="16" fill="url(#b3)"/>
+            <rect x="44" y="128" width="34" height="44" fill="url(#b1)" rx="5"/>
+            <rect x="44" y="108" width="34" height="20" fill="url(#b4)"/>
+            <rect x="88" y="88" width="34" height="84" fill="url(#b1)" rx="5"/>
+            <rect x="88" y="72" width="34" height="16" fill="url(#b3)"/>
+            <rect x="132" y="108" width="34" height="64" fill="url(#b1)" rx="5"/>
+            <rect x="132" y="92" width="34" height="16" fill="url(#b2)"/>
+            <rect x="176" y="78" width="34" height="94" fill="url(#b1)" rx="5"/>
+            <rect x="220" y="122" width="34" height="50" fill="url(#b3)" rx="5"/>
+            <rect x="264" y="96" width="34" height="76" fill="url(#b1)" rx="5"/>
+            <rect x="308" y="102" width="34" height="70" fill="url(#b2)" rx="5"/>
+            <rect x="352" y="82" width="34" height="90" fill="url(#b1)" rx="5"/>
+            <rect x="396" y="116" width="34" height="56" fill="url(#b4)" rx="5"/>
+            <rect x="440" y="94" width="34" height="78" fill="url(#b1)" rx="5"/>
+            <rect x="484" y="108" width="34" height="64" fill="url(#b2)" rx="5"/>
+            <rect x="528" y="124" width="34" height="48" fill="url(#b3)" rx="5"/>
+          </g>
+          <polyline points="81,92 125,108 169,72 213,98 257,118 301,86 345,96 389,68 433,104 477,88 521,98 565,112" fill="none" stroke="#178a5c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="565" cy="112" r="4" fill="#178a5c"/>
+          <text x="81" y="192" class="chart-axis" text-anchor="middle">04/07</text>
+          <text x="213" y="192" class="chart-axis" text-anchor="middle">04/12</text>
+          <text x="345" y="192" class="chart-axis" text-anchor="middle">04/15</text>
+          <text x="477" y="192" class="chart-axis" text-anchor="middle">04/18</text>
+        </svg>
+        <div class="legend">
+          <span class="legend__item"><span class="legend__swatch" style="background:#4a5cff"></span>Acme Builders</span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#8b5cf6"></span>Ridge Co.</span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#12a594"></span>Harbor Electric</span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#c27803"></span>Summit Steel</span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#178a5c"></span><b>Total incidents</b></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card card--span-5">
+      <header class="card__top">
+        <div>
+          <h2 class="card__title">Toolbox Talk Attendance</h2>
+          <p class="card__desc">Past 6 months · attended vs. scheduled</p>
+        </div>
+        <div class="card__actions"><a class="card__action" href="#">Details</a></div>
+      </header>
+      <div class="card__body">
+        <svg class="chart-svg" viewBox="0 0 420 200" height="200">
+          <line x1="40" y1="20" x2="40" y2="155" class="chart-grid"/>
+          <line x1="40" y1="155" x2="400" y2="155" class="chart-grid"/>
+          <text x="12" y="90" class="chart-label" transform="rotate(-90 12 90)">Attended %</text>
+          <rect x="58" y="38" width="48" height="117" fill="#edf1ff" rx="6"/>
+          <rect x="58" y="50" width="48" height="105" fill="#4a5cff" rx="6"/>
+          <text x="82" y="32" class="chart-val--hi" text-anchor="middle">90%</text>
+          <text x="82" y="172" class="chart-axis" text-anchor="middle">Fall Prot.</text>
+          <text x="82" y="184" class="chart-label" text-anchor="middle">90/100</text>
+          <rect x="122" y="38" width="48" height="117" fill="#4a5cff" rx="6"/>
+          <text x="146" y="32" class="chart-val--hi" text-anchor="middle">100%</text>
+          <text x="146" y="172" class="chart-axis" text-anchor="middle">PPE Use</text>
+          <rect x="186" y="38" width="48" height="117" fill="#edf1ff" rx="6"/>
+          <rect x="186" y="50" width="48" height="105" fill="#4a5cff" rx="6"/>
+          <text x="210" y="32" class="chart-val--hi" text-anchor="middle">90%</text>
+          <text x="210" y="172" class="chart-axis" text-anchor="middle">Fire Saf.</text>
+          <rect x="250" y="38" width="48" height="117" fill="#edf1ff" rx="6"/>
+          <rect x="250" y="96" width="48" height="59" fill="#4a5cff" rx="6"/>
+          <text x="274" y="32" class="chart-val" text-anchor="middle" fill="#b45309">50%</text>
+          <text x="274" y="172" class="chart-axis" text-anchor="middle">Electrical</text>
+          <text x="274" y="184" class="chart-label" text-anchor="middle">5/10</text>
+          <rect x="314" y="38" width="48" height="117" fill="#edf1ff" rx="6"/>
+          <rect x="314" y="80" width="48" height="75" fill="#4a5cff" rx="6"/>
+          <text x="338" y="32" class="chart-val--hi" text-anchor="middle">64%</text>
+          <text x="338" y="172" class="chart-axis" text-anchor="middle">Trending</text>
+        </svg>
+      </div>
+    </article>
+
+    <article class="card card--span-4">
+      <header class="card__top">
+        <div>
+          <h2 class="card__title">Claims Due to Injury</h2>
+          <p class="card__desc">Year-to-date</p>
+        </div>
+        <div class="card__actions"><span class="chip">All Claims</span></div>
+      </header>
+      <div class="card__body">
+        <div class="kpi">
+          <div>
+            <div class="kpi__num kpi__num--md">$92K</div>
+            <span class="kpi__delta kpi__delta--bad">↑ 17% vs. last month</span>
+          </div>
+          <svg width="130" height="64" viewBox="0 0 130 64">
+            <defs><linearGradient id="spark" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d14343" stop-opacity="0.18"/><stop offset="100%" stop-color="#d14343" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0,44 C18,40 32,42 48,34 S82,22 130,10 L130,64 L0,64 Z" fill="url(#spark)"/>
+            <path d="M0,44 C18,40 32,42 48,34 S82,22 130,10" fill="none" stroke="#d14343" stroke-width="2.25" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <article class="card card--span-4">
+      <header class="card__top">
+        <div>
+          <h2 class="card__title">Daily Hazard Assessment</h2>
+          <p class="card__desc">Year-to-date</p>
+        </div>
+        <div class="card__actions"><a class="card__action" href="#">View more</a></div>
+      </header>
+      <div class="card__body">
+        <div class="gauge">
+          <svg width="220" height="120" viewBox="0 0 220 120">
+            <path d="M24 100 A 86 86 0 0 1 196 100" fill="none" stroke="#f0efec" stroke-width="18" stroke-linecap="round"/>
+            <path d="M24 100 A 86 86 0 0 1 74 32" fill="none" stroke="#4a5cff" stroke-width="18" stroke-linecap="round"/>
+            <path d="M74 32 A 86 86 0 0 1 146 32" fill="none" stroke="#8b5cf6" stroke-width="18"/>
+            <path d="M146 32 A 86 86 0 0 1 196 100" fill="none" stroke="#12a594" stroke-width="18" stroke-linecap="round"/>
+          </svg>
+          <div class="gauge__label">
+            <div class="gauge__num">291</div>
+            <div class="gauge__sub">Assessments</div>
+          </div>
+        </div>
+        <div class="legend" style="justify-content:center;margin-top:0.25rem">
+          <span class="legend__item"><span class="legend__swatch" style="background:#4a5cff"></span>Open <b>42</b> (17%)</span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#8b5cf6"></span>In progress <b>93</b> (31%)</span>
+          <span class="legend__item"><span class="legend__swatch" style="background:#12a594"></span>Complete <b>156</b> (52%)</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card card--span-4">
+      <header class="card__top">
+        <div>
+          <h2 class="card__title">Hours Lost to Injury</h2>
+          <p class="card__desc">Year-to-date · <strong style="color:var(--text);font-weight:600">145 hours</strong></p>
+        </div>
+        <div class="card__actions"><a class="card__action" href="#">Details</a></div>
+      </header>
+      <div class="card__body">
+        <svg class="chart-svg" viewBox="0 0 360 190" height="190">
+          <line x1="36" y1="16" x2="36" y2="148" class="chart-grid"/>
+          <line x1="36" y1="148" x2="340" y2="148" class="chart-grid"/>
+          <text x="10" y="88" class="chart-label" transform="rotate(-90 10 88)">Hours</text>
+          <rect x="52" y="118" width="28" height="30" fill="#d14343" rx="5" opacity="0.85"/>
+          <text x="66" y="112" class="chart-val" text-anchor="middle">10</text>
+          <rect x="92" y="88" width="28" height="60" fill="#d14343" rx="5" opacity="0.85"/>
+          <text x="106" y="82" class="chart-val" text-anchor="middle">20</text>
+          <rect x="132" y="130" width="28" height="18" fill="#d14343" rx="5" opacity="0.85"/>
+          <text x="146" y="124" class="chart-val" text-anchor="middle">5</text>
+          <rect x="172" y="142" width="28" height="6" fill="#f0efec" rx="3"/>
+          <rect x="212" y="42" width="28" height="106" fill="#d14343" rx="5"/>
+          <text x="226" y="36" class="chart-val--hi" text-anchor="middle">54</text>
+          <rect x="252" y="138" width="28" height="10" fill="#f0efec" rx="3"/>
+          <text x="66" y="166" class="chart-axis" text-anchor="middle">Jan</text>
+          <text x="146" y="166" class="chart-axis" text-anchor="middle">Mar</text>
+          <text x="226" y="166" class="chart-axis" text-anchor="middle">May</text>
+          <text x="286" y="166" class="chart-axis" text-anchor="middle">Jul</text>
+        </svg>
+      </div>
+    </article>
+
+  </main>
+</div>
+
+</body>
+</html>
