@@ -120,24 +120,23 @@
     .card-wrap {
       position: sticky;
       top: 80px;
-      height: calc(100vh - 96px);
-      min-height: 700px;
+      height: calc((100vh - 96px) * 0.75);
+      min-height: 525px;
     }
 
     .card-wrap:nth-child(1) { z-index: 1; }
     .card-wrap:nth-child(2) { z-index: 2; }
     .card-wrap:nth-child(3) { z-index: 3; }
-    .card-wrap:nth-child(4) { z-index: 4; }
 
     /* Per-card accent borders — left + right, matching each card's color */
     .card-wrap:nth-child(1) .card-inner { border-left: 8px solid #00ff77; border-right: 8px solid #00ff77; }
     .card-wrap:nth-child(2) .card-inner { border-left: 8px solid #A259FF; border-right: 8px solid #A259FF; }
-    .card-wrap:nth-child(3) .card-inner { border-left: 8px solid rgb(230,85,0); border-right: 8px solid rgb(230,85,0); }
-    .card-wrap:nth-child(4) .card-inner { border-left: 8px solid #d6cfc0; border-right: 8px solid #d6cfc0; }
+    .card-wrap:nth-child(3) .card-inner { border-left: 8px solid rgba(255,255,255,0.2); border-right: 8px solid rgba(255,255,255,0.2); }
 
     /* The actual visible card — scale is applied here by JS */
     .card-inner {
-      height: 100%;
+      height: auto;
+      max-height: 100%;
       border-radius: 16px;
       overflow: hidden;
       transform-origin: top center;
@@ -153,7 +152,7 @@
     .p-card {
       display: flex;
       flex-direction: column;
-      height: 100%;
+      height: auto;
       color: inherit;
       cursor: pointer;
     }
@@ -175,18 +174,52 @@
     .p-card__title-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 1.25rem 1.5rem 1.5rem;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.5rem 0.75rem;
       flex-shrink: 0;
     }
 
     .p-card__title {
-      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
       font-weight: 600;
-      line-height: 1;
+      line-height: 1.05;
       letter-spacing: -0.04em;
       text-transform: lowercase;
     }
+
+    .p-card__desc {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      padding: 0 1.5rem 0.85rem;
+      flex-shrink: 0;
+      opacity: 0.88;
+      max-width: 52ch;
+    }
+
+    .p-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding: 0 1.5rem 1rem;
+      flex-shrink: 0;
+    }
+
+    .p-card__tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      padding: 0.3rem 0.65rem;
+      border: 1px solid rgba(0,0,0,0.18);
+      border-radius: 2rem;
+      white-space: nowrap;
+    }
+
+    .p-card--locked { cursor: default; pointer-events: none; }
+    .p-card--locked .p-card__title,
+    .p-card--locked .p-card__desc { color: rgba(255,255,255,0.35); }
+    .p-card--locked .p-card__tag { border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.25); }
 
     .p-card__arrow {
       display: inline-flex;
@@ -205,19 +238,31 @@
       background: rgba(0,0,0,0.1);
     }
 
-    /* Image area — fills remaining space */
+    /* Image area — natural height, no flex gap below */
     .p-card__image {
-      flex: 1;
+      flex: 0 0 auto;
       overflow: hidden;
       position: relative;
+      line-height: 0;
+    }
+
+    .p-card__image picture {
+      display: block;
     }
 
     .p-card__image img {
       width: 100%;
-      height: 100%;
+      height: auto;
+      display: block;
       object-fit: cover;
       object-position: center top;
-      display: block;
+    }
+
+    .p-card--locked .p-card__image {
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Color themes */
@@ -292,7 +337,7 @@
       .footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .footer__nav, .footer__social { justify-content: flex-start; }
       .p-card__title { font-size: clamp(1.75rem, 7vw, 2.5rem); }
-      .card-wrap { height: calc(60vh - 64px); min-height: 420px; }
+      .card-wrap { height: calc((60vh - 64px) * 0.75); min-height: 315px; }
       .p-card__bar {
         flex-direction: column;
         align-items: flex-start;
@@ -380,15 +425,22 @@
             <a class="p-card p-card--green" href="/case-study-meridian">
               <div class="p-card__bar">
                 <span>2023 &ndash; 2024</span>
-                <span>Design Lead &middot; SaaS &middot; 3 Platforms</span>
+                <span>Design Lead &middot; SaaS</span>
               </div>
               <div class="p-card__title-row">
-                <h2 class="p-card__title">meridian &mdash; smart scheduling &amp; personal brand</h2>
+                <h2 class="p-card__title">meridian &mdash; smart scheduling &amp; personal brand platform</h2>
                 <span class="p-card__arrow" aria-hidden="true">
                   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
                     <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </span>
+              </div>
+              <p class="p-card__desc">Led a team of 3 designers through a 12-month product lifecycle. Built a scalable design system from scratch and delivered 500+ screens across web, tablet, and mobile. Stakeholder satisfaction increased by 80%.</p>
+              <div class="p-card__tags">
+                <span class="p-card__tag">Design System</span>
+                <span class="p-card__tag">500+ Screens</span>
+                <span class="p-card__tag">3 Platforms</span>
+                <span class="p-card__tag">Team Lead</span>
               </div>
               <div class="p-card__image">
                 <picture>
@@ -405,16 +457,23 @@
           <div class="card-inner">
             <a class="p-card" href="/case-study-2" style="background:#A259FF;color:#000;">
               <div class="p-card__bar">
-                <span>2025 &ndash; 2026</span>
-                <span>Design Lead &middot; Construction SaaS &middot; Mobile + Web</span>
+                <span>2026</span>
+                <span>Construction SaaS</span>
               </div>
               <div class="p-card__title-row">
-                <h2 class="p-card__title">site safety command &mdash; job-site safety platform</h2>
+                <h2 class="p-card__title">site safety command</h2>
                 <span class="p-card__arrow" aria-hidden="true">
                   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
                     <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </span>
+              </div>
+              <p class="p-card__desc">Two-phase design lead: turned user feedback and PM requirements into a mobile command center for job-site safety, then ran a UserTesting study and delivered guess-free dashboard cards on web and mobile.</p>
+              <div class="p-card__tags">
+                <span class="p-card__tag">UX Research</span>
+                <span class="p-card__tag">Data Viz</span>
+                <span class="p-card__tag">Mobile-First</span>
+                <span class="p-card__tag">Design Lead</span>
               </div>
               <div class="p-card__image">
                 <picture>
@@ -426,49 +485,22 @@
           </div>
         </div>
 
-        <!-- Card 3 — ICan Care -->
+        <!-- Card 3 — Coming soon -->
         <div class="card-wrap">
           <div class="card-inner">
-            <a class="p-card p-card--orange" href="#">
-              <div class="p-card__bar">
-                <span>2024</span>
-                <span>Senior Designer &middot; Healthcare &middot; Mobile</span>
+            <div class="p-card p-card--locked" style="background:#111;color:#fff;">
+              <div class="p-card__bar" style="border-bottom-color:rgba(255,255,255,0.08);">
+                <span>2026</span>
+                <span>Product Designer</span>
               </div>
               <div class="p-card__title-row">
-                <h2 class="p-card__title">ican care &mdash; novartis patient engagement app</h2>
-                <span class="p-card__arrow" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
+                <h2 class="p-card__title">next case study in progress</h2>
               </div>
-              <div class="p-card__image" style="background: rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center;">
-                <span style="font-family:var(--mono);font-size:0.75rem;opacity:0.4;">case study coming soon</span>
+              <p class="p-card__desc">A new case study is being prepared and will be published soon.</p>
+              <div class="p-card__image" style="background:#0d0d0d;display:flex;align-items:center;justify-content:center;">
+                <span style="font-family:var(--mono);font-size:0.75rem;color:rgba(255,255,255,0.2);letter-spacing:0.1em;">coming soon</span>
               </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Card 4 — Petrosains -->
-        <div class="card-wrap">
-          <div class="card-inner">
-            <a class="p-card" href="#" style="background:#f5f0e8; color:#111;">
-              <div class="p-card__bar">
-                <span>2023</span>
-                <span>Design Lead &middot; Enterprise &middot; Dashboard</span>
-              </div>
-              <div class="p-card__title-row">
-                <h2 class="p-card__title">petrosains &mdash; executive crm &amp; analytics</h2>
-                <span class="p-card__arrow" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </div>
-              <div class="p-card__image" style="background: rgba(0,0,0,0.06); display:flex; align-items:center; justify-content:center;">
-                <span style="font-family:var(--mono);font-size:0.75rem;opacity:0.4;">case study coming soon</span>
-              </div>
-            </a>
+            </div>
           </div>
         </div>
 
