@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qualifications Management &mdash; Case Study &mdash; Hassan Amin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <style>
+    :root {
+      --bg: #000;
+      --surface: #111;
+      --surface-2: #1a1a1a;
+      --surface-3: #222;
+      --text: #fff;
+      --muted: rgba(255,255,255,0.65);
+      --muted-2: rgba(255,255,255,0.45);
+      --border: rgba(255,255,255,0.12);
+      --accent: #FF8C42;
+      --accent-dim: rgba(255,140,66,0.10);
+      --display: 'Manrope', system-ui, sans-serif;
+      --mono: 'DM Mono', ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+    body { font-family: var(--display); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+
+    .progress-line { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 200; transition: width 0.1s linear; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: rgb(0 0 0 / 90%); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 64px; width: min(1200px, 92%); margin: 0 auto; }
+    .header__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; justify-self: start; }
+    .header__nav { display: flex; justify-content: center; gap: clamp(1.25rem, 3vw, 2.5rem); }
+    .header__nav a { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--muted); transition: color 0.2s; position: relative; padding-bottom: 6px; }
+    .header__nav a:hover, .header__nav a.active { color: var(--text); }
+    .header__nav a.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--text); }
+    .header__cta { justify-self: end; font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--text); padding: 0.45rem 0.85rem; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+    .header__cta:hover { background: var(--text); color: var(--bg); }
+
+    .cover { display: flex; flex-direction: column; justify-content: flex-start; padding: clamp(2.5rem, 5vw, 3.5rem) 0 clamp(3rem, 6vw, 4rem); position: relative; overflow: hidden; }
+    .cover__bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .cover__bg-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
+    .cover__content { position: relative; z-index: 1; }
+    .cover__eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; }
+    .cover__dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: lowercase; }
+    .cover__title { font-size: clamp(3rem, 8vw, 7rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
+    .cover__title span { color: var(--accent); }
+    .cover__subtitle { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--muted); font-weight: 300; max-width: 68ch; line-height: 1.65; margin-bottom: 3rem; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); white-space: nowrap; }
+    .pill--accent { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+    .cs-img-wrap--placeholder {
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 2rem;
+      text-align: center;
+      border: 1px dashed rgba(255,255,255,0.14);
+      line-height: normal;
+      min-height: 280px;
+    }
+    .placeholder-label { font-family: var(--mono); font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.03em; line-height: 1.5; max-width: 32ch; }
+    .placeholder-file  { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); opacity: 0.85; word-break: break-all; max-width: 36ch; }
+
+    .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
+    .overview-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--border); }
+    .overview-item { background: var(--bg); padding: 1.5rem 1.5rem; }
+    .overview-item dt { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); text-transform: lowercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .overview-item dd { font-size: 0.9rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+
+    .section { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border); }
+    .section__label { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1rem; display: block; }
+    .section__title { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1.25rem; }
+    .section__lead { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 66ch; line-height: 1.75; }
+    .section__header { max-width: 820px; margin-bottom: 3.5rem; }
+
+    .pull-quote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 2px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0; }
+    .pull-quote blockquote { font-size: clamp(1.1rem, 2.5vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.6; letter-spacing: -0.01em; }
+    .pull-quote cite { display: block; margin-top: 0.85rem; font-family: var(--mono); font-size: 0.75rem; color: var(--muted-2); font-style: normal; }
+
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .problem-card { background: var(--surface); padding: 2rem; }
+    .problem-card__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 1.25rem; display: block; }
+    .problem-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+    .problem-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
+
+    .system-map { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .system-card { background: var(--surface); padding: 2rem; }
+    .system-card__tag { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+    .system-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
+    .system-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .role-item { background: var(--surface); padding: 2rem; display: flex; gap: 1.25rem; }
+    .role-item__icon { font-family: var(--mono); font-size: 1.1rem; color: var(--accent); flex-shrink: 0; margin-top: 0.15rem; }
+    .role-item h3 { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .role-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    .phase-steps { display: flex; flex-direction: column; gap: 4rem; }
+    .phase-step { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .phase-step--flip { direction: rtl; }
+    .phase-step--flip > * { direction: ltr; }
+    .phase-step__copy { display: flex; flex-direction: column; gap: 1rem; }
+    .step-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; }
+    .step-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+    .phase-step__copy h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
+    .phase-step__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 50ch; }
+
+    .quotes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .quote-card { padding: 1.75rem 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+    .quote-card p { font-size: 0.95rem; color: var(--text); line-height: 1.65; font-style: italic; margin-bottom: 0.85rem; }
+    .quote-card cite { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); font-style: normal; }
+
+    .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .outcome-card { background: var(--surface); padding: 2rem; }
+    .outcome-card__value { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+    .outcome-card__label { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .outcome-card__desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    .learnings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .learning-block { padding: 2rem; border: 1px solid var(--border); border-radius: 8px; }
+    .learning-block h3 { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.35; }
+    .learning-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
+
+    @media (max-width: 900px) {
+      .overview-bar__grid { grid-template-columns: repeat(3, 1fr); }
+      .problem-grid, .system-map, .outcomes-grid { grid-template-columns: 1fr; }
+      .role-grid, .quotes-grid, .learnings-grid { grid-template-columns: 1fr; }
+      .phase-step { grid-template-columns: 1fr; gap: 2.5rem; }
+      .phase-step--flip { direction: ltr; }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/nav.css" />
+  <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="stylesheet" href="/assets/case-study.css" />
+</head>
+<body>
+
+  <div id="progress" class="progress-line"></div>
+
+  <header class="header">
+    <div class="header__bar">
+      <a class="header__brand" href="/">.h</a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="/work" class="active">selected work</a>
+        <a href="/contact">contact</a>
+        <a href="/about">about</a>
+      </nav>
+      <div class="header__actions">
+        <a class="header__cta" href="https://docs.google.com/document/d/1_IUqRnxJ4csZ5mCOj9Wk7nkvIixssomZ/edit?usp=sharing&ouid=108158393883342679834&rtpof=true&sd=true" target="_blank" rel="noreferrer">resume / cv</a>
+        <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
+    <a href="/">home</a>
+    <a href="/work" class="active">selected work</a>
+    <a href="/contact">contact</a>
+    <a href="/about">about</a>
+    <a class="nav__resume" href="https://docs.google.com/document/d/1_IUqRnxJ4csZ5mCOj9Wk7nkvIixssomZ/edit?usp=sharing&ouid=108158393883342679834&rtpof=true&sd=true" target="_blank" rel="noreferrer">resume / cv ↗</a>
+  </nav>
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover__bg-grid"></div>
+    <div class="cover__bg-glow"></div>
+    <div class="container cover__content">
+      <div class="cover__eyebrow">
+        <span class="cover__dot"></span>
+        <span class="label">product design &middot; mobile &amp; web &middot; construction saas</span>
+      </div>
+      <h1 class="cover__title">Qualifications<br /><span>Management.</span></h1>
+      <p class="cover__subtitle">Five months of customer-driven design on a construction platform. Safety managers needed to verify worker credentials on site and manage thousands of qualifications from the office &mdash; I designed the full system: mobile Safety Cards in the field, a web workers table for ops at scale, bulk assign flows, and the admin layer that defines how every tag behaves.</p>
+      <div class="pill-row">
+        <span class="pill pill--accent">Product Designer</span>
+        <span class="pill">Mobile &amp; Web</span>
+        <span class="pill">Enterprise</span>
+        <span class="pill">Customer-Led</span>
+        <span class="pill">Construction SaaS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <div class="overview-bar">
+    <div class="container">
+      <dl class="overview-bar__grid">
+        <div class="overview-item"><dt>duration</dt><dd>5 months<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">build &amp; iterate</span></dd></div>
+        <div class="overview-item"><dt>my role</dt><dd>Product Designer<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">2-designer team</span></dd></div>
+        <div class="overview-item"><dt>platforms</dt><dd>Mobile &middot; Web<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">iOS &amp; Android + desktop</span></dd></div>
+        <div class="overview-item"><dt>origin</dt><dd>Customer requests<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">feedback-driven</span></dd></div>
+        <div class="overview-item"><dt>collaborators</dt><dd>PM &middot; EM<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ co-designer</span></dd></div>
+        <div class="overview-item"><dt>domain</dt><dd>Safety &amp; compliance<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">same product family as Safety Hub</span></dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- .01 WHERE IT STARTED -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.01 &mdash; where it started</span>
+        <h2 class="section__title">Customers asked.<br />We designed.</h2>
+        <p class="section__lead">Every feature in this case study came from customer feedback and requests &mdash; not a roadmap brainstorm. Safety managers on active job sites needed to verify who was qualified to work. Office admins needed to manage compliance across hundreds of workers and dozens of qualification types. The product didn&rsquo;t have a unified way to do either.</p>
+      </div>
+
+      <div class="pull-quote">
+        <blockquote>&ldquo;This makes my life on the site so much easier.&rdquo;</blockquote>
+        <cite>&mdash; Safety manager, field user</cite>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-card__num">01 &mdash; field verification</span>
+          <h3>No way to check credentials on site</h3>
+          <p>Supervisors had to call the office or dig through spreadsheets to confirm whether a worker&rsquo;s OSHA, first aid, or equipment certifications were current. On a busy job site, that delay is a safety risk.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">02 &mdash; admin at scale</span>
+          <h3>Qualifications lived in disconnected places</h3>
+          <p>Project admins managing 500&ndash;1,000 workers had no single view of who was compliant, who was expiring, and which tags were missing attachments or expiry dates entirely.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">03 &mdash; inconsistent rules</span>
+          <h3>Every qualification type behaved differently</h3>
+          <p>Some tags required expiry dates, some didn&rsquo;t. Some needed proof attachments, others didn&rsquo;t. Without a configurable system, every screen had to hard-code exceptions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- .02 MY ROLE -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.02 &mdash; my role</span>
+        <h2 class="section__title">Designer on a<br />two-person team.</h2>
+        <p class="section__lead">I worked alongside one other designer, a PM, and an engineering manager. I owned design across all four surfaces below &mdash; from mobile field flows to the web admin configuration layer.</p>
+      </div>
+
+      <div class="role-grid">
+        <div class="role-item">
+          <span class="role-item__icon">01</span>
+          <div>
+            <h3>Translating requests into flows</h3>
+            <p>Customer feedback arrived as feature requests and pain points. I turned those into structured flows with validation rules, empty states, and error handling &mdash; before any screen was built.</p>
+          </div>
+        </div>
+        <div class="role-item">
+          <span class="role-item__icon">02</span>
+          <div>
+            <h3>Cross-platform consistency</h3>
+            <p>The same qualification grammar &mdash; tag, expiry, attachments, compliance status &mdash; had to work on a phone in the field and in a 1,000-row web table. I defined the shared patterns both surfaces followed.</p>
+          </div>
+        </div>
+        <div class="role-item">
+          <span class="role-item__icon">03</span>
+          <div>
+            <h3>Edge cases as first-class design</h3>
+            <p>Expired vs. expiring vs. no expiry. Tag assigned but no data uploaded. Bulk assign with shared or per-worker dates. I designed for these states explicitly, not as afterthoughts.</p>
+          </div>
+        </div>
+        <div class="role-item">
+          <span class="role-item__icon">04</span>
+          <div>
+            <h3>Iteration with engineering</h3>
+            <p>Five months of build cycles meant constant refinement with the EM and dev team &mdash; adjusting modal flows, table column behavior, and mobile form validation as we learned what worked in production.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- .03 THE SYSTEM -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.03 &mdash; the system</span>
+        <h2 class="section__title">Configure. Operate. Verify.</h2>
+        <p class="section__lead">Three layers, one data model. Admins configure qualification tags. Office users operate at scale through the workers table. Field users verify credentials on site through the Safety Card.</p>
+      </div>
+
+      <div class="system-map">
+        <div class="system-card">
+          <span class="system-card__tag">web &mdash; configure</span>
+          <h3>Tags Management</h3>
+          <p>Define qualification tags, categories, expiry rules, colors, and abbreviations. The configuration layer that drives behavior everywhere else.</p>
+        </div>
+        <div class="system-card">
+          <span class="system-card__tag">web &mdash; operate</span>
+          <h3>Workers Table</h3>
+          <p>Filter, export, configure columns, and bulk-assign qualifications to hundreds of workers. The admin command center for compliance at scale.</p>
+        </div>
+        <div class="system-card">
+          <span class="system-card__tag">mobile &mdash; verify</span>
+          <h3>Safety Card</h3>
+          <p>View, assign, and edit a worker&rsquo;s qualifications from the directory. NFC write for physical card sync. Read-only mode for restricted users.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- .04 MOBILE — SAFETY CARD -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.04 &mdash; mobile &middot; safety card</span>
+        <h2 class="section__title">Credentials in the field.</h2>
+        <p class="section__lead">From the directory, any contact gets a Safety Card &mdash; a live view of their qualifications with expiry status, proof attachments, and the ability to assign or edit on the spot.</p>
+      </div>
+
+      <div class="phase-steps">
+
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">01 &mdash; view &amp; empty state</span>
+            <h2>See who&rsquo;s qualified at a glance.</h2>
+            <p>The Safety Card shows all assigned qualifications with clear expiry status &mdash; active, expiring, or expired. If a worker has none, the empty state prompts assignment immediately instead of showing a dead end.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--auto cs-img-wrap--placeholder">
+              <span class="placeholder-label">Safety Card &mdash; filled + empty state</span>
+              <span class="placeholder-file">assets/qualifications-mobile-safety-card.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">02 &mdash; assign qualification</span>
+            <h2>Tag, date, proof &mdash; in one flow.</h2>
+            <p>Pick a qualification tag, set an expiry date if the tag requires it, and attach proof via camera, photo library, or file upload. Validation adapts: mandatory expiry shows errors on save; optional expiry stays flexible.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--auto cs-img-wrap--placeholder">
+              <span class="placeholder-label">Add qualification flow + validation states</span>
+              <span class="placeholder-file">assets/qualifications-mobile-add-qual.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">03 &mdash; edit &amp; delete</span>
+            <h2>Change what matters. Protect what can&rsquo;t.</h2>
+            <p>Editing opens a bottom drawer where only expiry date and attachments are editable &mdash; the tag itself is locked. Deleting requires a confirmation alert with irreversible-action language.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--auto cs-img-wrap--placeholder">
+              <span class="placeholder-label">Edit drawer + delete confirmation</span>
+              <span class="placeholder-file">assets/qualifications-mobile-edit.png</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- .05 WEB — WORKERS TABLE -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.05 &mdash; web &middot; workers table</span>
+        <h2 class="section__title">Compliance at scale.</h2>
+        <p class="section__lead">The workers table is where project admins live. Dynamic qualification columns, configurable visibility, powerful filters, bulk actions, and CSV export &mdash; all built for sites managing hundreds or thousands of workers.</p>
+      </div>
+
+      <div class="phase-steps">
+
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">01 &mdash; dynamic table</span>
+            <h2>Every tag is a column. Every cell tells a story.</h2>
+            <p>Each qualification tag becomes a column showing expiry date, attachment status, or explicit states like &ldquo;no data uploaded&rdquo; or &ldquo;tag not assigned.&rdquo; Admins configure which columns are visible per project.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--auto cs-img-wrap--placeholder">
+              <span class="placeholder-label">Workers table with tag columns</span>
+              <span class="placeholder-file">assets/qualifications-web-workers-table.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">02 &mdash; filter &amp; export</span>
+            <h2>Find the workers who need attention.</h2>
+            <p>Filter by company, project, worker status, qualification tag, and expiry state (expired, upcoming, no expiry, custom range). Export selected workers to CSV with or without attachments.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--auto cs-img-wrap--placeholder">
+              <span class="placeholder-label">Filter panel + export actions</span>
+              <span class="placeholder-file">assets/qualifications-web-filters-export.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">03 &mdash; bulk assign</span>
+            <h2>One tag. Many workers. Smart defaults.</h2>
+            <p>Select workers, choose a single qualification tag, then set expiry dates per worker or apply one date to all. Toggle off if any individual date changes. Attach proof per worker. Validation blocks assign until required fields are complete.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--auto cs-img-wrap--placeholder">
+              <span class="placeholder-label">Bulk assign single tag flow</span>
+              <span class="placeholder-file">assets/qualifications-bulk-assign.png</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- .06 WEB — TAGS MANAGEMENT -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.06 &mdash; web &middot; tags management</span>
+        <h2 class="section__title">The rules engine.</h2>
+        <p class="section__lead">Before any qualification can be assigned on mobile or web, an admin defines it here &mdash; name, abbreviation, color, category, and whether an expiry date is required.</p>
+      </div>
+
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">configure tags &amp; categories</span>
+            <h2>Define once. Apply everywhere.</h2>
+            <p>CRUD for qualification tags and categories. Set expiry requirements, notice periods, and tag colors. Delete actions include destructive confirmations explaining platform-wide impact &mdash; because removing a tag removes it from every worker profile.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--auto cs-img-wrap--placeholder">
+              <span class="placeholder-label">Tags management settings</span>
+              <span class="placeholder-file">assets/qualifications-tags-management.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- .07 WHAT CUSTOMERS SAID -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.07 &mdash; what customers said</span>
+        <h2 class="section__title">Built for the field.<br />Validated by it.</h2>
+        <p class="section__lead">Feedback came throughout the five-month build &mdash; not just at the end. These represent the kind of response we heard as features shipped.</p>
+      </div>
+
+      <div class="quotes-grid">
+        <div class="quote-card">
+          <p>&ldquo;This makes my life on the site so much easier.&rdquo;</p>
+          <cite>&mdash; Safety manager, field user</cite>
+        </div>
+        <div class="quote-card">
+          <p>&ldquo;I used to spend half my Monday chasing expired certs. Now I filter the table and bulk-assign in ten minutes.&rdquo;</p>
+          <cite>&mdash; Project admin, web user</cite>
+        </div>
+        <div class="quote-card">
+          <p>&ldquo;Being able to pull up someone&rsquo;s Safety Card right from the directory &mdash; that&rsquo;s exactly what we asked for.&rdquo;</p>
+          <cite>&mdash; Site superintendent</cite>
+        </div>
+        <div class="quote-card">
+          <p>&ldquo;The bulk assign saved us during onboarding week. Forty new workers, one OSHA tag, done.&rdquo;</p>
+          <cite>&mdash; Safety coordinator</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- .08 OUTCOMES -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.08 &mdash; outcomes</span>
+        <h2 class="section__title">What shipped.</h2>
+        <p class="section__lead">A complete qualification system across mobile and web &mdash; from field verification to admin operations to platform configuration.</p>
+      </div>
+
+      <div class="outcomes-grid">
+        <div class="outcome-card">
+          <div class="outcome-card__value">4</div>
+          <div class="outcome-card__label">Product surfaces</div>
+          <div class="outcome-card__desc">Safety Card (mobile), Workers Table (web), Bulk Assign (web), Tags Management (web).</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">5 mo</div>
+          <div class="outcome-card__label">Build &amp; iterate</div>
+          <div class="outcome-card__desc">Customer requests translated into shipped features across five months of design and engineering cycles.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">1</div>
+          <div class="outcome-card__label">Shared data model</div>
+          <div class="outcome-card__desc">Tag, expiry, attachment, and compliance status behave consistently across every surface.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">3</div>
+          <div class="outcome-card__label">Cell state types</div>
+          <div class="outcome-card__desc">Expiry + attachment, no data uploaded, and tag not assigned &mdash; each with explicit UI treatment.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">NFC</div>
+          <div class="outcome-card__label">Field hardware sync</div>
+          <div class="outcome-card__desc">Write to NFC from the Safety Card for physical credential cards on site.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">CSV</div>
+          <div class="outcome-card__label">Export at scale</div>
+          <div class="outcome-card__desc">Bulk export with or without attachments for audit and reporting workflows.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- .09 REFLECTIONS -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.09 &mdash; reflections</span>
+        <h2 class="section__title">What I&rsquo;d carry forward.</h2>
+      </div>
+      <div class="learnings-grid">
+        <div class="learning-block">
+          <h3>Customer requests are a design brief.</h3>
+          <p>When every feature traces back to a real request, prioritization becomes obvious. The hard part isn&rsquo;t deciding what to build &mdash; it&rsquo;s designing it so the same logic works on a phone and in a 1,000-row table.</p>
+        </div>
+        <div class="learning-block">
+          <h3>Configure the rules, then design the surfaces.</h3>
+          <p>Tags Management wasn&rsquo;t glamorous, but it was the foundation. Once expiry-required vs. optional was a tag-level setting, every form on mobile and web could adapt automatically instead of hard-coding exceptions.</p>
+        </div>
+        <div class="learning-block">
+          <h3>Empty and error states are the product.</h3>
+          <p>&ldquo;No qualifications to display,&rdquo; &ldquo;please select a date,&rdquo; &ldquo;worker has tag but no data uploaded&rdquo; &mdash; these aren&rsquo;t polish. They&rsquo;re the moments where users either trust the system or abandon it.</p>
+        </div>
+        <div class="learning-block">
+          <h3>Scale changes the interaction model.</h3>
+          <p>Assigning one qualification to one worker is a form. Assigning one tag to forty workers is a table with a &ldquo;same date for all&rdquo; toggle, per-row overrides, and validation that blocks until every required field is filled. Same action, different design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE WORK -->
+  <section style="padding: clamp(4rem,8vw,7rem) 0; border-top: 1px solid var(--border);">
+    <div class="container">
+      <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">.more work</span>
+      <div class="more-work__grid">
+
+        <a class="more-work__card" href="/case-study-2" style="background:#A259FF;color:#000;">
+          <div>
+            <p class="more-work__meta" style="color:rgba(0,0,0,0.6);">2025&ndash;2026 &middot; Construction SaaS</p>
+            <h3 class="more-work__title">Safety Hub</h3>
+          </div>
+          <div class="more-work__footer">
+            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">view case study</span>
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </a>
+
+        <a class="more-work__card" href="/work" style="background:var(--surface);color:var(--text);">
+          <div>
+            <p class="more-work__meta" style="color:var(--muted);">.all projects</p>
+            <h3 class="more-work__title">View all selected work &rarr;</h3>
+          </div>
+          <div class="more-work__footer" style="justify-content:flex-end;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <span class="footer__brand">hassanamin.net</span>
+        <p class="footer__copy">&copy; 2026 Hassan Amin</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="/work">selected work</a>
+        <a href="/about">about</a>
+        <a href="/contact">contact</a>
+      </nav>
+      <div class="footer__social">
+        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
+        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="email" data-copied-label="copied">email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    const bar = document.getElementById('progress');
+    function raf(time) {
+      lenis.raf(time);
+      bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  </script>
+  <script src="/assets/nav.js"></script>
+  <script src="/assets/copy-email.js"></script>
+
+</body>
+</html>

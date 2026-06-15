@@ -133,7 +133,7 @@
     /* Per-card accent borders — left + right, matching each card's color */
     .card-wrap:nth-child(1) .card-inner { border-left: 8px solid #00ff77; border-right: 8px solid #00ff77; }
     .card-wrap:nth-child(2) .card-inner { border-left: 8px solid #A259FF; border-right: 8px solid #A259FF; }
-    .card-wrap:nth-child(3) .card-inner { border-left: 8px solid rgba(255,255,255,0.2); border-right: 8px solid rgba(255,255,255,0.2); }
+    .card-wrap:nth-child(3) .card-inner { border-left: 8px solid #FF8C42; border-right: 8px solid #FF8C42; }
 
     /* The actual visible card — scale is applied here by JS */
     .card-inner {
@@ -462,17 +462,17 @@
             <a class="p-card" href="/case-study-2" style="background:#A259FF;color:#000;">
               <div class="p-card__bar">
                 <span>2026</span>
-                <span>Construction SaaS</span>
+                <span>Design Lead &middot; Construction SaaS</span>
               </div>
               <div class="p-card__title-row">
-                <h2 class="p-card__title">safety hub</h2>
+                <h2 class="p-card__title">safety hub &mdash; mobile command center &amp; compliance dashboards</h2>
                 <span class="p-card__arrow" aria-hidden="true">
                   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
                     <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </span>
               </div>
-              <p class="p-card__desc">Two-phase design lead: turned user feedback and PM requirements into a mobile command center for job-site safety, then ran a UserTesting study and delivered guess-free dashboard cards on web and mobile.</p>
+              <p class="p-card__desc">Design lead across a twelve-month, two-phase lifecycle on construction safety software. Phase 1 delivered a mobile command center from field feedback; Phase 2 ran UserTesting and shipped guess-free compliance dashboards on web and mobile.</p>
               <div class="p-card__tags">
                 <span class="p-card__tag">UX Research</span>
                 <span class="p-card__tag">Data Viz</span>
@@ -489,22 +489,36 @@
           </div>
         </div>
 
-        <!-- Card 3 — Coming soon -->
+        <!-- Card 3 — Qualifications Management -->
         <div class="card-wrap">
           <div class="card-inner">
-            <div class="p-card p-card--locked" style="background:#111;color:#fff;">
-              <div class="p-card__bar" style="border-bottom-color:rgba(255,255,255,0.08);">
+            <a class="p-card" href="/case-study-qualifications" style="background:#FF8C42;color:#000;">
+              <div class="p-card__bar">
                 <span>2026</span>
-                <span>Product Designer</span>
+                <span>Product Designer &middot; Construction SaaS</span>
               </div>
               <div class="p-card__title-row">
-                <h2 class="p-card__title">next case study in progress</h2>
+                <h2 class="p-card__title">qualifications management &mdash; safety credentials &amp; compliance at scale</h2>
+                <span class="p-card__arrow" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                    <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
               </div>
-              <p class="p-card__desc">A new case study is being prepared and will be published soon.</p>
-              <div class="p-card__image" style="background:#0d0d0d;display:flex;align-items:center;justify-content:center;">
-                <span style="font-family:var(--mono);font-size:0.75rem;color:rgba(255,255,255,0.2);letter-spacing:0.1em;">coming soon</span>
+              <p class="p-card__desc">Product designer on a five-month, customer-driven build for worker credential management. Delivered mobile Safety Cards for field verification, a web workers table for 1,000+ workers, bulk assign flows, and the tags configuration layer across four product surfaces.</p>
+              <div class="p-card__tags">
+                <span class="p-card__tag">Mobile &amp; Web</span>
+                <span class="p-card__tag">Enterprise</span>
+                <span class="p-card__tag">Customer-Led</span>
+                <span class="p-card__tag">Safety</span>
               </div>
-            </div>
+              <div class="p-card__image">
+                <picture>
+                  <source srcset="/assets/qualifications-hero.webp" type="image/webp" />
+                  <img src="/assets/qualifications-hero.png" alt="" width="800" height="331" loading="lazy" decoding="async" />
+                </picture>
+              </div>
+            </a>
           </div>
         </div>
 
