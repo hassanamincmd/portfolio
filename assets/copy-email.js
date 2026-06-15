@@ -34,7 +34,7 @@
   document.querySelectorAll('[data-copy-email]').forEach(function (btn) {
     var valueEl = btn.querySelector('.contact-link__value');
     var defaultLabel = btn.getAttribute('data-copy-label') || btn.textContent.trim();
-    var copiedLabel = btn.getAttribute('data-copied-label') || 'email copied';
+    var copiedLabel = btn.getAttribute('data-copied-label') || 'copied';
     var defaultHtml = btn.innerHTML;
     var timer;
 
@@ -48,7 +48,7 @@
           btn.classList.add('is-copied');
 
           if (valueEl) {
-            valueEl.textContent = 'Email copied';
+            valueEl.textContent = 'Copied';
           } else {
             btn.innerHTML = checkSvg + '<span class="copy-email-btn__text">' + copiedLabel + '</span>';
           }
