@@ -101,10 +101,26 @@
     }
 
     .cards-section__label::after {
-      content: '';
+      display: none;
+    }
+
+    .cards-section__label__line {
       flex: 1;
       height: 1px;
       background: var(--border);
+    }
+
+    .cards-section__label__link {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .cards-section__label__link:hover {
+      color: var(--text);
     }
 
     /* Stack wrapper */
@@ -420,7 +436,11 @@
     <!-- STACKED PROJECT CARDS -->
     <section class="cards-section" id="projects" aria-label="Featured projects">
 
-      <div class="cards-section__label" style="display:flex;align-items:center;justify-content:space-between;">.selected work <a href="/work" style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.05em;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">view all &rarr;</a></div>
+      <div class="cards-section__label">
+        <span>.selected work</span>
+        <span class="cards-section__label__line" aria-hidden="true"></span>
+        <a class="cards-section__label__link" href="/work">view all &rarr;</a>
+      </div>
 
       <div class="card-stack">
 
@@ -540,14 +560,7 @@
             <div class="about__body">
               <p>My path to design clicked after years on the frontlines of customer service. I wanted to fix the roads, not just direct the traffic. UI/UX was the intersection: digital spaces are simply modern maps, and every interaction is a signpost.</p>
               <p>Today I dismantle workflows instead of toys. I believe the best designs don't rely on flashy technology — they rely on empathy and simplicity.</p>
-              <p>Right now at Procore I'm designing enterprise construction software for people in the field and at scale — safety managers on active job sites, admins tracking compliance across hundreds of workers, and the empty states, validation rules, and edge cases that only surface when software meets a real workflow.</p>
-            </div>
-            <div class="about__tools">
-              <span class="tool-pill">product design</span>
-              <span class="tool-pill">ux research</span>
-              <span class="tool-pill">mobile &amp; web</span>
-              <span class="tool-pill">design systems</span>
-              <span class="tool-pill">enterprise saas</span>
+              <p>I've been curious about how things work for as long as I can remember — taking toys apart as a kid, studying geodetic surveying at university, learning how people move through space before I ever designed a screen. Design wasn't a pivot. It was the moment I realised I could help build the map, not just point at it.</p>
             </div>
             <div style="margin-top:2rem;">
               <a class="btn" href="/about">read more</a>
