@@ -4,10 +4,22 @@
     <loc>https://hassanamin.net/</loc>
   </url>
   <url>
-    <loc>https://hassanamin.net/about.html</loc>
+    <loc>https://hassanamin.net/work</loc>
   </url>
   <url>
-    <loc>https://hassanamin.net/work.html</loc>
+    <loc>https://hassanamin.net/about</loc>
+  </url>
+  <url>
+    <loc>https://hassanamin.net/contact</loc>
+  </url>
+  <url>
+    <loc>https://hassanamin.net/case-study-meridian</loc>
+  </url>
+  <url>
+    <loc>https://hassanamin.net/case-study-2</loc>
+  </url>
+  <url>
+    <loc>https://hassanamin.net/case-study-qualifications</loc>
   </url>
   <url>
     <loc>https://hassanamin.net/icancare</loc>
@@ -20,8 +32,5 @@
   </url>
   <url>
     <loc>https://hassanamin.net/uihighlights</loc>
-  </url>
-  <url>
-    <loc>https://hassanamin.net/case-study-qualifications</loc>
   </url>
 </urlset>
