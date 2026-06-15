@@ -133,24 +133,6 @@
     .img-placeholder-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 
     /* Outcomes */
-    .section--outcomes {
-      position: relative;
-      overflow: hidden;
-    }
-    .section--outcomes::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('/assets/results-background.png');
-      background-repeat: repeat;
-      background-size: 320px auto;
-      opacity: 0.55;
-      pointer-events: none;
-    }
-    .section--outcomes .container {
-      position: relative;
-      z-index: 1;
-    }
     .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-bottom: 3rem; }
     .outcome-card { background: var(--surface); padding: 2rem; }
     .outcome-card__value { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
@@ -515,7 +497,7 @@
   </section>
 
   <!-- OUTCOMES -->
-  <section class="section section--outcomes">
+  <section class="section">
     <div class="container">
       <div class="section__header">
         <span class="section__label">.04 &mdash; outcomes</span>
@@ -604,8 +586,8 @@
 
         <a class="more-work__card" href="/case-study-2" style="background:#A259FF;color:#000;">
           <div>
-            <p class="more-work__meta" style="color:rgba(0,0,0,0.6);">2026 &middot; Construction SaaS &middot; Design Lead</p>
-            <h3 class="more-work__title">Safety Hub</h3>
+            <p class="more-work__meta" style="color:rgba(0,0,0,0.6);">2025&ndash;2026 &middot; Construction SaaS &middot; Design Lead</p>
+            <h3 class="more-work__title">Safety Hub &mdash; Mobile Command Center &amp; Compliance Dashboards</h3>
           </div>
           <div class="more-work__footer">
             <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">view case study</span>
@@ -613,14 +595,14 @@
           </div>
         </a>
 
-        <a class="more-work__card" href="#" style="background:#f5f0e8;color:#111;">
+        <a class="more-work__card" href="/case-study-qualifications" style="background:#FF8C42;color:#000;">
           <div>
-            <p class="more-work__meta" style="color:rgba(0,0,0,0.5);">2023 &middot; Enterprise &middot; Dashboard</p>
-            <h3 class="more-work__title">Petrosains &mdash; executive CRM &amp; analytics</h3>
+            <p class="more-work__meta" style="color:rgba(0,0,0,0.6);">2026 &middot; Construction SaaS &middot; Product Designer</p>
+            <h3 class="more-work__title">Qualifications Management &mdash; Safety Credentials &amp; Compliance at Scale</h3>
           </div>
           <div class="more-work__footer">
-            <span class="more-work__cta" style="color:rgba(0,0,0,0.4);">case study coming soon</span>
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">view case study</span>
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
 
