@@ -288,12 +288,12 @@
     /* ════════════════════
        ABOUT
     ════════════════════ */
-    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; }
+    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: stretch; }
     .about__intro { font-family: var(--display); font-size: clamp(1.35rem, 2.5vw, 1.9rem); font-weight: 500; line-height: 1.45; letter-spacing: -0.02em; text-transform: lowercase; margin-bottom: 2rem; max-width: 26ch; }
     .about__body { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
     .about__body p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 54ch; }
-    .about__image { position: sticky; top: 120px; }
-    .about__image img { width: 100%; height: auto; max-height: 360px; object-fit: cover; object-position: center 30%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+    .about__image { position: sticky; top: 120px; align-self: stretch; min-height: 0; }
+    .about__image img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; border-radius: 6px; border: 1px solid var(--border); display: block; }
     .about__tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
     .tool-pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.3rem 0.75rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); }
 
@@ -336,6 +336,7 @@
     @media (max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; }
       .about__image { position: static; }
+      .about__image img { height: auto; aspect-ratio: 4 / 5; max-height: 480px; }
       .footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .footer__nav, .footer__social { justify-content: flex-start; }
       .p-card__title { font-size: clamp(1.75rem, 7vw, 2.5rem); }
