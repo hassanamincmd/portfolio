@@ -66,6 +66,10 @@
     if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
   }
 
+  document.querySelectorAll('[data-resume-modal]').forEach(function (el) {
+    el.setAttribute('href', PDF_PATH);
+  });
+
   document.addEventListener('click', function (e) {
     var trigger = e.target.closest('[data-resume-modal]');
     if (!trigger) return;

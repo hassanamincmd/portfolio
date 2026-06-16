@@ -36,10 +36,17 @@
 
     /* Screenshot wrappers → assets/case-study.css */
     .feature__visual .cs-img-wrap--auto {
+      aspect-ratio: 4 / 3;
       background: #141414;
     }
+    .feature__visual .cs-img-wrap--auto picture {
+      width: 100%;
+      height: 100%;
+    }
     .feature__visual .cs-img-wrap--auto img {
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       object-position: top center;
     }
 
