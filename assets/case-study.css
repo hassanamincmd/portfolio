@@ -36,6 +36,27 @@
   object-fit: unset;
 }
 
+/* Full-bleed mockup — zooms slightly to crop baked-in export padding */
+.cs-img-wrap--fill {
+  height: auto;
+  overflow: hidden;
+  background: #141414;
+}
+
+.cs-img-wrap--fill picture {
+  display: block;
+  width: 100%;
+  transform: scale(1.16);
+  transform-origin: top center;
+}
+
+.cs-img-wrap--fill img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: unset;
+}
+
 .cs-img-wrap--contain {
   background: #141414;
 }
