@@ -48,9 +48,11 @@
           btn.classList.add('is-copied');
 
           if (valueEl) {
-            valueEl.textContent = 'Copied';
+            // card button: swap text only, leave layout intact
+            valueEl.textContent = 'copied \u2713';
           } else {
-            btn.innerHTML = checkSvg + '<span class="copy-email-btn__text">' + copiedLabel + '</span>';
+            // footer / inline text button
+            btn.textContent = copiedLabel + ' \u2713';
           }
 
           timer = setTimeout(function () {
