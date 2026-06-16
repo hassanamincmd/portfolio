@@ -119,6 +119,17 @@
     .phase-step__copy h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
     .phase-step__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 50ch; }
 
+    /* Safety Card mockup sizing */
+    .phase-step__visual--spread .cs-img-wrap--fill {
+      width: 112%;
+      max-width: none;
+      margin-left: -6%;
+    }
+    .phase-step__visual--gif {
+      max-width: min(280px, 68%);
+      margin-inline: auto;
+    }
+
     .quotes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
     .quote-card { padding: 1.75rem 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
     .quote-card p { font-size: 0.95rem; color: var(--text); line-height: 1.65; font-style: italic; margin-bottom: 0.85rem; }
@@ -141,6 +152,8 @@
       .role-grid, .quotes-grid, .learnings-grid { grid-template-columns: 1fr; }
       .phase-step { grid-template-columns: 1fr; gap: 2.5rem; }
       .phase-step--flip { direction: ltr; }
+      .phase-step__visual--spread .cs-img-wrap--fill { width: 100%; margin-left: 0; }
+      .phase-step__visual--gif { max-width: min(260px, 85%); }
     }
   </style>
   <link rel="stylesheet" href="/assets/nav.css" />
@@ -334,11 +347,11 @@
             <h2>See who&rsquo;s qualified at a glance.</h2>
             <p>The Safety Card shows all assigned qualifications with clear expiry status &mdash; active, expiring, or expired. If a worker has none, the empty state prompts assignment immediately instead of showing a dead end.</p>
           </div>
-          <div class="phase-step__visual">
+          <div class="phase-step__visual phase-step__visual--spread">
             <div class="cs-img-wrap cs-img-wrap--fill">
               <picture>
                 <source srcset="/assets/sc-mockup-1.webp" type="image/webp" />
-                <img src="/assets/sc mockup 1.png" alt="Safety Card — filled and empty state on mobile" width="8790" height="6381" loading="lazy" decoding="async" />
+                <img src="/assets/sc-mockup-1.png" alt="Safety Card — filled and empty state on mobile" width="6183" height="5660" loading="lazy" decoding="async" />
               </picture>
             </div>
           </div>
@@ -350,7 +363,7 @@
             <h2>Tag, date, proof &mdash; in one flow.</h2>
             <p>Pick a qualification tag, set an expiry date if the tag requires it, and attach proof via camera, photo library, or file upload. Validation adapts: mandatory expiry shows errors on save; optional expiry stays flexible.</p>
           </div>
-          <div class="phase-step__visual">
+          <div class="phase-step__visual phase-step__visual--gif">
             <div class="cs-img-wrap cs-img-wrap--fill">
               <img src="/assets/sc mockup 2.gif" alt="Add qualification flow with validation states" loading="lazy" decoding="async" />
             </div>
