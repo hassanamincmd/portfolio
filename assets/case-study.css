@@ -36,20 +36,12 @@
   object-fit: unset;
 }
 
-/* Full-bleed mockup — zooms slightly to crop baked-in export padding */
+/* Full-bleed mockup — natural aspect, no crop */
 .cs-img-wrap--fill {
   height: auto;
-  overflow: hidden;
-  background: #141414;
 }
 
-.cs-img-wrap--fill picture {
-  display: block;
-  width: 100%;
-  transform: scale(1.16);
-  transform-origin: top center;
-}
-
+.cs-img-wrap--fill picture,
 .cs-img-wrap--fill img {
   display: block;
   width: 100%;
