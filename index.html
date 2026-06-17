@@ -161,12 +161,11 @@
       border-radius: 16px;
       overflow: hidden;
       transform-origin: top center;
-      will-change: transform, box-shadow;
+      will-change: transform;
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.07),
-        0 4px 12px rgba(0,0,0,0.55),
-        0 16px 48px rgba(0,0,0,0.65),
-        0 40px 80px rgba(0,0,0,0.45);
+        0 8px 24px rgba(0,0,0,0.5),
+        0 24px 64px rgba(0,0,0,0.45);
     }
 
     /* Inner card layout */
@@ -618,7 +617,8 @@
 
   <script>
     /* ── Lenis smooth scroll ── */
-    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const lenis = prefersReducedMotion ? null : new Lenis({ lerp: 0.1, smoothWheel: true });
 
     /* Scroll progress bar */
     const bar = document.getElementById('progress');
@@ -627,6 +627,24 @@
     const cardSection = document.querySelector('.cards-section');
     const cardInners  = Array.from(document.querySelectorAll('.card-inner'));
     const numCards    = cardInners.length;
+    let cardsInView   = false;
+    let sectionTop    = 0;
+    let sectionHeight = 0;
+
+    function refreshCardMetrics() {
+      if (!cardSection) return;
+      sectionTop    = cardSection.getBoundingClientRect().top + window.scrollY;
+      sectionHeight = cardSection.offsetHeight;
+    }
+
+    if (cardSection) {
+      refreshCardMetrics();
+      window.addEventListener('resize', refreshCardMetrics, { passive: true });
+      const cardsObs = new IntersectionObserver(([entry]) => {
+        cardsInView = entry.isIntersecting;
+      }, { rootMargin: '120px 0px' });
+      cardsObs.observe(cardSection);
+    }
 
     function useTransform(val, inMin, inMax, outMin, outMax) {
       const t = Math.max(0, Math.min(1, (val - inMin) / (inMax - inMin)));
@@ -634,8 +652,8 @@
     }
 
     function updateCards() {
-      const sectionTop    = cardSection.getBoundingClientRect().top + window.scrollY;
-      const sectionHeight = cardSection.offsetHeight;
+      if (!cardsInView || !cardSection) return;
+
       const scrollYProgress = Math.max(0, Math.min(1,
         (window.scrollY - sectionTop) / (sectionHeight - window.innerHeight)
       ));
@@ -644,23 +662,20 @@
         const targetScale = Math.max(0.5, 1 - (numCards - i - 1) * 0.1);
         const rangeStart  = i * 0.25;
         const scale       = useTransform(scrollYProgress, rangeStart, 1, 1, targetScale);
-        card.style.transform = `scale(${scale})`;
-
-        const pushback  = 1 - scale;
-        const spread    = 12  + pushback * 60;
-        const blur1     = 48  + pushback * 120;
-        const blur2     = 80  + pushback * 160;
-        const op1       = 0.55 + pushback * 0.30;
-        const op2       = 0.40 + pushback * 0.25;
-        const yOff      = Math.round(4  + pushback * 20);
-        const yOff2     = Math.round(16 + pushback * 60);
-        card.style.boxShadow = [
-          `0 0 0 1px rgba(255,255,255,${(0.07 - pushback * 0.04).toFixed(3)})`,
-          `0 ${yOff}px ${spread}px rgba(0,0,0,${op1.toFixed(2)})`,
-          `0 ${yOff2}px ${blur1}px rgba(0,0,0,${op2.toFixed(2)})`,
-          `0 ${Math.round(yOff2*2)}px ${blur2}px rgba(0,0,0,${(op2 * 0.6).toFixed(2)})`,
-        ].join(', ');
+        const scaleKey    = scale.toFixed(3);
+        if (card.dataset.scale === scaleKey) return;
+        card.dataset.scale = scaleKey;
+        card.style.transform = 'scale(' + scale + ')';
       });
+    }
+
+    function onScrollFrame() {
+      const doc = document.documentElement;
+      const maxScroll = doc.scrollHeight - doc.clientHeight;
+      if (maxScroll > 0) {
+        bar.style.width = (window.scrollY / maxScroll * 100) + '%';
+      }
+      updateCards();
     }
 
     /* Heading cycler */
@@ -682,12 +697,10 @@
 
     /* No active nav on home — nav links go to dedicated pages */
 
-    /* Lenis RAF loop — drives smooth scroll + all scroll updates */
+    /* Lenis RAF loop — drives smooth scroll + scroll updates */
     function raf(time) {
-      lenis.raf(time);
-
-      bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
-      updateCards();
+      if (lenis) lenis.raf(time);
+      onScrollFrame();
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
