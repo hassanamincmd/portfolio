@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <style>
     /* ── Tokens ── */
     :root {
@@ -23,7 +24,9 @@
       --mono:    'DM Mono', ui-monospace, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { overflow-x: clip; }
+    html { overflow-x: clip; scroll-behavior: auto; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
 
     body  { font-family: var(--display); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; max-width: 100%; }
     a     { color: inherit; text-decoration: none; }
@@ -158,7 +161,7 @@
       max-height: 100%;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
     }
 
     /* Inner card layout */
@@ -620,21 +623,44 @@
   <script>
   (function () {
     var bar = document.getElementById('progress');
-    var ticking = false;
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
     function updateProgress() {
       var doc = document.documentElement;
       var max = doc.scrollHeight - doc.clientHeight;
       bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-      ticking = false;
     }
 
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(updateProgress);
-        ticking = true;
+    if (!reducedMotion && !coarsePointer && typeof Lenis !== 'undefined') {
+      var lenis = new Lenis({
+        lerp: 0.04,
+        duration: 1.8,
+        smoothWheel: true,
+        wheelMultiplier: 0.65,
+        touchMultiplier: 1,
+        syncTouch: false
+      });
+
+      lenis.on('scroll', updateProgress);
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
       }
-    }, { passive: true });
+      requestAnimationFrame(raf);
+    } else {
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            updateProgress();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    }
 
     updateProgress();
 
