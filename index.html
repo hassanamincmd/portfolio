@@ -362,8 +362,18 @@
       .footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .footer__nav, .footer__social { justify-content: flex-start; }
       .p-card__title { font-size: clamp(1.75rem, 7vw, 2.5rem); }
-      .card-wrap { height: calc((60vh - 64px) * 0.75); min-height: 315px; }
-      .card-inner { border-left-width: 4px; border-right-width: 4px; }
+      .card-stack { gap: 1rem; }
+      .card-wrap {
+        position: static;
+        height: auto;
+        min-height: 0;
+      }
+      .card-inner {
+        max-height: none;
+        border-left-width: 4px;
+        border-right-width: 4px;
+        transform: none !important;
+      }
       .heading-cycler__word { white-space: normal; }
       .p-card__bar {
         flex-direction: column;
@@ -630,6 +640,14 @@
     let cardsInView   = false;
     let sectionTop    = 0;
     let sectionHeight = 0;
+    const mobileCardsMq = window.matchMedia('(max-width: 768px)');
+
+    function resetCardTransforms() {
+      cardInners.forEach((card) => {
+        card.style.transform = '';
+        delete card.dataset.scale;
+      });
+    }
 
     function refreshCardMetrics() {
       if (!cardSection) return;
@@ -640,6 +658,10 @@
     if (cardSection) {
       refreshCardMetrics();
       window.addEventListener('resize', refreshCardMetrics, { passive: true });
+      mobileCardsMq.addEventListener('change', (e) => {
+        if (e.matches) resetCardTransforms();
+      });
+      if (mobileCardsMq.matches) resetCardTransforms();
       const cardsObs = new IntersectionObserver(([entry]) => {
         cardsInView = entry.isIntersecting;
       }, { rootMargin: '120px 0px' });
@@ -652,7 +674,7 @@
     }
 
     function updateCards() {
-      if (!cardsInView || !cardSection) return;
+      if (!cardsInView || !cardSection || mobileCardsMq.matches) return;
 
       const scrollYProgress = Math.max(0, Math.min(1,
         (window.scrollY - sectionTop) / (sectionHeight - window.innerHeight)
