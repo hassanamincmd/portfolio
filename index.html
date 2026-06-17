@@ -24,8 +24,7 @@
       --mono:    'DM Mono', ui-monospace, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { overflow-x: clip; scroll-behavior: auto; }
-    html.lenis, html.lenis body { height: auto; }
+    html  { scroll-behavior: auto; overflow-x: clip; }
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
 
     body  { font-family: var(--display); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; max-width: 100%; }
@@ -137,7 +136,8 @@
     }
 
     /*
-      .card-wrap: sticky stack — CSS only (no scroll-linked scale; smoother with Lenis).
+      .card-wrap: sticky at top:80px (below header), full card height.
+      Scale is applied to .card-inner via JS — transform-origin: top center.
     */
     .card-wrap {
       position: sticky;
@@ -155,13 +155,18 @@
     .card-wrap:nth-child(2) .card-inner { border-left: 8px solid #A259FF; border-right: 8px solid #A259FF; }
     .card-wrap:nth-child(3) .card-inner { border-left: 8px solid #00E8C6; border-right: 8px solid #00E8C6; }
 
-    /* The actual visible card — sticky stack (scale removed for scroll performance) */
+    /* The actual visible card — scale is applied here by JS */
     .card-inner {
       height: auto;
       max-height: 100%;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+      transform-origin: top center;
+      will-change: transform;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.07),
+        0 8px 24px rgba(0,0,0,0.5),
+        0 24px 64px rgba(0,0,0,0.45);
     }
 
     /* Inner card layout */
@@ -621,48 +626,88 @@
   </footer>
 
   <script>
-  (function () {
-    var bar = document.getElementById('progress');
-    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    /* ── Lenis smooth scroll ── */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const lenis = prefersReducedMotion ? null : new Lenis({
+      lerp: 0.08,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+    });
 
-    function updateProgress() {
-      var doc = document.documentElement;
-      var max = doc.scrollHeight - doc.clientHeight;
-      bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-    }
+    /* Scroll progress bar */
+    const bar = document.getElementById('progress');
 
-    if (!reducedMotion && !coarsePointer && typeof Lenis !== 'undefined') {
-      var lenis = new Lenis({
-        lerp: 0.04,
-        duration: 1.8,
-        smoothWheel: true,
-        wheelMultiplier: 0.65,
-        touchMultiplier: 1,
-        syncTouch: false
+    /* ── Card stack — Skiper16 port ── */
+    const cardSection = document.querySelector('.cards-section');
+    const cardInners  = Array.from(document.querySelectorAll('.card-inner'));
+    const numCards    = cardInners.length;
+    let cardsInView   = false;
+    let sectionTop    = 0;
+    let sectionHeight = 0;
+    const mobileCardsMq = window.matchMedia('(max-width: 768px)');
+
+    function resetCardTransforms() {
+      cardInners.forEach((card) => {
+        card.style.transform = '';
+        delete card.dataset.scale;
       });
-
-      lenis.on('scroll', updateProgress);
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-    } else {
-      var ticking = false;
-      window.addEventListener('scroll', function () {
-        if (!ticking) {
-          requestAnimationFrame(function () {
-            updateProgress();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }, { passive: true });
     }
 
-    updateProgress();
+    function refreshCardMetrics() {
+      if (!cardSection) return;
+      sectionTop    = cardSection.getBoundingClientRect().top + window.scrollY;
+      sectionHeight = cardSection.offsetHeight;
+    }
+
+    if (cardSection) {
+      refreshCardMetrics();
+      window.addEventListener('resize', refreshCardMetrics, { passive: true });
+      mobileCardsMq.addEventListener('change', (e) => {
+        if (e.matches) resetCardTransforms();
+      });
+      if (mobileCardsMq.matches) resetCardTransforms();
+      const cardsObs = new IntersectionObserver(([entry]) => {
+        cardsInView = entry.isIntersecting;
+      }, { rootMargin: '120px 0px' });
+      cardsObs.observe(cardSection);
+    }
+
+    function useTransform(val, inMin, inMax, outMin, outMax) {
+      const t = Math.max(0, Math.min(1, (val - inMin) / (inMax - inMin)));
+      return outMin + (outMax - outMin) * t;
+    }
+
+    function getScrollY() {
+      return lenis ? lenis.scroll : window.scrollY;
+    }
+
+    function updateCards(scrollY) {
+      if (!cardsInView || !cardSection || mobileCardsMq.matches) return;
+
+      const scrollYProgress = Math.max(0, Math.min(1,
+        (scrollY - sectionTop) / (sectionHeight - window.innerHeight)
+      ));
+
+      cardInners.forEach((card, i) => {
+        const targetScale = Math.max(0.5, 1 - (numCards - i - 1) * 0.1);
+        const rangeStart  = i * 0.25;
+        const scale       = useTransform(scrollYProgress, rangeStart, 1, 1, targetScale);
+        const scaleKey    = scale.toFixed(3);
+        if (card.dataset.scale === scaleKey) return;
+        card.dataset.scale = scaleKey;
+        card.style.transform = 'scale3d(' + scale + ',' + scale + ',1)';
+      });
+    }
+
+    function onScrollFrame() {
+      const scrollY = getScrollY();
+      const doc = document.documentElement;
+      const maxScroll = doc.scrollHeight - doc.clientHeight;
+      if (maxScroll > 0) {
+        bar.style.width = (scrollY / maxScroll * 100) + '%';
+      }
+      updateCards(scrollY);
+    }
 
     /* Heading cycler */
     const words = document.querySelectorAll('.heading-cycler__word');
@@ -680,7 +725,15 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  })();
+
+    /* Lenis RAF loop — drives smooth scroll + scroll updates */
+    function raf(time) {
+      if (lenis) lenis.raf(time);
+      onScrollFrame();
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
   </script>
   <script src="/assets/nav.js"></script>
   <script src="/assets/copy-email.js"></script>
