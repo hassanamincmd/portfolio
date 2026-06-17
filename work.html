@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <style>
     :root {
       --bg:      #000;
@@ -421,18 +422,13 @@
   </footer>
 
   <script>
-    const bar = document.getElementById('progress');
-    window.addEventListener('scroll', () => {
-      const h = document.documentElement;
-      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
-    }, { passive: true });
-
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
   </script>
+  <script src="/assets/smooth-scroll.js"></script>
   <script src="/assets/nav.js"></script>
   <script src="/assets/copy-email.js"></script>
   <script src="/assets/resume-modal.js"></script>
