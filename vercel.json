@@ -8,38 +8,17 @@
       "source": "/case-study-2",
       "destination": "/case-study-safety-hub",
       "permanent": true
-    },
-    {
-      "source": "/icancare",
-      "statusCode": 404
-    },
-    {
-      "source": "/icancare.html",
-      "statusCode": 404
-    },
-    {
-      "source": "/petrosains",
-      "statusCode": 404
-    },
-    {
-      "source": "/petrosains.html",
-      "statusCode": 404
-    },
-    {
-      "source": "/mbot",
-      "statusCode": 404
-    },
-    {
-      "source": "/mbot.html",
-      "statusCode": 404
-    },
-    {
-      "source": "/uihighlights",
-      "statusCode": 404
-    },
-    {
-      "source": "/uihighlights.html",
-      "statusCode": 404
     }
+  ],
+  "routes": [
+    { "src": "/icancare", "status": 404 },
+    { "src": "/icancare.html", "status": 404 },
+    { "src": "/petrosains", "status": 404 },
+    { "src": "/petrosains.html", "status": 404 },
+    { "src": "/mbot", "status": 404 },
+    { "src": "/mbot.html", "status": 404 },
+    { "src": "/uihighlights", "status": 404 },
+    { "src": "/uihighlights.html", "status": 404 },
+    { "handle": "filesystem" }
   ]
 }
