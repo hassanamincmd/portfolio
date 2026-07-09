@@ -1,7 +1,13 @@
 (function () {
   if (typeof Lenis === 'undefined') return;
 
-  var lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+  var isApple = /Mac|iPhone|iPad|iPod/.test(navigator.userAgent);
+  var lenis = new Lenis({
+    lerp: isApple ? 0.13 : 0.12,
+    smoothWheel: true,
+    wheelMultiplier: isApple ? 1.35 : 1.25,
+    syncTouch: false
+  });
   var bar = document.getElementById('progress');
 
   function updateProgress() {
