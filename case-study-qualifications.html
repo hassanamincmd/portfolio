@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
@@ -64,7 +64,7 @@
     .cover__content { position: relative; z-index: 1; }
     .cover__eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; }
     .cover__dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
-    .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: lowercase; }
+    .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: none; }
     .cover__title { font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
     .cover__title span { color: var(--accent); }
     .cover__subtitle { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--muted); font-weight: 300; max-width: 68ch; line-height: 1.65; margin-bottom: 3rem; }
@@ -91,7 +91,7 @@
     .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
     .overview-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--border); }
     .overview-item { background: var(--bg); padding: 1.5rem 1.5rem; }
-    .overview-item dt { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); text-transform: lowercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .overview-item dt { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); text-transform: none; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
     .overview-item dd { font-size: 0.9rem; font-weight: 500; color: var(--text); line-height: 1.4; }
 
     .section { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border); }
@@ -187,12 +187,12 @@
     <div class="header__bar">
       <a class="header__brand" href="/">.h</a>
       <nav class="header__nav" aria-label="Primary">
-        <a href="/work" class="active">selected work</a>
-        <a href="/contact">contact</a>
-        <a href="/about">about</a>
+        <a href="/work" class="active">Selected Work</a>
+        <a href="/contact">Contact</a>
+        <a href="/about">About</a>
       </nav>
       <div class="header__actions">
-        <a class="header__cta" href="#" data-resume-modal>resume / cv</a>
+        <a class="header__cta" href="#" data-resume-modal>Resume / CV</a>
         <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -202,11 +202,11 @@
 
   <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
     <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
-    <a href="/">home</a>
-    <a href="/work" class="active">selected work</a>
-    <a href="/contact">contact</a>
-    <a href="/about">about</a>
-    <a class="nav__resume" href="#" data-resume-modal>resume / cv ↗</a>
+    <a href="/">Home</a>
+    <a href="/work" class="active">Selected Work</a>
+    <a href="/contact">Contact</a>
+    <a href="/about">About</a>
+    <a class="nav__resume" href="#" data-resume-modal>Resume / CV ↗</a>
   </nav>
 
   <!-- COVER -->
@@ -234,12 +234,12 @@
   <div class="overview-bar">
     <div class="container">
       <dl class="overview-bar__grid">
-        <div class="overview-item"><dt>duration</dt><dd>5 months<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">build &amp; iterate</span></dd></div>
-        <div class="overview-item"><dt>my role</dt><dd>Product Designer<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">2-designer team</span></dd></div>
-        <div class="overview-item"><dt>platforms</dt><dd>Mobile &middot; Web<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">iOS &amp; Android + desktop</span></dd></div>
-        <div class="overview-item"><dt>origin</dt><dd>Customer requests<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">feedback-driven</span></dd></div>
-        <div class="overview-item"><dt>collaborators</dt><dd>PM &middot; EM<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ co-designer</span></dd></div>
-        <div class="overview-item"><dt>domain</dt><dd>Safety &amp; compliance<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">same product family as Safety Hub</span></dd></div>
+        <div class="overview-item"><dt>Duration</dt><dd>5 months<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">build &amp; iterate</span></dd></div>
+        <div class="overview-item"><dt>My Role</dt><dd>Product Designer<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">2-designer team</span></dd></div>
+        <div class="overview-item"><dt>Platforms</dt><dd>Mobile &middot; Web<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">iOS &amp; Android + desktop</span></dd></div>
+        <div class="overview-item"><dt>Origin</dt><dd>Customer requests<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">feedback-driven</span></dd></div>
+        <div class="overview-item"><dt>Collaborators</dt><dd>PM &middot; EM<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ co-designer</span></dd></div>
+        <div class="overview-item"><dt>Domain</dt><dd>Safety &amp; compliance<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">same product family as Safety Hub</span></dd></div>
       </dl>
     </div>
   </div>
@@ -248,7 +248,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.01 &mdash; where it started</span>
+        <span class="section__label">.01 &mdash; Where It Started</span>
         <h2 class="section__title">Customers asked.<br />We designed.</h2>
         <p class="section__lead">Every feature in this case study came from customer feedback and requests &mdash; not a roadmap brainstorm. Safety managers on active job sites needed to verify who was qualified to work. Office admins needed to manage compliance across hundreds of workers and dozens of qualification types. The product didn&rsquo;t have a unified way to do either.</p>
       </div>
@@ -282,7 +282,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.02 &mdash; my role</span>
+        <span class="section__label">.02 &mdash; My Role</span>
         <h2 class="section__title">Designer on a<br />two-person team.</h2>
         <p class="section__lead">I worked alongside one other designer, a PM, and an engineering manager. I owned design across all four surfaces below &mdash; from mobile field flows to the web admin configuration layer.</p>
       </div>
@@ -324,7 +324,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.03 &mdash; the system</span>
+        <span class="section__label">.03 &mdash; The System</span>
         <h2 class="section__title">Configure. Operate. Verify.</h2>
         <p class="section__lead">Three layers, one data model. Admins configure qualification tags. Office users operate at scale through the workers table. Field users verify credentials on site through the Safety Card.</p>
       </div>
@@ -353,7 +353,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.04 &mdash; mobile &middot; safety card</span>
+        <span class="section__label">.04 &mdash; Mobile &middot; Safety Card</span>
         <h2 class="section__title">Credentials in the field.</h2>
         <p class="section__lead">From the directory, any contact gets a Safety Card &mdash; a live view of their qualifications with expiry status, proof attachments, and the ability to assign or edit on the spot.</p>
       </div>
@@ -421,7 +421,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.05 &mdash; web &middot; workers table</span>
+        <span class="section__label">.05 &mdash; Web &middot; Workers Table</span>
         <h2 class="section__title">Compliance at scale.</h2>
         <p class="section__lead">The workers table is where project admins live. Dynamic qualification columns, configurable visibility, powerful filters, bulk actions, and CSV export &mdash; all built for sites managing hundreds or thousands of workers.</p>
       </div>
@@ -448,7 +448,7 @@
           <div class="phase-step__copy">
             <span class="step-tag">02 &mdash; filter &amp; export</span>
             <h2>Find the workers who need attention.</h2>
-            <p>Filter by company, project, worker status, qualification tag, and expiry state (expired, upcoming, no expiry, custom range). Export selected workers to CSV with or without attachments.</p>
+            <p>Filter by company, project, worker status, qualification tag, and expiry state (expired, upcoming, no expiry, custom range). Export Selected Workers to CSV with or without attachments.</p>
           </div>
           <div class="phase-step__visual">
             <div class="cs-img-wrap cs-img-wrap--fill">
@@ -484,7 +484,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.06 &mdash; web &middot; tags management</span>
+        <span class="section__label">.06 &mdash; Web &middot; Tags Management</span>
         <h2 class="section__title">The rules engine.</h2>
         <p class="section__lead">Before any qualification can be assigned on mobile or web, an admin defines it here &mdash; name, abbreviation, color, category, and whether an expiry date is required.</p>
       </div>
@@ -513,7 +513,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.07 &mdash; what customers said</span>
+        <span class="section__label">.07 &mdash; What Customers Said</span>
         <h2 class="section__title">Built for the field.<br />Validated by it.</h2>
         <p class="section__lead">Feedback came throughout the five-month build &mdash; not just at the end. These represent the kind of response we heard as features shipped.</p>
       </div>
@@ -543,7 +543,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.08 &mdash; outcomes</span>
+        <span class="section__label">.08 &mdash; Outcomes</span>
         <h2 class="section__title">What shipped.</h2>
         <p class="section__lead">A complete qualification system across mobile and web &mdash; from field verification to admin operations to platform configuration.</p>
       </div>
@@ -587,7 +587,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.09 &mdash; reflections</span>
+        <span class="section__label">.09 &mdash; Reflections</span>
         <h2 class="section__title">What I&rsquo;d carry forward.</h2>
       </div>
       <div class="learnings-grid">
@@ -614,7 +614,7 @@
   <!-- MORE WORK -->
   <section style="padding: clamp(4rem,8vw,7rem) 0; border-top: 1px solid var(--border);">
     <div class="container">
-      <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">.more work</span>
+      <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">More Work</span>
       <div class="more-work__grid">
 
         <a class="more-work__card" href="/case-study-safety-hub">
@@ -623,7 +623,7 @@
             <h3 class="more-work__title">Safety Hub &mdash; Mobile Command Center &amp; Compliance Dashboards</h3>
           </div>
           <div class="more-work__footer">
-            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">view case study</span>
+            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">View Case Study</span>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
@@ -634,7 +634,7 @@
             <h3 class="more-work__title">ICan Care &mdash; Novartis Cancer Support App</h3>
           </div>
           <div class="more-work__footer">
-            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">view case study</span>
+            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">View Case Study</span>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
@@ -650,13 +650,13 @@
         <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
       <nav class="footer__nav" aria-label="Footer">
-        <a href="/work">selected work</a>
-        <a href="/about">about</a>
-        <a href="/contact">contact</a>
+        <a href="/work">Selected Work</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
       </nav>
       <div class="footer__social">
-        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
-        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="email" data-copied-label="copied">email</a>
+        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="Email" data-copied-label="Copied">Email</a>
       </div>
     </div>
   </footer>

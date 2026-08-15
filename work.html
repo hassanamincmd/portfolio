@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
@@ -229,7 +229,7 @@
       border-top: 1px solid var(--border);
     }
     .say-hello__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.12em; margin-bottom: 2rem; display: block; }
-    .say-hello__headline { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 2.5rem; max-width: 22ch; text-transform: lowercase; }
+    .say-hello__headline { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 2.5rem; max-width: 22ch; text-transform: none; }
     .btn { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--mono); font-size: 0.875rem; color: var(--text); padding: 0.85rem 1.5rem; border: 1px solid var(--border); border-radius: 4px; transition: background 0.2s, border-color 0.2s; }
     .btn:hover { background: var(--text); color: var(--bg); }
 
@@ -268,12 +268,12 @@
     <div class="header__bar">
       <a class="header__brand" href="/">.h</a>
       <nav class="header__nav" aria-label="Primary">
-        <a href="/work" class="active">selected work</a>
-        <a href="/contact">contact</a>
-        <a href="/about">about</a>
+        <a href="/work" class="active">Selected Work</a>
+        <a href="/contact">Contact</a>
+        <a href="/about">About</a>
       </nav>
       <div class="header__actions">
-        <a class="header__cta" href="#" data-resume-modal>resume / cv</a>
+        <a class="header__cta" href="#" data-resume-modal>Resume / CV</a>
         <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -283,11 +283,11 @@
 
   <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
     <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
-    <a href="/">home</a>
-    <a href="/work" class="active">selected work</a>
-    <a href="/contact">contact</a>
-    <a href="/about">about</a>
-    <a class="nav__resume" href="#" data-resume-modal>resume / cv ↗</a>
+    <a href="/">Home</a>
+    <a href="/work" class="active">Selected Work</a>
+    <a href="/contact">Contact</a>
+    <a href="/about">About</a>
+    <a class="nav__resume" href="#" data-resume-modal>Resume / CV ↗</a>
   </nav>
 
   <main>
@@ -295,7 +295,7 @@
     <!-- HERO -->
     <section class="page-hero">
       <div class="container">
-        <span class="page-hero__label">.selected work</span>
+        <span class="page-hero__label">Selected Work</span>
         <h1 class="page-hero__headline">I help product teams build software <em>people actually enjoy using.</em></h1>
       </div>
     </section>
@@ -437,10 +437,10 @@
     <!-- SAY HELLO -->
     <section class="say-hello">
       <div class="container">
-        <span class="say-hello__label">.say hello</span>
-        <h2 class="say-hello__headline">exploring new opportunities &mdash; let&rsquo;s talk</h2>
+        <span class="say-hello__label">Say Hello</span>
+        <h2 class="say-hello__headline">Exploring New Opportunities &mdash; Let&rsquo;s Talk</h2>
         <a class="btn" href="/contact">
-          get in touch
+          Get in Touch
           <svg width="14" height="14" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -455,13 +455,13 @@
         <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
       <nav class="footer__nav" aria-label="Footer">
-        <a href="/work">selected work</a>
-        <a href="/about">about</a>
-        <a href="/contact">contact</a>
+        <a href="/work">Selected Work</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
       </nav>
       <div class="footer__social">
-        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
-        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="email" data-copied-label="copied">email</a>
+        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="Email" data-copied-label="Copied">Email</a>
       </div>
     </div>
   </footer>

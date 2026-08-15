@@ -25,7 +25,7 @@
       '<div class="resume-modal__panel">' +
         '<div class="resume-modal__header">' +
           '<div>' +
-            '<span class="resume-modal__eyebrow">.resume / cv</span>' +
+            '<span class="resume-modal__eyebrow">Resume / CV</span>' +
             '<h2 class="resume-modal__title" id="resume-modal-title">Hassan Amin</h2>' +
           '</div>' +
           '<button type="button" class="resume-modal__close" data-resume-close aria-label="Close resume preview">' +
@@ -33,9 +33,9 @@
           '</button>' +
         '</div>' +
         '<div class="resume-modal__actions">' +
-          '<a class="resume-modal__btn resume-modal__btn--primary" href="' + PDF_PATH + '" download="' + PDF_NAME + '">download pdf</a>' +
-          '<a class="resume-modal__btn" href="' + DOCX_PATH + '" download="' + DOCX_NAME + '">download docx</a>' +
-          '<a class="resume-modal__btn resume-modal__btn--ghost" href="' + PDF_PATH + '" target="_blank" rel="noreferrer">open in new tab</a>' +
+          '<a class="resume-modal__btn resume-modal__btn--primary" href="' + PDF_PATH + '" download="' + PDF_NAME + '">Download PDF</a>' +
+          '<a class="resume-modal__btn" href="' + DOCX_PATH + '" download="' + DOCX_NAME + '">Download DOCX</a>' +
+          '<a class="resume-modal__btn resume-modal__btn--ghost" href="' + PDF_PATH + '" target="_blank" rel="noreferrer">Open in New Tab</a>' +
         '</div>' +
         '<div class="resume-modal__viewer">' +
           '<iframe class="resume-modal__iframe" title="Resume PDF preview" src="about:blank"></iframe>' +

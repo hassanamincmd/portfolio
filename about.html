@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
@@ -75,7 +75,7 @@
     .stats-bar { border-bottom: 1px solid var(--border); }
     .stats-bar__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
     .stat-item { background: var(--bg); padding: 2rem 2.5rem; }
-    .stat-item__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: lowercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; display: block; }
+    .stat-item__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: none; letter-spacing: 0.1em; margin-bottom: 0.6rem; display: block; }
     .stat-item__value { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; }
 
     /* ════════════════════
@@ -126,21 +126,21 @@
     .brand-cell__name { font-size: 1rem; font-weight: 500; letter-spacing: -0.02em; color: var(--text); line-height: 1.25; overflow-wrap: anywhere; }
     .brand-cell__type { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; line-height: 1.45; overflow-wrap: anywhere; }
     .brand-logo { flex-shrink: 0; width: 48px; height: 32px; display: flex; align-items: center; justify-content: center; }
-    .brand-logo img { max-width: 100%; max-height: 100%; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.6; transition: opacity 0.2s; }
+    .brand-logo img { max-width: 100%; max-height: 100%; object-fit: contain; filter: brightness(0); opacity: 0.82; transition: opacity 0.2s; }
     .brand-cell:hover .brand-logo img { opacity: 1; }
     /* Logos with black-on-white artwork — invert flips white bg to black and black art to white */
-    .brand-logo--invert img { filter: invert(1); }
+    .brand-logo--invert img { filter: brightness(0); }
     /* Logos with colored-on-white artwork — invert+grayscale+brightness makes content white, screen blend removes white bg */
-    .brand-logo--screen-invert img { filter: invert(1) grayscale(1) brightness(2); mix-blend-mode: screen; }
+    .brand-logo--screen-invert img { filter: brightness(0); mix-blend-mode: normal; }
 
     /* ════════════════════
        CTA
     ════════════════════ */
     .cta { padding: 5rem 0 6rem; }
     .cta__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 1.5rem; display: block; }
-    .cta__headline { font-size: clamp(2rem, 5vw, 4rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 2rem; max-width: 20ch; text-transform: lowercase; }
+    .cta__headline { font-size: clamp(2rem, 5vw, 4rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 2rem; max-width: 20ch; text-transform: none; }
     .cta__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.25rem; border: 1px solid var(--text); border-radius: 4px; font-family: var(--mono); font-size: 0.875rem; font-weight: 300; text-transform: lowercase; transition: background 0.2s, color 0.2s; cursor: pointer; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.25rem; border: 1px solid var(--text); border-radius: 4px; font-family: var(--mono); font-size: 0.875rem; font-weight: 300; text-transform: none; transition: background 0.2s, color 0.2s; cursor: pointer; }
     .btn:hover { background: var(--text); color: var(--bg); }
 
     /* ════════════════════
@@ -200,12 +200,12 @@
     <div class="header__bar">
       <a class="header__brand" href="/">.h</a>
       <nav class="header__nav" aria-label="Primary">
-        <a href="/work">selected work</a>
-        <a href="/contact">contact</a>
-        <a href="/about" class="active">about</a>
+        <a href="/work">Selected Work</a>
+        <a href="/contact">Contact</a>
+        <a href="/about" class="active">About</a>
       </nav>
       <div class="header__actions">
-        <a class="header__cta" href="#" data-resume-modal>resume / cv</a>
+        <a class="header__cta" href="#" data-resume-modal>Resume / CV</a>
         <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -215,11 +215,11 @@
 
   <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
     <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
-    <a href="/">home</a>
-    <a href="/work">selected work</a>
-    <a href="/contact">contact</a>
-    <a href="/about" class="active">about</a>
-    <a class="nav__resume" href="#" data-resume-modal>resume / cv ↗</a>
+    <a href="/">Home</a>
+    <a href="/work">Selected Work</a>
+    <a href="/contact">Contact</a>
+    <a href="/about" class="active">About</a>
+    <a class="nav__resume" href="#" data-resume-modal>Resume / CV ↗</a>
   </nav>
 
   <main>
@@ -227,7 +227,7 @@
     <!-- HERO -->
     <section class="page-hero">
       <div class="container">
-        <h1 class="page-hero__title">about</h1>
+        <h1 class="page-hero__title">About</h1>
       </div>
     </section>
 
@@ -235,19 +235,19 @@
     <div class="stats-bar reveal">
       <dl class="stats-bar__grid">
         <div class="stat-item">
-          <dt class="stat-item__label">.experience</dt>
+          <dt class="stat-item__label">Experience</dt>
           <dd class="stat-item__value">5+ years</dd>
         </div>
         <div class="stat-item">
-          <dt class="stat-item__label">.location</dt>
+          <dt class="stat-item__label">Location</dt>
           <dd class="stat-item__value">Egypt &mdash; EMEA</dd>
         </div>
         <div class="stat-item">
-          <dt class="stat-item__label">.availability</dt>
+          <dt class="stat-item__label">Availability</dt>
           <dd class="stat-item__value">Open to Work</dd>
         </div>
         <div class="stat-item">
-          <dt class="stat-item__label">.focus</dt>
+          <dt class="stat-item__label">Focus</dt>
           <dd class="stat-item__value">Product Design</dd>
         </div>
       </dl>
@@ -256,7 +256,7 @@
     <!-- STATEMENT -->
     <section class="statement reveal">
       <div class="container">
-        <span class="statement__label">.hello</span>
+        <span class="statement__label">Hello</span>
         <p class="statement__text">my craft is building digital experiences grounded in empathy and clarity. <em>I believe the best designs don&rsquo;t rely on flashy technology &mdash; they rely on understanding people.</em> I&rsquo;ve always been obsessed with how things work and how people find their way, from dismantling toys as a kid to studying geodetic surveying in university, to now dismantling workflows as a Design Lead. Let&rsquo;s skip the ego, focus on what actually matters, and make something people genuinely love using.</p>
       </div>
     </section>
@@ -264,7 +264,7 @@
     <!-- WORK EXPERIENCE -->
     <section class="experience">
       <div class="container">
-        <span class="experience__label">.work experience</span>
+        <span class="experience__label">Work Experience</span>
         <ul class="exp-list" role="list">
 
           <li class="exp-item reveal">
@@ -327,7 +327,7 @@
 
     <!-- STACK MARQUEE -->
     <section class="stack-section">
-      <span class="stack-section__label">.stack</span>
+      <span class="stack-section__label">Stack</span>
       <div class="marquee-track" aria-hidden="true">
         <!-- First copy -->
         <span class="marquee-item">Figma</span>
@@ -390,8 +390,8 @@
     <section class="brands">
       <div class="container">
         <div class="brands__header reveal">
-          <span class="brands__label">.worked with</span>
-          <h2 class="brands__headline">brands &amp; companies i&rsquo;ve designed for</h2>
+          <span class="brands__label">Worked With</span>
+          <h2 class="brands__headline">Brands &amp; Companies I&rsquo;ve Designed For</h2>
         </div>
         <div class="brands-grid reveal" style="transition-delay:0.1s;">
 
@@ -482,12 +482,12 @@
     <!-- CTA -->
     <section class="cta reveal">
       <div class="container">
-        <span class="cta__label">.say hello</span>
-        <h2 class="cta__headline">i&rsquo;m open to new opportunities &mdash; let&rsquo;s talk</h2>
+        <span class="cta__label">Say Hello</span>
+        <h2 class="cta__headline">I&rsquo;m Open to New Opportunities &mdash; Let&rsquo;s Talk</h2>
         <div class="cta__actions">
-          <a class="btn" href="#" data-resume-modal>resume / cv</a>
-          <a class="btn" href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
-          <a class="btn copy-email-btn" href="#" data-copy-email data-copy-label="email me">email me</a>
+          <a class="btn" href="#" data-resume-modal>Resume / CV</a>
+          <a class="btn" href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn copy-email-btn" href="#" data-copy-email data-copy-label="Email Me">Email Me</a>
         </div>
       </div>
     </section>
@@ -502,13 +502,13 @@
         <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
       <nav class="footer__nav" aria-label="Footer">
-        <a href="/work">selected work</a>
-        <a href="/about">about</a>
-        <a href="/contact">contact</a>
+        <a href="/work">Selected Work</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
       </nav>
       <div class="footer__social">
-        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
-        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="email" data-copied-label="copied">email</a>
+        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="Email" data-copied-label="Copied">Email</a>
       </div>
     </div>
   </footer>

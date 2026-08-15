@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
@@ -71,7 +71,7 @@
     .cover__content { position: relative; z-index: 1; }
     .cover__eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; }
     .cover__dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
-    .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: lowercase; }
+    .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: none; }
     .cover__title { font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
     .cover__title span { color: var(--accent); }
     .cover__subtitle { font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--muted); font-weight: 300; max-width: 60ch; line-height: 1.5; margin-bottom: 3rem; }
@@ -83,7 +83,7 @@
     .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
     .overview-bar__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); }
     .overview-item { background: var(--bg); padding: 1.5rem 1.75rem; }
-    .overview-item dt { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: lowercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+    .overview-item dt { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: none; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
     .overview-item dd { font-size: 0.95rem; font-weight: 500; color: var(--text); line-height: 1.4; }
 
     /* Section */
@@ -110,10 +110,10 @@
     .stat-hero { text-align: center; padding: 3rem 2rem; border: 1px solid var(--border); background: var(--surface); position: relative; overflow: hidden; }
     .stat-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, hsla(148,100%,50%,0.08) 0%, transparent 60%); pointer-events: none; }
     .stat-hero__num { font-size: clamp(4rem, 8vw, 6rem); font-weight: 700; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; position: relative; }
-    .stat-hero__label { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); text-transform: lowercase; letter-spacing: 0.06em; position: relative; }
+    .stat-hero__label { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); text-transform: none; letter-spacing: 0.06em; position: relative; }
     .metrics-table { width: 100%; border-collapse: collapse; }
     .metrics-table thead tr { border-bottom: 1px solid var(--border); }
-    .metrics-table th { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: lowercase; letter-spacing: 0.08em; text-align: left; padding: 0 0 0.75rem; }
+    .metrics-table th { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: none; letter-spacing: 0.08em; text-align: left; padding: 0 0 0.75rem; }
     .metrics-table td { font-size: 0.9rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--muted); }
     .metrics-table td:first-child { color: var(--text); font-weight: 500; width: 40%; padding-right: 1.5rem; }
     .placeholder-badge { display: inline-block; font-family: var(--mono); font-size: 0.75rem; color: rgba(255,200,0,0.9); background: rgba(255,200,0,0.1); border: 1px solid rgba(255,200,0,0.35); padding: 0.15rem 0.5rem; border-radius: 2px; margin-left: 0.5rem; vertical-align: middle; }
@@ -160,7 +160,7 @@
     /* Interview prep */
     .prep-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
     .prep-card { background: var(--surface-2); padding: 1.75rem 2rem; }
-    .prep-card__tag { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; text-transform: lowercase; margin-bottom: 0.75rem; display: block; }
+    .prep-card__tag { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; text-transform: none; margin-bottom: 0.75rem; display: block; }
     .prep-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
     .prep-card p { font-size: 0.825rem; color: var(--muted); line-height: 1.7; }
     .prep-card blockquote { margin-top: 0.75rem; padding: 0.75rem 1rem; background: var(--surface-3); border-left: 2px solid var(--accent); font-size: 0.8rem; color: var(--text); line-height: 1.6; font-style: italic; }
@@ -197,12 +197,12 @@
     <div class="header__bar">
       <a class="header__brand" href="/">.h</a>
       <nav class="header__nav" aria-label="Primary">
-        <a href="/work" class="active">selected work</a>
-        <a href="/contact">contact</a>
-        <a href="/about">about</a>
+        <a href="/work" class="active">Selected Work</a>
+        <a href="/contact">Contact</a>
+        <a href="/about">About</a>
       </nav>
       <div class="header__actions">
-        <a class="header__cta" href="#" data-resume-modal>resume / cv</a>
+        <a class="header__cta" href="#" data-resume-modal>Resume / CV</a>
         <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -212,11 +212,11 @@
 
   <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
     <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
-    <a href="/">home</a>
-    <a href="/work" class="active">selected work</a>
-    <a href="/contact">contact</a>
-    <a href="/about">about</a>
-    <a class="nav__resume" href="#" data-resume-modal>resume / cv</a>
+    <a href="/">Home</a>
+    <a href="/work" class="active">Selected Work</a>
+    <a href="/contact">Contact</a>
+    <a href="/about">About</a>
+    <a class="nav__resume" href="#" data-resume-modal>Resume / CV</a>
   </nav>
 
   <section class="cover">
@@ -244,11 +244,11 @@
   <div class="overview-bar">
     <div class="container">
       <dl class="overview-bar__grid">
-        <div class="overview-item"><dt>role</dt><dd>Design Lead</dd></div>
-        <div class="overview-item"><dt>team</dt><dd>3 Product Designers</dd></div>
-        <div class="overview-item"><dt>timeline</dt><dd>12 Months</dd></div>
-        <div class="overview-item"><dt>platforms</dt><dd>Web &middot; Tablet &middot; Mobile</dd></div>
-        <div class="overview-item"><dt>tools</dt><dd>Figma &middot; Design System</dd></div>
+        <div class="overview-item"><dt>Role</dt><dd>Design Lead</dd></div>
+        <div class="overview-item"><dt>Team</dt><dd>3 Product Designers</dd></div>
+        <div class="overview-item"><dt>Timeline</dt><dd>12 Months</dd></div>
+        <div class="overview-item"><dt>Platforms</dt><dd>Web &middot; Tablet &middot; Mobile</dd></div>
+        <div class="overview-item"><dt>Tools</dt><dd>Figma &middot; Design System</dd></div>
       </dl>
     </div>
   </div>
@@ -257,7 +257,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.01 &mdash; the problem</span>
+        <span class="section__label">.01 &mdash; The Problem</span>
         <h2 class="section__title">Three tools.<br />Three calendars.<br />Zero coherence.</h2>
         <p class="section__lead">Independent professionals in creative, lifestyle, and healthcare industries were running a business and doing the work simultaneously &mdash; across too many fragmented tools with no unified workflow.</p>
       </div>
@@ -289,7 +289,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.02 &mdash; the goal</span>
+        <span class="section__label">.02 &mdash; The Goal</span>
         <h2 class="section__title">Measuring success.</h2>
         <p class="section__lead">A single intelligent platform that consolidates scheduling, booking, client management, and personal branding &mdash; with clear metrics to validate every decision.</p>
       </div>
@@ -321,7 +321,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.03 &mdash; the process</span>
+        <span class="section__label">.03 &mdash; The Process</span>
         <h2 class="section__title">How we went from<br />chaos to clarity.</h2>
       </div>
       <div class="process-grid">
@@ -510,7 +510,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.04 &mdash; outcomes</span>
+        <span class="section__label">.04 &mdash; Outcomes</span>
         <h2 class="section__title">The results.</h2>
         <p class="section__lead">Across 12 months, three platforms, and six major feature areas &mdash; the work delivered at both the product and the team level.</p>
         <p style="margin-top:1rem;font-size:0.85rem;color:var(--muted);font-family:var(--mono);border-left:2px solid rgba(255,77,77,0.5);padding-left:1rem;">
@@ -556,7 +556,7 @@
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.05 &mdash; reflections</span>
+        <span class="section__label">.05 &mdash; Reflections</span>
         <h2 class="section__title">What worked.<br />What I'd change.</h2>
       </div>
       <div class="learnings-grid">
@@ -591,7 +591,7 @@
   <!-- NEXT PROJECTS -->
   <section style="padding: clamp(4rem,8vw,7rem) 0; border-top: 1px solid var(--border);">
     <div class="container">
-      <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">.more work</span>
+      <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">More Work</span>
       <div class="more-work__grid">
 
         <a class="more-work__card" href="/case-study-safety-hub">
@@ -600,7 +600,7 @@
             <h3 class="more-work__title">Safety Hub &mdash; Mobile Command Center &amp; Compliance Dashboards</h3>
           </div>
           <div class="more-work__footer">
-            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">view case study</span>
+            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">View Case Study</span>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
@@ -611,7 +611,7 @@
             <h3 class="more-work__title">ICan Care &mdash; Novartis Cancer Support App</h3>
           </div>
           <div class="more-work__footer">
-            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">view case study</span>
+            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">View Case Study</span>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
@@ -628,13 +628,13 @@
         <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
       <nav class="footer__nav" aria-label="Footer">
-        <a href="/work">selected work</a>
-        <a href="/about">about</a>
-        <a href="/contact">contact</a>
+        <a href="/work">Selected Work</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
       </nav>
       <div class="footer__social">
-        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
-        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="email" data-copied-label="copied">email</a>
+        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="Email" data-copied-label="Copied">Email</a>
       </div>
     </div>
   </footer>

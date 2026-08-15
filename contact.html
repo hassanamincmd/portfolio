@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
@@ -68,7 +68,7 @@
     .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #0d9488; box-shadow: 0 0 8px rgba(13,148,136,0.45); flex-shrink: 0; }
     .status-text { font-family: var(--mono); font-size: 0.875rem; color: var(--muted); }
 
-    .contact-left__headline { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1.75rem; text-transform: lowercase; max-width: 18ch; }
+    .contact-left__headline { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1.75rem; text-transform: none; max-width: 18ch; }
 
     .contact-left__body { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 50ch; margin-bottom: 3rem; }
 
@@ -140,12 +140,12 @@
     <div class="header__bar">
       <a class="header__brand" href="/">.h</a>
       <nav class="header__nav" aria-label="Primary">
-        <a href="/work">selected work</a>
-        <a href="/contact" class="active">contact</a>
-        <a href="/about">about</a>
+        <a href="/work">Selected Work</a>
+        <a href="/contact" class="active">Contact</a>
+        <a href="/about">About</a>
       </nav>
       <div class="header__actions">
-        <a class="header__cta" href="#" data-resume-modal>resume / cv</a>
+        <a class="header__cta" href="#" data-resume-modal>Resume / CV</a>
         <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -155,18 +155,18 @@
 
   <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
     <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
-    <a href="/">home</a>
-    <a href="/work">selected work</a>
-    <a href="/contact" class="active">contact</a>
-    <a href="/about">about</a>
-    <a class="nav__resume" href="#" data-resume-modal>resume / cv ↗</a>
+    <a href="/">Home</a>
+    <a href="/work">Selected Work</a>
+    <a href="/contact" class="active">Contact</a>
+    <a href="/about">About</a>
+    <a class="nav__resume" href="#" data-resume-modal>Resume / CV ↗</a>
   </nav>
 
   <main>
 
     <section class="page-hero">
       <div class="container">
-        <h1 class="page-hero__title">contact<br>hassan</h1>
+        <h1 class="page-hero__title">Contact<br>hassan</h1>
       </div>
     </section>
 
@@ -177,15 +177,15 @@
           <div class="contact-left reveal">
             <div class="contact-left__status">
               <span class="status-dot"></span>
-              <span class="status-text">currently exploring new opportunities</span>
+              <span class="status-text">Currently Exploring New Opportunities</span>
             </div>
-            <h2 class="contact-left__headline">open to new roles &mdash; full-time or freelance</h2>
+            <h2 class="contact-left__headline">Open to New Roles &mdash; Full-Time or Freelance</h2>
             <p class="contact-left__body">Whether you have a product that needs a design partner, a team that needs leadership, or just want to say hello &mdash; I'm always happy to connect. The best work happens in good conversation.</p>
 
             <div class="contact-actions">
               <a class="contact-link copy-email-btn" href="#" data-copy-email>
                 <div>
-                  <span class="contact-link__label">.email</span>
+                  <span class="contact-link__label">Email</span>
                   <span class="contact-link__value">contact.hassan.amin@gmail.com</span>
                 </div>
                 <svg class="contact-link__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -193,7 +193,7 @@
 
               <a class="contact-link" href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">
                 <div>
-                  <span class="contact-link__label">.linkedin</span>
+                  <span class="contact-link__label">LinkedIn</span>
                   <span class="contact-link__value">linkedin.com/in/hassan-mo-amin</span>
                 </div>
                 <svg class="contact-link__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -201,7 +201,7 @@
 
               <a class="contact-link" href="#" data-resume-modal>
                 <div>
-                  <span class="contact-link__label">.resume / cv</span>
+                  <span class="contact-link__label">Resume / CV</span>
                   <span class="contact-link__value">View resume &amp; CV</span>
                 </div>
                 <svg class="contact-link__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -211,30 +211,30 @@
 
           <div class="contact-right reveal" style="transition-delay:0.15s;">
             <div class="contact-right__card">
-              <span class="contact-right__label">.quick facts</span>
+              <span class="contact-right__label">Quick Facts</span>
               <div class="contact-info-row">
                 <div class="contact-info-item">
-                  <span class="contact-info-item__key">.name</span>
+                  <span class="contact-info-item__key">Name</span>
                   <span class="contact-info-item__val">Hassan Amin</span>
                 </div>
                 <div class="contact-info-divider"></div>
                 <div class="contact-info-item">
-                  <span class="contact-info-item__key">.role</span>
+                  <span class="contact-info-item__key">Role</span>
                   <span class="contact-info-item__val">Product Designer</span>
                 </div>
                 <div class="contact-info-divider"></div>
                 <div class="contact-info-item">
-                  <span class="contact-info-item__key">.location</span>
+                  <span class="contact-info-item__key">Location</span>
                   <span class="contact-info-item__val">Egypt &mdash; EMEA</span>
                 </div>
                 <div class="contact-info-divider"></div>
                 <div class="contact-info-item">
-                  <span class="contact-info-item__key">.experience</span>
+                  <span class="contact-info-item__key">Experience</span>
                   <span class="contact-info-item__val">5 Years</span>
                 </div>
                 <div class="contact-info-divider"></div>
                 <div class="contact-info-item">
-                  <span class="contact-info-item__key">.availability</span>
+                  <span class="contact-info-item__key">Availability</span>
                   <span class="contact-info-item__val" style="color:#00ff77;">Open to opportunities</span>
                 </div>
               </div>
@@ -254,13 +254,13 @@
         <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
       <nav class="footer__nav" aria-label="Footer">
-        <a href="/work">selected work</a>
-        <a href="/about">about</a>
-        <a href="/contact">contact</a>
+        <a href="/work">Selected Work</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
       </nav>
       <div class="footer__social">
-        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
-        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="email" data-copied-label="copied">email</a>
+        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="Email" data-copied-label="Copied">Email</a>
       </div>
     </div>
   </footer>

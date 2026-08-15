@@ -14,7 +14,7 @@
   --accent-2: #0d9488;
   --display: "Outfit", "Segoe UI", sans-serif;
   --serif: "Fraunces", Georgia, serif;
-  --mono: "DM Mono", ui-monospace, monospace;
+  --mono: "Outfit", "Segoe UI", sans-serif;
   --shadow: 0 20px 50px rgba(48, 40, 24, 0.08);
   --radius: 24px;
 }
@@ -210,4 +210,106 @@ body {
 
 .mobile-nav__close:hover span {
   background: var(--text);
+}
+
+h1, h2, h3,
+.cover__title,
+.section__title,
+.page-hero__title,
+.page-hero__headline,
+.cta__headline,
+.say-hello__headline,
+.contact-left__headline,
+.brands__headline,
+.heading-block__prefix,
+.heading-cycler__word,
+.about__intro,
+.project-card__title,
+.p-card__title {
+  font-family: var(--serif);
+  font-weight: 500;
+}
+
+.header__brand,
+.header__nav a,
+.header__cta,
+.btn,
+.footer__brand,
+.footer__nav a,
+.footer__social a,
+.footer__copy,
+.cards-section__label,
+.cards-section__label__link,
+.tagline-row__label,
+.page-hero__label,
+.section__label,
+.label,
+.pill,
+.overview-item dt,
+.stat-item__label,
+.contact-link__label,
+.resume-modal__btn,
+.resume-modal__eyebrow {
+  font-family: var(--display) !important;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none !important;
+}
+
+.btn,
+.cta__headline,
+.say-hello__headline,
+.stat-item__label,
+.label,
+.prep-card__tag {
+  text-transform: none !important;
+}
+
+.brand-logo img,
+.brand-logo--invert img,
+.brand-logo--screen-invert img {
+  filter: brightness(0) !important;
+  mix-blend-mode: normal !important;
+  opacity: 0.82;
+}
+
+.brand-cell:hover .brand-logo img {
+  opacity: 1;
+}
+
+.hero,
+.page-hero,
+.cover {
+  background: transparent;
+}
+
+.cards-section,
+.projects-grid,
+.overview-bar,
+.stats-bar {
+  background: rgba(255, 253, 248, 0.78);
+}
+
+#about-teaser,
+.stack-section,
+.contact-body,
+.brands {
+  background: rgba(236, 231, 220, 0.62);
+}
+
+.cta,
+.say-hello {
+  background: rgba(238, 242, 255, 0.72);
+}
+
+.section:nth-of-type(odd) {
+  background: rgba(236, 231, 220, 0.48);
+}
+
+.section:nth-of-type(even) {
+  background: rgba(255, 253, 248, 0.82);
+}
+
+.cover + .overview-bar {
+  background: rgba(255, 253, 248, 0.9);
 }
