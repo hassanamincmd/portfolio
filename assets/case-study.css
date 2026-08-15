@@ -68,7 +68,7 @@
 }
 
 .cs-img-wrap--placeholder {
-  background: #111;
+  background: var(--surface, #fffdf8);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,6 +76,24 @@
   gap: 0.6rem;
   padding: 2rem;
   text-align: center;
-  border: 1px dashed rgba(255, 255, 255, 0.14);
+  border: 1px dashed rgba(22, 20, 15, 0.16);
   line-height: normal;
+  min-height: 280px;
+}
+
+.placeholder-label {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.8rem;
+  color: var(--muted, #6b6558);
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  max-width: 36ch;
+}
+
+.placeholder-file {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.65rem;
+  color: var(--accent, #be185d);
+  word-break: break-all;
+  max-width: 40ch;
 }

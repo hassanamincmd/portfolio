@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICan Care &mdash; Case Study &mdash; Hassan Amin</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="Case study: ICan Care — Novartis cancer support app. Hybrid mobile product for appointments, medication reminders, education, and research data collection." />
+  <link rel="canonical" href="https://hassanamin.net/case-study-icancare" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Hassan Amin" />
+  <meta property="og:title" content="ICan Care — Case Study — Hassan Amin" />
+  <meta property="og:description" content="Case study: ICan Care — Novartis cancer support app. Hybrid mobile product for appointments, medication reminders, education, and research data collection." />
+  <meta property="og:url" content="https://hassanamin.net/case-study-icancare" />
+  <meta property="og:image" content="https://hassanamin.net/assets/og-image.jpg" />
+  <meta property="og:image:alt" content="Hassan Amin — Product Designer" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ICan Care — Case Study — Hassan Amin" />
+  <meta name="twitter:description" content="Case study: ICan Care — Novartis cancer support app. Hybrid mobile product for appointments, medication reminders, education, and research data collection." />
+  <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --surface: #fffdf8;
+      --surface-2: #f7f3eb;
+      --surface-3: #ece7dc;
+      --text: #16140f;
+      --muted: #6b6558;
+      --muted-2: #8a8478;
+      --border: rgba(22, 20, 15, 0.1);
+      --accent: #be185d;
+      --accent-dim: rgba(190, 24, 93, 0.10);
+      --display: 'Outfit', 'Segoe UI', sans-serif;
+      --serif: 'Fraunces', Georgia, serif;
+      --mono: 'DM Mono', ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+    body { font-family: var(--display); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+
+    .progress-line { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 200; transition: width 0.1s linear; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(244, 241, 234, 0.82); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 64px; width: min(1200px, 92%); margin: 0 auto; }
+    .header__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; justify-self: start; }
+    .header__nav { display: flex; justify-content: center; gap: clamp(1.25rem, 3vw, 2.5rem); }
+    .header__nav a { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--muted); transition: color 0.2s; position: relative; padding-bottom: 6px; }
+    .header__nav a:hover, .header__nav a.active { color: var(--text); }
+    .header__nav a.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--text); }
+    .header__cta { justify-self: end; font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--text); padding: 0.45rem 0.85rem; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+    .header__cta:hover { background: var(--text); color: var(--bg); }
+
+    .cover { display: flex; flex-direction: column; justify-content: flex-start; padding: clamp(2.5rem, 5vw, 3.5rem) 0 clamp(3rem, 6vw, 4rem); position: relative; overflow: hidden; }
+    .cover__bg-grid { position: absolute; inset: 0; pointer-events: none; }
+    .cover__bg-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
+    .cover__content { position: relative; z-index: 1; }
+    .cover__eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; }
+    .cover__dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: lowercase; }
+    .cover__title { font-family: var(--serif); font-size: clamp(3.5rem, 9vw, 7.5rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
+    .cover__title span { color: var(--accent); }
+    .cover__subtitle { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--muted); font-weight: 400; max-width: 68ch; line-height: 1.65; margin-bottom: 3rem; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); white-space: nowrap; }
+    .pill--accent { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+    .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
+    .overview-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--border); }
+    .overview-item { background: var(--bg); padding: 1.5rem 1.5rem; }
+    .overview-item dt { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); text-transform: lowercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .overview-item dd { font-size: 0.9rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+
+    .section { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border); }
+    .section__label { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1rem; display: block; }
+    .section__title { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1.25rem; }
+    .section__lead { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 66ch; line-height: 1.75; }
+    .section__header { max-width: 820px; margin-bottom: 3.5rem; }
+
+    .pull-quote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 2px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0; }
+    .pull-quote blockquote { font-size: clamp(1.1rem, 2.5vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.6; letter-spacing: -0.01em; }
+    .pull-quote cite { display: block; margin-top: 0.85rem; font-family: var(--mono); font-size: 0.75rem; color: var(--muted-2); font-style: normal; }
+
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .problem-grid--4 { grid-template-columns: repeat(4, 1fr); }
+    .problem-card { background: var(--surface); padding: 2rem; }
+    .problem-card__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 1.25rem; display: block; }
+    .problem-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+    .problem-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
+
+    .system-map { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .system-card { background: var(--surface); padding: 2rem; }
+    .system-card__tag { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+    .system-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
+    .system-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .role-item { background: var(--surface); padding: 2rem; display: flex; gap: 1.25rem; }
+    .role-item__icon { font-family: var(--mono); font-size: 1.1rem; color: var(--accent); flex-shrink: 0; margin-top: 0.15rem; }
+    .role-item h3 { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .role-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    .phase-steps { display: flex; flex-direction: column; gap: 4rem; }
+    .phase-step { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .phase-step--flip { direction: rtl; }
+    .phase-step--flip > * { direction: ltr; }
+    .phase-step__copy { display: flex; flex-direction: column; gap: 1rem; }
+    .step-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; }
+    .step-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+    .phase-step__copy h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
+    .phase-step__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 50ch; }
+
+    .outcomes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .outcome-card { background: var(--surface); padding: 2rem; }
+    .outcome-card__value { font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 700; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+    .outcome-card__label { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .outcome-card__desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    .learnings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .learning-block { padding: 2rem; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+    .learning-block h3 { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.35; }
+    .learning-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
+
+    @media (max-width: 900px) {
+      .overview-bar__grid { grid-template-columns: repeat(3, 1fr); }
+      .problem-grid, .problem-grid--4, .system-map, .outcomes-grid { grid-template-columns: 1fr; }
+      .role-grid, .learnings-grid { grid-template-columns: 1fr; }
+      .phase-step { grid-template-columns: 1fr; gap: 2.5rem; }
+      .phase-step--flip { direction: ltr; }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/nav.css" />
+  <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="stylesheet" href="/assets/theme.css" />
+  <link rel="stylesheet" href="/assets/case-study.css" />
+</head>
+<body>
+
+  <div id="progress" class="progress-line"></div>
+
+  <header class="header">
+    <div class="header__bar">
+      <a class="header__brand" href="/">.h</a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="/work" class="active">selected work</a>
+        <a href="/contact">contact</a>
+        <a href="/about">about</a>
+      </nav>
+      <div class="header__actions">
+        <a class="header__cta" href="#" data-resume-modal>resume / cv</a>
+        <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
+    <a href="/">home</a>
+    <a href="/work" class="active">selected work</a>
+    <a href="/contact">contact</a>
+    <a href="/about">about</a>
+    <a class="nav__resume" href="#" data-resume-modal>resume / cv ↗</a>
+  </nav>
+
+  <section class="cover">
+    <div class="cover__bg-grid"></div>
+    <div class="cover__bg-glow"></div>
+    <div class="container cover__content">
+      <div class="cover__eyebrow">
+        <span class="cover__dot"></span>
+        <span class="label">product design &middot; healthcare &middot; novartis</span>
+      </div>
+      <h1 class="cover__title">ICan Care<br /><span>Support.</span><br />Made usable.</h1>
+      <p class="cover__subtitle">UI/UX for Novartis&rsquo; hybrid cancer-support app: appointments and medication reminders, curated education, healthcare-provider listings, and anonymized feedback for clinical research &mdash; designed so patients, caregivers, and researchers could each do their job without compromising privacy.</p>
+      <div class="pill-row">
+        <span class="pill pill--accent">UI/UX Designer</span>
+        <span class="pill">Healthcare</span>
+        <span class="pill">Mobile</span>
+        <span class="pill">Novartis</span>
+        <span class="pill">Privacy-first</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="overview-bar">
+    <div class="container">
+      <dl class="overview-bar__grid">
+        <div class="overview-item"><dt>client</dt><dd>Novartis<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">cancer support</span></dd></div>
+        <div class="overview-item"><dt>my role</dt><dd>UI/UX Designer<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">end-to-end product UI</span></dd></div>
+        <div class="overview-item"><dt>platform</dt><dd>Hybrid mobile<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">iOS &amp; Android</span></dd></div>
+        <div class="overview-item"><dt>tools</dt><dd>Adobe XD &middot; Miro<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">ChatGPT &middot; Flutter</span></dd></div>
+        <div class="overview-item"><dt>users</dt><dd>Patients &amp; researchers<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ caregivers &amp; clinicians</span></dd></div>
+        <div class="overview-item"><dt>domain</dt><dd>Healthcare<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">sensitive medical data</span></dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.01 &mdash; where it started</span>
+        <h2 class="section__title">A hybrid app with<br />two jobs at once.</h2>
+        <p class="section__lead">The brief was to create a hybrid mobile app that offered articles, reminders, and healthcare-provider listings &mdash; while also gathering user feedback for analytics and clinical research. Achieving that meant translating high-level requirements into specs that were usable for patients and secure enough for medical data.</p>
+      </div>
+
+      <div class="cs-img-wrap cs-img-wrap--wide cs-img-wrap--placeholder" aria-label="Image placeholder">
+        <span class="placeholder-label">Hero &mdash; pink ribbon, ICan Care wordmark, Novartis mobile application</span>
+        <span class="placeholder-file">assets/icancare-hero.png</span>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-card__num">01 &mdash; dual mandate</span>
+          <h3>Support people. Feed research.</h3>
+          <p>Patients needed appointments, medications, and trustworthy articles. Researchers needed anonymized data. The product had to serve both without making either feel like an afterthought.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">02 &mdash; sensitive data</span>
+          <h3>Usability could not outrun security</h3>
+          <p>Every flow &mdash; sign-up, reminders, surveys &mdash; had to handle medical information with encryption, clear consent, and privacy as a non-negotiable, not a settings toggle.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">03 &mdash; scale</span>
+          <h3>Simple enough for daily use</h3>
+          <p>The app needed to stay calm under a full feature set and remain usable for thousands of simultaneous users &mdash; not a dense clinical tool wearing a consumer skin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.02 &mdash; objectives</span>
+        <h2 class="section__title">Four outcomes,<br />one product.</h2>
+        <p class="section__lead">With the constraints named, the work was aimed at four objectives that later became the information architecture.</p>
+      </div>
+      <div class="role-grid">
+        <div class="role-item">
+          <span class="role-item__icon">01</span>
+          <div>
+            <h3>Effortless schedules</h3>
+            <p>Help people manage appointments and medications without hunting through calendars or paper lists.</p>
+          </div>
+        </div>
+        <div class="role-item">
+          <span class="role-item__icon">02</span>
+          <div>
+            <h3>Trustworthy content</h3>
+            <p>Offer curated, accessible articles that raise awareness and support lifestyle &mdash; filterable by therapeutic area.</p>
+          </div>
+        </div>
+        <div class="role-item">
+          <span class="role-item__icon">03</span>
+          <div>
+            <h3>Research-ready data</h3>
+            <p>Collect anonymized feedback and polls in a way that is useful for clinical studies without burdening the patient.</p>
+          </div>
+        </div>
+        <div class="role-item">
+          <span class="role-item__icon">04</span>
+          <div>
+            <h3>Security at scale</h3>
+            <p>Design for encryption, privacy compliance, and thousands of concurrent sessions from the first screens, not a later audit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.03 &mdash; discovery</span>
+        <h2 class="section__title">Two audiences.<br />One privacy bar.</h2>
+        <p class="section__lead">Stakeholder interviews, surveys, and contextual inquiry surfaced two primary groups. Both demanded clear reminders, simple navigation, and data privacy they could believe.</p>
+      </div>
+      <div class="system-map">
+        <div class="system-card">
+          <span class="system-card__tag">patients &amp; caregivers</span>
+          <h3>Manage treatment, stay informed</h3>
+          <p>They needed help with treatment schedules and a way to find trustworthy information without wading through the open web.</p>
+        </div>
+        <div class="system-card">
+          <span class="system-card__tag">clinicians &amp; researchers</span>
+          <h3>Anonymized signal, not extra work</h3>
+          <p>They needed anonymized data for clinical studies and analysis &mdash; without compromising the patient&rsquo;s experience or legal privacy requirements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.04 &mdash; personas</span>
+        <h2 class="section__title">Keep the human<br />in every feature.</h2>
+        <p class="section__lead">Two personas sat on the wall for the rest of the project. They shaped what we shipped and what we refused to complicate.</p>
+      </div>
+
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">01 &mdash; Hannah</span>
+            <h2>Cancer survivor</h2>
+            <p>Goals: stay informed about treatments and manage appointments. Pain points: forgetting medication times, and struggling to find information she could trust.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Persona &mdash; Hannah, cancer survivor</span>
+              <span class="placeholder-file">assets/icancare-persona-hannah.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">02 &mdash; Dr. Ravi</span>
+            <h2>The researcher</h2>
+            <p>Goals: analyze patient data to identify trends for clinical trials. Pain points: needing anonymized data while staying compliant with privacy law.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Persona &mdash; Dr. Ravi, researcher</span>
+              <span class="placeholder-file">assets/icancare-persona-ravi.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.05 &mdash; design strategy</span>
+        <h2 class="section__title">Four themes from<br />the research wall.</h2>
+        <p class="section__lead">Affinity mapping turned findings into a strategy the rest of the screens had to obey.</p>
+      </div>
+      <div class="problem-grid problem-grid--4">
+        <div class="problem-card">
+          <span class="problem-card__num">personalization</span>
+          <h3>Tailor the journey</h3>
+          <p>Content and reminders follow each user&rsquo;s medical path &mdash; not a generic broadcast.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">transparency</span>
+          <h3>Say what is true</h3>
+          <p>Clear, trustworthy information about clinical trials and healthcare providers. No buried disclaimers.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">security</span>
+          <h3>Encrypt by default</h3>
+          <p>Robust data encryption and privacy language in the product, not only in a policy PDF.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">usability</span>
+          <h3>Shorten the path</h3>
+          <p>Simplify sign-up, reminders, and browsing articles until the daily loop feels obvious.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.06 &mdash; the product</span>
+        <h2 class="section__title">Home first.<br />Then the rest of life.</h2>
+        <p class="section__lead">Navigation was iterated from user feedback. Home offered quick access to reminders, articles, and providers. Clinical trials and settings lived in their own sections so the daily path stayed uncluttered.</p>
+      </div>
+
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">01 &mdash; home</span>
+            <h2>Greeting, awareness, today&rsquo;s list.</h2>
+            <p>A personalized home with an awareness banner, a weekly calendar strip, and today&rsquo;s appointments and doses &mdash; plus polls when research needed a pulse.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Home dashboard &mdash; greeting, World Cancer Day banner, reminders</span>
+              <span class="placeholder-file">assets/icancare-home.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">02 &mdash; knowledge &amp; safety</span>
+            <h2>Specialists, interactions, honesty.</h2>
+            <p>Provider messaging, a drug-interaction checker handoff, and an explicit educational disclaimer: the app informs; the treating physician decides.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Knowledge / centres &mdash; specialists banner, drug checker, disclaimer</span>
+              <span class="placeholder-file">assets/icancare-knowledge.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.07 &mdash; user flows</span>
+        <h2 class="section__title">Sign up. Remind.<br />Read.</h2>
+        <p class="section__lead">Critical workflows were defined before high-fidelity polish: registration, calendar-synced reminders, and content filtered by therapeutic area.</p>
+      </div>
+
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">01 &mdash; onboarding</span>
+            <h2>Language, then an account.</h2>
+            <p>Users pick a language, then create an account with name, email, and password &mdash; or continue with social login. The first screens had to feel calm, not clinical.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Onboarding &mdash; language select and create account</span>
+              <span class="placeholder-file">assets/icancare-onboarding.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">02 &mdash; reminders</span>
+            <h2>How often, then when.</h2>
+            <p>Add-medicine asks frequency, start and end dates, then lands on a calendar of doses and appointments that can sync with the phone calendar.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Reminders &mdash; add medicine frequency + calendar with doses</span>
+              <span class="placeholder-file">assets/icancare-reminders.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.08 &mdash; prototyping</span>
+        <h2 class="section__title">High fidelity on<br />both platforms.</h2>
+        <p class="section__lead">Mid-fidelity sketches became interactive prototypes, tested on Android and iOS so usability issues showed up before engineering locked the structure.</p>
+      </div>
+
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">01 &mdash; centres</span>
+            <h2>Find a hospital. See the details.</h2>
+            <p>Search and city filters lead to centre cards, then a detail view with contact, address, social, and map &mdash; built for people who need a real place, not a brochure.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Centres &mdash; search list and centre detail</span>
+              <span class="placeholder-file">assets/icancare-centres.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">02 &mdash; menu</span>
+            <h2>History, journal, privacy.</h2>
+            <p>The menu holds medicine history, wellness journal, polls, tutorial, settings, and privacy policy &mdash; the slower, heavier tools kept off the home path.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Menu &mdash; profile, journal, polls, settings, privacy</span>
+              <span class="placeholder-file">assets/icancare-menu.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.09 &mdash; testing &amp; outcomes</span>
+        <h2 class="section__title">Iterate until the<br />task succeeds.</h2>
+        <p class="section__lead">Three rounds of usability testing, plus a heuristic pass for error prevention, aesthetics, and efficiency. Navigation hierarchy and reminder setup were the biggest repairs.</p>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-card__num">findings</span>
+          <h3>Hierarchy and setup</h3>
+          <p>Navigation was hard to scan. Reminder setup felt long. Both were simplified before launch.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">platforms</span>
+          <h3>Android and iOS</h3>
+          <p>Responsive behavior was checked on both so the hybrid shell did not hide platform-specific friction.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">validation</span>
+          <h3>92% task success</h3>
+          <p>Final testing reached a 92% task success rate. Heuristics confirmed the remaining gaps were small.</p>
+        </div>
+      </div>
+
+      <div class="outcomes-grid">
+        <div class="outcome-card">
+          <div class="outcome-card__value">+40%</div>
+          <div class="outcome-card__label">Time on app</div>
+          <div class="outcome-card__desc">Engagement rose after launch as people used reminders and articles together.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">85%</div>
+          <div class="outcome-card__label">Schedules managed</div>
+          <div class="outcome-card__desc">Most users successfully managed appointments in the product.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">+25%</div>
+          <div class="outcome-card__label">Usable research data</div>
+          <div class="outcome-card__desc">Researchers reported a rise in usable data for clinical studies.</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-card__value">0</div>
+          <div class="outcome-card__label">Reported breaches</div>
+          <div class="outcome-card__desc">Encryption and privacy constraints held through launch.</div>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        <blockquote>&ldquo;The app makes it so easy to track my appointments and medications. The articles are also very informative and accessible.&rdquo;</blockquote>
+        <cite>&mdash; ICan Care user</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.10 &mdash; reflections</span>
+        <h2 class="section__title">What I&rsquo;d carry forward.</h2>
+      </div>
+      <div class="learnings-grid">
+        <div class="learning-block">
+          <h3>Involve users before the screens harden.</h3>
+          <p>Early interviews and three test rounds saved the information architecture. Waiting until high fidelity would have made the same findings expensive.</p>
+        </div>
+        <div class="learning-block">
+          <h3>Privacy is a product requirement.</h3>
+          <p>For medical data, encryption and anonymization are not a compliance appendix. They change what you ask, when you ask, and how you store the answer.</p>
+        </div>
+        <div class="learning-block">
+          <h3>Two audiences need two speeds.</h3>
+          <p>Patients live on home and reminders. Researchers live on polls and exports. Mixing those speeds on one screen helps neither.</p>
+        </div>
+        <div class="learning-block">
+          <h3>Calm UI is a clinical choice.</h3>
+          <p>Whitespace, short copy, and honest disclaimers are not decoration here. People open this app on hard days. The interface should not add weight.</p>
+        </div>
+      </div>
+      <p class="section__lead" style="margin-top:3rem;">This project reinforced that thoughtful design can change daily life &mdash; if you keep testing until the task, not the mockup, is the measure.</p>
+    </div>
+  </section>
+
+  <section style="padding: clamp(4rem,8vw,7rem) 0; border-top: 1px solid var(--border);">
+    <div class="container">
+      <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">.more work</span>
+      <div class="more-work__grid">
+        <a class="more-work__card" href="/case-study-safety-hub">
+          <div>
+            <p class="more-work__meta">2026 &middot; Construction SaaS &middot; Design Lead</p>
+            <h3 class="more-work__title">Safety Hub &mdash; Mobile Command Center &amp; Compliance Dashboards</h3>
+          </div>
+          <div class="more-work__footer">
+            <span class="more-work__cta">view case study</span>
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </a>
+        <a class="more-work__card" href="/case-study-meridian">
+          <div>
+            <p class="more-work__meta">2023&ndash;2024 &middot; SaaS &middot; Design Lead</p>
+            <h3 class="more-work__title">Meridian &mdash; Smart Scheduling &amp; Personal Brand Platform</h3>
+          </div>
+          <div class="more-work__footer">
+            <span class="more-work__cta">view case study</span>
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <span class="footer__brand">hassanamin.net</span>
+        <p class="footer__copy">&copy; 2026 Hassan Amin</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="/work">selected work</a>
+        <a href="/about">about</a>
+        <a href="/contact">contact</a>
+      </nav>
+      <div class="footer__social">
+        <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
+        <a href="#" class="copy-email-btn" data-copy-email data-copy-label="email" data-copied-label="copied">email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/smooth-scroll.js"></script>
+  <script src="/assets/nav.js"></script>
+  <script src="/assets/copy-email.js"></script>
+  <script src="/assets/resume-modal.js"></script>
+
+</body>
+</html>

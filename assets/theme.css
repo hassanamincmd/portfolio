@@ -1,0 +1,213 @@
+/* Folio-inspired calm paper theme */
+
+:root {
+  --bg: #f4f1ea;
+  --bg-2: #ece7dc;
+  --surface: #fffdf8;
+  --surface-2: #f7f3eb;
+  --surface-3: #ece7dc;
+  --paper: #fffdf8;
+  --text: #16140f;
+  --muted: #6b6558;
+  --muted-2: #8a8478;
+  --border: rgba(22, 20, 15, 0.1);
+  --accent-2: #0d9488;
+  --display: "Outfit", "Segoe UI", sans-serif;
+  --serif: "Fraunces", Georgia, serif;
+  --mono: "DM Mono", ui-monospace, monospace;
+  --shadow: 0 20px 50px rgba(48, 40, 24, 0.08);
+  --radius: 24px;
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 92% -8%, rgba(199, 210, 254, 0.55), transparent 34%),
+    radial-gradient(circle at 0% 18%, rgba(153, 246, 228, 0.38), transparent 30%),
+    linear-gradient(rgba(22, 20, 15, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(22, 20, 15, 0.035) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--display);
+}
+
+#progress {
+  background: var(--accent, #4f46e5);
+}
+
+.header {
+  background: rgba(244, 241, 234, 0.82);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header__cta {
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.header__cta:hover {
+  background: var(--text);
+  color: #fff;
+}
+
+.btn {
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background: var(--text);
+  color: #fff;
+}
+
+.footer {
+  border-top-color: var(--border);
+}
+
+.footer__brand,
+.footer__nav a,
+.footer__social a {
+  color: var(--muted);
+}
+
+.footer__copy {
+  color: var(--muted-2);
+}
+
+.footer__nav a:hover,
+.footer__social a:hover {
+  color: var(--text);
+}
+
+.more-work__grid {
+  background: transparent;
+  gap: 1rem;
+}
+
+.more-work__card {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.more-work__card:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.copy-email-btn.is-copied {
+  background: var(--text) !important;
+  color: #fff !important;
+  border-color: var(--text) !important;
+  box-shadow: var(--shadow);
+}
+
+.contact-link.copy-email-btn.is-copied {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text);
+  box-shadow: none;
+}
+
+.contact-link.copy-email-btn.is-copied .contact-link__value {
+  color: var(--muted);
+}
+
+.resume-modal__panel {
+  background: var(--surface);
+  border-color: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.resume-modal__header,
+.resume-modal__actions {
+  border-bottom-color: var(--border);
+}
+
+.resume-modal__eyebrow {
+  color: var(--muted);
+}
+
+.resume-modal__title {
+  font-family: var(--serif);
+  color: var(--text);
+}
+
+.resume-modal__close {
+  border-color: var(--border);
+}
+
+.resume-modal__close:hover {
+  background: var(--surface-2);
+  border-color: rgba(22, 20, 15, 0.2);
+}
+
+.resume-modal__close span {
+  background: var(--text);
+}
+
+.resume-modal__btn {
+  color: var(--muted);
+  border-color: var(--border);
+  border-radius: 999px;
+}
+
+.resume-modal__btn:hover {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: rgba(22, 20, 15, 0.2);
+}
+
+.resume-modal__btn--primary {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+}
+
+.resume-modal__btn--primary:hover {
+  background: #2a261f;
+  color: #fff;
+}
+
+.resume-modal__viewer,
+.resume-modal__iframe {
+  background: var(--surface-2);
+}
+
+.header__menu-btn span,
+.mobile-nav__close span {
+  background: var(--text);
+}
+
+.mobile-nav {
+  background: var(--bg);
+}
+
+.mobile-nav a {
+  font-family: var(--display);
+  color: var(--muted);
+}
+
+.mobile-nav a:hover,
+.mobile-nav a.active {
+  color: var(--text);
+}
+
+.mobile-nav .nav__resume {
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.mobile-nav .nav__resume:hover {
+  color: var(--text);
+  border-color: rgba(22, 20, 15, 0.28);
+}
+
+.mobile-nav__close:hover span {
+  background: var(--text);
+}

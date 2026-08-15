@@ -27,7 +27,7 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #fff;
+  background: var(--text, #16140f);
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.2s ease;
   transform-origin: center;
@@ -48,7 +48,7 @@
   position: fixed;
   inset: 0;
   padding-top: 64px;      /* clear the sticky header bar */
-  background: #000;
+  background: var(--bg, #f4f1ea);
   z-index: 500;           /* above everything; header is z-index 100 */
   /* Hidden state */
   visibility: hidden;
@@ -67,10 +67,10 @@
 }
 
 .mobile-nav a {
-  font-family: 'Manrope', system-ui, sans-serif;
+  font-family: var(--display, 'Outfit', system-ui, sans-serif);
   font-size: 1.5rem;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  color: var(--muted, #6b6558);
   letter-spacing: -0.02em;
   transition: color 0.15s;
   text-decoration: none;
@@ -78,7 +78,7 @@
 
 .mobile-nav a:hover,
 .mobile-nav a.active {
-  color: #fff;
+  color: var(--text, #16140f);
 }
 
 /* Resume pill */
@@ -86,9 +86,9 @@
   font-family: 'DM Mono', ui-monospace, monospace;
   font-size: 0.8rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text, #16140f);
   padding: 0.45rem 1.4rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border, rgba(22, 20, 15, 0.1));
   border-radius: 4px;
   margin-top: 0.5rem;
   transition: color 0.15s, border-color 0.15s;
@@ -96,8 +96,8 @@
 }
 
 .mobile-nav .nav__resume:hover {
-  color: rgba(255, 255, 255, 0.75);
-  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--text, #16140f);
+  border-color: rgba(22, 20, 15, 0.28);
 }
 
 /* Only render the mobile overlay on small screens */
@@ -128,7 +128,7 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--muted, #6b6558);
   border-radius: 2px;
   position: absolute;
   transition: background 0.15s;
@@ -137,7 +137,7 @@
 .mobile-nav__close span:nth-child(1) { transform: rotate(45deg); }
 .mobile-nav__close span:nth-child(2) { transform: rotate(-45deg); }
 
-.mobile-nav__close:hover span { background: #fff; }
+.mobile-nav__close:hover span { background: var(--text, #16140f); }
 
 /* ── Mobile (≤ 768px) ───────────────────── */
 @media (max-width: 768px) {

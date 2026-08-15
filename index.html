@@ -20,19 +20,20 @@
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
     /* ── Tokens ── */
     :root {
-      --bg:      #000;
-      --surface: #111;
-      --text:    #fff;
-      --muted:   rgba(255,255,255,0.65);
-      --border:  rgba(255,255,255,0.12);
-      --accent:  #ffffff;
-      --display: 'Manrope', system-ui, sans-serif;
+      --bg:      #f4f1ea;
+      --surface: #fffdf8;
+      --text:    #16140f;
+      --muted:   #6b6558;
+      --border:  rgba(22, 20, 15, 0.1);
+      --accent:  #4f46e5;
+      --display: 'Outfit', 'Segoe UI', sans-serif;
+      --serif:   'Fraunces', Georgia, serif;
       --mono:    'DM Mono', ui-monospace, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,7 +50,7 @@
     /* ════════════════════
        HEADER
     ════════════════════ */
-    .header { position: sticky; top: 0; z-index: 100; background: rgb(0 0 0 / 90%); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(244, 241, 234, 0.82); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
     .header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 64px; width: min(1200px, 92%); margin: 0 auto; }
     .header__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--text); justify-self: start; }
     .header__nav { display: flex; justify-content: center; gap: clamp(1.25rem, 3vw, 2.5rem); }
@@ -72,30 +73,29 @@
     .hero__availability { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--muted); text-align: right; }
 
     .heading-block { position: relative; overflow: hidden; }
-    .heading-block__prefix { font-size: clamp(2.25rem, 7.2vw, 6.5rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.04em; }
+    .heading-block__prefix { font-family: var(--serif); font-size: clamp(2.25rem, 7.2vw, 6.5rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.04em; }
     .heading-cycler { position: relative; overflow: hidden; height: clamp(3rem, 9vw, 8.125rem); }
-    .heading-cycler__word { position: absolute; left: 0; top: 0; display: block; font-size: clamp(2.25rem, 7.2vw, 6.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.04em; color: var(--accent); white-space: nowrap; opacity: 0; transform: translateY(100%); transition: opacity 0.3s cubic-bezier(0.44,0,0.56,1), transform 0.3s cubic-bezier(0.44,0,0.56,1); }
+    .heading-cycler__word { position: absolute; left: 0; top: 0; display: block; font-family: var(--serif); font-size: clamp(2.25rem, 7.2vw, 6.5rem); font-weight: 500; font-style: italic; line-height: 1.05; letter-spacing: -0.04em; color: var(--accent); white-space: nowrap; opacity: 0; transform: translateY(100%); transition: opacity 0.3s cubic-bezier(0.44,0,0.56,1), transform 0.3s cubic-bezier(0.44,0,0.56,1); }
     .heading-cycler__word.is-active { opacity: 1; transform: translateY(0%); }
     .heading-cycler__word.is-exit  { opacity: 0; transform: translateY(-100%); }
     @media (min-width: 1200px) {
       .heading-block__prefix { font-size: 104px; letter-spacing: -4px; }
-      .heading-cycler__word  { font-size: 104px; letter-spacing: -4px; font-weight: 700; }
+      .heading-cycler__word  { font-size: 104px; letter-spacing: -4px; font-weight: 500; }
       .heading-cycler { height: 128px; }
     }
 
     /* Aim reticle */
     .aim-reticle { position: absolute; right: 0; bottom: 0; width: 36px; height: 36px; pointer-events: none; }
-    .aim-reticle__ring { position: absolute; left: 50%; top: 50%; width: 24px; height: 24px; transform: translate(-50%,-50%); border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; }
-    .aim-reticle__line { position: absolute; background: rgba(255,255,255,0.2); }
+    .aim-reticle__ring { position: absolute; left: 50%; top: 50%; width: 24px; height: 24px; transform: translate(-50%,-50%); border: 1px solid rgba(22, 20, 15, 0.22); border-radius: 50%; }
+    .aim-reticle__line { position: absolute; background: rgba(22, 20, 15, 0.16); }
     .aim-reticle__line--v { left: 50%; top: 50%; width: 1px; height: 72px; transform: translateX(-50%); }
     .aim-reticle__line--h { left: 50%; top: 50%; width: 72px; height: 1px; transform: translateY(-50%); }
 
     /* ════════════════════
-       STACKED CARDS — Skiper16 scroll-scale
+       PROJECT GRID — 2 per row
     ════════════════════ */
     .cards-section {
       padding: 2rem 0 6rem;
-      overflow-x: clip;
     }
 
     .cards-section__label {
@@ -106,15 +106,7 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      margin-bottom: 3rem;
-      padding: 0 min(4%, calc((100% - min(1200px, 92%)) / 2));
-      width: min(1200px, 92%);
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cards-section__label::after {
-      display: none;
+      margin-bottom: 1.75rem;
     }
 
     .cards-section__label__line {
@@ -136,177 +128,127 @@
       color: var(--text);
     }
 
-    /* Stack wrapper */
-    .card-stack {
-      width: min(1200px, 92%);
-      margin: 0 auto;
-      overflow-x: clip;
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .project-card {
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    /*
-      .card-wrap: sticky at top:80px (below header), full card height.
-      This gives each card its own scroll travel distance.
-      Scale is applied to .card-inner via JS — transform-origin: top center.
-    */
-    .card-wrap {
-      position: sticky;
-      top: 80px;
-      height: calc((100vh - 96px) * 0.75);
-      min-height: 525px;
-    }
-
-    .card-wrap:nth-child(1) { z-index: 1; }
-    .card-wrap:nth-child(2) { z-index: 2; }
-    .card-wrap:nth-child(3) { z-index: 3; }
-
-    /* Per-card accent borders — left + right, matching each card's color */
-    .card-wrap:nth-child(1) .card-inner { border-left: 8px solid #00ff77; border-right: 8px solid #00ff77; }
-    .card-wrap:nth-child(2) .card-inner { border-left: 8px solid #A259FF; border-right: 8px solid #A259FF; }
-    .card-wrap:nth-child(3) .card-inner { border-left: 8px solid #00E8C6; border-right: 8px solid #00E8C6; }
-
-    /* The actual visible card — scale is applied here by JS */
-    .card-inner {
-      height: auto;
-      max-height: 100%;
-      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
       overflow: hidden;
-      transform-origin: top center;
-      will-change: transform;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.07),
-        0 8px 24px rgba(0,0,0,0.5),
-        0 24px 64px rgba(0,0,0,0.45);
+      box-shadow: 0 20px 50px rgba(48, 40, 24, 0.08);
+      color: var(--text);
+      min-height: 100%;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    /* Inner card layout */
-    .p-card {
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 56px rgba(48, 40, 24, 0.12);
+    }
+
+    .project-card__thumb {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--bg-2, #ece7dc);
+    }
+
+    .project-card__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-card__body {
       display: flex;
       flex-direction: column;
-      height: auto;
-      color: inherit;
-      cursor: pointer;
+      gap: 0.7rem;
+      padding: 1.25rem 1.35rem 1.4rem;
+      flex: 1;
     }
 
-    /* Top bar */
-    .p-card__bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.85rem 1.5rem;
+    .project-card__meta {
       font-family: var(--mono);
-      font-size: 0.75rem;
-      font-weight: 300;
-      border-bottom: 1px solid rgba(0,0,0,0.15);
-      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
     }
 
-    /* Title row */
-    .p-card__title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 1.5rem 0.75rem;
-      flex-shrink: 0;
+    .project-card__title {
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
     }
 
-    .p-card__title {
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      font-weight: 600;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      text-transform: lowercase;
+    .project-card__desc {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 48ch;
     }
 
-    .p-card__desc {
-      font-size: 0.85rem;
-      line-height: 1.65;
-      padding: 0 1.5rem 0.85rem;
-      flex-shrink: 0;
-      opacity: 0.88;
-      max-width: 52ch;
-    }
-
-    .p-card__tags {
+    .project-card__tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      padding: 0 1.5rem 1rem;
-      flex-shrink: 0;
+      gap: 0.35rem;
+      margin-top: auto;
+      padding-top: 0.35rem;
     }
 
-    .p-card__tag {
+    .project-card__tag {
       font-family: var(--mono);
       font-size: 0.65rem;
-      font-weight: 300;
       letter-spacing: 0.04em;
-      padding: 0.3rem 0.65rem;
-      border: 1px solid rgba(0,0,0,0.18);
-      border-radius: 2rem;
-      white-space: nowrap;
+      padding: 0.28rem 0.6rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
     }
 
-    .p-card--locked { cursor: default; pointer-events: none; }
-    .p-card--locked .p-card__title,
-    .p-card--locked .p-card__desc { color: rgba(255,255,255,0.35); }
-    .p-card--locked .p-card__tag { border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.25); }
-
-    .p-card__arrow {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: clamp(52px, 6vw, 72px);
-      height: clamp(52px, 6vw, 72px);
-      border: 1.5px solid currentColor;
-      border-radius: 50%;
-      flex-shrink: 0;
-      transition: transform 0.25s ease, background 0.25s ease;
-    }
-
-    .p-card:hover .p-card__arrow {
-      transform: translate(3px, -3px);
-      background: rgba(0,0,0,0.1);
-    }
-
-    /* Image area — fixed ratio so logo thumbnails center consistently */
-    .p-card__image {
-      flex: 0 0 auto;
-      overflow: hidden;
-      position: relative;
-      line-height: 0;
-      aspect-ratio: 800 / 331;
-      background: #000;
-    }
-
-    .p-card__image picture {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .p-card__image img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: center center;
-    }
-
-    .p-card--locked .p-card__image {
-      min-height: 140px;
-      display: flex;
-      align-items: center;
+    .project-card--soon {
+      pointer-events: none;
+      background: rgba(255, 253, 248, 0.55);
+      box-shadow: none;
+      min-height: 280px;
       justify-content: center;
     }
 
-    /* Color themes */
-    .p-card--orange { background: rgb(230, 85, 0); color: #000; }
-    .p-card--navy   { background: #0d0f2b;          color: #fff; }
-    .p-card--green  { background: #00ff77;           color: #000; }
-    .p-card--warm   { background: #1a1206;           color: #fff; }
+    .project-card--soon:hover {
+      transform: none;
+    }
+
+    .project-card__soon {
+      padding: 2rem 1.5rem;
+    }
+
+    .project-card__soon .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-card__soon h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card__soon p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
 
     /* ════════════════════
        TAGLINE ROW
@@ -324,11 +266,11 @@
        ABOUT
     ════════════════════ */
     .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: stretch; }
-    .about__intro { font-family: var(--display); font-size: clamp(1.35rem, 2.5vw, 1.9rem); font-weight: 500; line-height: 1.45; letter-spacing: -0.02em; text-transform: lowercase; margin-bottom: 2rem; max-width: 26ch; }
+    .about__intro { font-family: var(--serif); font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 500; line-height: 1.25; letter-spacing: -0.03em; margin-bottom: 2rem; max-width: 18ch; }
     .about__body { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
     .about__body p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 54ch; }
     .about__image { position: sticky; top: 120px; align-self: stretch; min-height: 0; }
-    .about__image img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+    .about__image img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; border-radius: 20px; border: 1px solid var(--border); display: block; }
     .about__tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
     .tool-pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.3rem 0.75rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); }
 
@@ -342,7 +284,7 @@
        CTA
     ════════════════════ */
     .cta { padding: 5rem 0 6rem; border-top: 1px solid var(--border); }
-    .cta__headline { font-size: clamp(2rem, 5vw, 4rem); font-weight: 500; line-height: 1.15; letter-spacing: -0.04em; margin-bottom: 2rem; max-width: 18ch; text-transform: lowercase; }
+    .cta__headline { font-family: var(--serif); font-size: clamp(2rem, 5vw, 4rem); font-weight: 500; line-height: 1.15; letter-spacing: -0.04em; margin-bottom: 2rem; max-width: 16ch; }
     .cta__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
     /* ════════════════════
@@ -351,7 +293,7 @@
     .footer { border-top: 1px solid var(--border); padding: 2rem 0; }
     .footer__grid { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; }
     .footer__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--muted); }
-    .footer__copy { font-family: var(--mono); font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.25rem; }
+    .footer__copy { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
     .footer__nav { display: flex; justify-content: center; gap: 1.5rem; }
     .footer__nav a { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); transition: color 0.2s; }
     .footer__nav a:hover { color: var(--text); }
@@ -374,32 +316,15 @@
       .about__image img { height: auto; aspect-ratio: 4 / 5; max-height: 480px; }
       .footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .footer__nav, .footer__social { justify-content: flex-start; }
-      .p-card__title { font-size: clamp(1.75rem, 7vw, 2.5rem); }
-      .card-stack { gap: 1rem; }
-      .card-wrap {
-        position: static;
-        height: auto;
-        min-height: 0;
-      }
-      .card-inner {
-        max-height: none;
-        border-left-width: 4px;
-        border-right-width: 4px;
-      }
+      .project-grid { grid-template-columns: 1fr; }
       .heading-cycler__word { white-space: normal; }
-      .p-card__bar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.35rem;
-        padding: 0.75rem 1.25rem;
-      }
-      .p-card__title-row { padding: 1rem 1.25rem 1.25rem; }
       .cta__actions { flex-direction: column; align-items: stretch; }
       .cta__actions .btn { justify-content: center; width: 100%; }
     }
   </style>
   <link rel="stylesheet" href="/assets/nav.css" />
   <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="stylesheet" href="/assets/theme.css" />
 </head>
 <body>
 
@@ -461,116 +386,90 @@
       </div>
     </section>
 
-    <!-- STACKED PROJECT CARDS -->
+    <!-- PROJECT GRID -->
     <section class="cards-section" id="projects" aria-label="Featured projects">
-
-      <div class="cards-section__label">
-        <span>.selected work</span>
-        <span class="cards-section__label__line" aria-hidden="true"></span>
-        <a class="cards-section__label__link" href="/work">view all &rarr;</a>
-      </div>
-
-      <div class="card-stack">
-
-        <!-- Card 1 — Meridian -->
-        <div class="card-wrap">
-          <div class="card-inner">
-            <a class="p-card p-card--green" href="/case-study-meridian">
-              <div class="p-card__bar">
-                <span>2023 &ndash; 2024</span>
-                <span>Design Lead &middot; SaaS</span>
-              </div>
-              <div class="p-card__title-row">
-                <h2 class="p-card__title">meridian &mdash; smart scheduling &amp; personal brand platform</h2>
-                <span class="p-card__arrow" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </div>
-              <p class="p-card__desc">Led a team of 3 designers through a 12-month product lifecycle. Built a scalable design system from scratch and delivered 500+ screens across web, tablet, and mobile. Stakeholder satisfaction increased by 80%.</p>
-              <div class="p-card__tags">
-                <span class="p-card__tag">Design System</span>
-                <span class="p-card__tag">500+ Screens</span>
-                <span class="p-card__tag">3 Platforms</span>
-                <span class="p-card__tag">Team Lead</span>
-              </div>
-              <div class="p-card__image">
-                <picture>
-                  <source srcset="/assets/meridian-hero.webp" type="image/webp" />
-                  <img src="/assets/meridian-hero.png" alt="" width="800" height="323" loading="lazy" decoding="async" />
-                </picture>
-              </div>
-            </a>
-          </div>
+      <div class="container">
+        <div class="cards-section__label">
+          <span>.selected work</span>
+          <span class="cards-section__label__line" aria-hidden="true"></span>
+          <a class="cards-section__label__link" href="/work">view all &rarr;</a>
         </div>
 
-        <!-- Card 2 — Safety Hub -->
-        <div class="card-wrap">
-          <div class="card-inner">
-            <a class="p-card" href="/case-study-safety-hub" style="background:#A259FF;color:#000;">
-              <div class="p-card__bar">
-                <span>2026</span>
-                <span>Design Lead &middot; Construction SaaS</span>
+        <div class="project-grid">
+          <a class="project-card" href="/case-study-meridian">
+            <div class="project-card__thumb">
+              <picture>
+                <source srcset="/assets/meridian-hero.webp" type="image/webp" />
+                <img src="/assets/meridian-hero.png" alt="" width="800" height="323" loading="lazy" decoding="async" />
+              </picture>
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__meta">2023 – 2024 · Design Lead · SaaS</p>
+              <h2 class="project-card__title">Meridian — smart scheduling &amp; personal brand</h2>
+              <p class="project-card__desc">Led a team of 3 designers through a 12-month product lifecycle. Built a scalable design system and delivered 500+ screens across web, tablet, and mobile.</p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">Design System</span>
+                <span class="project-card__tag">500+ Screens</span>
+                <span class="project-card__tag">Team Lead</span>
               </div>
-              <div class="p-card__title-row">
-                <h2 class="p-card__title">safety hub &mdash; mobile command center &amp; compliance dashboards</h2>
-                <span class="p-card__arrow" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </div>
-              <p class="p-card__desc">Design lead across a twelve-month, two-phase lifecycle on construction safety software. Phase 1 delivered a mobile command center from field feedback; Phase 2 ran UserTesting and shipped guess-free compliance dashboards on web and mobile.</p>
-              <div class="p-card__tags">
-                <span class="p-card__tag">UX Research</span>
-                <span class="p-card__tag">Data Viz</span>
-                <span class="p-card__tag">Mobile-First</span>
-                <span class="p-card__tag">Design Lead</span>
-              </div>
-              <div class="p-card__image">
-                <picture>
-                  <source srcset="/assets/pcor.webp" type="image/webp" />
-                  <img src="/assets/pcor.png" alt="" width="800" height="331" loading="lazy" decoding="async" />
-                </picture>
-              </div>
-            </a>
-          </div>
-        </div>
+            </div>
+          </a>
 
-        <!-- Card 3 — Qualifications Management -->
-        <div class="card-wrap">
-          <div class="card-inner">
-            <a class="p-card" href="/case-study-qualifications" style="background:#00E8C6;color:#000;">
-              <div class="p-card__bar">
-                <span>2026</span>
-                <span>Product Designer &middot; Construction SaaS</span>
+          <a class="project-card" href="/case-study-safety-hub">
+            <div class="project-card__thumb">
+              <picture>
+                <source srcset="/assets/pcor.webp" type="image/webp" />
+                <img src="/assets/pcor.png" alt="" width="800" height="331" loading="lazy" decoding="async" />
+              </picture>
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__meta">2026 · Design Lead · Construction SaaS</p>
+              <h2 class="project-card__title">Safety Hub — mobile command center</h2>
+              <p class="project-card__desc">Design lead across a two-phase lifecycle. Phase 1 shipped a mobile command center from field feedback; Phase 2 delivered guess-free compliance dashboards.</p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">UX Research</span>
+                <span class="project-card__tag">Data Viz</span>
+                <span class="project-card__tag">Mobile-First</span>
               </div>
-              <div class="p-card__title-row">
-                <h2 class="p-card__title">qualifications management &mdash; safety credentials &amp; compliance at scale</h2>
-                <span class="p-card__arrow" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </div>
-              <p class="p-card__desc">Product designer on a five-month, customer-driven build for worker credential management. Delivered mobile Safety Cards for field verification, a web workers table for 1,000+ workers, bulk assign flows, and the tags configuration layer across four product surfaces.</p>
-              <div class="p-card__tags">
-                <span class="p-card__tag">Mobile &amp; Web</span>
-                <span class="p-card__tag">Enterprise</span>
-                <span class="p-card__tag">Customer-Led</span>
-                <span class="p-card__tag">Safety</span>
-              </div>
-              <div class="p-card__image">
-                <picture>
-                  <source srcset="/assets/qualifications-hero.webp" type="image/webp" />
-                  <img src="/assets/qualifications-hero.png" alt="" width="800" height="331" loading="lazy" decoding="async" />
-                </picture>
-              </div>
-            </a>
-          </div>
-        </div>
+            </div>
+          </a>
 
+          <a class="project-card" href="/case-study-qualifications">
+            <div class="project-card__thumb">
+              <picture>
+                <source srcset="/assets/qualifications-hero.webp" type="image/webp" />
+                <img src="/assets/qualifications-hero.png" alt="" width="800" height="331" loading="lazy" decoding="async" />
+              </picture>
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__meta">2026 · Product Designer · Construction SaaS</p>
+              <h2 class="project-card__title">Qualifications — credentials at scale</h2>
+              <p class="project-card__desc">Customer-driven credential management: mobile Safety Cards, a workers table for 1,000+ people, bulk assign, and tags across four surfaces.</p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">Mobile &amp; Web</span>
+                <span class="project-card__tag">Enterprise</span>
+                <span class="project-card__tag">Safety</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="project-card" href="/case-study-icancare">
+            <div class="project-card__thumb" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center;">
+              <span style="font-family:var(--mono);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:#be185d;">Image coming</span>
+              <span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);">assets/icancare-hero.png</span>
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__meta">2022 – 2023 · UI/UX Designer · Healthcare</p>
+              <h2 class="project-card__title">ICan Care — Novartis cancer support</h2>
+              <p class="project-card__desc">Hybrid mobile app for appointments, medication reminders, education, and research data collection — designed for patients, caregivers, and clinicians.</p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">Healthcare</span>
+                <span class="project-card__tag">Mobile</span>
+                <span class="project-card__tag">Privacy-first</span>
+              </div>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -580,11 +479,11 @@
         <div class="tagline-row">
           <span class="tagline-row__label">.about</span>
           <span class="tagline-row__line"></span>
-          <a href="/about" style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);white-space:nowrap;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">full story &rarr;</a>
+          <a href="/about" class="cards-section__label__link">full story &rarr;</a>
         </div>
         <div class="about-grid">
           <div class="about__copy reveal">
-            <h2 class="about__intro">obsessed with how things work &mdash; and how people find their way.</h2>
+            <h2 class="about__intro">Obsessed with how things work — and how people find their way.</h2>
             <div class="about__body">
               <p>My path to design clicked after years on the frontlines of customer service. I wanted to fix the roads, not just direct the traffic. UI/UX was the intersection: digital spaces are simply modern maps, and every interaction is a signpost.</p>
               <p>Today I dismantle workflows instead of toys. I believe the best designs don't rely on flashy technology — they rely on empathy and simplicity.</p>
@@ -608,7 +507,7 @@
           <span class="tagline-row__label">.say hi</span>
           <span class="tagline-row__line"></span>
         </div>
-        <h2 class="cta__headline">exploring new opportunities &mdash; let's talk</h2>
+        <h2 class="cta__headline">Exploring new opportunities — let’s talk</h2>
         <div class="cta__actions">
           <a class="btn copy-email-btn" href="#" data-copy-email data-copy-label="email me">email me</a>
           <a class="btn" href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">linkedin</a>
@@ -650,76 +549,13 @@
     /* Scroll progress bar */
     const bar = document.getElementById('progress');
 
-    /* ── Card stack — Skiper16 port ── */
-    const cardSection = document.querySelector('.cards-section');
-    const cardInners  = Array.from(document.querySelectorAll('.card-inner'));
-    const numCards    = cardInners.length;
-    let cardsInView   = false;
-    let sectionTop    = 0;
-    let sectionHeight = 0;
-    const mobileCardsMq = window.matchMedia('(max-width: 768px)');
-
-    function resetCardTransforms() {
-      cardInners.forEach((card) => {
-        card.style.transform = '';
-        delete card.dataset.scale;
-      });
-    }
-
-    function refreshCardMetrics() {
-      if (!cardSection) return;
-      sectionTop    = cardSection.getBoundingClientRect().top + window.scrollY;
-      sectionHeight = cardSection.offsetHeight;
-    }
-
-    if (cardSection) {
-      refreshCardMetrics();
-      window.addEventListener('resize', refreshCardMetrics, { passive: true });
-      mobileCardsMq.addEventListener('change', (e) => {
-        if (e.matches) resetCardTransforms();
-      });
-      if (mobileCardsMq.matches) resetCardTransforms();
-      const cardsObs = new IntersectionObserver(([entry]) => {
-        cardsInView = entry.isIntersecting;
-      }, { rootMargin: '120px 0px' });
-      cardsObs.observe(cardSection);
-    }
-
-    function useTransform(val, inMin, inMax, outMin, outMax) {
-      const t = Math.max(0, Math.min(1, (val - inMin) / (inMax - inMin)));
-      return outMin + (outMax - outMin) * t;
-    }
-
-    function getScrollY() {
-      return lenis.scroll;
-    }
-
-    function updateCards(scrollY) {
-      if (!cardsInView || !cardSection || mobileCardsMq.matches) return;
-
-      const scrollYProgress = Math.max(0, Math.min(1,
-        (scrollY - sectionTop) / (sectionHeight - window.innerHeight)
-      ));
-
-      cardInners.forEach((card, i) => {
-        const targetScale = Math.max(0.5, 1 - (numCards - i - 1) * 0.1);
-        const rangeStart  = i * 0.25;
-        const scale       = useTransform(scrollYProgress, rangeStart, 1, 1, targetScale);
-        const scaleKey    = scale.toFixed(3);
-        if (card.dataset.scale === scaleKey) return;
-        card.dataset.scale = scaleKey;
-        card.style.transform = 'scale3d(' + scale + ',' + scale + ',1)';
-      });
-    }
-
     function onScrollFrame() {
-      const scrollY = getScrollY();
+      const scrollY = lenis.scroll;
       const doc = document.documentElement;
       const maxScroll = doc.scrollHeight - doc.clientHeight;
       if (maxScroll > 0) {
         bar.style.width = (scrollY / maxScroll * 100) + '%';
       }
-      updateCards(scrollY);
     }
 
     /* Heading cycler */

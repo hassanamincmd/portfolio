@@ -20,17 +20,18 @@
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
     :root {
-      --bg:      #000;
-      --surface: #0e0e0e;
-      --text:    #fff;
-      --muted:   rgba(255,255,255,0.5);
-      --border:  rgba(255,255,255,0.1);
-      --display: 'Manrope', system-ui, sans-serif;
+      --bg:      #f4f1ea;
+      --surface: #fffdf8;
+      --text:    #16140f;
+      --muted:   #6b6558;
+      --border:  rgba(22, 20, 15, 0.1);
+      --display: 'Outfit', 'Segoe UI', sans-serif;
+      --serif:   'Fraunces', Georgia, serif;
       --mono:    'DM Mono', ui-monospace, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,7 +41,7 @@
     img   { max-width: 100%; display: block; }
     .container { width: min(1200px, 92%); margin: 0 auto; }
 
-    #progress { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: #fff; z-index: 200; transition: width 0.08s linear; }
+    #progress { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: #4f46e5; z-index: 200; transition: width 0.08s linear; }
 
     /* ── HEADER ── */
     .header { position: sticky; top: 0; z-index: 100; background: rgb(0 0 0 / 90%); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
@@ -60,11 +61,12 @@
     }
     .page-hero__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.12em; margin-bottom: 2.5rem; display: block; }
     .page-hero__headline {
-      font-size: clamp(1.5rem, 3.5vw, 2.75rem);
-      font-weight: 400;
-      line-height: 1.35;
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 3.8vw, 3.1rem);
+      font-weight: 500;
+      line-height: 1.2;
       letter-spacing: -0.03em;
-      max-width: 30ch;
+      max-width: 22ch;
     }
     .page-hero__headline em { font-style: normal; color: var(--muted); }
 
@@ -75,23 +77,22 @@
 
     .projects-grid__inner {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
     }
 
     .p-card {
-      background: var(--bg);
+      background: var(--surface);
       display: flex;
       flex-direction: column;
-      transition: background 0.25s;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
       position: relative;
       overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(48, 40, 24, 0.08);
     }
-    .p-card:hover { background: var(--surface); }
+    .p-card:hover { transform: translateY(-3px); box-shadow: 0 24px 56px rgba(48, 40, 24, 0.12); }
     .p-card--locked { pointer-events: none; }
 
     /* Colored top accent bar per project */
@@ -105,7 +106,7 @@
 
     .p-card__thumb {
       width: 100%;
-      height: 360px;
+      height: 220px;
       overflow: hidden;
       flex-shrink: 0;
       background: var(--card-accent, #111);
@@ -155,11 +156,11 @@
       color: var(--muted);
       letter-spacing: 0.06em;
     }
-    .p-card__dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+    .p-card__dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
     .p-card__type {
       font-family: var(--mono);
       font-size: 0.7rem;
-      color: rgba(255,255,255,0.3);
+      color: var(--muted);
       letter-spacing: 0.06em;
     }
     .p-card__badge {
@@ -173,8 +174,9 @@
     }
 
     .p-card__title {
-      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-      font-weight: 600;
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 500;
       letter-spacing: -0.035em;
       line-height: 1.1;
       margin-bottom: 0.85rem;
@@ -201,9 +203,9 @@
     .p-card__tag {
       font-family: var(--mono);
       font-size: 0.65rem;
-      color: rgba(255,255,255,0.35);
+      color: var(--muted);
       padding: 0.2rem 0.55rem;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid var(--border);
       border-radius: 2rem;
     }
 
@@ -219,7 +221,7 @@
       transition: border-color 0.2s, background 0.2s, transform 0.25s;
       color: var(--text);
     }
-    .p-card:hover .p-card__arrow { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); transform: translate(3px,-3px); }
+    .p-card:hover .p-card__arrow { border-color: rgba(22, 20, 15, 0.28); background: var(--bg); transform: translate(3px,-3px); }
 
     /* ── SAY HELLO ── */
     .say-hello {
@@ -248,13 +250,15 @@
     .reveal.is-visible { opacity: 1; transform: none; }
 
     @media (max-width: 768px) {
-      .p-card__thumb { height: 240px; }
+      .projects-grid__inner { grid-template-columns: 1fr; }
+      .p-card__thumb { height: 220px; }
       .footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .footer__nav, .footer__social { justify-content: flex-start; }
     }
   </style>
   <link rel="stylesheet" href="/assets/nav.css" />
   <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="stylesheet" href="/assets/theme.css" />
 </head>
 <body>
 
@@ -389,6 +393,35 @@
                   <span class="p-card__tag">Enterprise</span>
                   <span class="p-card__tag">Customer-Led</span>
                   <span class="p-card__tag">Safety</span>
+                </div>
+                <span class="p-card__arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <a class="p-card" href="/case-study-icancare" style="--card-accent:#be185d;">
+            <div class="p-card__thumb" style="display:flex;align-items:center;justify-content:center;background:var(--bg);flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center;">
+              <span style="font-family:var(--mono);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:#be185d;">Image coming</span>
+              <span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);">assets/icancare-hero.png</span>
+            </div>
+            <div class="p-card__body">
+              <div class="p-card__meta">
+                <span class="p-card__year">2022 &ndash; 2023</span>
+                <span class="p-card__dot"></span>
+                <span class="p-card__type">UI/UX Designer</span>
+                <span class="p-card__dot"></span>
+                <span class="p-card__type">Healthcare</span>
+              </div>
+              <h2 class="p-card__title">ICan Care &mdash; Novartis Cancer Support App</h2>
+              <p class="p-card__desc">UI/UX for a hybrid mobile product: appointments and medication reminders, curated education, provider listings, and anonymized feedback for clinical research.</p>
+              <div class="p-card__footer">
+                <div class="p-card__tags">
+                  <span class="p-card__tag">Healthcare</span>
+                  <span class="p-card__tag">Mobile</span>
+                  <span class="p-card__tag">Novartis</span>
+                  <span class="p-card__tag">Privacy-first</span>
                 </div>
                 <span class="p-card__arrow" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
