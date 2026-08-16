@@ -4,9 +4,7 @@
   // Cache-bust so browsers/CDN pick up replaced resume files.
   var RESUME_VERSION = '20260815';
   var PDF_PATH = '/assets/Hassan-Amin-CV-Resume.pdf?v=' + RESUME_VERSION;
-  var DOCX_PATH = '/assets/Hassan-Amin-CV-Resume.docx?v=' + RESUME_VERSION;
   var PDF_NAME = 'Hassan-Amin-CV-Resume.pdf';
-  var DOCX_NAME = 'Hassan-Amin-CV-Resume.docx';
 
   var modal;
   var iframe;
@@ -34,7 +32,6 @@
         '</div>' +
         '<div class="resume-modal__actions">' +
           '<a class="resume-modal__btn resume-modal__btn--primary" href="' + PDF_PATH + '" download="' + PDF_NAME + '">Download PDF</a>' +
-          '<a class="resume-modal__btn" href="' + DOCX_PATH + '" download="' + DOCX_NAME + '">Download DOCX</a>' +
           '<a class="resume-modal__btn resume-modal__btn--ghost" href="' + PDF_PATH + '" target="_blank" rel="noreferrer">Open in New Tab</a>' +
         '</div>' +
         '<div class="resume-modal__viewer">' +
