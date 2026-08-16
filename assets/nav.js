@@ -1,5 +1,5 @@
 /**
- * Mobile navigation — hamburger toggle.
+ * Mobile navigation: hamburger toggle.
  * Targets .mobile-nav (a <body> sibling of <header>,
  * outside the header's backdrop-filter stacking context).
  */

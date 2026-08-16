@@ -50,7 +50,7 @@
 }
 
 .cs-img-wrap--contain {
-  background: #fff;
+  background: transparent;
 }
 
 .cs-img-wrap--contain img {
@@ -59,7 +59,7 @@
 }
 
 .cs-img-wrap--contain-top {
-  background: #fff;
+  background: transparent;
 }
 
 .cs-img-wrap--contain-top img {
