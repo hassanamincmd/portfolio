@@ -1,4 +1,9 @@
 node_modules/
+scripts/node_modules/
+job-match/node_modules/
+job-match/data/daily-slate.json
+job-match/data/applied.json
+exports/
 .DS_Store
 Thumbs.db
 *.log

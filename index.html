@@ -335,9 +335,9 @@
     <div class="header__bar">
       <a class="header__brand" href="/">.h</a>
       <nav class="header__nav" aria-label="Primary">
-        <a href="/work">Selected Work</a>
-        <a href="/contact">Contact</a>
-        <a href="/about">About</a>
+        <a href="#projects">Selected Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
       <div class="header__actions">
         <a class="header__cta" href="#" data-resume-modal>Resume / CV</a>
@@ -352,9 +352,9 @@
   <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
     <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
     <a href="/" class="active">Home</a>
-    <a href="/work">Selected Work</a>
-    <a href="/contact">Contact</a>
-    <a href="/about">About</a>
+    <a href="#projects">Selected Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
     <a class="nav__resume" href="#" data-resume-modal>Resume / CV ↗</a>
   </nav>
 
@@ -392,7 +392,6 @@
         <div class="cards-section__label">
           <span>Selected Work</span>
           <span class="cards-section__label__line" aria-hidden="true"></span>
-          <a class="cards-section__label__link" href="/work">View All &rarr;</a>
         </div>
 
         <div class="project-grid">
@@ -473,13 +472,96 @@
       </div>
     </section>
 
+    <!-- BRANDS -->
+    <section class="brands" id="brands" aria-label="Brands and companies">
+      <div class="container">
+        <div class="brands__header reveal">
+          <span class="brands__label">Worked With</span>
+          <h2 class="brands__headline">Brands &amp; Companies I&rsquo;ve Designed For</h2>
+        </div>
+        <div class="brands-grid reveal" style="transition-delay:0.1s;">
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-novartis.png" alt="Novartis" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Novartis</p>
+              <p class="brand-cell__type">Healthcare &middot; Global</p>
+            </div>
+          </div>
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-petronas.png" alt="Petronas" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Petronas</p>
+              <p class="brand-cell__type">Energy &middot; Malaysia</p>
+            </div>
+          </div>
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-vodafone.png" alt="Vodafone" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Vodafone</p>
+              <p class="brand-cell__type">Telecom &middot; Global</p>
+            </div>
+          </div>
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-procore.png" alt="Procore" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Procore</p>
+              <p class="brand-cell__type">Construction Tech &middot; Enterprise</p>
+            </div>
+          </div>
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-cma.png" alt="Capital Market Authority" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Saudi Capital Market Authority</p>
+              <p class="brand-cell__type">Finance &middot; Government</p>
+            </div>
+          </div>
+          <div class="brand-cell">
+            <div class="brand-logo brand-logo--screen-invert">
+              <img src="/assets/logo-investview.png" alt="Investview" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Investview</p>
+              <p class="brand-cell__type">Fintech &middot; Investment</p>
+            </div>
+          </div>
+          <div class="brand-cell">
+            <div class="brand-logo brand-logo--invert">
+              <img src="/assets/logo-malaysia.png" alt="Ministry of Digital" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Ministry of Digital</p>
+              <p class="brand-cell__type">Public Sector &middot; Malaysia</p>
+            </div>
+          </div>
+          <div class="brand-cell">
+            <div class="brand-logo">
+              <img src="/assets/logo-deloitte.svg" alt="Deloitte" />
+            </div>
+            <div>
+              <p class="brand-cell__name">Deloitte</p>
+              <p class="brand-cell__type">Consulting &middot; Global</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT TEASER -->
-    <section class="section" id="about-teaser">
+    <section class="section" id="about">
       <div class="container">
         <div class="tagline-row">
           <span class="tagline-row__label">About</span>
           <span class="tagline-row__line"></span>
-          <a href="/about" class="cards-section__label__link">Full Story &rarr;</a>
         </div>
         <div class="about-grid">
           <div class="about__copy reveal">
@@ -489,9 +571,6 @@
               <p>Today I dismantle workflows instead of toys. I believe the best designs don't rely on flashy technology — they rely on empathy and simplicity.</p>
               <p>I've been curious about how things work for as long as I can remember — taking toys apart as a kid, studying geodetic surveying at university, learning how people move through space before I ever designed a screen. Design wasn't a pivot. It was the moment I realised I could help build the map, not just point at it.</p>
             </div>
-            <div style="margin-top:2rem;">
-              <a class="btn" href="/about">Read More</a>
-            </div>
           </div>
           <div class="about__image reveal" style="transition-delay:0.15s;">
             <img src="/assets/about-hassan.jpeg" alt="Hassan Amin" loading="lazy" />
@@ -500,20 +579,75 @@
       </div>
     </section>
 
-    <!-- SAY HI / CTA -->
-    <div class="container" id="say-hi">
-      <div class="cta reveal">
-        <div class="tagline-row" style="margin-bottom:1.5rem;">
-          <span class="tagline-row__label">Say Hi</span>
-          <span class="tagline-row__line"></span>
-        </div>
-        <h2 class="cta__headline">Exploring New Opportunities — Let’s Talk</h2>
-        <div class="cta__actions">
-          <a class="btn copy-email-btn" href="#" data-copy-email data-copy-label="Email Me">Email Me</a>
-          <a class="btn" href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
+    <!-- CONTACT -->
+    <section class="contact-body" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-left reveal">
+            <div class="contact-left__status">
+              <span class="status-dot"></span>
+              <span class="status-text">Currently Exploring New Opportunities</span>
+            </div>
+            <h2 class="contact-left__headline">Open to New Roles &mdash; Full-Time or Freelance</h2>
+            <p class="contact-left__body">Whether you have a product that needs a design partner, a team that needs leadership, or just want to say hello &mdash; I&rsquo;m always happy to connect. The best work happens in good conversation.</p>
+            <div class="contact-actions">
+              <a class="contact-link copy-email-btn" href="#" data-copy-email>
+                <div>
+                  <span class="contact-link__label">Email</span>
+                  <span class="contact-link__value">contact.hassan.amin@gmail.com</span>
+                </div>
+                <svg class="contact-link__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a class="contact-link" href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">
+                <div>
+                  <span class="contact-link__label">LinkedIn</span>
+                  <span class="contact-link__value">linkedin.com/in/hassan-mo-amin</span>
+                </div>
+                <svg class="contact-link__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a class="contact-link" href="#" data-resume-modal>
+                <div>
+                  <span class="contact-link__label">Resume / CV</span>
+                  <span class="contact-link__value">View Resume &amp; CV</span>
+                </div>
+                <svg class="contact-link__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="contact-right reveal" style="transition-delay:0.15s;">
+            <div class="contact-right__card">
+              <span class="contact-right__label">Quick Facts</span>
+              <div class="contact-info-row">
+                <div class="contact-info-item">
+                  <span class="contact-info-item__key">Name</span>
+                  <span class="contact-info-item__val">Hassan Amin</span>
+                </div>
+                <div class="contact-info-divider"></div>
+                <div class="contact-info-item">
+                  <span class="contact-info-item__key">Role</span>
+                  <span class="contact-info-item__val">Senior Product Designer</span>
+                </div>
+                <div class="contact-info-divider"></div>
+                <div class="contact-info-item">
+                  <span class="contact-info-item__key">Location</span>
+                  <span class="contact-info-item__val">Egypt &mdash; EMEA</span>
+                </div>
+                <div class="contact-info-divider"></div>
+                <div class="contact-info-item">
+                  <span class="contact-info-item__key">Experience</span>
+                  <span class="contact-info-item__val">5 Years</span>
+                </div>
+                <div class="contact-info-divider"></div>
+                <div class="contact-info-item">
+                  <span class="contact-info-item__key">Availability</span>
+                  <span class="contact-info-item__val contact-info-item__val--open">Open to Opportunities</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
   </main>
 
@@ -525,9 +659,9 @@
         <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
       <nav class="footer__nav" aria-label="Footer">
-        <a href="/work">Selected Work</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <a href="#projects">Selected Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
       <div class="footer__social">
         <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -582,6 +716,28 @@
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
+    function scrollToHash() {
+      const id = window.location.hash.slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el) lenis.scrollTo(el, { offset: -72 });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      a.addEventListener('click', (e) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        e.preventDefault();
+        history.replaceState(null, '', '#' + id);
+        lenis.scrollTo(el, { offset: -72 });
+      });
+    });
+
+    window.addEventListener('load', scrollToHash);
+    window.addEventListener('hashchange', scrollToHash);
 
   </script>
   <script src="/assets/nav.js"></script>
