@@ -305,7 +305,7 @@
     .about__body { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
     .about__body p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 54ch; }
     .about__image { position: sticky; top: 120px; align-self: stretch; min-height: 0; }
-    .about__image img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; border-radius: 20px; border: 1px solid var(--border); display: block; }
+    .about__image img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 20px; border: 1px solid var(--border); display: block; image-rendering: pixelated; }
     .about__tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
     .tool-pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.3rem 0.75rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); }
 
@@ -375,26 +375,11 @@
       isolation: isolate;
       overflow: hidden;
       border-radius: 28px;
-      background: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.28);
       border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow:
-        inset 1px 1px 0 rgba(255, 255, 255, 0.95),
-        inset -1px -1px 0 rgba(255, 255, 255, 0.12),
-        0 28px 70px rgba(24, 18, 10, 0.2);
-      backdrop-filter: blur(32px) saturate(180%);
-      -webkit-backdrop-filter: blur(32px) saturate(180%);
-    }
-    .brands-glass__frost {
-      position: absolute;
-      inset: -35%;
-      z-index: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 12% 28%, rgba(186, 198, 255, 0.75), transparent 34%),
-        radial-gradient(circle at 88% 8%, rgba(255, 255, 255, 0.95), transparent 32%),
-        radial-gradient(circle at 78% 82%, rgba(153, 230, 210, 0.55), transparent 36%),
-        radial-gradient(circle at 42% 70%, rgba(28, 24, 20, 0.16), transparent 42%);
-      filter: blur(42px);
+      box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
     }
     .brands-glass__grain {
       position: absolute;
@@ -566,7 +551,6 @@
           <h2 class="brands__headline">Brands &amp; Companies I&rsquo;ve Designed For</h2>
         </div>
         <div class="brands-glass">
-          <div class="brands-glass__frost" aria-hidden="true"></div>
           <div class="brands-glass__grain" aria-hidden="true"></div>
         <div class="brands-grid">
           <div class="brand-cell">
@@ -663,7 +647,7 @@
             </div>
           </div>
           <div class="about__image reveal" style="transition-delay:0.15s;">
-            <img src="/assets/about-hassan.jpeg" alt="Hassan Amin" loading="lazy" />
+            <img src="/assets/about-macintosh.gif" alt="Recursive Macintosh MacPaint animation" loading="lazy" />
           </div>
         </div>
       </div>
