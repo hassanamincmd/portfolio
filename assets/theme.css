@@ -22,11 +22,9 @@
 body {
   background-color: var(--bg);
   background-image:
-    radial-gradient(circle at 92% -8%, rgba(199, 210, 254, 0.55), transparent 34%),
-    radial-gradient(circle at 0% 18%, rgba(153, 246, 228, 0.38), transparent 30%),
     linear-gradient(rgba(22, 20, 15, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(22, 20, 15, 0.035) 1px, transparent 1px);
-  background-size: auto, auto, 48px 48px, 48px 48px;
+  background-size: 48px 48px;
   background-attachment: fixed;
   color: var(--text);
   font-family: var(--display);
@@ -100,10 +98,10 @@ body {
 }
 
 .copy-email-btn.is-copied {
-  background: var(--text) !important;
-  color: #fff !important;
-  border-color: var(--text) !important;
-  box-shadow: var(--shadow);
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+  box-shadow: none;
 }
 
 .contact-link.copy-email-btn.is-copied {
