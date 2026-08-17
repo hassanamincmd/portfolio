@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&family=Pixelify+Sans:wght@500;600&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
@@ -35,6 +35,7 @@
       --display: 'Outfit', 'Segoe UI', sans-serif;
       --serif:   'Fraunces', Georgia, serif;
       --mono:    'DM Mono', ui-monospace, monospace;
+      --pixel:   'Pixelify Sans', 'Press Start 2P', monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html  { scroll-behavior: auto; }
@@ -63,39 +64,55 @@
     /* ════════════════════
        HERO
     ════════════════════ */
-    .hero { padding: clamp(2.5rem, 6vw, 5.5rem) 0 clamp(2rem, 5vw, 4rem); }
+    .hero { padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(2rem, 5vw, 3.5rem); }
     .hero__inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(160px, 240px);
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: clamp(1.5rem, 4vw, 4rem);
+      text-align: center;
+      gap: clamp(1.25rem, 3vw, 2rem);
     }
 
-    .heading-block { position: relative; overflow: hidden; min-width: 0; }
-    .heading-block__prefix { font-family: var(--serif); font-size: clamp(2rem, 5.2vw, 4.75rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.04em; }
-    .heading-cycler { position: relative; overflow: hidden; height: clamp(2.6rem, 6.5vw, 5.75rem); }
-    .heading-cycler__word { position: absolute; left: 0; top: 0; display: block; font-family: var(--serif); font-size: clamp(2rem, 5.2vw, 4.75rem); font-weight: 500; font-style: italic; line-height: 1.05; letter-spacing: -0.04em; color: var(--accent); white-space: nowrap; opacity: 0; transform: translateY(100%); transition: opacity 0.3s cubic-bezier(0.44,0,0.56,1), transform 0.3s cubic-bezier(0.44,0,0.56,1); }
-    .heading-cycler__word.is-active { opacity: 1; transform: translateY(0%); }
-    .heading-cycler__word.is-exit  { opacity: 0; transform: translateY(-100%); }
+    .heading-block { position: relative; overflow: hidden; min-width: 0; max-width: 22ch; }
+    .heading-block__prefix { font-family: var(--serif); font-size: clamp(1.45rem, 3.6vw, 3rem); font-weight: 500; line-height: 1.12; letter-spacing: -0.03em; }
+    .heading-cycler { position: relative; overflow: hidden; height: clamp(2rem, 4.8vw, 3.25rem); margin-top: 0.15rem; }
+    .heading-cycler__word {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      display: block;
+      font-family: var(--pixel);
+      font-size: clamp(1.25rem, 3.1vw, 2.55rem);
+      font-weight: 600;
+      font-style: normal;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(-50%) translateY(100%);
+      transition: opacity 0.3s cubic-bezier(0.44,0,0.56,1), transform 0.3s cubic-bezier(0.44,0,0.56,1);
+    }
+    .heading-cycler__word.is-active { opacity: 1; transform: translateX(-50%) translateY(0%); }
+    .heading-cycler__word.is-exit  { opacity: 0; transform: translateX(-50%) translateY(-100%); }
 
     .hero__portrait {
       position: relative;
-      width: 100%;
-      max-width: 240px;
+      width: clamp(112px, 20vw, 168px);
       aspect-ratio: 1;
-      justify-self: end;
       margin: 0;
-      border-radius: 20px;
+      border-radius: 50%;
       overflow: hidden;
+      flex-shrink: 0;
       background: rgba(255, 253, 248, 0.42);
       border: 1px dashed rgba(22, 20, 15, 0.18);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
     .hero__portrait img {
       display: none;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
+      object-position: center 28%;
       image-rendering: pixelated;
       image-rendering: crisp-edges;
     }
@@ -352,16 +369,8 @@
       .footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .footer__nav, .footer__social { justify-content: flex-start; }
       .project-grid { grid-template-columns: 1fr; }
-      .heading-cycler__word { white-space: normal; }
-      .hero__inner {
-        grid-template-columns: 1fr;
-        justify-items: start;
-      }
-      .hero__portrait {
-        order: -1;
-        justify-self: start;
-        max-width: 180px;
-      }
+      .heading-cycler__word { white-space: normal; max-width: 90vw; }
+      .heading-cycler { height: clamp(2.5rem, 9vw, 4rem); }
       .cta__actions { flex-direction: column; align-items: stretch; }
       .cta__actions .btn { justify-content: center; width: 100%; }
     }
@@ -400,6 +409,14 @@
       background: transparent;
       border-right: 1px solid rgba(255, 255, 255, 0.28);
       border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    /* Hero: pixel cycler overrides theme serif */
+    .heading-cycler__word {
+      font-family: var(--pixel) !important;
+      font-weight: 600 !important;
+      font-style: normal !important;
+      color: var(--text) !important;
     }
   </style>
 </head>
@@ -440,6 +457,10 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container hero__inner">
+        <figure class="hero__portrait" aria-label="Hero portrait">
+          <img src="/assets/hero-hassan.png" alt="Hassan Amin" width="512" height="512" />
+          <span class="hero__portrait-ph">8-bit portrait<br><code>assets/hero-hassan.png</code></span>
+        </figure>
         <div class="heading-block">
           <div class="heading-block__lines">
             <h1 class="heading-block__prefix">A Product Design Partner<br>With Focus On</h1>
@@ -450,10 +471,6 @@
             </div>
           </div>
         </div>
-        <figure class="hero__portrait" aria-label="Hero portrait">
-          <img src="/assets/hero-hassan.png" alt="Hassan Amin" width="512" height="512" />
-          <span class="hero__portrait-ph">8-bit portrait<br><code>assets/hero-hassan.png</code></span>
-        </figure>
       </div>
     </section>
 
@@ -508,7 +525,7 @@
             <div class="project-card__thumb">
               <picture>
                 <source srcset="/assets/qualifications-hero.webp" type="image/webp" />
-                <img src="/assets/qualifications-hero.png" alt="" width="800" height="331" loading="lazy" decoding="async" />
+                <img src="/assets/qualifications-hero.png" alt="" width="1920" height="1152" loading="lazy" decoding="async" />
               </picture>
             </div>
             <div class="project-card__body">

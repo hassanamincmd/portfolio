@@ -132,6 +132,15 @@
     .phase-step__copy h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
     .phase-step__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 50ch; }
 
+    .phase-step__visual--gif .cs-img-wrap--fill {
+      background: transparent;
+    }
+    .phase-step__visual--gif img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     /* Safety Card mockup sizing */
     .phase-step__visual--spread .cs-img-wrap--fill {
       width: 112%;
@@ -367,7 +376,7 @@
             <p>The Safety Card shows all assigned qualifications with clear expiry status,  active, expiring, or expired. If a worker has none, the empty state prompts assignment immediately instead of showing a dead end.</p>
           </div>
           <div class="phase-step__visual phase-step__visual--spread">
-            <div class="cs-img-wrap cs-img-wrap--fill">
+            <div class="cs-img-wrap cs-img-wrap--fill cs-img-wrap--contain">
               <picture>
                 <source srcset="/assets/sc-mockup-1.webp" type="image/webp" />
                 <img src="/assets/sc-mockup-1.png" alt="Safety Card,  filled and empty state on mobile" width="6183" height="5660" loading="lazy" decoding="async" />
@@ -383,16 +392,15 @@
             <p>Pick a qualification tag, set an expiry date if the tag requires it, and attach proof via camera, photo library, or file upload. Validation adapts: mandatory expiry shows errors on save; optional expiry stays flexible.</p>
           </div>
           <div class="phase-step__visual phase-step__visual--gif">
-            <div class="cs-img-wrap cs-img-wrap--fill">
-              <video
-                src="/assets/sc-mockup-vid.mp4"
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="metadata"
-                aria-label="Add qualification flow with validation states"
-              ></video>
+            <div class="cs-img-wrap cs-img-wrap--fill cs-img-wrap--contain">
+              <img
+                src="/assets/sc-mockup-2.webp"
+                alt="Add qualification flow with validation states"
+                width="492"
+                height="1092"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
@@ -404,7 +412,7 @@
             <p>Editing opens a bottom drawer where only expiry date and attachments are editable,  the tag itself is locked. Deleting requires a confirmation alert with irreversible-action language.</p>
           </div>
           <div class="phase-step__visual phase-step__visual--spread">
-            <div class="cs-img-wrap cs-img-wrap--fill">
+            <div class="cs-img-wrap cs-img-wrap--fill cs-img-wrap--contain">
               <picture>
                 <source srcset="/assets/mockup-3.webp" type="image/webp" />
                 <img src="/assets/mockup-3.png" alt="Edit qualification drawer and delete confirmation flow" width="8224" height="10712" loading="lazy" decoding="async" />
