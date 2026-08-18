@@ -2,9 +2,9 @@
   'use strict';
 
   // Cache-bust so browsers/CDN pick up replaced resume files.
-  var RESUME_VERSION = '20260815';
-  var PDF_PATH = '/assets/Hassan-Amin-CV-Resume.pdf?v=' + RESUME_VERSION;
-  var PDF_NAME = 'Hassan-Amin-CV-Resume.pdf';
+  var RESUME_VERSION = '20260817';
+  var PDF_PATH = '/assets/Hassan-CV-resume.pdf?v=' + RESUME_VERSION;
+  var PDF_NAME = 'Hassan-CV-resume.pdf';
 
   var modal;
   var iframe;

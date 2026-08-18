@@ -36,6 +36,15 @@
       --serif:   'Fraunces', Georgia, serif;
       --mono:    'DM Mono', ui-monospace, monospace;
       --pixel:   'Pixelify Sans', 'Press Start 2P', monospace;
+      --script:  'Amsterdam Two', 'Snell Roundhand', cursive;
+    }
+    @font-face {
+      font-family: 'Amsterdam Two';
+      src: local('Amsterdam Two'), local('Amsterdam Two ttf'),
+           url('/assets/fonts/AmsterdamTwo.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html  { scroll-behavior: auto; }
@@ -64,8 +73,37 @@
     /* ════════════════════
        HERO
     ════════════════════ */
-    .hero { padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(2rem, 5vw, 3.5rem); }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(2rem, 5vw, 3.5rem);
+    }
+    .hero__name {
+      position: absolute;
+      top: clamp(2.5rem, 6vw, 5rem);
+      left: 50%;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: clamp(112px, 20vw, 168px);
+      margin: 0;
+      transform: translateX(-50%);
+      font-family: var(--script);
+      font-size: clamp(4.5rem, 16vw, 12.5rem);
+      font-weight: 400;
+      line-height: 0.7;
+      letter-spacing: 0.01em;
+      color: rgba(22, 20, 15, 0.16);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
     .hero__inner {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -73,7 +111,7 @@
       gap: clamp(1.75rem, 4vw, 2.75rem);
     }
 
-    .heading-block { position: relative; min-width: 0; max-width: none; overflow: visible; }
+    .heading-block { position: relative; min-width: 0; max-width: min(72ch, 96vw); overflow: visible; }
     .heading-block__lines {
       display: flex;
       flex-direction: column;
@@ -84,14 +122,10 @@
       font-family: var(--serif);
       font-size: clamp(1.45rem, 3.6vw, 3rem);
       font-weight: 500;
-      line-height: 1.35;
+      line-height: 1.25;
       letter-spacing: -0.03em;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35em;
     }
-    .heading-block__prefix span { display: block; white-space: nowrap; }
-    .heading-cycler { position: relative; overflow: hidden; height: clamp(2.25rem, 5vw, 3.5rem); width: 100%; }
+    .heading-cycler { position: relative; overflow: hidden; height: clamp(2.5rem, 5.5vw, 3.75rem); width: 100%; }
     .heading-cycler__word {
       position: absolute;
       left: 50%;
@@ -114,6 +148,7 @@
 
     .hero__portrait {
       position: relative;
+      z-index: 2;
       width: clamp(112px, 20vw, 168px);
       aspect-ratio: 1;
       margin: 0;
@@ -472,6 +507,7 @@
 
     <!-- HERO -->
     <section class="hero">
+      <p class="hero__name" aria-hidden="true">Hassan Amin</p>
       <div class="container hero__inner">
         <figure class="hero__portrait" aria-label="Hero portrait">
           <img src="/assets/hero-hassan.png" alt="Hassan Amin" width="512" height="512" />
@@ -479,10 +515,7 @@
         </figure>
         <div class="heading-block">
           <div class="heading-block__lines">
-            <h1 class="heading-block__prefix">
-              <span>A Product Design Partner</span>
-              <span>With Focus On</span>
-            </h1>
+            <h1 class="heading-block__prefix">A Product Design Partner With Focus On</h1>
             <div class="heading-cycler" aria-live="polite" id="cycler">
               <span class="heading-cycler__word is-active">Software Interfaces</span>
               <span class="heading-cycler__word">Design Systems</span>
@@ -559,6 +592,7 @@
             </div>
           </a>
 
+          <!-- ICan Care hidden until hero image is ready
           <a class="project-card" href="/case-study-icancare">
             <div class="project-card__thumb" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center;">
               <span style="font-family:var(--mono);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:#be185d;">Image coming</span>
@@ -575,6 +609,7 @@
               </div>
             </div>
           </a>
+          -->
         </div>
       </div>
     </section>
