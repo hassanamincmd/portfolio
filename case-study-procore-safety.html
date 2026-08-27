@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety Hub &amp; Qualifications, Hassan Amin</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="Hassan Amin: Safety Hub and Qualifications Management at Procore. Enterprise product design for safety decisions and field credential verification." />
+  <link rel="canonical" href="https://hassanamin.net/case-study-procore-safety" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Hassan Amin" />
+  <meta property="og:title" content="Safety Hub &amp; Qualifications, Hassan Amin" />
+  <meta property="og:description" content="Making safety and compliance decisions faster by bringing risk and credentials into one place." />
+  <meta property="og:url" content="https://hassanamin.net/case-study-procore-safety" />
+  <meta property="og:image" content="https://hassanamin.net/assets/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    :root {
+      --bg: #faf8f4;
+      --surface: #fffdf8;
+      --text: #16140f;
+      --muted: #6b6558;
+      --muted-2: #8a8478;
+      --border: rgba(22, 20, 15, 0.1);
+      --accent: #b45309;
+      --accent-dim: rgba(180, 83, 9, 0.10);
+      --display: 'Inter', system-ui, sans-serif;
+      --serif: 'Inter', system-ui, sans-serif;
+      --mono: 'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+    body { font-family: var(--display); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+    .container--narrow { width: min(760px, 92%); margin: 0 auto; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(250, 248, 244, 0.82); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 64px; width: min(1200px, 92%); margin: 0 auto; }
+    .header__brand { font-size: 0.875rem; font-weight: 500; justify-self: start; }
+    .header__nav { display: flex; justify-content: center; gap: clamp(1.25rem, 3vw, 2.5rem); }
+    .header__nav a { font-size: 0.875rem; font-weight: 500; color: var(--muted); position: relative; padding-bottom: 6px; }
+    .header__nav a:hover, .header__nav a.active { color: var(--text); }
+    .header__nav a.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--text); }
+    .header__cta { justify-self: end; font-size: 0.875rem; font-weight: 500; padding: 0.45rem 0.85rem; border: 1px solid var(--border); border-radius: 999px; }
+
+    .cover { padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 5vw, 3.5rem); }
+    .cover__eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .cover__dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
+    .label { font-size: 0.75rem; font-weight: 500; color: var(--accent); letter-spacing: 0.04em; }
+    .cover__title { font-size: clamp(2rem, 5vw, 3.35rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.12; margin-bottom: 1.25rem; max-width: 22ch; }
+    .cover__subtitle { font-size: 1.1rem; color: var(--muted); max-width: 62ch; line-height: 1.65; margin-bottom: 2rem; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .pill { font-size: 0.75rem; font-weight: 500; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); }
+    .pill--accent { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+    .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .overview-bar__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); }
+    .overview-item { background: var(--bg); padding: 1.4rem 1.5rem; }
+    .overview-item dt { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.45rem; }
+    .overview-item dd { font-size: 0.92rem; font-weight: 500; line-height: 1.4; }
+    .overview-item span { display: block; font-size: 0.75rem; font-weight: 400; color: var(--muted-2); margin-top: 0.2rem; }
+
+    .section { padding: clamp(3.5rem, 7vw, 6rem) 0; border-bottom: 1px solid var(--border); }
+    .section__label { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.85rem; display: block; }
+    .section__title { font-size: clamp(1.65rem, 3.4vw, 2.5rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
+    .section__lead { margin-top: 1rem; font-size: 1.05rem; color: var(--muted); max-width: 62ch; line-height: 1.7; }
+    .section__header { margin-bottom: 2.5rem; }
+    .body-p { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 68ch; margin-bottom: 1rem; }
+    .body-p:last-child { margin-bottom: 0; }
+    .body-p strong { color: var(--text); font-weight: 600; }
+
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .problem-grid--2 { grid-template-columns: 1fr 1fr; }
+    .problem-card { background: var(--surface); padding: 1.75rem; }
+    .problem-card__num { font-size: 0.72rem; color: var(--accent); margin-bottom: 0.85rem; display: block; }
+    .problem-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.6rem; }
+    .problem-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    .flow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+    .flow__col { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .flow__col h3 { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .flow-steps { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .flow-steps li { font-size: 0.9rem; color: var(--muted); padding: 0.55rem 0.75rem; background: var(--bg); border-radius: 8px; }
+    .flow-steps li.is-waste { color: var(--text); background: var(--accent-dim); }
+    .flow-steps li.is-done { color: var(--text); font-weight: 600; }
+
+    .quote { margin: 2rem 0; padding: 1.75rem 2rem; border-left: 2px solid var(--accent); background: var(--surface); }
+    .quote p { font-size: 1.1rem; font-style: italic; line-height: 1.55; }
+    .quote cite { display: block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--muted-2); font-style: normal; }
+
+    .insight-hero { margin: 2rem 0; padding: 2.25rem; background: var(--text); color: #fffdf8; border-radius: 16px; }
+    .insight-hero span { display: block; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.75rem; }
+    .insight-hero h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 1.25rem; }
+    .insight-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .insight-split p { font-size: 0.95rem; line-height: 1.55; opacity: 0.88; }
+    .insight-split strong { display: block; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; opacity: 0.65; }
+
+    .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .concept { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.65rem; }
+    .concept.is-chosen { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+    .concept h3 { font-size: 1.05rem; }
+    .concept p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    .concept .tag { font-size: 0.68rem; color: var(--accent); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .version { padding: 1.5rem 0; border-top: 1px solid var(--border); }
+    .version:first-of-type { border-top: none; padding-top: 0; }
+    .version h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .version p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; }
+
+    .state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    .state { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.15rem; }
+    .state h3 { font-size: 0.9rem; margin-bottom: 0.35rem; }
+    .state p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+    .frame-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .frame { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .frame__copy { padding: 1.15rem 1.25rem 1.35rem; }
+    .frame__copy span { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; }
+    .frame__copy h3 { font-size: 1rem; margin: 0.35rem 0 0.4rem; }
+    .frame__copy p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+    .link-list { list-style: none; margin-top: 1.25rem; }
+    .link-list li { padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.92rem; color: var(--muted); line-height: 1.6; }
+    .link-list a { color: var(--text); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .link-list a:hover { border-color: var(--text); }
+
+    .ph-copy {
+      margin: 1.25rem 0;
+      padding: 1rem 1.15rem;
+      border: 1px dashed rgba(180, 83, 9, 0.45);
+      background: rgba(180, 83, 9, 0.06);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .ph-copy strong { display: block; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.35rem; }
+
+    .src { font-size: 0.8rem; color: var(--muted-2); margin-top: 0.5rem; }
+    .note { font-size: 0.82rem; color: var(--muted-2); margin-top: 1rem; max-width: 68ch; line-height: 1.55; }
+
+    @media (max-width: 900px) {
+      .overview-bar__grid { grid-template-columns: 1fr 1fr; }
+      .problem-grid, .problem-grid--2, .flow, .concept-grid, .insight-split, .state-grid, .frame-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/nav.css" />
+  <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="stylesheet" href="/assets/theme.css" />
+  <link rel="stylesheet" href="/assets/cursor.css" />
+  <link rel="stylesheet" href="/assets/case-study.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__bar">
+      <a class="header__brand" href="/">.h</a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="/#projects" class="active">Selected Work</a>
+        <a href="/#contact">Contact</a>
+        <a href="/#about">About</a>
+      </nav>
+      <div class="header__actions">
+        <a class="header__cta" href="#" data-resume-modal>Resume / CV</a>
+        <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
+    <a href="/">Home</a>
+    <a href="/#projects" class="active">Selected Work</a>
+    <a href="/#contact">Contact</a>
+    <a href="/#about">About</a>
+    <a class="nav__resume" href="#" data-resume-modal>Resume / CV ↗</a>
+  </nav>
+
+  <!-- 01 OPENING -->
+  <section class="cover">
+    <div class="container">
+      <div class="cover__eyebrow">
+        <span class="cover__dot"></span>
+        <span class="label">Procore · Safety &amp; compliance · 2025–2026</span>
+      </div>
+      <h1 class="cover__title">See the risk. Verify the crew. Act without assembling the picture yourself.</h1>
+      <p class="cover__subtitle">I designed Safety Hub and Qualifications Management at Procore so safety managers could tell what needed attention today, and field supervisors could confirm who was qualified to work, without hopping tools or calling the office.</p>
+      <div class="pill-row">
+        <span class="pill pill--accent">Design Lead · Product Designer</span>
+        <span class="pill">Web + Mobile</span>
+        <span class="pill">~12 months</span>
+        <span class="pill">Two tracks in parallel</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="overview-bar">
+    <div class="container">
+      <dl class="overview-bar__grid">
+        <div class="overview-item"><dt>My role</dt><dd>Design Lead &amp; Researcher, Safety Hub<br /><span>Product Designer, Qualifications (1 of 2)</span></dd></div>
+        <div class="overview-item"><dt>Team</dt><dd>PM · Engineering · Design · Research<br /><span>Stakeholders: Kevin Chu, Amber Wilks</span></dd></div>
+        <div class="overview-item"><dt>Timeline</dt><dd>~12 months<br /><span>Qualifications nested ~5 months</span></dd></div>
+        <div class="overview-item"><dt>Platform</dt><dd>Web / iOS / Android<br /><span>Company + project + field</span></dd></div>
+        <div class="overview-item"><dt>Contribution</dt><dd>Discovery → strategy → interaction → prototype → validation → delivery<br /><span>Research-led on Safety Hub; customer-led on Qualifications</span></dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <p class="body-p">Safety Hub went to open beta on April 21, 2026, as part of Procore’s 2026 safety investment. Qualifications Management shipped into closed beta with a web hub and mobile Safety Cards. On the work I owned: a 12-person study rebuilt the cards people could not read, and a 3-tap pattern replaced jumping between Incidents, Observations, Inspections, and Hazards.</p>
+    </div>
+  </section>
+
+  <!-- 02 PROBLEM IN ONE PICTURE -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">02 · The problem in one picture</span>
+        <h2 class="section__title">Users assembled the picture themselves.</h2>
+        <p class="section__lead">A safety manager opening the day needed to know what was overdue, who was at risk, and whether the crew on site was actually qualified. That information lived in incidents, observations, inspections, hazards, directories, spreadsheets, and physical cards. The product made them navigate. It did not help them decide.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow__col">
+          <h3>Current</h3>
+          <ol class="flow-steps">
+            <li>Arrive on site / open laptop</li>
+            <li class="is-waste">Open Incidents tool</li>
+            <li class="is-waste">Leave → Observations</li>
+            <li class="is-waste">Leave → Inspections</li>
+            <li class="is-waste">Call office about a cert</li>
+            <li class="is-waste">Search spreadsheet / Directory</li>
+            <li>Assemble a mental picture</li>
+            <li class="is-done">Then act</li>
+          </ol>
+        </div>
+        <div class="flow__col">
+          <h3>Desired</h3>
+          <ol class="flow-steps">
+            <li>Open Safety Hub</li>
+            <li>See what needs attention today</li>
+            <li>Drill into the record</li>
+            <li class="is-done">Act</li>
+            <li>On site: tap helmet / scan Safety Card</li>
+            <li class="is-done">Verify credentials</li>
+          </ol>
+        </div>
+      </div>
+
+      <figure class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid">
+        <span class="placeholder-label">Current vs desired workflow diagram (one picture)</span>
+        <span class="placeholder-file">assets/procore-02-workflow.png</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 03 WHY IT MATTERS -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">03 · Why this problem matters</span>
+        <h2 class="section__title">User. Business. Product.</h2>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-card__num">User</span>
+          <h3>Time spent assembling, not deciding</h3>
+          <p>Safety managers and superintendents spent the start of the day hunting across tools. Supervisors delayed work while they confirmed OSHA, first aid, or equipment certifications by phone.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">Business</span>
+          <h3>Safety data was in Procore. The program was not.</h3>
+          <p>Procore later said safety data lived across disconnected systems and spreadsheets, making it nearly impossible to identify patterns or act quickly on emerging risks. That is an adoption and risk problem, not a missing chart.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">Product</span>
+          <h3>IA around tools, not decisions</h3>
+          <p>The existing experience was organized by module: Incidents, Observations, Inspections, Directory. Users think in “what is open, who is qualified, what do I do next.”</p>
+        </div>
+      </div>
+      <div class="quote">
+        <p>“The problem wasn’t that users couldn’t find information. The problem was that Procore made them assemble the information themselves.”</p>
+        <cite>Working insight, used as the brief for both tracks</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 RESEARCH -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">04 · Research without the research theater</span>
+        <h2 class="section__title">What we needed to learn, then evidence.</h2>
+        <p class="section__lead">Safety Hub Phase 2 was a formal study. Qualifications was customer-request-driven. Both answered the same four questions.</p>
+      </div>
+      <div class="problem-grid problem-grid--2" style="margin-bottom:2rem;">
+        <div class="problem-card">
+          <span class="problem-card__num">01</span>
+          <h3>What information do they actually need?</h3>
+          <p>Open hazards, overdue inspections, incident accountability by contractor, expiration status, proof attachments, tag type rules.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">02</span>
+          <h3>At what point in the workflow?</h3>
+          <p>Morning triage on web or mobile. Gate check on site. Admin bulk-assign before a shift. Not after they have already left the record.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">03</span>
+          <h3>What causes them to leave?</h3>
+          <p>No drill-through from a card. Labels that look like project counts. A two-bar chart that does not equal “hours lost.” A missing expiration date on a tag that requires one.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">04</span>
+          <h3>What decision are they trying to make?</h3>
+          <p>“Which site is driving incidents?” “Can this person work today?” “What is still open and who owns it?”</p>
+        </div>
+      </div>
+      <p class="body-p"><strong>Safety Hub evidence.</strong> Unmoderated UserTesting study: 12 construction/safety professionals, static Figma prototype, ~20–25 min, screened for weekly dashboard use. 11/12 wanted to drill into open hazards; 0/12 could. 8/12 misread “Project Total: 247.” 11/12 understood Incidents per Manpower Log on first pass. 4/12 correctly read Time Lost’s two-bar model.</p>
+      <p class="body-p"><strong>Qualifications evidence.</strong> Customer requests and field feedback, not a formal UXR plan. The recurring job: verify on site; operate hundreds to 1,000+ workers from the office; configure tag behavior once so every downstream form is consistent.</p>
+      <div class="quote">
+        <p>“Next steps I would do is drill into open items, what’s high risk, who owns it, and why it’s still open.”</p>
+        <cite>P2, UserTesting · Safety Hub Phase 2</cite>
+      </div>
+      <div class="quote">
+        <p>“This makes my life on the site so much easier.”</p>
+        <cite>Safety manager, field user · Qualifications</cite>
+      </div>
+      <figure class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid">
+        <span class="placeholder-label">Research synthesis board: questions, quotes, failure modes</span>
+        <span class="placeholder-file">assets/procore-04-research.png</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 05 JOURNEY -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">05 · Current-state journey</span>
+        <h2 class="section__title">The opportunity was eliminating movement.</h2>
+        <p class="section__lead">The biggest opportunity was not prettier cards. It was removing the trips between tools before a decision could happen.</p>
+      </div>
+      <p class="body-p"><strong>Safety Hub trigger.</strong> Morning: user needs a portfolio or project safety picture. Opens project → Incidents → leaves → Observations → leaves → Inspections → maybe Hazards → maybe a spreadsheet. Context dies at every hop. System state is unclear: is 247 projects or assessments?</p>
+      <p class="body-p"><strong>Qualifications trigger.</strong> Gate or task assignment: is this person qualified today? Call the office, or hunt Directory and attachments. Meanwhile office admins manage tags that behave differently with no single grammar.</p>
+      <figure class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--tall">
+        <span class="placeholder-label">Annotated journey map: trigger → hops → decision, waste highlighted</span>
+        <span class="placeholder-file">assets/procore-05-journey.png</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 06 STRATEGIC INSIGHT -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">06 · The strategic insight</span>
+        <h2 class="section__title">From information retrieval to decision support.</h2>
+      </div>
+      <div class="insight-hero">
+        <span>Design principle for both products</span>
+        <h3>Stop asking “where is it.” Start answering “what do I need to know to act.”</h3>
+        <div class="insight-split">
+          <p><strong>Old mental model</strong>Where is the incident? Where is the cert? Which tool has inspections?</p>
+          <p><strong>New mental model</strong>What needs attention today? Can this person work? What happens if I tap through?</p>
+        </div>
+      </div>
+      <p class="body-p">Safety Hub became a command center, then cards that drill into source tools without starting over. Qualifications became one grammar: configure tags, operate the workers table, verify on the Safety Card. Same principle, two surfaces of the safety program.</p>
+    </div>
+  </section>
+
+  <!-- 07 CONCEPTS -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">07 · Explore multiple solutions</span>
+        <h2 class="section__title">Three directions. One winner per job.</h2>
+      </div>
+      <p class="body-p"><strong>Safety Hub.</strong> The job was portfolio and project triage.</p>
+      <div class="concept-grid">
+        <div class="concept">
+          <span class="tag">Concept A</span>
+          <h3>Centralized mega-dashboard</h3>
+          <p>Everything visible at once. High visibility. Adds a new destination and more scanning before action.</p>
+        </div>
+        <div class="concept">
+          <span class="tag">Concept B</span>
+          <h3>Contextual side panel only</h3>
+          <p>Stay in the current tool. Preserves context. Too little space for cross-module risk.</p>
+        </div>
+        <div class="concept is-chosen">
+          <span class="tag">Chosen · Concept C</span>
+          <h3>Hub + drill-through cards</h3>
+          <p>Dedicated safety home, then cards that open the record in place. Lowest context-switching without inventing a second product.</p>
+        </div>
+      </div>
+      <p class="body-p" style="margin-top:2rem;"><strong>Qualifications.</strong> The job was verify in the field and operate at table scale.</p>
+      <div class="concept-grid">
+        <div class="concept">
+          <span class="tag">Concept A</span>
+          <h3>Directory-only tags</h3>
+          <p>Cheap to ship. Fails on site. No NFC, no bulk, no tag grammar.</p>
+        </div>
+        <div class="concept">
+          <span class="tag">Concept B</span>
+          <h3>Mobile card only</h3>
+          <p>Great for a gate. Collapses when 1,000 workers need dates and attachments.</p>
+        </div>
+        <div class="concept is-chosen">
+          <span class="tag">Chosen · Concept C</span>
+          <h3>One grammar, three surfaces</h3>
+          <p>Tags Management configures. Workers Table operates. Safety Card verifies. Rules flow downhill.</p>
+        </div>
+      </div>
+      <div class="ph-copy">
+        <strong>Placeholder · exploration frames</strong>
+        Confirm whether early concept boards exist. If yes, drop three frames per track. If no, keep this copy-only comparison.
+      </div>
+      <figure class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid">
+        <span class="placeholder-label">Three-up concept comparison (Safety Hub)</span>
+        <span class="placeholder-file">assets/procore-07-concepts-hub.png</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 08 MESSY MIDDLE -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">08 · The messy middle</span>
+        <h2 class="section__title">The final design came from logged deviations, not magic.</h2>
+      </div>
+      <article class="version">
+        <h3>Safety Hub v1 · Command center</h3>
+        <p>One 3-tap pattern across Incidents, Observations, Inspections, Hazards: hub → category → project list → record. Different data shapes, same depth. Problem this solved: module-hopping. Risk: over-flattening modules that are not actually the same.</p>
+      </article>
+      <article class="version">
+        <h3>Safety Hub v2 · Five cards, including a known wrong chart</h3>
+        <p>Spec asked for a semicircle on Daily Hazard Assessments. First draft shipped to research as a 360° donut — logged, not hidden. Research killed it. Revert plus label, YTD, and legend fixes. Time Lost’s two-bar model failed (4/12). Incidents stayed structurally unchanged (11/12).</p>
+      </article>
+      <article class="version">
+        <h3>Qualifications · Tag identity first</h3>
+        <p>Editing a qualification locks the tag. Expiration and attachments stay editable. Changing the tag silently would be identity drift on an audit trail. Delete copy matches blast radius: tag vs category.</p>
+      </article>
+      <figure class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid">
+        <span class="placeholder-label">Version timeline: donut vs semicircle, two-bar vs single series</span>
+        <span class="placeholder-file">assets/procore-08-versions.png</span>
+      </figure>
+      <figure class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid" style="margin-top:1rem;">
+        <span class="placeholder-label">Phase 1 hub flows (same drill-down across modules)</span>
+        <span class="placeholder-file">assets/safety-hub-p1-03-hub-flows.png</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 09 ENTERPRISE -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">09 · Enterprise complexity</span>
+        <h2 class="section__title">Permissions, states, scale, integrity.</h2>
+      </div>
+      <div class="state-grid">
+        <div class="state">
+          <h3>Permissions</h3>
+          <p>Safety Hub: company vs project views for directors vs superintendents. Qualifications: Admin to write NFC; Standard/Admin to assign tags. Public docs: Directory Admin to write chips.</p>
+        </div>
+        <div class="state">
+          <h3>States</h3>
+          <p>Empty (“There Are No Assessments to Display Right Now”). Error + Try Again. Expired / expiring soon / no-expiry. Tag assigned with no supporting data. Partial loads on cards.</p>
+        </div>
+        <div class="state">
+          <h3>Scale</h3>
+          <p>Workers Table designed for 500–1,000+ rows: bulk assign, CSV export, shared date vs per-worker dates. Cards must remain scannable at portfolio, not only a single project.</p>
+        </div>
+        <div class="state">
+          <h3>Data integrity</h3>
+          <p>Tag is identity; lock on edit. Type-to-confirm when deleting a tag that removes it from every profile. Distinct errors: missing tag vs missing required date.</p>
+        </div>
+        <div class="state">
+          <h3>Collaboration</h3>
+          <p class="ph-copy" style="margin:0;padding:0;border:0;background:transparent;"><strong>Placeholder</strong>What happens if two admins edit the same worker tag at once? Confirm with engineering notes.</p>
+        </div>
+        <div class="state">
+          <h3>Offline / field</h3>
+          <p>Safety Card write to NFC assumes a capable device and chip prep (e.g. Studson via Twiceme, per Procore’s own setup guide). Design the success and failure of the write, not only the happy path.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 DESIGN SYSTEM -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">10 · The design system story</span>
+        <h2 class="section__title">Reuse first. Extend only with a reason.</h2>
+        <p class="section__lead">I did not treat Procore’s system as a sticker sheet. Cards, tables, toasts, destructive confirms, and empty states had to be the same grammar as the rest of the product so engineering could ship without a one-off kit.</p>
+      </div>
+      <p class="body-p">Existing patterns: dashboard cards, side panels, data tables, mobile list → detail. Gaps: a guess-free statistical card (legend + timeframe + drill), a qualification row that encodes expiry rules, NFC write confirmation.</p>
+      <div class="ph-copy">
+        <strong>Placeholder · system contribution</strong>
+        Did any card, table density, or confirmation pattern get documented back into the Procore DS? If yes, name the component. If no, keep this as “consumed and stretched existing patterns.”
+      </div>
+      <figure class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--short">
+        <span class="placeholder-label">Component inventory: reused vs extended</span>
+        <span class="placeholder-file">assets/procore-10-system.png</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 11 FINAL EXPERIENCE -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">11 · The final experience</span>
+        <h2 class="section__title">Before / after, then frames that earn their place.</h2>
+      </div>
+      <div class="frame-grid" style="margin-bottom:1.5rem;">
+        <div class="frame">
+          <div class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--short">
+            <span class="placeholder-label">Before: module-hopping / spreadsheet verify</span>
+            <span class="placeholder-file">assets/procore-11-before.png</span>
+          </div>
+          <div class="frame__copy"><span>Before</span><h3>Assemble it yourself</h3><p>Four tools and a phone call before a decision.</p></div>
+        </div>
+        <div class="frame">
+          <div class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--short">
+            <span class="placeholder-label">After: hub + card / Safety Card</span>
+            <span class="placeholder-file">assets/procore-11-after.png</span>
+          </div>
+          <div class="frame__copy"><span>After</span><h3>See it, then act</h3><p>Hub for risk. Card for credentials.</p></div>
+        </div>
+      </div>
+      <div class="frame-grid">
+        <div class="frame">
+          <div class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid">
+            <span class="placeholder-label">01 Safety Hub home — you know where you are</span>
+            <span class="placeholder-file">assets/procore-11-01-hub.png</span>
+          </div>
+          <div class="frame__copy"><span>01 · Project / company context</span><h3>A dedicated safety home</h3><p>Why it exists: the user should not start in a random tool.</p></div>
+        </div>
+        <div class="frame">
+          <div class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid">
+            <span class="placeholder-label">02 Card with drill-through</span>
+            <span class="placeholder-file">assets/procore-11-02-card.png</span>
+          </div>
+          <div class="frame__copy"><span>02 · Critical information</span><h3>Signal without another search</h3><p>Why it exists: relevant counts and trends sit on the decision path.</p></div>
+        </div>
+        <div class="frame">
+          <div class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid">
+            <span class="placeholder-label">03 Safety Card / NFC write</span>
+            <span class="placeholder-file">assets/procore-11-03-nfc.png</span>
+          </div>
+          <div class="frame__copy"><span>03 · Decision</span><h3>Verify at the moment of work</h3><p>Why it exists: the primary action is on site, not after a call to the office.</p></div>
+        </div>
+        <div class="frame">
+          <div class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid">
+            <span class="placeholder-label">04 Success / empty / error toast</span>
+            <span class="placeholder-file">assets/procore-11-04-confirm.png</span>
+          </div>
+          <div class="frame__copy"><span>04 · Confirmation</span><h3>The system says what happened</h3><p>Why it exists: write NFC, bulk assign, and delete all need a paired success or failure.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 INTERACTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">12 · Interaction details</span>
+        <h2 class="section__title">Why this control, not a prettier one.</h2>
+      </div>
+      <article class="version">
+        <h3>Filtering · Workers Table</h3>
+        <p>Filter by expiration and tag because the job is “who is non-compliant,” not “who exists in Directory.” A generic search box would hide the compliance question.</p>
+      </article>
+      <article class="version">
+        <h3>Bulk actions · shared date vs per-worker</h3>
+        <p>Bulk assign exists because 1,000 rows cannot be clicked one-by-one. Shared date is the default for a class/course; per-worker dates exist because reality is messy. Forcing one model would create silent bad data.</p>
+      </article>
+      <article class="version">
+        <h3>Information hierarchy · cards</h3>
+        <p>Primary number, timeframe, then legend with count and percent. Users misread unlabeled totals. Hierarchy is a comprehension fix, not decoration.</p>
+      </article>
+      <article class="version">
+        <h3>Inline vs modal · tag edit</h3>
+        <p>Lock the tag in place. Opening a modal to “change type” would invite identity drift. Expiration and attachments stay on the record.</p>
+      </article>
+      <article class="version">
+        <h3>Confirmation · matched to blast radius</h3>
+        <p>Delete tag: type-to-confirm, removes from every profile. Delete category: destructive, lower severity. NFC write: progress to 100% before success. Reversible where the data model allows; irreversible where it does not, and said plainly.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 13 VALIDATION -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">13 · Validation</span>
+        <h2 class="section__title">Prototype → test → observation → iteration.</h2>
+        <p class="section__lead">Decisions were not taste. The donut went to research on purpose. Cards that worked were left alone.</p>
+      </div>
+      <p class="body-p">Users understood Incidents per Manpower Log (11/12) and named the use case unprompted: which contractor is driving incidents. No structural change. Users did not understand Time Lost’s two-bar model (4/12). Redesigned to a single-series hours-lost bar. Claimed to Date confused scale ($924M) and frame (billing vs injury). Retitled, dropped prototype value, added trend. Toolbox Talk: Total vs Attended collided. Single-series attendance rate.</p>
+      <p class="body-p">Avoided “users loved it.” The study produced failure modes, then briefs.</p>
+      <figure class="cs-img-wrap cs-img-wrap--placeholder cs-img-wrap--mid">
+        <span class="placeholder-label">Study protocol + card-by-card before/after</span>
+        <span class="placeholder-file">assets/procore-13-validation.png</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 14 ENGINEERING -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">14 · Engineering collaboration</span>
+        <h2 class="section__title">Design ambition, then the constraint, then what shipped.</h2>
+      </div>
+      <p class="body-p">Safety Hub cards drill into source tools rather than duplicating record UIs. That is an architecture choice: reuse Incidents/Observations/Inspections instead of a parallel object model. Qualifications tag rules are configured once so mobile and web do not each hard-code exceptions.</p>
+      <div class="ph-copy">
+        <strong>Placeholder · technical trade-offs to confirm</strong>
+        1) Real-time vs refresh on dashboard cards. 2) Table virtualization / pagination at 1,000+ rows. 3) NFC write reliability and chip format ownership (Twiceme vs Procore). 4) Quality &amp; Safety split as a prerequisite for Observation/Inspection cards (called out in Procore’s own beta docs). Replace this box with the actual negotiation.
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 IMPACT -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">15 · Impact</span>
+        <h2 class="section__title">The work shipped. Procore put it in front of customers.</h2>
+        <p class="section__lead">I was part of the team behind both products. The announcements describe the surfaces in this case study: public product status first, then the study and workflow outcomes I owned.</p>
+      </div>
+
+      <h3 style="font-size:1.1rem;margin-bottom:0.75rem;">Public, from Procore</h3>
+      <ul class="link-list">
+        <li><strong>Safety Hub open beta, launch date April 21, 2026.</strong> What’s New: “Centralized Safety Hub for Procore Users” (published Mar 31, 2026). Audience named: Safety Directors, Superintendents, Safety Managers, Crew Leads. Company and project levels. <a href="https://www.procore.com/whats-new/centralized-safety-hub-for-procore-users" target="_blank" rel="noreferrer">procore.com/whats-new</a></li>
+        <li><strong>Company blog, May 4, 2026:</strong> “Introducing Safety Hub, Now in Open Beta.” Dedicated safety home. Drill into cards and open source tools without leaving. “Seeing a problem and acting on it should happen in the same place.” Called out as one of several significant 2026 safety investments. Available to all customers via Procore Explore. <a href="https://www.procore.com/blog/introducing-safety-hub-now-in-open-beta" target="_blank" rel="noreferrer">procore.com/blog</a></li>
+        <li><strong>Earlier platform announcement:</strong> Procore described Safety Hub as a major safety initiative with a unified view of inspections, observations, and incidents, because data had lived across disconnected systems and spreadsheets. Same post previewed Qualification Management as an upcoming capability. <a href="https://www.procore.com/blog/procore-shapes-future-of-construction-with-new-platform-enhancements" target="_blank" rel="noreferrer">Platform enhancements post</a></li>
+        <li><strong>Qualifications Management, closed beta.</strong> Official user guide: Qualifications Hub on web, Procore Safety Card on mobile, NFC helmet / QR sticker verification, expiration tracking. <a href="https://v2.support.procore.com/process-guides/company-qualifications-management-user-guide" target="_blank" rel="noreferrer">Support: Qualifications overview</a></li>
+      </ul>
+      <p class="note">These are company-level announcements for the product area I worked on: Safety Hub (command center and cards) and Qualifications Management (hub, workers, Safety Card / NFC). That is the qualitative impact. Third-party news did not cover individual contributors, which is normal for enterprise SaaS launches.</p>
+
+      <h3 style="font-size:1.1rem;margin:2rem 0 0.75rem;">What I can show from the work</h3>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-card__num">Workflow</span>
+          <h3>Four modules, one 3-tap depth</h3>
+          <p>Hub → category → list → record. Replaces leaving one tool to start another.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">Study</span>
+          <h3>12 sessions, synthesis by failure mode</h3>
+          <p>11/12 first-pass on Incidents card (unchanged). 0/12 drill-through on hazards (path added). 4/12 on Time Lost (chart rebuilt).</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">System</span>
+          <h3>Three surfaces, one qualification grammar</h3>
+          <p>Configure → operate → verify. Bulk assign and NFC instead of phone-the-office.</p>
+        </div>
+      </div>
+      <p class="ph-copy">
+        <strong>Placeholder · expected impact (label if used)</strong>
+        If you want a “not yet GA” line: expected reduction in tool-switching for morning triage; expected reduction in gate delays once NFC is adopted. Do not publish as measured.
+      </p>
+    </div>
+  </section>
+
+  <!-- 16 WRONG -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">16 · What I got wrong</span>
+        <h2 class="section__title">I optimized for density and clever charts.</h2>
+        <p class="section__lead">I assumed experienced Procore users would decode a donut and a two-bar “time lost” model because they live in dashboards. Testing showed extra encoding increased decision time and invented meaning (project count, contractor billing, “total” vs “attended”).</p>
+      </div>
+      <p class="body-p"><strong>Lesson.</strong> Enterprise users do not need more information on the card. They need the right number, a timeframe, a path into the record, and a chart that does not ask them to do math. Shipping the donut to research was the recovery. Pretending I had always wanted a semicircle would have been the real mistake.</p>
+    </div>
+  </section>
+
+  <!-- 17 REFLECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">17 · Final reflection</span>
+        <h2 class="section__title">Own the product area, not a screen.</h2>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="problem-card__num">Product</span>
+          <h3>Fragmentation, not discoverability</h3>
+          <p>The core problem was workflow fragmentation across safety tools and credential tracking, not a missing search field.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">Design</span>
+          <h3>Context beat another destination</h3>
+          <p>A hub with drill-through, and a card that writes NFC, reduced cognitive load more than dumping every metric on one canvas.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">Collaboration</span>
+          <h3>The best version was negotiated</h3>
+          <p>PM requirements, a logged chart deviation, customer requests, and engineering reuse of source tools. The intersection is the job.</p>
+        </div>
+      </div>
+      <p class="body-p" style="margin-top:2rem;">A simpler workflow so construction professionals spend less time navigating Procore, and more time making safety and compliance decisions.</p>
+    </div>
+  </section>
+
+  <section class="section" style="border-bottom:none;">
+    <div class="container">
+      <p class="section__label" style="margin-bottom:1.5rem;">More work</p>
+      <div class="more-work__grid">
+        <a class="more-work__card" href="/case-study-meridian">
+          <div><p class="more-work__meta">Meridian</p><h3 class="more-work__title">Design Lead, SaaS</h3></div>
+        </a>
+        <a class="more-work__card" href="/case-study-icancare">
+          <div><p class="more-work__meta">ICan Care</p><h3 class="more-work__title">UI/UX, Healthcare</h3></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__grid" style="max-width:1200px;">
+      <div><span class="footer__brand">hassanamin.net</span><p class="footer__copy">&copy; 2026 Hassan Amin</p></div>
+      <nav class="footer__nav" aria-label="Footer"><a href="/#projects">Selected Work</a><a href="/#about">About</a><a href="/#contact">Contact</a></nav>
+      <div class="footer__social"><a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a><a href="#" class="copy-email-btn" data-copy-email data-copy-label="Email" data-copied-label="Copied">Email</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/cursor.js"></script>
+  <script src="/assets/smooth-scroll.js"></script>
+  <script src="/assets/nav.js"></script>
+  <script src="/assets/copy-email.js"></script>
+  <script src="/assets/resume-modal.js"></script>
+</body>
+</html>

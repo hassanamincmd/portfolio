@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Folio — AI shortlist for product designers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+  <div class="grid-fade" aria-hidden="true"></div>
+
+  <div class="app">
+    <nav class="nav">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Folio</span>
+        <span class="badge">Studio</span>
+      </div>
+      <div class="app-tabs" role="tablist" aria-label="Mode">
+        <button type="button" class="is-on" data-view="shortlist" role="tab" aria-selected="true">Shortlist</button>
+        <button type="button" data-view="manual" role="tab" aria-selected="false">Manual</button>
+      </div>
+      <div class="profile-wrap">
+        <button type="button" class="avatar" id="profileBtn" aria-haspopup="menu" aria-expanded="false" title="Your profile">HA</button>
+        <div class="profile-menu" id="profileMenu" hidden role="menu">
+          <button type="button" role="menuitem" data-panel="details">Personal details</button>
+          <button type="button" role="menuitem" data-panel="skills">Skills &amp; experience</button>
+          <button type="button" role="menuitem" data-panel="applied">Applied jobs <span id="appliedBadge">0</span></button>
+        </div>
+      </div>
+    </nav>
+
+    <div id="view-shortlist">
+      <header class="hero">
+        <p class="eyebrow">Your daily signal</p>
+        <h1>Roles that fit.<br /><em>Applications that are ready.</em></h1>
+        <p class="lede">Folio scores live openings against your craft, location, and level. Only strong matches make the shortlist. Generate a tailored resume and letter in one click.</p>
+
+        <div class="hero-controls">
+          <label class="seg">
+            <input type="checkbox" id="remoteOnly" />
+            <span>Remote first</span>
+          </label>
+          <label class="seg">
+            <span>Match floor</span>
+            <select id="minScore">
+              <option value="72" selected>72 strong</option>
+              <option value="80">80 excellent</option>
+              <option value="85">85 only</option>
+            </select>
+          </label>
+          <button type="button" class="btn-primary" id="refresh">Find today’s roles</button>
+        </div>
+      </header>
+
+      <div class="copybar" id="copybar" aria-label="Your details, ready to copy"></div>
+      <p class="status" id="status">Ready when you are.</p>
+
+      <div class="layout">
+        <section aria-label="Ranked jobs">
+          <div class="list" id="list"></div>
+        </section>
+        <div class="detail-col">
+          <aside class="card detail" id="detail">
+            <p class="eyebrow">Selected role</p>
+            <p class="empty">Choose a match to see why it ranked, then generate a tailored resume and cover letter.</p>
+          </aside>
+          <section class="card questions-card" id="questionsCard" hidden>
+            <p class="eyebrow">Custom questions</p>
+            <h2>Application answers</h2>
+            <p class="meta">Paste one or more screening questions. Answers use your saved profile and the selected role.</p>
+            <label class="field">
+              <span>Questions</span>
+              <textarea id="questionsInput" placeholder="Paste custom questions here. Separate multiple questions with a blank line."></textarea>
+            </label>
+            <div class="actions">
+              <button type="button" class="btn-primary" id="answerBtn">Answer</button>
+            </div>
+            <div id="answersOut"></div>
+          </section>
+        </div>
+      </div>
+
+      <section class="applied-wrap" aria-label="Jobs you applied to">
+        <div class="applied-head">
+          <div>
+            <p class="eyebrow">Pipeline</p>
+            <h2>Applied</h2>
+          </div>
+          <p class="meta" id="appliedCount">0 saved</p>
+        </div>
+        <div class="list" id="appliedList">
+          <div class="card empty">Generate a resume, then click Done applying when you have submitted.</div>
+        </div>
+      </section>
+    </div>
+
+    <div id="view-manual" hidden>
+      <header class="hero">
+        <p class="eyebrow">Manual studio</p>
+        <h1>Paste a JD.<br /><em>Leave with an ATS resume.</em></h1>
+        <p class="lede">Manual mode scans the resume you paste or upload. It does not use the saved profile. Your wording stays. Skills the JD actually mentions move first.</p>
+      </header>
+
+      <div class="manual-grid">
+        <section class="card">
+          <label class="field">
+            <span>Role title</span>
+            <input id="manualTitle" type="text" placeholder="Senior Product Designer" />
+          </label>
+          <label class="field">
+            <span>Company</span>
+            <input id="manualCompany" type="text" placeholder="Optional" />
+          </label>
+          <label class="field">
+            <span>Job description</span>
+            <textarea id="manualJd" placeholder="Paste the full JD here."></textarea>
+          </label>
+          <label class="field">
+            <span>Your resume</span>
+            <textarea id="manualResume" placeholder="Paste the full resume you want tailored. Manual mode will not fall back to the saved profile."></textarea>
+          </label>
+          <div class="actions">
+            <input type="file" id="manualFile" accept=".txt,.md,.docx,.pdf" hidden />
+            <button type="button" class="btn-ghost" id="manualUpload">Upload resume</button>
+            <button type="button" class="btn-ghost" id="manualClear">Clear all</button>
+            <button type="button" class="btn-primary" id="manualGen">Scan and tailor</button>
+          </div>
+          <p class="meta" id="manualFileStatus"></p>
+        </section>
+        <section class="card detail" id="manualOut">
+          <p class="eyebrow">Output</p>
+          <p class="empty">Paste a JD and generate. You will get a tailored resume and cover letter you can copy or download.</p>
+        </section>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <span>Folio</span>
+      <span>Strong matches only. Your profile stays on this machine.</span>
+    </footer>
+  </div>
+
+  <div class="drawer-back" id="drawerBack" hidden></div>
+  <aside class="drawer" id="drawer" hidden>
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow" id="drawerEyebrow">Profile</p>
+        <h2 id="drawerTitle">Personal details</h2>
+      </div>
+      <button type="button" class="btn-ghost" id="drawerClose">Close</button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+  </aside>
+
+  <div class="confirm-back" id="confirmBack" hidden></div>
+  <div class="confirm" id="confirm" hidden role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <p class="eyebrow">Application</p>
+    <h2 id="confirmTitle">Did you finish applying?</h2>
+    <p class="meta" id="confirmMeta"></p>
+    <div class="actions">
+      <button type="button" class="btn-primary" id="confirmYes">Yes, move to Applied</button>
+      <button type="button" class="btn-ghost" id="confirmNo">No, keep it</button>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

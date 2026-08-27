@@ -1,0 +1,97 @@
+/* CodePen-style cursor: white circle + mix-blend-mode: difference
+   https://codepen.io/Lomzo/pen/qBBROLm */
+
+.site-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #fff;
+  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%) scale(0.3);
+  transition:
+    transform 350ms ease,
+    width 350ms ease,
+    height 350ms ease,
+    padding 350ms ease,
+    border-radius 350ms ease,
+    background-color 250ms ease,
+    color 250ms ease,
+    opacity 300ms ease,
+    box-shadow 300ms ease,
+    mix-blend-mode 0s;
+  will-change: transform, left, top;
+}
+
+.site-cursor.is-on {
+  opacity: 1;
+}
+
+.site-cursor__label {
+  display: block;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    max-width 350ms ease,
+    opacity 250ms ease,
+    transform 350ms ease;
+}
+
+/* Hit zone: expand + Read More (solid pill so text stays readable) */
+.site-cursor.is-read-more {
+  width: auto;
+  height: auto;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background-color: #fff;
+  color: #1a1a1a;
+  mix-blend-mode: normal;
+  transform: translate(-50%, -50%) scale(1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.site-cursor.is-read-more .site-cursor__label {
+  max-width: 8rem;
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.has-site-cursor,
+  html.has-site-cursor * {
+    cursor: none !important;
+  }
+
+  html.has-site-cursor input,
+  html.has-site-cursor textarea,
+  html.has-site-cursor select,
+  html.has-site-cursor [contenteditable='true'] {
+    cursor: text !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .site-cursor {
+    display: none !important;
+  }
+}

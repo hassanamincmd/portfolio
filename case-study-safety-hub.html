@@ -5,246 +5,268 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Safety Hub, Hassan Amin</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="description" content="Safety Hub: job-site safety on mobile and web. Two-phase design lead with UX research." />
+  <meta name="description" content="How I helped shape the future of construction tech. Safety Hub and Safety Worker Experience at Procore." />
   <link rel="canonical" href="https://hassanamin.net/case-study-safety-hub" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Hassan Amin" />
   <meta property="og:title" content="Safety Hub, Hassan Amin" />
-  <meta property="og:description" content="Safety Hub: job-site safety on mobile and web. Two-phase design lead with UX research." />
+  <meta property="og:description" content="How I helped shape the future of construction tech. Safety Hub and Safety Worker Experience at Procore." />
   <meta property="og:url" content="https://hassanamin.net/case-study-safety-hub" />
   <meta property="og:image" content="https://hassanamin.net/assets/og-image.jpg" />
-  <meta property="og:image:alt" content="Hassan Amin, Product Designer" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Safety Hub, Hassan Amin" />
-  <meta name="twitter:description" content="Safety Hub: job-site safety on mobile and web. Two-phase design lead with UX research." />
-  <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
     :root {
-      --bg: #f4f1ea;
-      --surface: #fffdf8;
-      --surface-2: #f7f3eb;
-      --surface-3: #ece7dc;
-      --text: #16140f;
-      --muted: #6b6558;
-      --muted-2: #8a8478;
-      --border: rgba(22, 20, 15, 0.1);
-      --accent: #7c3aed;
-      --accent-dim: rgba(124, 58, 237, 0.10);
-      --display: 'Outfit', 'Segoe UI', sans-serif;
-      --serif: 'Fraunces', Georgia, serif;
-      --mono: 'DM Mono', ui-monospace, monospace;
+      --bg: #ffffff;
+      --text: #121212;
+      --muted: #4a4a4a;
+      --border: rgba(18, 18, 18, 0.1);
+      --orange: #f05a28;
+      --orange-soft: #f4a261;
+      --ink: #1c1c1c;
+      --gray: #d9d9d6;
+      --font: 'Inter', system-ui, sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: auto; }
-    body { font-family: var(--display); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
-    .container { width: min(1200px, 92%); margin: 0 auto; }
+    .wrap { width: min(1080px, 90%); margin: 0 auto; }
 
-    /* ── Progress ── */
-    .progress-line { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 200; transition: width 0.1s linear; }
-
-    /* ── Header ── */
-    .header { position: sticky; top: 0; z-index: 100; background: rgb(0 0 0 / 90%); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-    .header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 64px; width: min(1200px, 92%); margin: 0 auto; }
-    .header__brand { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; justify-self: start; }
-    .header__nav { display: flex; justify-content: center; gap: clamp(1.25rem, 3vw, 2.5rem); }
-    .header__nav a { font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--muted); transition: color 0.2s; position: relative; padding-bottom: 6px; }
-    .header__nav a:hover, .header__nav a.active { color: var(--text); }
-    .header__nav a.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--text); }
-    .header__cta { justify-self: end; font-family: var(--mono); font-size: 0.875rem; font-weight: 300; color: var(--text); padding: 0.45rem 0.85rem; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
-    .header__cta:hover { background: var(--text); color: var(--bg); }
-
-    /* ── Cover ── */
-    .cover { display: flex; flex-direction: column; justify-content: flex-start; padding: clamp(2.5rem, 5vw, 3.5rem) 0 clamp(3rem, 6vw, 4rem); position: relative; overflow: hidden; }
-    .cover__bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
-    .cover__bg-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
-    .cover__content { position: relative; z-index: 1; }
-    .cover__eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; }
-    .cover__dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
-    .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: none; }
-    .cover__title { font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
-    .cover__title span { color: var(--accent); }
-    .cover__subtitle { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--muted); font-weight: 300; max-width: 68ch; line-height: 1.65; margin-bottom: 3rem; }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); white-space: nowrap; }
-    .pill--accent { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-
-    .cs-img-wrap--placeholder {
-      background: var(--surface);
-      display: flex;
-      flex-direction: column;
+    /* Site chrome — minimal, stays out of the mockup */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header__bar {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 2rem;
-      text-align: center;
-      border: 1px dashed rgba(255,255,255,0.14);
-      line-height: normal;
+      min-height: 56px;
+      width: min(1080px, 90%);
+      margin: 0 auto;
     }
-    .placeholder-label { font-family: var(--mono); font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.03em; line-height: 1.5; max-width: 32ch; }
-    .placeholder-file  { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); opacity: 0.85; word-break: break-all; max-width: 36ch; }
-
-    /* ── Process timeline ── */
-    .process-timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 2.5rem; }
-    .process-timeline--5 { grid-template-columns: repeat(5, 1fr); }
-    .timeline-step { background: var(--surface); padding: 1.75rem 1.25rem; }
-    .timeline-step__num { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.75rem; display: block; }
-    .timeline-step h3 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.45rem; letter-spacing: -0.02em; }
-    .timeline-step p { font-size: 0.75rem; color: var(--muted); line-height: 1.65; }
-
-    /* ── Platform deliverable ── */
-    .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
-    .platform-item__label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); letter-spacing: 0.1em; margin-bottom: 0.75rem; display: block; }
-
-    /* ── Overview bar ── */
-    .overview-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
-    .overview-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--border); }
-    .overview-item { background: var(--bg); padding: 1.5rem 1.5rem; }
-    .overview-item dt { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); text-transform: none; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-    .overview-item dd { font-size: 0.9rem; font-weight: 500; color: var(--text); line-height: 1.4; }
-
-    /* ── Section ── */
-    .section { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border); }
-    .section__label { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1rem; display: block; }
-    .section__title { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1.25rem; }
-    .section__lead { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 66ch; line-height: 1.75; }
-    .section__header { max-width: 820px; margin-bottom: 3.5rem; }
-
-    /* ── Pull quote ── */
-    .pull-quote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 2px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0; }
-    .pull-quote blockquote { font-size: clamp(1.1rem, 2.5vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.6; letter-spacing: -0.01em; }
-    .pull-quote cite { display: block; margin-top: 0.85rem; font-family: var(--mono); font-size: 0.75rem; color: var(--muted-2); font-style: normal; }
-
-    /* ── Problem grid ── */
-    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
-    .problem-card { background: var(--surface); padding: 2rem; }
-    .problem-card__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 1.25rem; display: block; }
-    .problem-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
-    .problem-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
-
-    /* ── Role grid ── */
-    .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
-    .role-item { background: var(--surface); padding: 2rem; display: flex; gap: 1.25rem; }
-    .role-item__icon { font-family: var(--mono); font-size: 1.1rem; color: var(--accent); flex-shrink: 0; margin-top: 0.15rem; }
-    .role-item__body {}
-    .role-item h3 { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-    .role-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-
-    /* ── Phase steps (numbered, in a column) ── */
-    .phase-steps { display: flex; flex-direction: column; gap: 4rem; }
-    .phase-step { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .phase-step--flip { direction: rtl; }
-    .phase-step--flip > * { direction: ltr; }
-    .phase-step__copy { display: flex; flex-direction: column; gap: 1rem; }
-    .step-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; }
-    .step-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-    .phase-step__copy h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
-    .phase-step__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 50ch; }
-    .step-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); letter-spacing: 0.12em; }
-    .phase-step__visual {}
-
-
-    /* ── Research methodology block ── */
-    .research-method {
-      margin: 3rem 0;
-      padding: 2.5rem;
-      background: var(--surface-2);
-      border-radius: 8px;
+    .header__brand { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.03em; }
+    .header__nav { display: flex; gap: 1.75rem; justify-content: center; }
+    .header__nav a { font-size: 0.85rem; font-weight: 500; color: var(--muted); }
+    .header__nav a.active, .header__nav a:hover { color: var(--text); }
+    .header__actions { justify-self: end; display: flex; align-items: center; gap: 0.5rem; }
+    .header__cta {
+      font-size: 0.8rem; font-weight: 500;
+      padding: 0.4rem 0.85rem;
       border: 1px solid var(--border);
+      border-radius: 999px;
     }
-    .research-method__label { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 1.5rem; display: block; }
-    .research-method__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    .research-stat { }
-    .research-stat__value { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 600; letter-spacing: -0.04em; color: var(--text); margin-bottom: 0.3rem; }
-    .research-stat__label { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
 
-    /* ── Findings ── */
-    .findings { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 3rem; }
-    .finding { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .finding.finding--solo {
-      grid-template-columns: 1fr;
-      gap: 0;
-      padding: 2.5rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--surface);
+    /* 1. Hero photo */
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 21 / 8;
+      overflow: hidden;
+      background: #222;
+      border-bottom: 6px solid var(--orange);
     }
-    .finding--flip { direction: rtl; }
-    .finding--flip > * { direction: ltr; }
-    .finding__copy { display: flex; flex-direction: column; gap: 1rem; }
-    .finding__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; }
-    .finding__copy h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
-    .finding__section-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-2); letter-spacing: 0.1em; }
-    .finding__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 72ch; }
-    .quote-block { border-left: 2px solid var(--accent); padding: 0.85rem 1.25rem; background: var(--accent-dim); border-radius: 0 6px 6px 0; margin: 0.5rem 0; }
-    .quote-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; font-style: italic; }
-    .quote-block cite { font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.4); font-style: normal; display: block; margin-top: 0.5rem; }
-    .finding__visual { display: flex; flex-direction: column; gap: 1rem; }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
 
-    /* ── Benchmark callout ── */
-    .benchmark-block {
+    /* 2. Intro */
+    .intro {
+      padding: clamp(2.75rem, 6vw, 4.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+    }
+    .intro__logo {
+      height: 16px;
+      width: auto;
+      margin-bottom: 1.75rem;
+    }
+    .intro__title {
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.12;
+      max-width: 16ch;
+      margin-bottom: 1.15rem;
+    }
+    .intro__title em {
+      font-style: italic;
+      font-weight: 600;
+    }
+    .intro__sub {
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      color: var(--muted);
+      max-width: 48ch;
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    /* 3. Meta bar */
+    .meta {
+      background: var(--ink);
+      color: #fff;
+    }
+    .meta__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .meta__item {
+      padding: 1.5rem 1.25rem;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .meta__item:last-child { border-right: none; }
+    .meta__item dt {
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.55rem;
+      font-weight: 500;
+    }
+    .meta__item dd {
+      font-size: 0.98rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    /* Sections */
+    .block {
+      padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+    }
+    .block + .block { padding-top: 0; }
+    .block__title {
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .block__body {
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 62ch;
+    }
+    .block__body p + p { margin-top: 1.1rem; }
+
+    /* 4. Process 2x2 */
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      position: relative;
+    }
+    .flow__card {
+      border-radius: 14px;
+      padding: 1.5rem 1.4rem 1.6rem;
+      min-height: 168px;
+      position: relative;
+    }
+    .flow__card--1 { background: #cfcfcb; color: var(--text); }
+    .flow__card--2 { background: var(--ink); color: #fff; }
+    .flow__card--3 { background: var(--orange-soft); color: var(--text); }
+    .flow__card--4 { background: var(--orange); color: #fff; }
+    .flow__num {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+      opacity: 0.9;
+    }
+    .flow__card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.55rem;
+      line-height: 1.25;
+    }
+    .flow__card p {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      opacity: 0.92;
+    }
+    .flow__card--1 p,
+    .flow__card--3 p { color: #333; opacity: 1; }
+
+    .flow__arrow {
+      position: absolute;
+      color: var(--orange);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .flow__arrow--1to2 {
+      top: calc(25% - 10px);
+      left: calc(50% - 14px);
+    }
+    .flow__arrow--2to3 {
+      top: calc(50% - 14px);
+      right: 18%;
+    }
+    .flow__arrow--3to4 {
+      top: calc(75% - 10px);
+      left: calc(50% - 14px);
+    }
+
+    /* 5. Worker bar */
+    .workers {
       margin-top: 3rem;
-      padding: 2rem 2.5rem;
-      border: 1px solid rgba(34,197,94,0.3);
-      border-radius: 8px;
-      background: rgba(34,197,94,0.05);
       display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
+      justify-content: center;
     }
-    .benchmark-block__dot { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; flex-shrink: 0; margin-top: 0.35rem; }
-    .benchmark-block p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
-    .benchmark-block strong { color: var(--text); }
-
-    /* ── Capability cards ── */
-    .capability-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
-    .capability-card { background: var(--surface); padding: 2.5rem 2rem; }
-    .capability-card__num { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1.25rem; display: block; }
-    .capability-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.02em; line-height: 1.3; }
-    .capability-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
-
-    /* ── Reflections ── */
-    .learnings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-    .learning-block { padding: 2rem; border: 1px solid var(--border); border-radius: 8px; }
-    .learning-block h3 { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.35; }
-    .learning-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
-
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .overview-bar__grid { grid-template-columns: repeat(3, 1fr); }
-      .problem-grid { grid-template-columns: 1fr; }
-      .role-grid { grid-template-columns: 1fr; }
-      .phase-step { grid-template-columns: 1fr; gap: 2.5rem; }
-      .phase-step--flip { direction: ltr; }
-      .finding { grid-template-columns: 1fr; gap: 2.5rem; }
-      .finding--flip { direction: ltr; }
-      .research-method__grid { grid-template-columns: repeat(2, 1fr); }
-      .capability-grid { grid-template-columns: 1fr; }
-      .learnings-grid { grid-template-columns: 1fr; }
-      .process-timeline, .process-timeline--5 { grid-template-columns: 1fr 1fr; }
-      .platform-grid { grid-template-columns: 1fr; }
+    .workers__scene {
+      width: min(720px, 100%);
+      height: auto;
     }
-    @media (max-width: 600px) {
-      .research-method__grid { grid-template-columns: repeat(2, 1fr); }
-      .pull-quote { padding: 1.75rem 1.5rem; }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      margin-top: 2rem;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1rem;
+      width: min(1080px, 90%);
+      margin: 0 auto;
+    }
+    .footer__brand { font-size: 0.85rem; color: var(--muted); }
+    .footer__copy { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+    .footer__nav { display: flex; gap: 1.25rem; justify-content: center; }
+    .footer__nav a { font-size: 0.8rem; color: var(--muted); }
+    .footer__social { display: flex; gap: 1rem; justify-content: flex-end; }
+    .footer__social a { font-size: 0.8rem; color: var(--muted); }
+
+    @media (max-width: 800px) {
+      .meta__grid { grid-template-columns: 1fr 1fr; }
+      .meta__item:nth-child(2) { border-right: none; }
+      .meta__item:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,0.12); }
+      .flow { grid-template-columns: 1fr; }
+      .flow__arrow { display: none; }
+      .hero-photo { aspect-ratio: 16 / 9; }
+      .workers { border-radius: 28px; min-height: 120px; gap: 1.5rem; }
+      .footer__grid { grid-template-columns: 1fr; }
+      .footer__nav, .footer__social { justify-content: flex-start; }
     }
   </style>
   <link rel="stylesheet" href="/assets/nav.css" />
-  <link rel="stylesheet" href="/assets/site.css" />
-  <link rel="stylesheet" href="/assets/theme.css" />
-  <link rel="stylesheet" href="/assets/case-study.css" />
+  <link rel="stylesheet" href="/assets/cursor.css" />
 </head>
 <body>
 
-  <div id="progress" class="progress-line"></div>
-
-  <!-- HEADER -->
   <header class="header">
     <div class="header__bar">
       <a class="header__brand" href="/">.h</a>
@@ -271,438 +293,100 @@
     <a class="nav__resume" href="#" data-resume-modal>Resume / CV ↗</a>
   </nav>
 
-  <!-- COVER -->
-  <section class="cover">
-    <div class="cover__bg-grid"></div>
-    <div class="cover__bg-glow"></div>
-    <div class="container cover__content">
-      <div class="cover__eyebrow">
-        <span class="cover__dot"></span>
-        <span class="label">product design &middot; ux research &middot; mobile &amp; web</span>
-      </div>
-      <h1 class="cover__title">Safety Hub</h1>
-      <p class="cover__subtitle">Two phases over twelve months on a construction SaaS product. Phase 1: user feedback became PM requirements, I turned those into a design brief and built a mobile command center for job-site safety. Phase 2: a new requirements doc became a UserTesting study, a first iteration, synthesis, and a guess-free dashboard system on web and mobile.</p>
-      <div class="pill-row">
-        <span class="pill pill--accent">Design Lead</span>
-        <span class="pill">Mobile &amp; Web</span>
-        <span class="pill">UX Research</span>
-        <span class="pill">Usability Testing</span>
-        <span class="pill">Multi-Phase</span>
-        <span class="pill">Construction SaaS</span>
-      </div>
+  <!-- HERO PHOTO -->
+  <div class="hero-photo">
+    <img
+      src="/assets/safety-hub-cover.png"
+      alt="Construction crew on a job site"
+      width="1920"
+      height="774"
+      decoding="async"
+    />
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="wrap">
+      <img class="intro__logo" src="/assets/logo-procore.png" alt="Procore" width="120" height="20" />
+      <h1 class="intro__title">How I helped shape the <em>future</em> of construction tech.</h1>
+      <p class="intro__sub">I designed the Safety Hub and Safety Worker Experience in Procore to help users handle safety tools with less friction.</p>
     </div>
   </section>
 
-  <!-- OVERVIEW BAR -->
-  <div class="overview-bar">
-    <div class="container">
-      <dl class="overview-bar__grid">
-        <div class="overview-item"><dt>Duration</dt><dd>12 months<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">2025 &ndash; 2026</span></dd></div>
-        <div class="overview-item"><dt>My Role</dt><dd>Design Lead<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">Mobile-first</span></dd></div>
-        <div class="overview-item"><dt>Platforms</dt><dd>iOS &middot; Android<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ Web</span></dd></div>
-        <div class="overview-item"><dt>Phases</dt><dd>2<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">Command center &rarr; Dashboard cards</span></dd></div>
-        <div class="overview-item"><dt>Research</dt><dd>UserTesting<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">unmoderated study</span></dd></div>
-        <div class="overview-item"><dt>Collaborators</dt><dd>PM &middot; Researcher<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ Engineering</span></dd></div>
+  <!-- META -->
+  <div class="meta">
+    <div class="wrap">
+      <dl class="meta__grid">
+        <div class="meta__item"><dt>Duration</dt><dd>1 Year</dd></div>
+        <div class="meta__item"><dt>Collaborators</dt><dd>Research &middot; Product &middot; Engineering</dd></div>
+        <div class="meta__item"><dt>Platforms</dt><dd>Web &middot; iOS &middot; Android</dd></div>
+        <div class="meta__item"><dt>Role</dt><dd>Product Design Lead</dd></div>
       </dl>
     </div>
   </div>
 
-  <!-- .01 WHERE IT STARTED -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.01 Where It Started</span>
-        <h2 class="section__title">User feedback in.<br />Requirements out.<br />Design brief next.</h2>
-        <p class="section__lead">The project didn&rsquo;t start with a Figma file. It started with user requirements and raw feedback from safety managers on active job sites. The PM translated that into structured requirements. My job was to turn those requirements into a design brief,  and then into a mobile command center that made sense in the field.</p>
+  <!-- WHERE IT STARTED -->
+  <section class="block">
+    <div class="wrap">
+      <h2 class="block__title">Where It Started</h2>
+      <div class="block__body">
+        <p>The project didn&rsquo;t start with a Figma file. It started with user requirements and raw feedback from safety managers on active job sites. The PM translated that into structured requirements. My job was to turn those requirements into a design brief, and then into a mobile command center that made sense in the field.</p>
       </div>
 
-      <div class="process-timeline">
-        <div class="timeline-step">
-          <span class="timeline-step__num">01</span>
+      <div class="flow">
+        <svg class="flow__arrow flow__arrow--1to2" width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true">
+          <path d="M2 10h20M16 4l8 6-8 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="flow__arrow flow__arrow--2to3" width="20" height="36" viewBox="0 0 20 36" fill="none" aria-hidden="true">
+          <path d="M10 2v24M4 20l6 8 6-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="flow__arrow flow__arrow--3to4" width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true">
+          <path d="M2 10h20M16 4l8 6-8 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <article class="flow__card flow__card--1">
+          <div class="flow__num">1.</div>
           <h3>User requirements &amp; raw feedback</h3>
           <p>Safety managers needed faster access to scattered safety tools (incidents, observations, inspections, hazards) from one place on mobile.</p>
-        </div>
-        <div class="timeline-step">
-          <span class="timeline-step__num">02</span>
+        </article>
+        <article class="flow__card flow__card--2">
+          <div class="flow__num">2.</div>
           <h3>PM requirements</h3>
-          <p>The PM consolidated feedback into product requirements: one command center, overview cards per safety module, scannable stats and drill-through paths.</p>
-        </div>
-        <div class="timeline-step">
-          <span class="timeline-step__num">03</span>
+          <p>The PM consolidated feedback into product requirements: one command center, overview cards per safety module, and drill-through paths.</p>
+        </article>
+        <article class="flow__card flow__card--3">
+          <div class="flow__num">3.</div>
           <h3>Design brief</h3>
-          <p>I translated requirements into a mobile design brief,  information hierarchy, card grammar, navigation depth, and what &ldquo;done&rdquo; looked like for Phase 1.</p>
-        </div>
-        <div class="timeline-step">
-          <span class="timeline-step__num">04</span>
+          <p>I translated requirements into a mobile design brief, information hierarchy, navigation depth, and what &ldquo;done&rdquo; looked like for Phase 1.</p>
+        </article>
+        <article class="flow__card flow__card--4">
+          <div class="flow__num">4.</div>
           <h3>Safety Hub</h3>
           <p>Exploration through iteration to a validated command center with flows into every safety module.</p>
-        </div>
-      </div>
-
-      <div class="problem-grid" style="margin-top:3rem;">
-        <div class="problem-card">
-          <span class="problem-card__num">01 fragmented access</span>
-          <h3>Safety data lived in separate corners of the product</h3>
-          <p>Incidents, observations, inspections, toolbox talks,  all existed as separate modules. For a safety manager arriving on site at 7am, getting the full picture meant visiting four different areas of the app before walking the floor.</p>
-        </div>
-        <div class="problem-card">
-          <span class="problem-card__num">02 no signal surfacing</span>
-          <h3>The product didn&rsquo;t triage. The user had to.</h3>
-          <p>There was no view that answered: what&rsquo;s open, what&rsquo;s trending, who are the repeat offenders. Managers were doing the mental assembly work on top of a product that should have done it for them.</p>
-        </div>
-        <div class="problem-card">
-          <span class="problem-card__num">03 mobile-hostile data</span>
-          <h3>Dense dashboards designed for desktops</h3>
-          <p>Safety work happens on-site, on mobile, often in glare, wearing gloves, with 30 seconds to spare. The existing data views weren&rsquo;t designed for those conditions.</p>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- .02 MY ROLE -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.02 My Role</span>
-        <h2 class="section__title">What I actually owned.</h2>
-        <p class="section__lead">I owned the translation layer between requirements and design across both phases,  writing the brief, designing the command center, planning the study, running synthesis, and delivering cross-platform dashboard cards.</p>
+  <!-- THE PROBLEM -->
+  <section class="block">
+    <div class="wrap">
+      <h2 class="block__title">The Problem</h2>
+      <div class="block__body">
+        <p>Safety managers arriving on site at 7 AM had to piecemeal their data together before walking the floor. Incidents, observations, inspections, and toolbox talks were split across four separate app areas. The product offered no central view to triage open items, spot trends, or flag repeat offenders, forcing managers to manually connect the dots themselves.</p>
+        <p>Compounding the problem, the interface relied on dense desktop dashboards that failed in the field. Safety work happens on site, on mobile devices, often under direct sunlight, while wearing gloves, and with only 30 seconds to spare. The data views were simply not built for those real-world conditions.</p>
       </div>
-      <div class="role-grid">
-        <div class="role-item">
-          <span class="role-item__icon">&#x2197;</span>
-          <div class="role-item__body">
-            <h3>Requirements &rarr; design brief</h3>
-            <p>In Phase 1, I took the PM&rsquo;s requirements and wrote the mobile design brief that defined command center structure, card grammar, and navigation depth. In Phase 2, I received a separate requirements doc for five dashboard cards and turned it into a research-backed design process.</p>
-          </div>
-        </div>
-        <div class="role-item">
-          <span class="role-item__icon">&#x25A6;</span>
-          <div class="role-item__body">
-            <h3>UX research: plan, test, synthesize</h3>
-            <p>Phase 2 was mine end-to-end. I converted requirements into a UserTesting unmoderated study,  wrote the plan, designed the first iteration prototypes, ran the sessions, and led synthesis into a guess-free redesign.</p>
-          </div>
-        </div>
-        <div class="role-item">
-          <span class="role-item__icon">&#x25AF;</span>
-          <div class="role-item__body">
-            <h3>Mobile-first command center</h3>
-            <p>Led all Phase 1 mobile design: command center architecture, overview cards per safety module, drill-down flows from category to process to individual reports. Every screen answered status, trend, and next action at a glance.</p>
-          </div>
-        </div>
-        <div class="role-item">
-          <span class="role-item__icon">&#x2609;</span>
-          <div class="role-item__body">
-            <h3>Cross-platform dashboard cards</h3>
-            <p>Phase 2 extended to web and mobile in parallel. After synthesis, I designed the guess-free card system for both surfaces,  same data, different density and layout decisions for each platform.</p>
-          </div>
-        </div>
+
+      <div class="workers" aria-label="Field workers">
+        <img class="workers__scene" src="/assets/safety-hub-workers.png" alt="Construction workers in safety gear" width="1024" height="160" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
 
-  <!-- .03 PHASE 1 -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.03 Phase 1 &middot; Mobile Command Center</span>
-        <h2 class="section__title">From requirements<br />to a working command center.</h2>
-        <p class="section__lead">Phase 1 was mobile-only. Starting from the PM&rsquo;s requirements and my design brief, I explored what belonged in the command center, iterated on how data should surface, and mapped a single navigation pattern across every safety module.</p>
-      </div>
-
-      <div class="phase-steps">
-
-        <div class="phase-step">
-          <div class="phase-step__copy">
-            <span class="step-tag">01 exploration</span>
-            <h2>Early concepts: what belongs in Safety Hub?</h2>
-            <p>First explorations tested how to surface safety features as scannable list items,  emergency contacts, safety checks, trip sharing, and module-specific entry points. The question wasn&rsquo;t layout yet; it was what managers expected to see when they opened the app.</p>
-          </div>
-          <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall">
-              <picture>
-                <source srcset="/assets/safety-hub-p1-01-exploration.webp" type="image/webp" />
-                <img src="/assets/safety-hub-p1-01-exploration.png" alt="Phase 1 exploration.  Safety Hub module list" width="1120" height="520" loading="lazy" decoding="async" />
-              </picture>
-            </div>
-          </div>
-        </div>
-
-        <div class="phase-step phase-step--flip">
-          <div class="phase-step__copy">
-            <span class="step-tag">02 dashboard iterations</span>
-            <h2>Adding data: safety scores, incidents, and status.</h2>
-            <p>Once the command center structure was defined, I explored how to layer data onto it,  safety score trends, open incident counts, critical items, and equipment status. Multiple iterations tested graph placement, card density, and how much a manager could absorb in one scroll.</p>
-          </div>
-          <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall">
-              <picture>
-                <source srcset="/assets/safety-hub-p1-02-dashboard-iterations.webp" type="image/webp" />
-                <img src="/assets/safety-hub-p1-02-dashboard-iterations.png" alt="Phase 1 dashboard iterations,  safety score and status cards" width="1120" height="520" loading="lazy" decoding="async" />
-              </picture>
-            </div>
-          </div>
-        </div>
-
-        <div class="phase-step">
-          <div class="phase-step__copy">
-            <span class="step-tag">03 navigation flows</span>
-            <h2>One pattern, every module.</h2>
-            <p>I mapped a consistent three-tap path from the command center into hazards, observations, incidents, inspections, and safety checks: status and counts at the list level, detail only when something needs action. Deeper modules extended the same logic,  inspections grouped by site, project, then unit; safety checks by category, process, then report. Managers see status at the top and act at the bottom, never the other way around.</p>
-          </div>
-          <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall">
-              <picture>
-                <source srcset="/assets/safety-hub-p1-03-hub-flows.webp" type="image/webp" />
-                <img src="/assets/safety-hub-p1-03-hub-flows.png" alt="Phase 1 navigation flows,  pattern across safety modules" width="1120" height="520" loading="lazy" decoding="async" />
-              </picture>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- .04 PHASE 2 -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.04 Phase 2 &middot; Dashboard Cards</span>
-        <h2 class="section__title">Requirements in.<br />Study out.<br />Guess-free designs.</h2>
-        <p class="section__lead">Phase 2 started with a new requirements document for five dashboard data visualization cards. I turned those requirements into a UserTesting unmoderated study, designed a first iteration, ran the tests, synthesized the findings, and redesigned everything into a guess-free version on both web and mobile.</p>
-      </div>
-
-      <div class="process-timeline process-timeline--5">
-        <div class="timeline-step">
-          <span class="timeline-step__num">01</span>
-          <h3>Requirements doc</h3>
-          <p>PM handed off requirements for five dashboard cards covering claims, hazards, incidents, hours lost, and attendance.</p>
-        </div>
-        <div class="timeline-step">
-          <span class="timeline-step__num">02</span>
-          <h3>Study plan</h3>
-          <p>I converted requirements into a UserTesting unmoderated study,  tasks, success criteria, and comprehension questions for each card.</p>
-        </div>
-        <div class="timeline-step">
-          <span class="timeline-step__num">03</span>
-          <h3>First iteration</h3>
-          <p>Designed the initial card set from requirements and built prototypes for the study.</p>
-        </div>
-        <div class="timeline-step">
-          <span class="timeline-step__num">04</span>
-          <h3>Test &amp; synthesize</h3>
-          <p>Ran unmoderated sessions with construction professionals, then organized findings by failure pattern in a synthesis doc.</p>
-        </div>
-        <div class="timeline-step">
-          <span class="timeline-step__num">05</span>
-          <h3>Guess-free redesign</h3>
-          <p>Redesigned all five cards so users didn&rsquo;t have to infer, calculate, or guess what they were looking at.</p>
-        </div>
-      </div>
-
-      <!-- Research methodology -->
-      <div class="research-method" style="margin-top:3rem;">
-        <span class="research-method__label">The Research Study</span>
-        <div class="research-method__grid">
-          <div class="research-stat">
-            <div class="research-stat__value">12</div>
-            <div class="research-stat__label">Construction professionals<br />in unmoderated UserTesting study</div>
-          </div>
-          <div class="research-stat">
-            <div class="research-stat__value">5</div>
-            <div class="research-stat__label">Dashboard cards tested<br />(all of them, not just the &ldquo;risky&rdquo; ones)</div>
-          </div>
-          <div class="research-stat">
-            <div class="research-stat__value">4/5</div>
-            <div class="research-stat__label">Cards redesigned after synthesis<br />before development handoff</div>
-          </div>
-          <div class="research-stat">
-            <div class="research-stat__value">2</div>
-            <div class="research-stat__label">Platforms delivered<br />web and mobile in parallel</div>
-          </div>
-        </div>
-      </div>
-
-      <p style="font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:66ch;margin:3rem 0 4rem;">The study tested one question per card: can a construction safety manager understand what this is showing, and what to do next, without guessing? I wrote the plan, ran synthesis, and organized findings into three failure modes,  not by card, but by the type of comprehension breakdown. That structure is what made the redesign decisions specific instead of generic.</p>
-
-      <!-- Findings -->
-      <div class="findings">
-
-        <div class="finding finding--solo">
-          <div class="finding__copy">
-            <span class="finding__num">finding 01: don&rsquo;t make users do math</span>
-            <h2>Hours lost should be a number, not a calculation.</h2>
-            <span class="finding__section-label">what participants did</span>
-            <p>The first iteration showed &ldquo;time lost to injury&rdquo; as projected vs. actual work hours. Participants stared at the chart without answering,  they were trying to subtract in their head. They expected to see hours lost directly.</p>
-            <div class="quote-block">
-              <p>&ldquo;I&rsquo;d expect lost hours or days due to incidents,  not projected vs. actual work.&rdquo;</p>
-              <cite>UserTesting participant</cite>
-            </div>
-            <span class="finding__section-label">guess-free fix</span>
-            <p>Direct monthly bar chart showing hours lost. Title matches the unit. The number is the message,  no derivation required.</p>
-          </div>
-        </div>
-
-        <div class="finding finding--solo">
-          <div class="finding__copy">
-            <span class="finding__num">finding 02: seeing isn&rsquo;t solving</span>
-            <h2>Status without context is just noise.</h2>
-            <span class="finding__section-label">what participants did</span>
-            <p>The hazard assessment gauge showed open items clearly, but labels were misread,  &ldquo;project total&rdquo; meant different things to different participants. They understood something was wrong but couldn&rsquo;t decide what to do.</p>
-            <span class="finding__section-label">guess-free fix</span>
-            <p>Semicircular gauge with clarified labels, timeframe context, and percentages paired with raw counts. Status and action path in one glance.</p>
-          </div>
-        </div>
-
-        <div class="finding finding--solo">
-          <div class="finding__copy">
-            <span class="finding__num">finding 03: right data, wrong frame</span>
-            <h2>If the title doesn&rsquo;t say injury, users read billing.</h2>
-            <span class="finding__section-label">what participants did</span>
-            <p>The claims card was read as contractor billing because &ldquo;injury&rdquo; didn&rsquo;t appear in the title. The attendance chart required subtracting two bars to get a ratio,  arithmetic nobody should do at 7am on a job site.</p>
-            <div class="quote-block">
-              <p>&ldquo;This looks like it&rsquo;s tracking money. Is this contractor payments?&rdquo;</p>
-              <cite>UserTesting participant, on the claims card</cite>
-            </div>
-            <span class="finding__section-label">guess-free fix</span>
-            <p>Injury context made explicit in naming. Trend sparkline for at-a-glance direction. Attendance replaced with a single percentage bar,  attended vs. total, stated plainly.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="benchmark-block">
-        <div class="benchmark-block__dot"></div>
-        <p><strong>One card passed without changes.</strong> It became the benchmark for the guess-free redesign. Every other card was measured against it: direct labelling, matched title-to-unit, a single dominant number.</p>
-      </div>
-
-      <!-- Final deliverable -->
-      <div style="margin-top:4rem;">
-        <span class="step-tag">guess-free deliverable</span>
-        <h2 style="font-size:clamp(1.6rem,3vw,2.5rem);font-weight:500;letter-spacing:-0.04em;line-height:1.15;margin:1rem 0 0.75rem;">Five cards. Two platforms. Zero guesswork.</h2>
-        <p style="font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:60ch;margin-bottom:0.5rem;">The final designs applied every synthesis finding across web and mobile :  same card grammar, platform-appropriate density.</p>
-        <div class="platform-grid">
-          <div class="platform-item">
-            <span class="platform-item__label">web :  safety dashboard</span>
-            <div class="cs-img-wrap cs-img-wrap--auto">
-              <picture>
-                <source srcset="/assets/safety-mockup-web.webp" type="image/webp" />
-                <img src="/assets/safety-mockup-web.png" alt="Phase 2 guess-free web safety dashboard" width="1120" height="695" loading="lazy" decoding="async" />
-              </picture>
-            </div>
-          </div>
-          <div class="platform-item">
-            <span class="platform-item__label">mobile :  safety dashboard</span>
-            <div class="cs-img-wrap cs-img-wrap--auto">
-              <picture>
-                <source srcset="/assets/safety-mockup-mobile.webp" type="image/webp" />
-                <img src="/assets/safety-mockup-mobile.png" alt="Phase 2 guess-free mobile safety dashboard" width="1120" height="695" loading="lazy" decoding="async" />
-              </picture>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- .05 WHAT THIS DEMONSTRATES -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.05 What This Demonstrates</span>
-        <h2 class="section__title">Skills in practice,<br />not in theory.</h2>
-        <p class="section__lead">This wasn&rsquo;t a sprint or a single feature. It was a sustained year of design leadership on a complex enterprise product,  research-heavy, cross-platform, multi-phase, and shaped by real user behavior.</p>
-      </div>
-      <div class="capability-grid">
-        <div class="capability-card">
-          <span class="capability-card__num">01</span>
-          <h3>Requirements to design brief to screens</h3>
-          <p>Phase 1 started with user feedback and PM requirements.  I wrote the design brief and designed the mobile command center from scratch. Phase 2 started with a separate requirements doc.  I converted it into a research plan, tested a first iteration, and redesigned based on synthesis. In both phases, I was the person who translated requirements into design decisions.</p>
-        </div>
-        <div class="capability-card">
-          <span class="capability-card__num">02</span>
-          <h3>End-to-end UX research ownership</h3>
-          <p>Phase 2 research was fully mine: study plan, UserTesting setup, first-iteration prototypes, unmoderated sessions, synthesis doc, and redesign. Findings were organized by failure mode, not by card,  which turned a list of problems into a design brief with three clear principles.</p>
-        </div>
-        <div class="capability-card">
-          <span class="capability-card__num">03</span>
-          <h3>Cross-platform design execution</h3>
-          <p>Phase 1 was mobile-only. Phase 2 delivered the same five dashboard cards on web and mobile simultaneously,  same data grammar, different density and layout per surface. Not a resize; two genuinely different design problems solved in parallel.</p>
-        </div>
-        <div class="capability-card">
-          <span class="capability-card__num">04</span>
-          <h3>Multi-phase systems thinking</h3>
-          <p>The command center architecture from Phase 1 (category overview, process drill-down, report detail) informed how Phase 2 cards were structured. Status at the top, action at the bottom. That hierarchy carried from mobile navigation into dashboard data visualization across both platforms.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- .06 REFLECTIONS -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.06 Reflections</span>
-        <h2 class="section__title">What I&rsquo;d carry forward.</h2>
-      </div>
-      <div class="learnings-grid">
-        <div class="learning-block">
-          <h3>Write the brief before you open Figma.</h3>
-          <p>Phase 1 worked because I translated PM requirements into a design brief first,  defining hierarchy, card grammar, and navigation depth before any screens existed. That brief became the reference point for every iteration decision that followed.</p>
-        </div>
-        <div class="learning-block">
-          <h3>Turn requirements into a study, not straight into pixels.</h3>
-          <p>Phase 2 could have gone straight from requirements to final designs. Instead, I built a UserTesting study first. That one decision (testing before committing) caught comprehension failures in four of five cards that looked fine on paper.</p>
-        </div>
-        <div class="learning-block">
-          <h3>Synthesis structure determines what gets fixed.</h3>
-          <p>Organizing findings by failure mode (&ldquo;users had to do math,&rdquo; &ldquo;labels were misread,&rdquo; &ldquo;title didn&rsquo;t match content&rdquo;) instead of by card turned a research report into a redesign brief. The way you organize what you learned shapes what people can act on.</p>
-        </div>
-        <div class="learning-block">
-          <h3>Guess-free is a design standard, not a polish pass.</h3>
-          <p>The guess-free redesign wasn&rsquo;t a visual cleanup,  it was a comprehension standard. Every card had to pass one test: can a manager understand this in 10 seconds without inferring anything? That principle applied equally to web and mobile, even though the layouts were completely different.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MORE WORK -->
-  <section style="padding: clamp(4rem,8vw,7rem) 0; border-top: 1px solid var(--border);">
-    <div class="container">
-      <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">More Work</span>
-      <div class="more-work__grid">
-
-        <a class="more-work__card" href="/case-study-meridian">
-          <div>
-            <p class="more-work__meta" style="color:rgba(0,0,0,0.6);">2023&ndash;2024 &middot; SaaS &middot; Design Lead</p>
-            <h3 class="more-work__title">Meridian</h3>
-          </div>
-          <div class="more-work__footer">
-            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">View Case Study</span>
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </a>
-
-        <a class="more-work__card" href="/case-study-icancare">
-          <div>
-            <p class="more-work__meta" style="color:rgba(0,0,0,0.6);">2022&ndash;2023 &middot; Healthcare &middot; UI/UX</p>
-            <h3 class="more-work__title">ICan Care</h3>
-          </div>
-          <div class="more-work__footer">
-            <span class="more-work__cta" style="color:rgba(0,0,0,0.5);">View Case Study</span>
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="footer">
-    <div class="container footer__grid">
+    <div class="footer__grid">
       <div>
-        <span class="footer__brand">hassanamin.net</span>
+        <div class="footer__brand">hassanamin.net</div>
         <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
       <nav class="footer__nav" aria-label="Footer">
@@ -717,10 +401,10 @@
     </div>
   </footer>
 
+  <script src="/assets/cursor.js"></script>
   <script src="/assets/smooth-scroll.js"></script>
   <script src="/assets/nav.js"></script>
   <script src="/assets/copy-email.js"></script>
   <script src="/assets/resume-modal.js"></script>
-
 </body>
 </html>

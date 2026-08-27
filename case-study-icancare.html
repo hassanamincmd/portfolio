@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ICan Care, Hassan Amin</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="description" content="ICan Care: Novartis cancer-support app for appointments, reminders, education, and research data." />
+  <meta name="description" content="ICan Care: a Novartis oncology companion for language-first onboarding, medication reminders, trusted education, and nearby care centres." />
   <link rel="canonical" href="https://hassanamin.net/case-study-icancare" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Hassan Amin" />
   <meta property="og:title" content="ICan Care, Hassan Amin" />
-  <meta property="og:description" content="ICan Care: Novartis cancer-support app for appointments, reminders, education, and research data." />
+  <meta property="og:description" content="ICan Care: a Novartis oncology companion for language-first onboarding, medication reminders, trusted education, and nearby care centres." />
   <meta property="og:url" content="https://hassanamin.net/case-study-icancare" />
   <meta property="og:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <meta property="og:image:alt" content="Hassan Amin, Product Designer" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ICan Care, Hassan Amin" />
-  <meta name="twitter:description" content="ICan Care: Novartis cancer-support app for appointments, reminders, education, and research data." />
+  <meta name="twitter:description" content="ICan Care: a Novartis oncology companion for language-first onboarding, medication reminders, trusted education, and nearby care centres." />
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
@@ -33,11 +33,11 @@
       --muted: #6b6558;
       --muted-2: #8a8478;
       --border: rgba(22, 20, 15, 0.1);
-      --accent: #be185d;
-      --accent-dim: rgba(190, 24, 93, 0.10);
-      --display: 'Outfit', 'Segoe UI', sans-serif;
-      --serif: 'Fraunces', Georgia, serif;
-      --mono: 'DM Mono', ui-monospace, monospace;
+      --accent: #2563eb;
+      --accent-dim: rgba(37, 99, 235, 0.10);
+      --display: 'Inter', system-ui, sans-serif;
+      --serif: 'Inter', system-ui, sans-serif;
+      --mono: 'Inter', system-ui, sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: auto; }
@@ -46,7 +46,7 @@
     img { max-width: 100%; display: block; }
     .container { width: min(1200px, 92%); margin: 0 auto; }
 
-    .progress-line { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 200; transition: width 0.1s linear; }
+    .progress-line { height: 100%; width: 0%; background: #000; transition: width 0.1s linear; }
 
     .header { position: sticky; top: 0; z-index: 100; background: rgba(244, 241, 234, 0.82); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
     .header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 64px; width: min(1200px, 92%); margin: 0 auto; }
@@ -66,7 +66,6 @@
     .cover__dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
     .label { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; color: var(--accent); letter-spacing: 0.08em; text-transform: none; }
     .cover__title { font-family: var(--serif); font-size: clamp(3.5rem, 9vw, 7.5rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
-    .cover__title span { color: var(--accent); }
     .cover__subtitle { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--muted); font-weight: 400; max-width: 68ch; line-height: 1.65; margin-bottom: 3rem; }
     .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); white-space: nowrap; }
@@ -90,16 +89,11 @@
 
     .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
     .problem-grid--4 { grid-template-columns: repeat(4, 1fr); }
+    .problem-grid--5 { grid-template-columns: repeat(5, 1fr); }
     .problem-card { background: var(--surface); padding: 2rem; }
     .problem-card__num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 1.25rem; display: block; }
     .problem-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
     .problem-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
-
-    .system-map { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
-    .system-card { background: var(--surface); padding: 2rem; }
-    .system-card__tag { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
-    .system-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
-    .system-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
 
     .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
     .role-item { background: var(--surface); padding: 2rem; display: flex; gap: 1.25rem; }
@@ -117,6 +111,23 @@
     .phase-step__copy h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.15; }
     .phase-step__copy p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 50ch; }
 
+    .mockup-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .mockup-pair .cs-img-wrap--placeholder,
+    .mockup-pair .cs-img-wrap--tall {
+      min-height: 420px;
+      height: auto;
+      aspect-ratio: 390 / 844;
+    }
+    .hero-placeholder {
+      margin-top: 3rem;
+      min-height: 420px !important;
+    }
+
     .outcomes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
     .outcome-card { background: var(--surface); padding: 2rem; }
     .outcome-card__value { font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 700; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
@@ -128,10 +139,18 @@
     .learning-block h3 { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.35; }
     .learning-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
 
+    .upload-note {
+      margin-top: 1rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted-2);
+      letter-spacing: 0.04em;
+    }
+
     @media (max-width: 900px) {
       .overview-bar__grid { grid-template-columns: repeat(3, 1fr); }
-      .problem-grid, .problem-grid--4, .system-map, .outcomes-grid { grid-template-columns: 1fr; }
-      .role-grid, .learnings-grid { grid-template-columns: 1fr; }
+      .problem-grid, .problem-grid--4, .problem-grid--5, .outcomes-grid { grid-template-columns: 1fr; }
+      .role-grid, .learnings-grid, .mockup-pair { grid-template-columns: 1fr; }
       .phase-step { grid-template-columns: 1fr; gap: 2.5rem; }
       .phase-step--flip { direction: ltr; }
     }
@@ -139,11 +158,12 @@
   <link rel="stylesheet" href="/assets/nav.css" />
   <link rel="stylesheet" href="/assets/site.css" />
   <link rel="stylesheet" href="/assets/theme.css" />
+  <link rel="stylesheet" href="/assets/cursor.css" />
   <link rel="stylesheet" href="/assets/case-study.css" />
 </head>
 <body>
 
-  <div id="progress" class="progress-line"></div>
+  <div class="progress-track" aria-hidden="true"><div id="progress" class="progress-line"></div></div>
 
   <header class="header">
     <div class="header__bar">
@@ -171,6 +191,7 @@
     <a class="nav__resume" href="#" data-resume-modal>Resume / CV ↗</a>
   </nav>
 
+  <!-- COVER -->
   <section class="cover">
     <div class="cover__bg-grid"></div>
     <div class="cover__bg-glow"></div>
@@ -180,13 +201,14 @@
         <span class="label">product design &middot; healthcare &middot; novartis</span>
       </div>
       <h1 class="cover__title">ICan Care</h1>
-      <p class="cover__subtitle">Novartis cancer-support app: appointments, medication reminders, education, clinic listings, and research data collection. Built for patients, caregivers, and researchers.</p>
+      <p class="cover__subtitle">An oncology companion for people managing treatment in Malaysia. Language-first onboarding, calm daily care, trusted education, and nearby centres, designed so hard days feel a little lighter.</p>
       <div class="pill-row">
         <span class="pill pill--accent">UI/UX Designer</span>
         <span class="pill">Healthcare</span>
         <span class="pill">Mobile</span>
         <span class="pill">Novartis</span>
         <span class="pill">Privacy-first</span>
+        <span class="pill">2026 visual refresh</span>
       </div>
     </div>
   </section>
@@ -197,238 +219,137 @@
         <div class="overview-item"><dt>Client</dt><dd>Novartis<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">cancer support</span></dd></div>
         <div class="overview-item"><dt>My Role</dt><dd>UI/UX Designer<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">end-to-end product UI</span></dd></div>
         <div class="overview-item"><dt>Platform</dt><dd>Hybrid mobile<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">iOS &amp; Android</span></dd></div>
-        <div class="overview-item"><dt>Tools</dt><dd>Adobe XD &middot; Miro<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">ChatGPT &middot; Flutter</span></dd></div>
-        <div class="overview-item"><dt>Users</dt><dd>Patients &amp; researchers<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">+ caregivers &amp; clinicians</span></dd></div>
-        <div class="overview-item"><dt>Domain</dt><dd>Healthcare<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">sensitive medical data</span></dd></div>
+        <div class="overview-item"><dt>Focus</dt><dd>Patients &amp; carers<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">EN &middot; BM &middot; 中文 &middot; தமிழ்</span></dd></div>
+        <div class="overview-item"><dt>Domain</dt><dd>Oncology<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">sensitive medical data</span></dd></div>
+        <div class="overview-item"><dt>Refresh</dt><dd>2026 UI<br /><span style="font-size:0.75rem;color:var(--muted-2);font-weight:400;">medical blue system</span></dd></div>
       </dl>
     </div>
   </div>
 
+  <!-- .01 PROBLEM -->
   <section class="section">
     <div class="container">
       <div class="section__header">
         <span class="section__label">.01 Where It Started</span>
-        <h2 class="section__title">A hybrid app with<br />two jobs at once.</h2>
-        <p class="section__lead">The brief was to create a hybrid mobile app that offered articles, reminders, and healthcare-provider listings,  while also gathering user feedback for analytics and clinical research. Achieving that meant translating high-level requirements into specs that were usable for patients and secure enough for medical data.</p>
+        <h2 class="section__title">Care on hard days.<br />Research without the weight.</h2>
+        <p class="section__lead">The original brief asked for a hybrid app that helped people manage treatment while optionally feeding clinical research. The 2026 refresh kept that dual mandate, but rebuilt the daily experience around calm, clarity, and language.</p>
       </div>
 
-      <div class="cs-img-wrap cs-img-wrap--wide cs-img-wrap--placeholder" aria-label="Image placeholder">
-        <span class="placeholder-label">Hero,  pink ribbon, ICan Care wordmark, Novartis mobile application</span>
+      <div class="cs-img-wrap cs-img-wrap--wide cs-img-wrap--placeholder hero-placeholder" aria-label="Image placeholder">
+        <span class="placeholder-label">Hero collage, Onboarding + Home side by side, medical blue system</span>
         <span class="placeholder-file">assets/icancare-hero.png</span>
       </div>
+      <p class="upload-note">Drop a full-bleed hero here when ready. Used on this page and the homepage project card.</p>
 
       <div class="problem-grid">
         <div class="problem-card">
           <span class="problem-card__num">01 dual mandate</span>
           <h3>Support people. Feed research.</h3>
-          <p>Patients needed appointments, medications, and trustworthy articles. Researchers needed anonymized data. The product had to serve both without making either feel like an afterthought.</p>
+          <p>Patients needed doses, appointments, and guidance they could trust. Researchers needed anonymized signal. Neither job could crowd out the other on a hard day.</p>
         </div>
         <div class="problem-card">
-          <span class="problem-card__num">02 sensitive data</span>
-          <h3>Usability could not outrun security</h3>
-          <p>Every flow (sign-up, reminders, surveys) had to handle medical information with encryption, clear consent, and privacy as a non-negotiable, not a settings toggle.</p>
+          <span class="problem-card__num">02 language &amp; access</span>
+          <h3>Care starts in your language</h3>
+          <p>In Malaysia, English-only onboarding is a barrier. The product had to open in EN, Bahasa Melayu, 中文, or தமிழ் before asking for an account.</p>
         </div>
         <div class="problem-card">
-          <span class="problem-card__num">03 scale</span>
-          <h3>Simple enough for daily use</h3>
-          <p>The app needed to stay calm under a full feature set and remain usable for thousands of simultaneous users,  not a dense clinical tool wearing a consumer skin.</p>
+          <span class="problem-card__num">03 cognitive load</span>
+          <h3>One decision at a time</h3>
+          <p>Medication apps fail when every screen asks for everything. The interface needed urgency without panic, and depth without dumping it on Home.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- .02 STRATEGY -->
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.02 Objectives</span>
-        <h2 class="section__title">Four outcomes,<br />one product.</h2>
-        <p class="section__lead">With the constraints named, the work was aimed at four objectives that later became the information architecture.</p>
+        <span class="section__label">.02 Product Strategy</span>
+        <h2 class="section__title">Five tabs.<br />One mental model.</h2>
+        <p class="section__lead">Information architecture follows how people think about a care day: what&rsquo;s due now, what to learn, where to go, and who I am. Research stays optional and off the critical path.</p>
       </div>
-      <div class="role-grid">
+
+      <div class="problem-grid problem-grid--5">
+        <div class="problem-card">
+          <span class="problem-card__num">home</span>
+          <h3>Today</h3>
+          <p>Greeting, search, next dose, doctor, later today. The hub for the next action.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">learn</span>
+          <h3>Guidance</h3>
+          <p>Clinician-reviewed topics and featured articles, without pretending to replace a care team.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">reminders</span>
+          <h3>Adherence</h3>
+          <p>Progress for today, due-now decisions, and a short path to add a medicine.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">nearby</span>
+          <h3>Centres</h3>
+          <p>Find oncology support by distance, specialty, and rating, not a raw map dump.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">profile</span>
+          <h3>Trust</h3>
+          <p>History, saved articles, care-team contact, privacy, and settings in one quiet place.</p>
+        </div>
+      </div>
+
+      <div class="role-grid" style="margin-top:1px;">
         <div class="role-item">
           <span class="role-item__icon">01</span>
           <div>
-            <h3>Effortless schedules</h3>
-            <p>Help people manage appointments and medications without hunting through calendars or paper lists.</p>
+            <h3>Language before account</h3>
+            <p>Onboarding starts with preference, not paperwork. Flags and labels make the choice scannable under stress.</p>
           </div>
         </div>
         <div class="role-item">
           <span class="role-item__icon">02</span>
           <div>
-            <h3>Trustworthy content</h3>
-            <p>Offer curated, accessible articles that raise awareness and support lifestyle,  filterable by therapeutic area.</p>
+            <h3>Medical blue, not clinical grey</h3>
+            <p>A blue hero system signals care and trust while soft surfaces and shadows keep the body of the app calm.</p>
           </div>
         </div>
         <div class="role-item">
           <span class="role-item__icon">03</span>
           <div>
-            <h3>Research-ready data</h3>
-            <p>Collect anonymized feedback and polls in a way that is useful for clinical studies without burdening the patient.</p>
+            <h3>Empathy in the copy</h3>
+            <p>&ldquo;Find care that fits your day&rdquo; and &ldquo;Let&rsquo;s find your care&rdquo; set tone before any feature list does.</p>
           </div>
         </div>
         <div class="role-item">
           <span class="role-item__icon">04</span>
           <div>
-            <h3>Security at scale</h3>
-            <p>Design for encryption, privacy compliance, and thousands of concurrent sessions from the first screens, not a later audit.</p>
+            <h3>Accessible by default</h3>
+            <p>48px targets, labeled controls, decorative imagery marked hidden, and status patterns that survive light and dark heroes.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- .03 ONBOARDING + HOME -->
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.03 Discovery</span>
-        <h2 class="section__title">Two audiences.<br />One privacy bar.</h2>
-        <p class="section__lead">Stakeholder interviews, surveys, and contextual inquiry surfaced two primary groups. Both demanded clear reminders, simple navigation, and data privacy they could believe.</p>
-      </div>
-      <div class="system-map">
-        <div class="system-card">
-          <span class="system-card__tag">patients &amp; caregivers</span>
-          <h3>Manage treatment, stay informed</h3>
-          <p>They needed help with treatment schedules and a way to find trustworthy information without wading through the open web.</p>
-        </div>
-        <div class="system-card">
-          <span class="system-card__tag">clinicians &amp; researchers</span>
-          <h3>Anonymized signal, not extra work</h3>
-          <p>They needed anonymized data for clinical studies and analysis,  without compromising the patient&rsquo;s experience or legal privacy requirements.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.04 Personas</span>
-        <h2 class="section__title">Keep the human<br />in every feature.</h2>
-        <p class="section__lead">Two personas sat on the wall for the rest of the project. They shaped what we shipped and what we refused to complicate.</p>
-      </div>
-
-      <div class="phase-steps">
-        <div class="phase-step">
-          <div class="phase-step__copy">
-            <span class="step-tag">01 Hannah</span>
-            <h2>Cancer survivor</h2>
-            <p>Goals: stay informed about treatments and manage appointments. Pain points: forgetting medication times, and struggling to find information she could trust.</p>
-          </div>
-          <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
-              <span class="placeholder-label">Persona.  Hannah, cancer survivor</span>
-              <span class="placeholder-file">assets/icancare-persona-hannah.png</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="phase-step phase-step--flip">
-          <div class="phase-step__copy">
-            <span class="step-tag">02 Dr. Ravi</span>
-            <h2>The researcher</h2>
-            <p>Goals: analyze patient data to identify trends for clinical trials. Pain points: needing anonymized data while staying compliant with privacy law.</p>
-          </div>
-          <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
-              <span class="placeholder-label">Persona.  Dr. Ravi, researcher</span>
-              <span class="placeholder-file">assets/icancare-persona-ravi.png</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.05 Design Strategy</span>
-        <h2 class="section__title">Four themes from<br />the research wall.</h2>
-        <p class="section__lead">Affinity mapping turned findings into a strategy the rest of the screens had to obey.</p>
-      </div>
-      <div class="problem-grid problem-grid--4">
-        <div class="problem-card">
-          <span class="problem-card__num">personalization</span>
-          <h3>Tailor the journey</h3>
-          <p>Content and reminders follow each user&rsquo;s medical path,  not a generic broadcast.</p>
-        </div>
-        <div class="problem-card">
-          <span class="problem-card__num">transparency</span>
-          <h3>Say what is true</h3>
-          <p>Clear, trustworthy information about clinical trials and healthcare providers. No buried disclaimers.</p>
-        </div>
-        <div class="problem-card">
-          <span class="problem-card__num">security</span>
-          <h3>Encrypt by default</h3>
-          <p>Robust data encryption and privacy language in the product, not only in a policy PDF.</p>
-        </div>
-        <div class="problem-card">
-          <span class="problem-card__num">usability</span>
-          <h3>Shorten the path</h3>
-          <p>Simplify sign-up, reminders, and browsing articles until the daily loop feels obvious.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.06 The Product</span>
-        <h2 class="section__title">Home first.<br />Then the rest of life.</h2>
-        <p class="section__lead">Navigation was iterated from user feedback. Home offered quick access to reminders, articles, and providers. Clinical trials and settings lived in their own sections so the daily path stayed uncluttered.</p>
-      </div>
-
-      <div class="phase-steps">
-        <div class="phase-step">
-          <div class="phase-step__copy">
-            <span class="step-tag">01 home</span>
-            <h2>Greeting, awareness, today&rsquo;s list.</h2>
-            <p>A personalized home with an awareness banner, a weekly calendar strip, and today&rsquo;s appointments and doses,  plus polls when research needed a pulse.</p>
-          </div>
-          <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
-              <span class="placeholder-label">Home dashboard,  greeting, World Cancer Day banner, reminders</span>
-              <span class="placeholder-file">assets/icancare-home.png</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="phase-step phase-step--flip">
-          <div class="phase-step__copy">
-            <span class="step-tag">02 knowledge &amp; safety</span>
-            <h2>Specialists, interactions, honesty.</h2>
-            <p>Provider messaging, a drug-interaction checker handoff, and an explicit educational disclaimer: the app informs; the treating physician decides.</p>
-          </div>
-          <div class="phase-step__visual">
-            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
-              <span class="placeholder-label">Knowledge / centres,  specialists banner, drug checker, disclaimer</span>
-              <span class="placeholder-file">assets/icancare-knowledge.png</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">.07 User Flows</span>
-        <h2 class="section__title">Sign up. Remind.<br />Read.</h2>
-        <p class="section__lead">Critical workflows were defined before high-fidelity polish: registration, calendar-synced reminders, and content filtered by therapeutic area.</p>
+        <span class="section__label">.03 First Minutes</span>
+        <h2 class="section__title">Arrive in your language.<br />Land on today.</h2>
+        <p class="section__lead">The first session should feel like being met, not enrolled. Choose a language, then open a home screen that already knows what matters next.</p>
       </div>
 
       <div class="phase-steps">
         <div class="phase-step">
           <div class="phase-step__copy">
             <span class="step-tag">01 onboarding</span>
-            <h2>Language, then an account.</h2>
-            <p>Users pick a language, then create an account with name, email, and password,  or continue with social login. The first screens had to feel calm, not clinical.</p>
+            <h2>Four languages. One calm continue.</h2>
+            <p>English, Bahasa Melayu, 中文, and தமிழ் sit as equal choices with real flag marks. Privacy expectations are framed as care, not legal theatre. Continue opens Home, not a wall of forms.</p>
           </div>
           <div class="phase-step__visual">
             <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
-              <span class="placeholder-label">Onboarding,  language select and create account</span>
+              <span class="placeholder-label">Onboarding, language picker, brand hero, Continue CTA</span>
               <span class="placeholder-file">assets/icancare-onboarding.png</span>
             </div>
           </div>
@@ -436,14 +357,14 @@
 
         <div class="phase-step phase-step--flip">
           <div class="phase-step__copy">
-            <span class="step-tag">02 reminders</span>
-            <h2>How often, then when.</h2>
-            <p>Add-medicine asks frequency, start and end dates, then lands on a calendar of doses and appointments that can sync with the phone calendar.</p>
+            <span class="step-tag">02 home</span>
+            <h2>Next dose first. Everything else second.</h2>
+            <p>Hi Sofia, search, four shortcuts, then the dose that is due, the doctor visit, and later today. Mark as taken is the primary action. Surveys never compete with urgency.</p>
           </div>
           <div class="phase-step__visual">
             <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
-              <span class="placeholder-label">Reminders,  add medicine frequency + calendar with doses</span>
-              <span class="placeholder-file">assets/icancare-reminders.png</span>
+              <span class="placeholder-label">Home, greeting, search, next dose card, doctor, tab bar</span>
+              <span class="placeholder-file">assets/icancare-home.png</span>
             </div>
           </div>
         </div>
@@ -451,39 +372,92 @@
     </div>
   </section>
 
+  <!-- .04 REMINDERS -->
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.08 Prototyping</span>
-        <h2 class="section__title">High fidelity on<br />both platforms.</h2>
-        <p class="section__lead">Mid-fidelity sketches became interactive prototypes, tested on Android and iOS so usability issues showed up before engineering locked the structure.</p>
+        <span class="section__label">.04 Adherence</span>
+        <h2 class="section__title">Progress you can feel.<br />Decisions you can finish.</h2>
+        <p class="section__lead">Reminders turn a chaotic medicine list into a day view: how far you&rsquo;ve gotten, what is due now, and a short stepper when something new needs adding.</p>
       </div>
 
       <div class="phase-steps">
         <div class="phase-step">
           <div class="phase-step__copy">
-            <span class="step-tag">01 centres</span>
-            <h2>Find a hospital. See the details.</h2>
-            <p>Search and city filters lead to centre cards, then a detail view with contact, address, social, and map,  built for people who need a real place, not a brochure.</p>
+            <span class="step-tag">01 reminders</span>
+            <h2>Taken or later. Nothing else.</h2>
+            <p>Today&rsquo;s progress shows as a simple strip. Due-now cards offer Taken and Later. Later today lists meds and telehealth without burying the next action.</p>
           </div>
           <div class="phase-step__visual">
             <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
-              <span class="placeholder-label">Centres,  search list and centre detail</span>
-              <span class="placeholder-file">assets/icancare-centres.png</span>
+              <span class="placeholder-label">Reminders, progress 2/3, due now, Taken / Later actions</span>
+              <span class="placeholder-file">assets/icancare-reminders.png</span>
             </div>
           </div>
         </div>
 
         <div class="phase-step phase-step--flip">
           <div class="phase-step__copy">
-            <span class="step-tag">02 menu</span>
-            <h2>History, journal, privacy.</h2>
-            <p>The menu holds medicine history, wellness journal, polls, tutorial, settings, and privacy policy,  the slower, heavier tools kept off the home path.</p>
+            <span class="step-tag">02 add medicine</span>
+            <h2>Name. Dose. Frequency. Confirm.</h2>
+            <p>A three-step flow keeps setup linear. People leave with a saved medicine, not a half-filled clinical form. Care-team guidance stays visible when doses change.</p>
           </div>
           <div class="phase-step__visual">
             <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
-              <span class="placeholder-label">Menu,  profile, journal, polls, settings, privacy</span>
-              <span class="placeholder-file">assets/icancare-menu.png</span>
+              <span class="placeholder-label">Add medicine stepper, name / dosage / frequency</span>
+              <span class="placeholder-file">assets/icancare-add-medicine.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mockup-pair" style="margin-top:3rem;">
+        <div class="cs-img-wrap cs-img-wrap--placeholder" aria-label="Image placeholder">
+          <span class="placeholder-label">Optional sequence, Home next-dose → Reminders due-now</span>
+          <span class="placeholder-file">assets/icancare-flow-adherence.png</span>
+        </div>
+        <div class="cs-img-wrap cs-img-wrap--placeholder" aria-label="Image placeholder">
+          <span class="placeholder-label">Optional, Add medicine confirm step</span>
+          <span class="placeholder-file">assets/icancare-add-medicine-confirm.png</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- .05 LEARN -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.05 Learn</span>
+        <h2 class="section__title">Guidance that feels<br />reviewed, not googled.</h2>
+        <p class="section__lead">Knowledge is structured for scanning: a featured article, topic cards for the early journey, and deeper lists for carers and interactions. The article view adds listen support and honest boundaries.</p>
+      </div>
+
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">01 learn hub</span>
+            <h2>Featured first. Topics second.</h2>
+            <p>A single featured story anchors the hub. Topic tiles cover newly diagnosed, treatment options, nutrition, and life after treatment. Lists below serve carers and common questions.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Learn, featured article card, topic grid</span>
+              <span class="placeholder-file">assets/icancare-learn.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">02 article</span>
+            <h2>Read or listen. Keep structure.</h2>
+            <p>Hero image, back and save, an audio progress strip, and checklist sections for what to bring and what to ask. Empathy without pretending the app is a clinician.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Article, hero, listen bar, what to bring checklist</span>
+              <span class="placeholder-file">assets/icancare-article.png</span>
             </div>
           </div>
         </div>
@@ -491,29 +465,110 @@
     </div>
   </section>
 
+  <!-- .06 NEARBY + PROFILE -->
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.09 Testing &amp; Outcomes</span>
+        <span class="section__label">.06 Local Care &amp; Trust</span>
+        <h2 class="section__title">Find a centre.<br />Keep control of your data.</h2>
+        <p class="section__lead">Nearby turns location into a filtered list of oncology centres. Profile gathers history, support, and privacy so Home stays focused on today.</p>
+      </div>
+
+      <div class="phase-steps">
+        <div class="phase-step">
+          <div class="phase-step__copy">
+            <span class="step-tag">01 nearby</span>
+            <h2>Distance, specialty, open now.</h2>
+            <p>Search plus chips for Nearby, Oncology, and Open now. Each row shows rating, distance, department, and a hospital photo so the choice feels grounded.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Nearby, search, filter chips, centre list with photos</span>
+              <span class="placeholder-file">assets/icancare-nearby.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-step phase-step--flip">
+          <div class="phase-step__copy">
+            <span class="step-tag">02 profile</span>
+            <h2>History, contact, privacy.</h2>
+            <p>Sofia&rsquo;s header sits above medicine history, saved articles, care-team contact, privacy &amp; consent, and settings. Trust tools live here so they never clutter the care loop.</p>
+          </div>
+          <div class="phase-step__visual">
+            <div class="cs-img-wrap cs-img-wrap--tall cs-img-wrap--placeholder" aria-label="Image placeholder">
+              <span class="placeholder-label">Profile, avatar header, menu list, privacy row</span>
+              <span class="placeholder-file">assets/icancare-profile.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- .07 SYSTEM -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.07 Visual System</span>
+        <h2 class="section__title">Blue for care.<br />Quiet for the rest.</h2>
+        <p class="section__lead">The refresh replaced generic chrome with a medical blue hero system, soft cards, Plus Jakarta Sans, and real imagery for people and places.</p>
+      </div>
+
+      <div class="problem-grid problem-grid--4">
+        <div class="problem-card">
+          <span class="problem-card__num">palette</span>
+          <h3>#2563EB · #1D4ED8</h3>
+          <p>Primary and deep blue for heroes and CTAs. Soft blue fills for icons. Ink and muted slate for body text.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">type</span>
+          <h3>Plus Jakarta Sans</h3>
+          <p>Extrabold titles, medium body, tabular time. Readable under stress without looking clinical-cold.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">imagery</span>
+          <h3>Faces and places</h3>
+          <p>Patient and doctor avatars, hospital photos, article heroes. No empty initial circles where trust matters.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-card__num">motion</span>
+          <h3>Enter, then settle</h3>
+          <p>Short staggered enters on lists and cards. Presence without noise.</p>
+        </div>
+      </div>
+
+      <div class="cs-img-wrap cs-img-wrap--mid cs-img-wrap--placeholder" style="margin-top:3rem;" aria-label="Image placeholder">
+        <span class="placeholder-label">Design system strip, colors, type, buttons, status bar light/dark</span>
+        <span class="placeholder-file">assets/icancare-system.png</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- .08 OUTCOMES -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">.08 Testing &amp; Outcomes</span>
         <h2 class="section__title">Iterate until the<br />task succeeds.</h2>
-        <p class="section__lead">Three rounds of usability testing, plus a heuristic pass for error prevention, aesthetics, and efficiency. Navigation hierarchy and reminder setup were the biggest repairs.</p>
+        <p class="section__lead">Three rounds of usability testing plus a heuristic pass. Navigation hierarchy and reminder setup were the biggest repairs before launch.</p>
       </div>
 
       <div class="problem-grid">
         <div class="problem-card">
           <span class="problem-card__num">findings</span>
           <h3>Hierarchy and setup</h3>
-          <p>Navigation was hard to scan. Reminder setup felt long. Both were simplified before launch.</p>
+          <p>Early builds buried the next dose and stretched medicine setup. Both were shortened until the daily loop felt obvious.</p>
         </div>
         <div class="problem-card">
           <span class="problem-card__num">platforms</span>
           <h3>Android and iOS</h3>
-          <p>Responsive behavior was checked on both so the hybrid shell did not hide platform-specific friction.</p>
+          <p>The hybrid shell was checked on both platforms so platform friction did not hide behind a single mockup.</p>
         </div>
         <div class="problem-card">
           <span class="problem-card__num">validation</span>
           <h3>92% task success</h3>
-          <p>Final testing reached a 92% task success rate. Heuristics confirmed the remaining gaps were small.</p>
+          <p>Final testing reached a 92% task success rate. Remaining gaps were small and documented for engineering.</p>
         </div>
       </div>
 
@@ -521,7 +576,7 @@
         <div class="outcome-card">
           <div class="outcome-card__value">+40%</div>
           <div class="outcome-card__label">Time on app</div>
-          <div class="outcome-card__desc">Engagement rose after launch as people used reminders and articles together.</div>
+          <div class="outcome-card__desc">Engagement rose as reminders and articles were used together.</div>
         </div>
         <div class="outcome-card">
           <div class="outcome-card__value">85%</div>
@@ -547,34 +602,36 @@
     </div>
   </section>
 
+  <!-- .09 REFLECTIONS -->
   <section class="section">
     <div class="container">
       <div class="section__header">
-        <span class="section__label">.10 Reflections</span>
+        <span class="section__label">.09 Reflections</span>
         <h2 class="section__title">What I&rsquo;d carry forward.</h2>
       </div>
       <div class="learnings-grid">
         <div class="learning-block">
-          <h3>Involve users before the screens harden.</h3>
-          <p>Early interviews and three test rounds saved the information architecture. Waiting until high fidelity would have made the same findings expensive.</p>
+          <h3>Language is an accessibility feature.</h3>
+          <p>Starting in the right language is not localization polish. It is whether someone can use the product on day one.</p>
         </div>
         <div class="learning-block">
           <h3>Privacy is a product requirement.</h3>
-          <p>For medical data, encryption and anonymization are not a compliance appendix. They change what you ask, when you ask, and how you store the answer.</p>
+          <p>For medical data, consent and encryption change what you ask, when you ask, and how you store the answer.</p>
         </div>
         <div class="learning-block">
           <h3>Two audiences need two speeds.</h3>
-          <p>Patients live on home and reminders. Researchers live on polls and exports. Mixing those speeds on one screen helps neither.</p>
+          <p>Patients live on Home and Reminders. Research lives on optional paths. Mixing those speeds on one screen helps neither.</p>
         </div>
         <div class="learning-block">
           <h3>Calm UI is a clinical choice.</h3>
-          <p>Whitespace, short copy, and honest disclaimers are not decoration here. People open this app on hard days. The interface should not add weight.</p>
+          <p>Whitespace, short copy, and honest disclaimers are not decoration. People open this app on hard days.</p>
         </div>
       </div>
-      <p class="section__lead" style="margin-top:3rem;">This project reinforced that thoughtful design can change daily life,  if you keep testing until the task, not the mockup, is the measure.</p>
+      <p class="section__lead" style="margin-top:3rem;">The 2026 refresh proved the same brief can feel entirely different when the daily loop, not the feature list, becomes the measure.</p>
     </div>
   </section>
 
+  <!-- MORE WORK -->
   <section style="padding: clamp(4rem,8vw,7rem) 0; border-top: 1px solid var(--border);">
     <div class="container">
       <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;display:block;margin-bottom:2.5rem;">More Work</span>
@@ -621,6 +678,7 @@
     </div>
   </footer>
 
+  <script src="/assets/cursor.js"></script>
   <script src="/assets/smooth-scroll.js"></script>
   <script src="/assets/nav.js"></script>
   <script src="/assets/copy-email.js"></script>

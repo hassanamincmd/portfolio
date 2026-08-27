@@ -1,0 +1,195 @@
+{
+  "name": "Hassan Amin",
+  "headline": "UI/UX Designer | Product Designer",
+  "email": "contact.hassan.amin@gmail.com",
+  "phone": "+20 10 668 74 777",
+  "location": "Cairo, Egypt",
+  "linkedin": "https://www.linkedin.com/in/hassan-mo-amin/",
+  "portfolio": "https://hassanamin.net",
+  "languages": ["English C2", "Arabic Native"],
+  "yearsExperience": 5,
+  "targetTitles": [
+    "Senior Product Designer",
+    "Product Designer",
+    "Senior UI/UX Designer",
+    "UI/UX Designer",
+    "Product Designer II"
+  ],
+  "avoidTitles": [
+    "intern",
+    "internship",
+    "graphic designer only",
+    "visual designer only"
+  ],
+  "preferredLocations": [
+    "egypt",
+    "cairo",
+    "worldwide",
+    "anywhere",
+    "emea",
+    "mena",
+    "middle east",
+    "africa",
+    "uae",
+    "dubai",
+    "saudi",
+    "riyadh",
+    "ksa"
+  ],
+  "openTo": {
+    "remoteWorldwide": true,
+    "remoteEmea": true,
+    "remoteMena": true,
+    "remoteCountryLocked": false,
+    "onsiteEgypt": true,
+    "onsiteGcc": true,
+    "relocateEurope": false,
+    "relocateWorldwide": false
+  },
+  "skills": [
+    "Figma",
+    "FigJam",
+    "Framer",
+    "Adobe XD",
+    "Photoshop",
+    "Illustrator",
+    "Zeplin",
+    "Wireframing",
+    "Prototyping",
+    "Interaction Design",
+    "Responsive Design",
+    "Design Systems",
+    "Accessibility",
+    "WCAG",
+    "UX Writing",
+    "User Research",
+    "Usability Testing",
+    "UserTesting",
+    "Synthesis",
+    "Data-Driven Design",
+    "Design Thinking",
+    "Agile",
+    "Cursor",
+    "Claude",
+    "ChatGPT",
+    "Prompt Engineering",
+    "Jira",
+    "Notion",
+    "Trello",
+    "Design-Engineering Handoff"
+  ],
+  "domains": [
+    "enterprise SaaS",
+    "construction tech",
+    "quality and safety",
+    "fintech",
+    "regulated",
+    "government",
+    "agency",
+    "CRM",
+    "consumer",
+    "design systems",
+    "AI-assisted design"
+  ],
+  "summary": "Product and UI/UX designer with 5 years building digital products for enterprise, agency, and government clients in NA, EMEA, and APAC. Strongest in 0 to 1 product design, design systems, research-backed UI, and taking work from concept through to shipped, cross-platform product.",
+  "experience": [
+    {
+      "title": "Product Designer 2",
+      "company": "Procore Technologies",
+      "dates": "May 2025 - July 2026",
+      "type": "Full-time",
+      "bullets": [
+        "Designed and shipped 3 cross-platform Quality and Safety projects, reaching 97% product and stakeholder satisfaction and helping increase safety tools engagement by 25%.",
+        "Built high-fidelity interfaces focused on data clarity, WCAG accessibility, and localization; kept designs aligned with Procore's design system and contributed reusable components.",
+        "Partnered with UX researchers on generative studies and usability tests, including a UserTesting study that informed redesign of 4 of 5 dashboard cards before handoff.",
+        "Accelerated design-to-development workflows using Claude, Cursor, and NotebookLM for prototyping and foundational coding support.",
+        "Participated in client workshops and customer events; supported 100% on-time delivery."
+      ]
+    },
+    {
+      "title": "Senior UI/UX Designer",
+      "company": "Caspian Digital Solutions",
+      "dates": "November 2022 - February 2025",
+      "type": "Full-time",
+      "bullets": [
+        "Managed and directed a UX design team of 4, delivering over 20 high-quality digital products annually.",
+        "Ensured 100% on-time delivery with a 95% stakeholder approval rate.",
+        "Designed high-fidelity prototypes and wireframes, increasing client satisfaction by 35%.",
+        "Implemented quarterly reviews to optimize workflows, improving team efficiency by 20%."
+      ]
+    },
+    {
+      "title": "UI/UX Designer",
+      "company": "Caspian Digital Solutions",
+      "dates": "May 2022 - October 2022",
+      "type": "Full-time",
+      "bullets": [
+        "Created detailed wireframes and user flows, improving cross-team clarity by 20%.",
+        "Established design guidelines, enhancing brand consistency and reducing iteration time by 25%.",
+        "Presented and defended designs, achieving a 90% approval rate in the first round."
+      ]
+    },
+    {
+      "title": "UI/UX Designer / Product Designer",
+      "company": "Spiritude",
+      "dates": "December 2021 - May 2022",
+      "type": "Full-time",
+      "bullets": [
+        "Conducted user research and competitor analysis, driving a 20% improvement in product positioning.",
+        "Created user personas and usage scenarios, increasing feature adoption by 30%.",
+        "Delivered cohesive design systems, reducing inconsistencies by 40%."
+      ]
+    },
+    {
+      "title": "UK Account Advisor / Subject Matter Expert",
+      "company": "VOIS (Vodafone Intelligent Solutions)",
+      "dates": "March 2018 - March 2021",
+      "type": "Full-time",
+      "bullets": [
+        "Handled UK customer escalations and documented workflows across the Customer Experience Cycle.",
+        "Mentored newcomers and acted as a knowledge source for frontline advisors.",
+        "Helped improve CX processes and service journeys."
+      ]
+    }
+  ],
+  "additional": [
+    {
+      "title": "Senior Product Designer",
+      "company": "Deloitte",
+      "dates": "2025",
+      "type": "Freelance",
+      "bullets": [
+        "Designed UI components for the KSA Capital Market Authority design system."
+      ]
+    },
+    {
+      "title": "Senior Product Designer / UX Strategy & Design Lead",
+      "company": "Path2Live",
+      "dates": "March 2024 - December 2024",
+      "type": "Consultant",
+      "bullets": [
+        "Led the UI/UX team across multiple projects with clear handoff to development.",
+        "Built a comprehensive design system and structured design workflows.",
+        "Delivered responsive cross-platform designs that reduced integration issues."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Intensive Training Program - UI/UX Design",
+      "school": "Information Technology Institute (ITI)",
+      "dates": "April 2021 - July 2021"
+    },
+    {
+      "title": "Bachelor of Arts - Geographic Information Systems",
+      "school": "Faculty of Arts, King Marriott Academy",
+      "dates": "October 2013 - August 2018"
+    }
+  ],
+  "certifications": [
+    "UX Design Professional - Google",
+    "Digital Product Management - Institute of Management, Technology and Finance",
+    "Graphic Design Practice License - Ministry of Manpower, Egypt",
+    "PMP Training Course - Arab Academy for Science, Technology and Maritime Transport"
+  ]
+}

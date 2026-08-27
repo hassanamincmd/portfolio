@@ -67,23 +67,27 @@
 }
 
 .mobile-nav a {
-  font-family: var(--display, 'Outfit', system-ui, sans-serif);
+  font-family: var(--display, 'Inter', system-ui, sans-serif);
   font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--muted, #6b6558);
+  font-weight: calc(400 + (var(--nav-p, 0) * 300));
+  color: color-mix(in srgb, #000 calc(var(--nav-p, 0) * 100%), var(--muted, #6b6558) calc((1 - var(--nav-p, 0)) * 100%));
   letter-spacing: -0.02em;
-  transition: color 0.15s;
+  transition: color 0.15s linear;
   text-decoration: none;
 }
 
 .mobile-nav a:hover,
 .mobile-nav a.active {
-  color: var(--text, #16140f);
+  color: #000;
+}
+
+.mobile-nav a.is-section-active {
+  /* progress via --nav-p */
 }
 
 /* Resume pill */
 .mobile-nav .nav__resume {
-  font-family: 'DM Mono', ui-monospace, monospace;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 0.8rem;
   font-weight: 300;
   color: var(--text, #16140f);

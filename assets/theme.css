@@ -1,8 +1,8 @@
 /* Folio-inspired calm paper theme */
 
 :root {
-  --bg: #f4f1ea;
-  --bg-2: #ece7dc;
+  --bg: #faf8f4;
+  --bg-2: #f1ece3;
   --surface: #fffdf8;
   --surface-2: #f7f3eb;
   --surface-3: #ece7dc;
@@ -12,30 +12,49 @@
   --muted-2: #8a8478;
   --border: rgba(22, 20, 15, 0.1);
   --accent-2: #0d9488;
-  --display: "Outfit", "Segoe UI", sans-serif;
-  --serif: "Fraunces", Georgia, serif;
-  --mono: "Outfit", "Segoe UI", sans-serif;
+  --display: "Inter", system-ui, sans-serif;
+  --serif: "Inter", system-ui, sans-serif;
+  --mono: "Inter", system-ui, sans-serif;
   --shadow: 0 20px 50px rgba(48, 40, 24, 0.08);
   --radius: 24px;
 }
 
 body {
   background-color: var(--bg);
-  background-image:
-    linear-gradient(rgba(22, 20, 15, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(22, 20, 15, 0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-image: radial-gradient(circle, rgba(22, 20, 15, 0.16) 1px, transparent 1.15px);
+  background-size: 20px 20px;
   background-attachment: fixed;
   color: var(--text);
   font-family: var(--display);
 }
 
-#progress {
-  background: var(--accent, #4f46e5);
+.progress-track {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--content-w, min(1200px, 92%));
+  height: 2px;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.progress-track #progress,
+.progress-track .progress-line {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: #000;
+  transition: width 0.08s linear;
+}
+
+#progress,
+.progress-line {
+  background: #000;
 }
 
 .header {
-  background: rgba(244, 241, 234, 0.82);
+  background: rgba(250, 248, 244, 0.82);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }

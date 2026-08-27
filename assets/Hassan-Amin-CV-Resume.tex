@@ -1,0 +1,385 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Hassan Amin CV},
+    pdfauthor={Hassan Amin},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\pagenumbering{gobble} % no page numbering
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.42 cm
+}{
+    % bottom space:
+    0.28 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.08 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0.04 cm,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.08 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0.04 cm,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0 cm + 0.00001 cm
+    }{
+        0 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for three column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in August 2026}\hspace{\widthof{Last updated in August 2026}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+
+
+% ... (keep the preamble exactly as you had it) ...
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{25 pt}{25 pt}\selectfont Hassan Amin
+
+        \vspace{5 pt}
+
+        \normalsize        \mbox{\href{mailto:hassan.amin.elsayed@gmail.com}{hassan.amin.elsayed@gmail.com}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{+201021549776}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\href{https://www.linkedin.com/in/hassan-mo-amin/}{linkedin.com/in/hassan-mo-amin}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\href{https://hassanamin.net}{Portfolio: hassanamin.net}}%
+
+        \vspace{-0.3 cm}
+    \end{header}
+
+    \section{Profile}
+\begin{onecolentry}
+    Senior Product Designer / UI/UX Designer with 5 years of experience delivering end-to-end product design for web and mobile. Experienced across user research, design systems, accessibility (WCAG), and Agile delivery with product and engineering --- focused on clear, user-centred interfaces that ship.
+\end{onecolentry}
+
+
+    \section{Experience}
+\begin{twocolentry}{May 2025 -- Aug. 2026}
+    \textbf{Product Designer}, Procore Technologies
+\end{twocolentry}
+
+\vspace{0.14 cm}
+\begin{onecolentry}
+\begin{highlights}
+    \item Designed end-to-end web and mobile product experiences for a SaaS platform serving 2M+ users, shipping 3 products with a focus on clear data presentation, accessibility, and localization.
+
+    \item Partnered with Product and Engineering to define scope, align on feasibility, and deliver high-fidelity designs and prototypes, maintaining 95\%+ stakeholder satisfaction.
+
+    \item Worked with researchers on 2 studies --- generative research and usability testing --- to validate solutions before production release.
+
+    \item Contributed to the shared design system and used research and product data to keep experiences consistent and solve business problems.
+
+    \item Used AI-assisted workflows (Claude, Cursor, NotebookLM, Figma) to speed up prototyping and handoff, helping improve team efficiency by $\sim$50\%.
+\end{highlights}
+\end{onecolentry}
+
+\vspace{0.48 cm}
+
+\begin{twocolentry}{May 2022 -- Apr. 2025}
+    \textbf{Senior UI/UX Designer (Team Lead)}, Caspian Digital Solutions
+\end{twocolentry}
+
+\vspace{0.14 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Promoted from UI/UX Designer to Senior UI/UX Designer (Team Lead) within the company.
+        \item Managed and directed a UX design team of 4 members, delivering over 20 high-quality digital products annually.
+        \item Ensured 100\% on-time delivery with a 95\% stakeholder approval rate.
+        \item Designed high-fidelity prototypes and wireframes, increasing client satisfaction by 35\%.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.48 cm}
+
+\begin{twocolentry}{Dec. 2021 -- May 2022}
+    \textbf{UI/UX Designer / Product Designer}, Spiritude
+\end{twocolentry}
+
+\vspace{0.14 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Conducted user research and competitor analysis, driving a 20\% improvement in product positioning.
+        \item Created user personas and usage scenarios, increasing feature adoption by 30\%.
+        \item Delivered cohesive design systems, reducing inconsistencies by 40\%.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.48 cm}
+
+\begin{twocolentry}{Mar. 2018 -- Mar. 2021}
+    \textbf{UK Account Advisor / Subject Matter Expert}, VOIS (Vodafone Intelligent Solutions)
+\end{twocolentry}
+
+\vspace{0.14 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Handled frontline customer interactions, maintaining an average tNPS score of 80\% per month.
+        \item Mentored and coached 200+ newcomers, supporting onboarding and performance from early in the role.
+        \item Acted as a subject matter expert on customer escalations and feedback reports, turning quantitative feedback into qualitative insights based on keywords and call context.
+    \end{highlights}
+\end{onecolentry}
+
+
+    \section{Projects}
+    \begin{twocolentry}{Jan. 2025 -- Dec. 2025}
+        \textbf{Senior Product Designer (Freelance)}, Deloitte
+    \end{twocolentry}
+
+    \vspace{0.14 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Enhanced the KSA Capital Market Authority design system by building scalable components to ensure consistency.
+            \item Collaborated with the design \& product team to execute high-fidelity wireframes and user interface layouts.
+            \item Delivered all work 100\% on time; design changes contributed to a reported $\sim$25\% increase in CMA ease of use.
+        \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.48 cm}
+
+    \begin{twocolentry}{Mar. 2024 -- Dec. 2024}
+        \textbf{Senior Product Designer (Freelance)}, Dailycal.app
+    \end{twocolentry}
+
+    \vspace{0.14 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Led the UI/UX team in designing and delivering multiple projects, ensuring seamless handoff to development teams.
+            \item Established workflows and structured the company's design team, improving team efficiency by 40\%.
+            \item Developed a comprehensive design system, enhancing collaboration between designers and developers.
+            \item Delivered responsive, cross-platform designs, reducing integration issues by 15\%.
+        \end{highlights}
+    \end{onecolentry}
+
+\section{Technical Skills}
+\begin{onecolentry}
+    \textbf{Design Tools:} Figma, FigJam, Framer, Adobe XD, Photoshop, Illustrator, Zeplin
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Product Design:} Wireframing, Prototyping, Interaction Design, Responsive Design, Design Systems, UX Writing
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Research \& Accessibility:} User Research, Usability Testing, UserTesting, WCAG, Accessibility, Data-Driven Design
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{AI-Assisted Design:} Cursor, Claude, ChatGPT, Prompt Engineering
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Collaboration:} Jira, Notion, Trello, Agile, Design-Engineering Handoff
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Domains:} Enterprise SaaS, Construction Tech, Fintech, Government, Regulated Products, CRM
+\end{onecolentry}
+
+
+\section{Personal Skills}
+\begin{onecolentry}
+    \textbf{Product Thinking \& Research:} Requirement scoping, user flows, usability testing, research-led design, data-informed decisions
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Communication \& Leadership:} Stakeholder presentations, cross-functional collaboration, team leadership, mentoring, remote/async work
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Accessibility \& Craft:} WCAG, inclusive design, design systems, visual and interaction design, attention to detail
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Ways of Working:} Agile delivery, design-engineering handoff, continuous learning, AI-assisted design workflows
+\end{onecolentry}
+
+\section{Licenses and Certifications}
+
+\begin{onecolentry}
+    \textbf{Digital Product Management} -- Institute of Management, Technology and Finance
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Graphic Design Practice License} -- Ministry of Manpower Egypt
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{UX Design Professional} -- Google
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{PMP Training Course} -- Arab Academy for Science, Technology \& Maritime Transport
+\end{onecolentry}
+
+\vspace{0.28cm}
+\section{Scholarships and Internships}
+\begin{twocolentry}{Apr. 2021 -- Jul. 2021}
+    \textbf{Intensive Training Program -- UI/UX Design}, Information Technology Institute (ITI) -- Ministry of Communication and Information Technology
+\end{twocolentry}
+
+\vspace{0.28cm}
+\section{Education}
+\begin{twocolentry}{Oct. 2013 -- Aug. 2018}
+    \textbf{Bachelor of Arts -- Geographic Information Systems}, Faculty of Arts, King Marriott Academy
+\end{twocolentry}
+
+\vspace{0.28cm}
+\section{Languages}
+
+\begin{onecolentry}
+    \textbf{English:} Fluent
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Arabic:} Native
+\end{onecolentry}
+
+\vspace{0.28cm}
+\section{Personal Information}
+
+\begin{onecolentry}
+    \textbf{Military Status:} Exempted
+\end{onecolentry}
+
+\begin{onecolentry}
+    \textbf{Nationality:} Egyptian
+\end{onecolentry}
+
+
+
+\end{document}
