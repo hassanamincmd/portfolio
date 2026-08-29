@@ -1,0 +1,482 @@
+/* Elastic Gallery — component timings + Figma 1410×748 case cards */
+.elastic-gallery {
+  --eg-flex-duration: 700ms;
+  --eg-flex-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --eg-transform-duration: 1000ms;
+  --eg-transform-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --eg-opacity-duration: 500ms;
+  --eg-opacity-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --eg-delay-content: 200ms;
+  --eg-delay-label: 500ms;
+  /* Figma card frame */
+  --eg-card-ratio: calc(748 / 1410);
+  --eg-active-flex: 4;
+  --eg-total-flex: 6;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  /* Height = active panel width × 748/1410 (full card visible when expanded) */
+  height: calc((100% - 16px) * (var(--eg-active-flex) / var(--eg-total-flex)) * var(--eg-card-ratio));
+  min-height: 220px;
+  border-radius: 24px;
+}
+
+@media (min-width: 769px) {
+  .elastic-gallery {
+    flex-direction: row;
+    gap: 16px;
+    height: calc((100% - 32px) * (var(--eg-active-flex) / var(--eg-total-flex)) * var(--eg-card-ratio));
+    min-height: 260px;
+    max-height: 430px;
+  }
+}
+
+.elastic-gallery__panel {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  container-type: inline-size;
+  filter: brightness(0.5);
+  transition:
+    flex var(--eg-flex-duration) var(--eg-flex-ease),
+    filter var(--eg-flex-duration) var(--eg-flex-ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.elastic-gallery__panel.is-active {
+  flex: 4;
+  filter: brightness(1);
+}
+
+.elastic-gallery__panel:focus-visible {
+  outline: 2px solid #ff5200;
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .elastic-gallery__panel:not(.is-active):hover {
+    filter: brightness(0.75);
+  }
+}
+
+/* ── Default state (collapsed) — Figma 5139 / 5100 / 5139 ── */
+.elastic-gallery__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.elastic-gallery__panel--safety .elastic-gallery__bg {
+  background: linear-gradient(117.88deg, #000 49.86%, #666 98.02%);
+}
+
+.elastic-gallery__panel--meridian .elastic-gallery__bg {
+  background: linear-gradient(107.18deg, #000 50%, #002c2e 100.01%);
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__bg {
+  background: linear-gradient(110.62deg, #000 17.45%, #002d67 100.01%);
+}
+
+.elastic-gallery__idle {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity var(--eg-opacity-duration) var(--eg-opacity-ease);
+  transition-delay: var(--eg-delay-label);
+}
+
+.elastic-gallery__panel.is-active .elastic-gallery__idle {
+  opacity: 0;
+  transition-delay: 0ms;
+}
+
+.elastic-gallery__mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Safety Hub default — centered Procore mark */
+.elastic-gallery__panel--safety .elastic-gallery__mark {
+  width: min(17.4%, 245px);
+  height: auto;
+}
+
+/* Meridian default — centered pixel M */
+.elastic-gallery__panel--meridian .elastic-gallery__mark {
+  width: auto;
+  height: auto;
+  font-family: var(--pixel, "Micro 5", monospace);
+  font-size: 32.057cqw;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: #2dd4bf;
+  white-space: nowrap;
+}
+
+/* ICan Care default — centered brand heart */
+.elastic-gallery__panel--icancare .elastic-gallery__mark {
+  width: min(20%, 282px);
+  height: auto;
+}
+
+/* ── Reveal state (expanded) — original hover layouts ── */
+.elastic-gallery__reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--eg-opacity-duration) var(--eg-opacity-ease);
+}
+
+.elastic-gallery__panel.is-active .elastic-gallery__reveal {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.elastic-gallery__panel--safety .elastic-gallery__reveal {
+  background: linear-gradient(107.17deg, #000 0%, #3c3c3c 100%);
+}
+
+.elastic-gallery__panel--meridian .elastic-gallery__reveal {
+  background: linear-gradient(107.17deg, #003031 0%, #00484b 100%);
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__reveal {
+  background: linear-gradient(107.17deg, #fff 0%, #e6e6e6 100%);
+}
+
+/* Mockup column — flush L/T/B like Figma */
+.elastic-gallery__media {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2.837cqw;
+  overflow: hidden;
+  z-index: 2;
+  background: transparent;
+}
+
+.elastic-gallery__panel--safety .elastic-gallery__media {
+  width: 40.496cqw;
+}
+
+.elastic-gallery__panel--meridian .elastic-gallery__media {
+  left: 4.184cqw;
+  width: 52.837cqw;
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__media {
+  width: 35.177cqw;
+}
+
+.elastic-gallery__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__media img {
+  object-position: top center;
+}
+
+/* Copy column */
+.elastic-gallery__copy {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.489cqw;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(3rem);
+  transition: all var(--eg-opacity-duration) var(--eg-opacity-ease);
+  transition-delay: 0ms;
+}
+
+.elastic-gallery__panel.is-active .elastic-gallery__copy {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--eg-delay-content);
+}
+
+.elastic-gallery__panel--safety .elastic-gallery__copy {
+  left: 47.234cqw;
+  right: 15.887cqw;
+  color: #f5f5f5;
+}
+
+.elastic-gallery__panel--meridian .elastic-gallery__copy {
+  left: 62.766cqw;
+  right: 2.837cqw;
+  top: 5.348cqh;
+  bottom: 5.348cqh;
+  justify-content: flex-start;
+  color: #e5e5e5;
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__copy {
+  left: 44.752cqw;
+  right: 15.887cqw;
+  color: #000;
+}
+
+.elastic-gallery__wordmark {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.elastic-gallery__panel--safety .elastic-gallery__wordmark {
+  width: 8.298cqw;
+}
+
+.elastic-gallery__wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.elastic-gallery__mark-slot {
+  position: absolute;
+  left: 47.576%;
+  top: 33.137%;
+  width: 4.916%;
+  height: 33.69%;
+  pointer-events: none;
+}
+
+.elastic-gallery__mark-fallback {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 260%;
+  height: auto;
+}
+
+.elastic-gallery__panel--meridian .elastic-gallery__wordmark {
+  height: 4.813cqh;
+  font-family: var(--pixel, "Micro 5", monospace);
+  font-size: 4.813cqh;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  color: #e5e5e5;
+}
+
+.elastic-gallery__panel--meridian .elastic-gallery__mark-slot {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 0.72em;
+  height: 1.4em;
+  flex-shrink: 0;
+}
+
+.elastic-gallery__panel--meridian .elastic-gallery__mark-fallback {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--pixel, "Micro 5", monospace);
+  font-size: 1em;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: #2dd4bf;
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__wordmark {
+  width: 11.915cqw;
+  height: 2.674cqh;
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__wordmark img {
+  width: 100%;
+  height: auto;
+}
+
+.elastic-gallery__title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 4.539cqw;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__title {
+  color: #000;
+}
+
+.elastic-gallery__lede {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.702cqw;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.elastic-gallery__panel--meridian .elastic-gallery__lede,
+.elastic-gallery__panel--icancare .elastic-gallery__lede {
+  white-space: normal;
+  max-width: 40.426cqw;
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__lede {
+  color: #000;
+}
+
+.elastic-gallery__tags {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.489cqw;
+}
+
+.elastic-gallery__tag {
+  font-family: var(--display);
+  font-size: 1.135cqw;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  padding: 0.567cqw 0.851cqw;
+  border: 1px solid #fff;
+  border-radius: 50px;
+  color: #f5f5f5;
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__tag {
+  color: #000;
+  border-color: #000;
+}
+
+.elastic-gallery__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.709cqw;
+  padding: 0.709cqw 1.418cqw;
+  border: 1px solid #fff;
+  border-radius: 50px;
+  font-family: var(--display);
+  font-size: 1.135cqw;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.elastic-gallery__panel--icancare .elastic-gallery__cta {
+  color: #000;
+  border-color: #000;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.elastic-gallery__cta svg {
+  width: 0.95em;
+  height: 0.95em;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .elastic-gallery {
+    height: calc((100% - 16px) * (var(--eg-active-flex) / var(--eg-total-flex)) * var(--eg-card-ratio));
+    min-height: 200px;
+    max-height: 340px;
+  }
+
+  .elastic-gallery__panel--meridian .elastic-gallery__mark {
+    font-size: clamp(2rem, 24cqw, 4rem);
+  }
+
+  .elastic-gallery__panel--safety .elastic-gallery__mark,
+  .elastic-gallery__panel--icancare .elastic-gallery__mark {
+    width: min(42%, 100px);
+  }
+
+  .elastic-gallery__copy {
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: 0 !important;
+    width: 100%;
+    padding: 1rem 1rem 1.25rem;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.5) 55%, transparent 100%);
+  }
+
+  .elastic-gallery__panel--icancare.is-active .elastic-gallery__copy {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.82) 60%, transparent 100%);
+  }
+
+  .elastic-gallery__media {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .elastic-gallery__title {
+    font-size: clamp(1.35rem, 6vw, 1.75rem);
+    white-space: normal;
+  }
+
+  .elastic-gallery__lede {
+    font-size: 0.8125rem;
+    white-space: normal;
+    max-width: none;
+  }
+
+  .elastic-gallery__tags {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .elastic-gallery__tag {
+    font-size: 0.6875rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .elastic-gallery__cta {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .elastic-gallery__wordmark {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elastic-gallery__panel,
+  .elastic-gallery__idle,
+  .elastic-gallery__reveal,
+  .elastic-gallery__copy {
+    transition: none !important;
+  }
+}

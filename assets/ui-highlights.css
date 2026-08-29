@@ -1,0 +1,147 @@
+/* UI Highlights — image-only grid */
+
+.ui-highlights {
+
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 6rem);
+
+  border-top: 1px solid var(--border);
+
+  background: var(--surface);
+
+}
+
+
+
+.ui-highlights__grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  gap: 1rem;
+
+}
+
+
+
+.ui-highlight-card {
+
+  grid-column: span 4;
+
+  position: relative;
+
+  display: block;
+
+  min-height: 0;
+
+  border: 1px solid var(--border);
+
+  border-radius: 0;
+
+  background: #fafafa;
+
+  overflow: hidden;
+
+  cursor: none;
+
+}
+
+
+
+.ui-highlight-card__thumb {
+
+  position: relative;
+
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  background: #ececec;
+
+}
+
+
+
+.ui-highlight-card__thumb img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: top center;
+
+}
+
+
+
+.ui-highlight-card__thumb--icancare {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: linear-gradient(110.62deg, #000 17.45%, #002d67 100.01%);
+
+}
+
+
+
+.ui-highlight-card__thumb--icancare img {
+
+  width: min(42%, 180px);
+
+  height: auto;
+
+  object-fit: contain;
+
+}
+
+
+
+@media (max-width: 900px) {
+
+  .ui-highlight-card {
+
+    grid-column: span 6;
+
+  }
+
+}
+
+
+
+@media (max-width: 640px) {
+
+  .ui-highlights__grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+
+  .ui-highlight-card {
+
+    grid-column: auto;
+
+  }
+
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ui-highlight-card {
+
+    transition: none !important;
+
+  }
+
+}
+
+

@@ -313,11 +313,12 @@ h1, h2, h3,
   background: var(--surface);
 }
 
-#projects,
-#contact,
-#about {
-  scroll-margin-top: 80px;
-}
+    #projects,
+    #highlights,
+    #contact,
+    #about {
+      scroll-margin-top: 80px;
+    }
 
 .brands {
   padding: clamp(4rem, 8vw, 7rem) 0;

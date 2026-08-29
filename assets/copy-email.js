@@ -32,7 +32,7 @@
   }
 
   document.querySelectorAll('[data-copy-email]').forEach(function (btn) {
-    var valueEl = btn.querySelector('.contact-link__value');
+    var valueEl = btn.querySelector('.contact-link__value, .lets-talk__primary-value');
     var defaultLabel = btn.getAttribute('data-copy-label') || btn.textContent.trim();
     var copiedLabel = btn.getAttribute('data-copied-label') || 'copied';
     var defaultHtml = btn.innerHTML;

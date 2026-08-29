@@ -85,6 +85,7 @@
       border-bottom: none;
     }
     .header__bar {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -106,36 +107,70 @@
       flex-shrink: 0;
     }
     .header__nav {
-      display: contents; /* children participate in header__bar space-between */
+      display: contents;
+    }
+    .header__nav-indicator {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: #000;
+      border-radius: 2px;
+      pointer-events: none;
+      opacity: 0;
+      transition:
+        left 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.28s ease;
     }
     .header__nav a {
       --nav-p: 0;
       font-family: var(--display);
-      font-size: clamp(0.8rem, 1.05vw, 0.95rem);
-      font-weight: calc(400 + (var(--nav-p) * 300));
+      font-size: clamp(0.82rem, 1.05vw, 0.98rem);
+      font-weight: calc(400 + (var(--nav-p) * 350));
       color: color-mix(in srgb, #000 calc(var(--nav-p) * 100%), var(--muted) calc((1 - var(--nav-p)) * 100%));
-      transition: color 0.15s linear;
+      transition: color 0.22s ease, font-weight 0.22s ease, transform 0.22s ease;
       position: relative;
       line-height: 1;
       white-space: nowrap;
+      transform-origin: center bottom;
     }
     .header__nav a:hover {
       color: #000;
     }
+    .header__nav a.is-section-active {
+      color: #000;
+      font-weight: 700;
+    }
+    .header__nav a.is-section-changed {
+      animation: nav-section-pulse 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
     .header__nav a.active::after { display: none; }
+    @keyframes nav-section-pulse {
+      0%   { transform: scale(1); }
+      35%  { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .header__nav-indicator,
+      .header__nav a.is-section-changed {
+        animation: none;
+        transition: none;
+      }
+    }
     .header__actions {
       display: none !important; /* desktop: no trailing slot — nav.css sets flex */
     }
     .header__cta { display: none; }
 
     /* ════════════════════
-       HERO — section 1 (SVG mask as-is)
+       HERO — composite art (portrait + signature)
     ════════════════════ */
     .hero {
       position: relative;
       overflow: visible;
       isolation: isolate;
-      /* Fill viewport below sticky header and vertically center the composition */
       min-height: calc(100svh - 3.35rem);
       display: flex;
       align-items: center;
@@ -160,12 +195,11 @@
       width: 100%;
       line-height: 0;
     }
-    .hero__mask {
+    .hero__art {
       width: 100%;
       height: auto;
       display: block;
-      /* Native asset 2322×1033 — name included in SVG */
-      aspect-ratio: 2322 / 1033;
+      aspect-ratio: 1024 / 473;
     }
     .hero__name {
       position: absolute;
@@ -203,16 +237,22 @@
       max-width: calc(50% - 0.5rem);
     }
 
-    /* ── Full-width case card — Figma 1410×748 ── */
+    /* ΓöÇΓöÇ Full-width case card ΓÇö Figma 1410├ù748 ΓöÇΓöÇ */
     .case-card {
-      /* Figma frame 1410×748 — dissolve (opacity), not slide */
+      /* Figma frame 1410×748 — 20% smaller on web */
       --case-ease: cubic-bezier(0.22, 1, 0.36, 1);
       --case-dur: 0.7s;
+      --mark-x: 50%;
+      --mark-y: 50%;
+      --mark-w: min(17.4%, 245px);
+      --mark-fs: 32.057cqw;
       position: relative;
       display: block;
-      width: 100%;
+      width: min(100%, 1128px); /* 1410 × 0.8 */
+      max-width: 1128px;
+      margin-inline: auto;
       aspect-ratio: 1410 / 748;
-      border-radius: 16px;
+      border-radius: 80px;
       overflow: hidden;
       background: #000;
       color: inherit;
@@ -243,31 +283,34 @@
       opacity: 1;
       transition: opacity calc(var(--case-dur) * 0.85) ease;
     }
-    /* Mark FLIPs into the wordmark’s logo seat (same element, stays visible) */
+    /* Mark FLIPs into the wordmark logo seat (same element, card-root positioned) */
     .case-card__mark {
       position: absolute;
-      left: var(--mark-x, 50%);
-      top: var(--mark-y, 50%);
-      width: var(--mark-w, min(17.4%, 245px));
+      left: var(--mark-x);
+      top: var(--mark-y);
+      width: var(--mark-w);
       height: auto;
       display: block;
       transform: translate(-50%, -50%);
       transform-origin: center center;
       opacity: 1;
-      z-index: 4;
+      z-index: 5;
       pointer-events: none;
       user-select: none;
       transition:
         left var(--case-dur) var(--case-ease),
         top var(--case-dur) var(--case-ease),
         width var(--case-dur) var(--case-ease),
+        font-size var(--case-dur) var(--case-ease),
         transform var(--case-dur) var(--case-ease);
       will-change: left, top, width;
     }
     .case-card__wordmark-wrap {
       position: relative;
       width: 8.298cqw; /* 117/1410 */
+      min-height: 1.966cqh; /* 14.695/748 */
       flex-shrink: 0;
+      visibility: hidden;
       opacity: 0;
       transition: opacity calc(var(--case-dur) * 0.45) ease;
     }
@@ -276,13 +319,13 @@
       height: auto;
       display: block;
     }
-    /* Invisible seat matching the orange mark inside the C (viewBox 117×14.6947) */
+    /* Seat = full “C” letter in PROCORE wordmark (path bbox 50.9–66.1 / 117) */
     .case-card__mark-slot {
       position: absolute;
-      left: 47.576%;   /* 55.6645/117 */
-      top: 33.137%;    /* 4.86936/14.6947 */
-      width: 4.916%;   /* 5.7522/117 */
-      height: 33.69%;  /* 4.9506/14.6947 */
+      left: 43.508%;  /* 50.9035/117 */
+      top: 0;
+      width: 12.986%; /* 15.193/117 */
+      height: 100%;
       pointer-events: none;
     }
     .case-card__mark-fallback {
@@ -298,55 +341,72 @@
       position: absolute;
       inset: 0;
       z-index: 1;
-      display: block;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 6.738cqw; /* 95/1410 — space between mockup and copy */
+      padding: 0 15.887cqw 0 2.837cqw; /* 224/40 — Figma pr/pl */
+      box-sizing: border-box;
+      overflow: hidden;
       /* Figma 5033:7099 — diagonal gradient exact */
       background: linear-gradient(107.17deg, #000000 0%, #3c3c3c 100%);
       opacity: 0;
       transition: opacity var(--case-dur) var(--case-ease);
       pointer-events: none;
     }
-    /* Phone column from Figma: full width + right bezel visible, flush L/T/B */
+    /* Mockup hugs its rendered width — no reserved empty column */
     .case-card__media {
-      position: absolute;
-      left: 2.837cqw; /* 40/1410 — gap from card edge */
-      top: 0;
-      bottom: 0;
-      width: 40.496cqw; /* 571/1410 */
-      margin: 0;
+      position: relative;
+      flex: 0 0 auto;
+      align-self: stretch;
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-start;
+      width: auto;
+      min-width: 0;
       border-radius: 0;
-      overflow: hidden;
+      overflow: visible;
       background: transparent;
       pointer-events: none;
       opacity: 0;
       transition: opacity calc(var(--case-dur) * 0.45) ease;
     }
-    .case-card__media img {
+    .case-card__media img,
+    .case-card__media .case-card__lottie {
       display: block;
-      width: 100%;
       height: 100%;
-      object-fit: cover;
+      width: auto;
+      max-width: none;
+      object-fit: contain;
       object-position: left center;
       border: 0;
       border-radius: 0;
     }
+    .case-card__media .case-card__lottie {
+      overflow: hidden;
+      pointer-events: none;
+      aspect-ratio: 496 / 1073;
+    }
+    .case-card__media .case-card__lottie svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
     .case-card__copy {
-      position: absolute;
-      /* phone 571 + gap 95 = 666 / 1410 */
-      left: 47.234cqw;
-      right: 15.887cqw; /* 224/1410 */
-      top: 0;
-      bottom: 0;
-      width: auto;
-      max-width: none;
+      position: relative;
+      flex: 1;
       min-width: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: max-content;
+      place-content: center;
+      justify-items: start;
       gap: 1.489cqw; /* 21/1410 */
-      padding: 0;
+      padding-block: 5.348cqh; /* 40/748 — Figma py-40 on copy column */
+      padding-inline: 0;
+      box-sizing: border-box;
       color: #f5f5f5;
       background: transparent;
+      text-align: left;
     }
     .case-card__title,
     .case-card__lede,
@@ -405,7 +465,7 @@
       .case-card.is-open .case-card__default-bg {
         opacity: 0;
       }
-      /* Mark stays visible — CSS vars move it into the wordmark seat */
+      /* Mark stays visible ΓÇö CSS vars move it into the wordmark seat */
       .case-card:hover .case-card__media,
       .case-card:focus-visible .case-card__media,
       .case-card.is-open .case-card__media {
@@ -415,6 +475,7 @@
       .case-card:hover .case-card__wordmark-wrap,
       .case-card:focus-visible .case-card__wordmark-wrap,
       .case-card.is-open .case-card__wordmark-wrap {
+        visibility: visible;
         opacity: 1;
         transition-delay: calc(var(--case-dur) * 0.08);
       }
@@ -433,12 +494,56 @@
       }
     }
 
-    /* ── Meridian overrides — Figma 5100:25899 / 5027:6481 ── */
+    /* Safety Hub / Procore — Figma 5082:24503 default */
+    .case-card--safety .case-card__default-bg {
+      background: linear-gradient(117.88deg, #000 49.86%, #666 98.02%);
+    }
+    .case-card--safety.is-open > .case-card__mark,
+    .case-card--safety:hover > .case-card__mark,
+    .case-card--safety:focus-visible > .case-card__mark {
+      z-index: 4;
+    }
+    .case-card--safety .case-card__wordmark-c {
+      visibility: hidden;
+    }
+    .case-card--safety.is-open .case-card__wordmark-c,
+    .case-card--safety:hover .case-card__wordmark-c,
+    .case-card--safety:focus-visible .case-card__wordmark-c {
+      visibility: visible;
+    }
+    .case-card--safety .case-card__wordmark-wrap {
+      display: inline-flex;
+      align-items: center;
+      width: auto;
+      height: 1.966cqh; /* 14.695/748 */
+      min-height: 0;
+    }
+    .case-card--safety .case-card__wordmark-part {
+      height: 100%;
+      width: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+    .case-card--safety .case-card__wordmark-c {
+      height: 100%;
+      width: auto;
+      display: block;
+      flex-shrink: 0;
+      margin-left: 0.126cqw;
+      margin-right: 0.334cqw;
+    }
+    .case-card--safety .case-card__lede {
+      white-space: normal;
+      max-width: 40.426cqw; /* 570/1410 */
+    }
+
+    /* ΓöÇΓöÇ Meridian overrides ΓÇö Figma 5100:25899 / 5027:6481 ΓöÇΓöÇ */
     .case-card--meridian .case-card__default-bg {
-      background: linear-gradient(131.39deg, #000 79.479%, #002c2e 100.02%);
+      background: linear-gradient(107.18deg, #000 50%, #002c2e 100.01%);
     }
     .case-card--meridian .case-card__reveal {
       background: linear-gradient(107.17deg, #003031 0%, #00484b 100%);
+      padding-right: 2.837cqw; /* 40/1410 */
     }
     .case-card--meridian .case-card__mark {
       width: auto;
@@ -456,14 +561,6 @@
         font-size var(--case-dur) var(--case-ease),
         transform var(--case-dur) var(--case-ease);
       will-change: left, top, font-size;
-    }
-    .case-card--meridian .case-card__media {
-      width: 54.468cqw; /* 768/1410 */
-    }
-    .case-card--meridian .case-card__copy {
-      /* 40 + 768 + 95 = 903 / 1410 */
-      left: 64.043cqw;
-      right: 2.837cqw; /* 40/1410 */
     }
     .case-card--meridian .case-card__wordmark-wrap {
       display: flex;
@@ -507,11 +604,61 @@
       max-width: 40.426cqw; /* 570/1410 */
     }
 
+    /* ── ICan Care — Figma 5139:12126 default / 5141:11319 hover ── */
+    .case-card--icancare .case-card__default-bg {
+      background: linear-gradient(118.6deg, #000 50%, #002169 98.955%);
+    }
+    .case-card--icancare .case-card__reveal {
+      background: linear-gradient(107.17deg, #fff 0%, #e6e6e6 100.01%);
+    }
+    .case-card--icancare .case-card__mark {
+      /* sized via --mark-w on .case-card */
+    }
+    .case-card--icancare .case-card__copy {
+      color: #000;
+    }
+    .case-card--icancare .case-card__wordmark-wrap {
+      display: block;
+      width: auto;
+      height: 2.674cqh; /* 20/748 — Figma 5141:11319 */
+      min-height: 0;
+    }
+    .case-card--icancare .case-card__wordmark {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+    .case-card--icancare.is-open > .case-card__mark,
+    .case-card--icancare:hover > .case-card__mark,
+    .case-card--icancare:focus-visible > .case-card__mark {
+      opacity: 0;
+      transition:
+        left var(--case-dur) var(--case-ease),
+        top var(--case-dur) var(--case-ease),
+        width var(--case-dur) var(--case-ease),
+        opacity calc(var(--case-dur) * 0.35) ease calc(var(--case-dur) * 0.42);
+    }
+    .case-card--icancare .case-card__title {
+      color: #000;
+    }
+    .case-card--icancare .case-card__lede {
+      color: #000;
+      white-space: normal;
+      max-width: 40.426cqw; /* 570/1410 */
+    }
+    .case-card--icancare .case-card__tag {
+      color: #000;
+      border-color: #000;
+    }
+
     /* Touch / no-hover: show reveal (tap → case study) */
     @media (hover: none), (pointer: coarse) {
       .case-card {
         cursor: pointer;
         aspect-ratio: auto;
+      }
+      .case-card > .case-card__mark {
+        display: none;
       }
       .case-card__default { display: none; }
       .case-card__reveal {
@@ -520,6 +667,8 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        gap: 0;
+        padding: 0;
         min-height: 0;
       }
       .case-card__media {
@@ -527,16 +676,21 @@
         left: auto;
         top: auto;
         bottom: auto;
+        margin-left: 0;
         width: 100%;
         height: min(58vw, 320px);
         opacity: 1;
         transition: none;
       }
-      .case-card__media img {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
+      .case-card__media img,
+      .case-card__media .case-card__lottie {
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        object-position: center center;
+      }
+      .case-card__media .case-card__lottie svg {
         width: 100%;
         height: 100%;
       }
@@ -546,7 +700,13 @@
         right: auto;
         top: auto;
         bottom: auto;
+        flex: none;
         width: 100%;
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        place-content: start;
         padding: 1.35rem 1.25rem 1.6rem;
         gap: 0.85rem;
         background: #111;
@@ -565,6 +725,25 @@
       .case-card--meridian .case-card__lede {
         max-width: none;
       }
+      .case-card--icancare .case-card__copy {
+        background: linear-gradient(107.17deg, #fff 0%, #e6e6e6 100.01%);
+      }
+      .case-card--icancare .case-card__wordmark-wrap {
+        width: auto;
+        height: auto;
+        min-height: 0;
+        visibility: visible;
+        opacity: 1;
+      }
+      .case-card--safety .case-card__wordmark-wrap {
+        width: auto;
+        height: 1rem;
+        visibility: visible;
+        opacity: 1;
+      }
+      .case-card--safety .case-card__wordmark-c {
+        visibility: visible;
+      }
       .case-card__wordmark-wrap,
       .case-card__title,
       .case-card__lede,
@@ -573,7 +752,8 @@
         transform: none;
         transition: none;
       }
-      .case-card__wordmark-wrap {
+      .case-card--meridian .case-card__wordmark-wrap,
+      .case-card--icancare .case-card__wordmark-wrap {
         width: 7.5rem;
       }
       .case-card__mark-fallback {
@@ -595,10 +775,15 @@
         aspect-ratio: auto;
         min-height: 520px;
       }
+      .case-card > .case-card__mark {
+        display: none;
+      }
       .case-card__reveal {
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        gap: 0;
+        padding: 0;
         opacity: 1;
       }
       .case-card__default { display: none; }
@@ -607,16 +792,21 @@
         left: auto;
         top: auto;
         bottom: auto;
+        margin-left: 0;
         width: 100%;
         height: 280px;
         opacity: 1;
         transition: none;
       }
-      .case-card__media img {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
+      .case-card__media img,
+      .case-card__media .case-card__lottie {
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        object-position: center center;
+      }
+      .case-card__media .case-card__lottie svg {
         width: 100%;
         height: 100%;
       }
@@ -626,7 +816,13 @@
         right: auto;
         top: auto;
         bottom: auto;
+        flex: none;
         width: 100%;
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        place-content: start;
         padding: 1.35rem 1.25rem 1.75rem;
         background: #111;
       }
@@ -644,6 +840,25 @@
       .case-card--meridian .case-card__lede {
         max-width: none;
       }
+      .case-card--icancare .case-card__copy {
+        background: linear-gradient(107.17deg, #fff 0%, #e6e6e6 100.01%);
+      }
+      .case-card--icancare .case-card__wordmark-wrap {
+        width: auto;
+        height: auto;
+        min-height: 0;
+        visibility: visible;
+        opacity: 1;
+      }
+      .case-card--safety .case-card__wordmark-wrap {
+        width: auto;
+        height: 1rem;
+        visibility: visible;
+        opacity: 1;
+      }
+      .case-card--safety .case-card__wordmark-c {
+        visibility: visible;
+      }
       .case-card__wordmark-wrap,
       .case-card__title,
       .case-card__lede,
@@ -652,7 +867,8 @@
         transform: none;
         transition: none;
       }
-      .case-card__wordmark-wrap {
+      .case-card--meridian .case-card__wordmark-wrap,
+      .case-card--icancare .case-card__wordmark-wrap {
         width: 7.5rem;
       }
       .case-card__mark-fallback {
@@ -686,7 +902,6 @@
       overflow: hidden;
       background: var(--bg-2, #ece7dc);
     }
-
     .project-card__thumb picture {
       display: block;
       width: 100%;
@@ -960,7 +1175,228 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.28);
     }
 
+    /* Brands marquee — under About */
+    .about-brands {
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      padding-top: clamp(2rem, 4vw, 3rem);
+      border-top: 1px solid var(--border);
+    }
+
+    .about-brands__label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .brands-marquee {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+
+    .brands-marquee__track {
+      display: flex;
+      width: max-content;
+      animation: brands-marquee 42s linear infinite;
+    }
+
+    .brands-marquee__set {
+      display: flex;
+      align-items: center;
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+      padding-right: clamp(2.5rem, 5vw, 4.5rem);
+    }
+
+    .brands-marquee__logo {
+      flex-shrink: 0;
+      width: clamp(5rem, 9vw, 7rem);
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.72;
+      transition: opacity 0.2s ease;
+    }
+
+    .brands-marquee__logo:hover {
+      opacity: 1;
+    }
+
+    .brands-marquee__logo img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .brands-marquee__logo--color img {
+      mix-blend-mode: normal;
+      opacity: 1;
+    }
+
+    .brands-marquee__logo--invert img {
+      filter: invert(1);
+      mix-blend-mode: normal;
+    }
+
+    @keyframes brands-marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    /* Let's Talk */
+    .lets-talk {
+      position: relative;
+      padding: clamp(4.5rem, 10vw, 7.5rem) 0;
+      background: #121212;
+      color: #f5f5f5;
+      overflow: hidden;
+    }
+
+    .lets-talk::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(45, 212, 191, 0.14), transparent 42%),
+        radial-gradient(circle at 88% 78%, rgba(79, 70, 229, 0.12), transparent 38%);
+      pointer-events: none;
+    }
+
+    .lets-talk__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.15fr minmax(260px, 0.85fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: end;
+    }
+
+    .lets-talk__eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2dd4bf;
+      margin-bottom: 1rem;
+    }
+
+    .lets-talk__headline {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5.5vw, 4.25rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      max-width: 14ch;
+      margin-bottom: 1.25rem;
+    }
+
+    .lets-talk__lede {
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      line-height: 1.75;
+      color: rgba(245, 245, 245, 0.72);
+      max-width: 46ch;
+    }
+
+    .lets-talk__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .lets-talk__primary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      border-radius: 14px;
+      background: #fff;
+      color: #121212;
+      font-family: var(--display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .lets-talk__primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .lets-talk__primary-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(18, 18, 18, 0.55);
+      margin-bottom: 0.2rem;
+    }
+
+    .lets-talk__link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.95rem 1.15rem;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      color: #f5f5f5;
+      font-size: 0.9rem;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .lets-talk__link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .lets-talk__link-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(245, 245, 245, 0.5);
+      margin-bottom: 0.2rem;
+    }
+
+    .lets-talk__arrow {
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .lets-talk__primary.is-copied {
+      background: #2dd4bf;
+      color: #121212;
+    }
+
+    .lets-talk__primary.is-copied .lets-talk__primary-label {
+      color: rgba(18, 18, 18, 0.65);
+    }
+
+    @media (max-width: 768px) {
+      .lets-talk__inner {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .brands-marquee__track {
+        animation: none;
+      }
+    }
+
   </style>
+  <link rel="stylesheet" href="/assets/ui-highlights.css" />
 </head>
 <body>
 
@@ -969,10 +1405,11 @@
   <!-- HEADER -->
   <header class="header">
     <div class="header__bar">
+      <span class="header__nav-indicator" aria-hidden="true"></span>
       <a class="header__brand" href="/">h.</a>
       <nav class="header__nav" aria-label="Primary">
         <a href="#projects">Case Studies</a>
-        <!-- UI Selections — hidden until section ships -->
+        <a href="#highlights">UI Highlights</a>
         <a href="#about">About Me</a>
         <a href="#contact">Let&rsquo;s Talk</a>
       </nav>
@@ -989,22 +1426,24 @@
     <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
     <a href="/">Home</a>
     <a href="#projects">Case Studies</a>
+    <a href="#highlights">UI Highlights</a>
     <a href="#about">About Me</a>
     <a href="#contact">Let&rsquo;s Talk</a>
   </nav>
 
   <main>
 
-    <!-- HERO — section 1 -->
+    <!-- HERO -->
     <section class="hero" aria-label="Introduction">
       <div class="hero__inner">
         <div class="hero__frame">
           <img
-            class="hero__mask"
-            src="/assets/home-hero-mask.svg?v=group-aug27b"
+            class="hero__art"
+            src="/assets/home-hero.png?v=aug28b"
             alt=""
-            width="2322"
-            height="1033"
+            width="1024"
+            height="473"
+            fetchpriority="high"
             decoding="async"
           />
           <h1 class="hero__name">Hassan Amin</h1>
@@ -1019,26 +1458,26 @@
           class="case-card case-card--safety"
           href="/case-study-safety-hub"
           data-case-card
-          aria-label="Safety Hub case study — Read More"
+          aria-label="Safety Hub case study — Case Study"
         >
+          <img
+            class="case-card__mark"
+            src="/assets/procore-mark-figma5082.svg"
+            alt=""
+            width="245"
+            height="240"
+            decoding="async"
+          />
           <div class="case-card__default" aria-hidden="true">
             <div class="case-card__default-bg"></div>
-            <img
-              class="case-card__mark"
-              src="/assets/procore-mark.svg"
-              alt=""
-              width="238"
-              height="230"
-              decoding="async"
-            />
           </div>
           <div class="case-card__reveal">
             <div class="case-card__media">
               <img
-                src="/assets/safety-hub-card-phone.png?v=figma-flush"
+                src="/assets/safety-hub-card-phone-bezel.png"
                 alt=""
                 width="571"
-                height="729"
+                height="748"
                 loading="lazy"
                 decoding="async"
               />
@@ -1046,23 +1485,29 @@
             <div class="case-card__copy">
               <div class="case-card__wordmark-wrap">
                 <img
-                  class="case-card__wordmark"
-                  src="/assets/procore-wordmark.svg"
-                  alt="Procore"
-                  width="117"
+                  class="case-card__wordmark-part"
+                  src="/assets/procore-wordmark-pro.svg"
+                  alt=""
+                  width="49"
                   height="15"
                   decoding="async"
                 />
-                <span class="case-card__mark-slot" aria-hidden="true">
-                  <img
-                    class="case-card__mark-fallback"
-                    src="/assets/procore-mark.svg"
-                    alt=""
-                    width="24"
-                    height="24"
-                    decoding="async"
-                  />
-                </span>
+                <img
+                  class="case-card__wordmark-part case-card__wordmark-c"
+                  src="/assets/procore-wordmark-c.svg"
+                  alt=""
+                  width="15"
+                  height="15"
+                  decoding="async"
+                />
+                <img
+                  class="case-card__wordmark-part"
+                  src="/assets/procore-wordmark-ore.svg"
+                  alt="Procore"
+                  width="46"
+                  height="15"
+                  decoding="async"
+                />
               </div>
               <h2 class="case-card__title">Safety Hub</h2>
               <p class="case-card__lede">How I helped shape the future of construction tech.</p>
@@ -1080,11 +1525,11 @@
           class="case-card case-card--meridian"
           href="/case-study-meridian"
           data-case-card
-          aria-label="Meridian case study — Read More"
+          aria-label="Meridian case study — Case Study"
         >
+          <span class="case-card__mark">M</span>
           <div class="case-card__default" aria-hidden="true">
             <div class="case-card__default-bg"></div>
-            <span class="case-card__mark">M</span>
           </div>
           <div class="case-card__reveal">
             <div class="case-card__media">
@@ -1110,6 +1555,54 @@
                 <span class="case-card__tag">Construction Tech</span>
                 <span class="case-card__tag">Cross-Platform</span>
                 <span class="case-card__tag">Research</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a
+          class="case-card case-card--icancare"
+          href="/case-study-icancare"
+          data-case-card
+          aria-label="ICan Care case study — Case Study"
+        >
+          <img
+            class="case-card__mark"
+            src="/assets/icancare-mark-figma5139.svg"
+            alt=""
+            width="174"
+            height="197"
+            decoding="async"
+          />
+          <div class="case-card__default" aria-hidden="true">
+            <div class="case-card__default-bg"></div>
+          </div>
+          <div class="case-card__reveal">
+            <div class="case-card__media">
+              <div
+                class="case-card__lottie"
+                data-lottie-src="/assets/icancare-card-flow-lottie.json"
+                aria-hidden="true"
+              ></div>
+            </div>
+            <div class="case-card__copy">
+              <div class="case-card__wordmark-wrap">
+                <img
+                  class="case-card__wordmark"
+                  src="/assets/novartis-wordmark.svg"
+                  alt="Novartis"
+                  width="169"
+                  height="21"
+                  decoding="async"
+                />
+              </div>
+              <h2 class="case-card__title">Icancare</h2>
+              <p class="case-card__lede">Language-first onboarding, medication reminders, trusted education, and nearby care centres for patients and carers.</p>
+              <div class="case-card__tags">
+                <span class="case-card__tag">Healthcare</span>
+                <span class="case-card__tag">A11y</span>
+                <span class="case-card__tag">Research</span>
+                <span class="case-card__tag">Medical</span>
               </div>
             </div>
           </div>
@@ -1157,89 +1650,40 @@
       </div>
     </section>
 
-    <!-- BRANDS -->
-    <section class="brands" id="brands" aria-label="Brands and companies">
+    <!-- UI HIGHLIGHTS -->
+    <section class="ui-highlights" id="highlights" aria-label="UI highlights">
       <div class="container">
-        <div class="brands__header reveal">
-          <span class="brands__label">Worked With</span>
-          <h2 class="brands__headline">Brands &amp; Companies I&rsquo;ve Designed For</h2>
-        </div>
-        <div class="brands-glass">
-          <div class="brands-glass__grain" aria-hidden="true"></div>
-        <div class="brands-grid">
-          <div class="brand-cell">
-            <div class="brand-logo brand-logo--color">
-              <img src="/assets/logo-novartis.png" alt="Novartis" />
-            </div>
-            <div>
-              <p class="brand-cell__name">Novartis</p>
-              <p class="brand-cell__type">Healthcare &middot; Global</p>
+        <div class="ui-highlights__grid reveal" data-ui-highlights-grid>
+          <div class="ui-highlight-card" data-ui-highlight>
+            <div class="ui-highlight-card__thumb">
+              <img src="/assets/safety-hub-p2-mobile-guess-free.webp" alt="" width="390" height="844" loading="lazy" decoding="async" />
             </div>
           </div>
-          <div class="brand-cell">
-            <div class="brand-logo">
-              <img src="/assets/logo-petronas.png" alt="Petronas" />
-            </div>
-            <div>
-              <p class="brand-cell__name">Petronas</p>
-              <p class="brand-cell__type">Energy &middot; Malaysia</p>
+          <div class="ui-highlight-card" data-ui-highlight>
+            <div class="ui-highlight-card__thumb">
+              <img src="/assets/safety-hub-p2-web-guess-free.webp" alt="" width="1440" height="900" loading="lazy" decoding="async" />
             </div>
           </div>
-          <div class="brand-cell">
-            <div class="brand-logo brand-logo--color">
-              <img src="/assets/logo-vodafone.png" alt="Vodafone" />
-            </div>
-            <div>
-              <p class="brand-cell__name">Vodafone</p>
-              <p class="brand-cell__type">Telecom &middot; Global</p>
+          <div class="ui-highlight-card" data-ui-highlight>
+            <div class="ui-highlight-card__thumb">
+              <img src="/assets/meridian-card-tablet.png?v=figma5027" alt="" width="745" height="748" loading="lazy" decoding="async" />
             </div>
           </div>
-          <div class="brand-cell">
-            <div class="brand-logo">
-              <img src="/assets/logo-procore.png" alt="Procore" />
-            </div>
-            <div>
-              <p class="brand-cell__name">Procore</p>
-              <p class="brand-cell__type">Construction Tech &middot; Enterprise</p>
+          <div class="ui-highlight-card" data-ui-highlight>
+            <div class="ui-highlight-card__thumb">
+              <img src="/assets/ms-dashboard.mockup.webp" alt="" width="1920" height="1080" loading="lazy" decoding="async" />
             </div>
           </div>
-          <div class="brand-cell">
-            <div class="brand-logo">
-              <img src="/assets/logo-cma.png" alt="Capital Market Authority" />
-            </div>
-            <div>
-              <p class="brand-cell__name">Saudi Capital Market Authority</p>
-              <p class="brand-cell__type">Finance &middot; Government</p>
+          <div class="ui-highlight-card" data-ui-highlight>
+            <div class="ui-highlight-card__thumb">
+              <img src="/assets/ms-home-views.webp" alt="" width="1920" height="1080" loading="lazy" decoding="async" />
             </div>
           </div>
-          <div class="brand-cell">
-            <div class="brand-logo brand-logo--color">
-              <img src="/assets/logo-investview.png" alt="Investview" />
-            </div>
-            <div>
-              <p class="brand-cell__name">Investview</p>
-              <p class="brand-cell__type">Fintech &middot; Investment</p>
+          <div class="ui-highlight-card" data-ui-highlight>
+            <div class="ui-highlight-card__thumb ui-highlight-card__thumb--icancare">
+              <img src="/assets/icancare-brand-mark.png" alt="" width="282" height="282" loading="lazy" decoding="async" />
             </div>
           </div>
-          <div class="brand-cell">
-            <div class="brand-logo brand-logo--invert">
-              <img src="/assets/logo-malaysia.png" alt="Ministry of Digital" />
-            </div>
-            <div>
-              <p class="brand-cell__name">Ministry of Digital</p>
-              <p class="brand-cell__type">Public Sector &middot; Malaysia</p>
-            </div>
-          </div>
-          <div class="brand-cell">
-            <div class="brand-logo brand-logo--color">
-              <img src="/assets/logo-deloitte.svg" alt="Deloitte" />
-            </div>
-            <div>
-              <p class="brand-cell__name">Deloitte</p>
-              <p class="brand-cell__type">Consulting &middot; Global</p>
-            </div>
-          </div>
-        </div>
         </div>
       </div>
     </section>
@@ -1247,10 +1691,6 @@
     <!-- ABOUT TEASER -->
     <section class="section" id="about">
       <div class="container">
-        <div class="tagline-row">
-          <span class="tagline-row__label">About</span>
-          <span class="tagline-row__line"></span>
-        </div>
         <div class="about-grid">
           <div class="about__copy reveal">
             <h2 class="about__intro">Obsessed with how things work, and how people find their way.</h2>
@@ -1264,43 +1704,66 @@
             <img src="/assets/about-macintosh.gif" alt="Recursive Macintosh MacPaint animation" loading="lazy" />
           </div>
         </div>
+
+        <div class="about-brands reveal" style="transition-delay:0.2s;" aria-label="Companies I've worked with">
+          <div class="brands-marquee">
+            <div class="brands-marquee__track">
+              <div class="brands-marquee__set">
+                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-novartis.png" alt="Novartis" /></div>
+                <div class="brands-marquee__logo"><img src="/assets/logo-petronas.png" alt="Petronas" /></div>
+                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-vodafone.png" alt="Vodafone" /></div>
+                <div class="brands-marquee__logo"><img src="/assets/logo-procore.png" alt="Procore" /></div>
+                <div class="brands-marquee__logo"><img src="/assets/logo-cma.png" alt="Saudi Capital Market Authority" /></div>
+                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-investview.png" alt="Investview" /></div>
+                <div class="brands-marquee__logo brands-marquee__logo--invert"><img src="/assets/logo-malaysia.png" alt="Ministry of Digital Malaysia" /></div>
+                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-deloitte.svg" alt="Deloitte" /></div>
+              </div>
+              <div class="brands-marquee__set" aria-hidden="true">
+                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-novartis.png" alt="" /></div>
+                <div class="brands-marquee__logo"><img src="/assets/logo-petronas.png" alt="" /></div>
+                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-vodafone.png" alt="" /></div>
+                <div class="brands-marquee__logo"><img src="/assets/logo-procore.png" alt="" /></div>
+                <div class="brands-marquee__logo"><img src="/assets/logo-cma.png" alt="" /></div>
+                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-investview.png" alt="" /></div>
+                <div class="brands-marquee__logo brands-marquee__logo--invert"><img src="/assets/logo-malaysia.png" alt="" /></div>
+                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-deloitte.svg" alt="" /></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="contact-body" id="contact">
+    <!-- LET'S TALK -->
+    <section class="lets-talk" id="contact" aria-label="Let's talk">
       <div class="container">
-        <div class="contact-grid">
-          <div class="contact-left reveal">
-            <div class="contact-left__status">
-              <span class="status-dot"></span>
-              <span class="status-text">Currently Exploring New Opportunities</span>
-            </div>
-            <h2 class="contact-left__headline">Open to new roles, full-time or freelance</h2>
-            <p class="contact-left__body">Whether you have a product that needs a design partner, a team that needs leadership, or just want to say hello, I&rsquo;m always happy to connect.</p>
+        <div class="lets-talk__inner">
+          <div class="lets-talk__copy reveal">
+            <h2 class="lets-talk__headline">Got a product challenge? Let&rsquo;s figure it out together.</h2>
+            <p class="lets-talk__lede">Open to full-time roles and freelance partnerships. Whether you need a design lead, a product designer for a critical flow, or just want to compare notes — I&rsquo;m easy to reach.</p>
           </div>
-          <div class="contact-actions reveal" style="transition-delay:0.1s;">
-              <a class="contact-link copy-email-btn" href="#" data-copy-email>
-                <div>
-                  <span class="contact-link__label">Email</span>
-                  <span class="contact-link__value">contact.hassan.amin@gmail.com</span>
-                </div>
-                <svg class="contact-link__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-              <a class="contact-link" href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">
-                <div>
-                  <span class="contact-link__label">LinkedIn</span>
-                  <span class="contact-link__value">linkedin.com/in/hassan-mo-amin</span>
-                </div>
-                <svg class="contact-link__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-              <a class="contact-link" href="#" data-resume-modal>
-                <div>
-                  <span class="contact-link__label">Resume / CV</span>
-                  <span class="contact-link__value">View Resume &amp; CV</span>
-                </div>
-                <svg class="contact-link__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
+          <div class="lets-talk__actions reveal" style="transition-delay:0.1s;">
+            <a class="lets-talk__primary copy-email-btn" href="#" data-copy-email>
+              <span>
+                <span class="lets-talk__primary-label">Email</span>
+                <span class="lets-talk__primary-value">contact.hassan.amin@gmail.com</span>
+              </span>
+              <svg class="lets-talk__arrow" width="20" height="20" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="lets-talk__link" href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">
+              <span>
+                <span class="lets-talk__link-label">LinkedIn</span>
+                linkedin.com/in/hassan-mo-amin
+              </span>
+              <svg class="lets-talk__arrow" width="18" height="18" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="lets-talk__link" href="#" data-resume-modal>
+              <span>
+                <span class="lets-talk__link-label">Resume</span>
+                View r&eacute;sum&eacute; &amp; CV
+              </span>
+              <svg class="lets-talk__arrow" width="18" height="18" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 17L17 5M17 5H7M17 5V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -1317,8 +1780,9 @@
       </div>
       <nav class="footer__nav" aria-label="Footer">
         <a href="#projects">Case Studies</a>
+        <a href="#highlights">UI Highlights</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact">Let&rsquo;s Talk</a>
       </nav>
       <div class="footer__social">
         <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -1341,6 +1805,7 @@
     const bar = document.getElementById('progress');
     const navSectionMap = [
       { id: 'projects', href: '#projects' },
+      { id: 'highlights', href: '#highlights' },
       { id: 'about', href: '#about' },
       { id: 'contact', href: '#contact' }
     ].map(({ id, href }) => ({
@@ -1378,14 +1843,49 @@
       });
 
       navSectionMap.forEach((s, i) => {
-        // Soften non-leading sections so one link leads
         let p = scores[i];
         if (i !== best) p *= 0.35;
         s.links.forEach((a) => {
           a.style.setProperty('--nav-p', p.toFixed(3));
-          a.classList.toggle('is-section-active', i === best && bestP > 0.35);
+          const isActive = i === best && bestP > 0.35;
+          a.classList.toggle('is-section-active', isActive);
         });
       });
+
+      updateNavIndicator(best, bestP);
+    }
+
+    let lastNavSection = -1;
+    const navIndicator = document.querySelector('.header__nav-indicator');
+    const headerBar = document.querySelector('.header__bar');
+
+    function updateNavIndicator(bestIndex, bestP) {
+      if (!navIndicator || !headerBar) return;
+
+      const desktopLink = navSectionMap[bestIndex]?.links.find((a) =>
+        a.closest('.header__nav')
+      );
+
+      if (!desktopLink || bestP <= 0.35) {
+        navIndicator.style.opacity = '0';
+        return;
+      }
+
+      const barRect = headerBar.getBoundingClientRect();
+      const linkRect = desktopLink.getBoundingClientRect();
+
+      navIndicator.style.left = (linkRect.left - barRect.left) + 'px';
+      navIndicator.style.width = linkRect.width + 'px';
+      navIndicator.style.opacity = '1';
+
+      if (bestIndex !== lastNavSection && lastNavSection !== -1) {
+        navSectionMap[bestIndex].links.forEach((a) => {
+          a.classList.remove('is-section-changed');
+          void a.offsetWidth;
+          a.classList.add('is-section-changed');
+        });
+      }
+      lastNavSection = bestIndex;
     }
 
     function onScrollFrame() {
@@ -1439,39 +1939,113 @@
     /* Case card: mark FLIPs into the wordmark logo seat */
     (function () {
       const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
-      /* Orange hexagon ≈ 90px wide inside 238px mark viewBox (Safety Hub) */
-      const ORANGE_RATIO = 90 / 238;
+      /* Orange hex bbox inside procore-mark-figma5082 (fallback sizing) */
+      const PROCORE_HEX_RATIO_W = 90.118 / 238.024;
+      /* Novartis flame width vs icancare heart mark (5141:11319) */
+      const ICANCARE_MARK_RATIO = 18.5 / 174;
+
+      const ICANCARE_MARK_ASPECT = 174 / 196.688;
+
+      function safetyMarkWidthPct(card, seat, cardRect) {
+        const s = seat.getBoundingClientRect();
+        return (s.width / cardRect.width) * 100;
+      }
+
+      function icancareMarkWidthPct(card, cardRect) {
+        const wrap = card.querySelector('.case-card__wordmark-wrap');
+        if (!wrap) return 1;
+        const h = wrap.getBoundingClientRect().height;
+        if (h <= 0) return 1;
+        return ((h * ICANCARE_MARK_ASPECT) / cardRect.width) * 100;
+      }
+
+      function getMarkSeat(card) {
+        if (card.classList.contains('case-card--safety')) {
+          return card.querySelector('.case-card__wordmark-c');
+        }
+        if (card.classList.contains('case-card--icancare')) {
+          return card.querySelector('.case-card__wordmark-wrap');
+        }
+        return card.querySelector('.case-card__mark-slot');
+      }
+
+      function getMarkHomeSize(card) {
+        if (card.classList.contains('case-card--icancare')) {
+          return 'min(12.34cqw, 174px)';
+        }
+        if (card.classList.contains('case-card--meridian')) {
+          return null;
+        }
+        return 'min(17.376cqw, 245px)';
+      }
+
+      function getMarkRatio(card) {
+        if (card.classList.contains('case-card--icancare')) return ICANCARE_MARK_RATIO;
+        if (card.classList.contains('case-card--meridian')) return null;
+        return PROCORE_HEX_RATIO_W;
+      }
+
+      function applyMarkPosition(card) {
+        const mark = card.querySelector(':scope > .case-card__mark');
+        if (!mark) return;
+
+        const seat = getMarkSeat(card);
+        if (!seat) return;
+        const c = card.getBoundingClientRect();
+        const s = seat.getBoundingClientRect();
+        if (c.width < 8 || s.width < 1) return;
+
+        const x = ((s.left + s.width / 2) - c.left) / c.width * 100;
+        const y = ((s.top + s.height / 2) - c.top) / c.height * 100;
+        mark.style.left = x.toFixed(3) + '%';
+        mark.style.top = y.toFixed(3) + '%';
+
+        if (card.classList.contains('case-card--meridian')) {
+          const brand = card.querySelector('.case-card__wordmark-wrap');
+          const fs = brand ? getComputedStyle(brand).fontSize : (s.height / 1.4) + 'px';
+          mark.style.width = '';
+          mark.style.fontSize = fs;
+        } else if (card.classList.contains('case-card--safety')) {
+          mark.style.width = safetyMarkWidthPct(card, seat, c).toFixed(3) + '%';
+          mark.style.fontSize = '';
+        } else if (card.classList.contains('case-card--icancare')) {
+          mark.style.width = icancareMarkWidthPct(card, c).toFixed(3) + '%';
+          mark.style.fontSize = '';
+        } else {
+          const ratio = getMarkRatio(card);
+          const markW = (s.width / ratio) / c.width * 100;
+          mark.style.width = markW.toFixed(3) + '%';
+          mark.style.fontSize = '';
+        }
+      }
 
       function setMarkHome(card) {
-        card.style.setProperty('--mark-x', '50%');
-        card.style.setProperty('--mark-y', '50%');
+        const mark = card.querySelector(':scope > .case-card__mark');
+        if (!mark) return;
+        mark.style.left = '50%';
+        mark.style.top = '50%';
+        mark.style.opacity = '';
         if (card.classList.contains('case-card--meridian')) {
-          card.style.setProperty('--mark-fs', '32.057cqw');
-          card.style.removeProperty('--mark-w');
+          mark.style.width = '';
+          mark.style.fontSize = '32.057cqw';
         } else {
-          card.style.setProperty('--mark-w', 'min(17.4%, 245px)');
-          card.style.removeProperty('--mark-fs');
+          mark.style.fontSize = '';
+          mark.style.width = getMarkHomeSize(card);
         }
       }
 
       function setMarkToSlot(card) {
-        const slot = card.querySelector('.case-card__mark-slot');
-        if (!slot) return;
-        const c = card.getBoundingClientRect();
-        const s = slot.getBoundingClientRect();
-        if (c.width < 8 || s.width < 1) return;
-        const x = ((s.left + s.width / 2) - c.left) / c.width * 100;
-        const y = ((s.top + s.height / 2) - c.top) / c.height * 100;
-        card.style.setProperty('--mark-x', x.toFixed(3) + '%');
-        card.style.setProperty('--mark-y', y.toFixed(3) + '%');
-        if (card.classList.contains('case-card--meridian')) {
-          const brand = card.querySelector('.case-card__wordmark-wrap');
-          const fs = brand ? getComputedStyle(brand).fontSize : (s.height / 1.4) + 'px';
-          card.style.setProperty('--mark-fs', fs);
-        } else {
-          const markW = (s.width / ORANGE_RATIO) / c.width * 100;
-          card.style.setProperty('--mark-w', markW.toFixed(3) + '%');
-        }
+        applyMarkPosition(card);
+      }
+
+      function scheduleMarkToSlot(card) {
+        const run = () => setMarkToSlot(card);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(run);
+        });
+        card.addEventListener('transitionend', run, { once: true });
+        setTimeout(run, 120);
+        setTimeout(run, 420);
       }
 
       document.querySelectorAll('[data-case-card]').forEach((card) => {
@@ -1479,8 +2053,8 @@
 
         const open = () => {
           if (!fine.matches) return;
-          setMarkToSlot(card);
           card.classList.add('is-open');
+          scheduleMarkToSlot(card);
         };
         const close = () => {
           card.classList.remove('is-open');
@@ -1496,21 +2070,111 @@
       });
 
       window.addEventListener('resize', () => {
-        document.querySelectorAll('[data-case-card].is-open').forEach(setMarkToSlot);
+        document.querySelectorAll('[data-case-card].is-open').forEach(scheduleMarkToSlot);
       });
 
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(() => {
-          document.querySelectorAll('[data-case-card].is-open').forEach(setMarkToSlot);
+          document.querySelectorAll('[data-case-card].is-open').forEach(scheduleMarkToSlot);
         });
       }
     })();
+
+    /* ICan Care card: Lottie mockup replaces static phone on hover reveal */
+    (function () {
+      const card = document.querySelector('.case-card--icancare');
+      if (!card) return;
+
+      const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+      const container = card.querySelector('.case-card__lottie');
+      const src = container?.dataset.lottieSrc;
+      if (!container || !src) return;
+
+      let anim = null;
+      let loading = null;
+      let wantsPlay = false;
+
+      function loadLottieLib() {
+        if (window.lottie) return Promise.resolve(window.lottie);
+        return new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
+          script.async = true;
+          script.onload = () => resolve(window.lottie);
+          script.onerror = reject;
+          document.head.appendChild(script);
+        });
+      }
+
+      function loadLottie() {
+        if (anim) return Promise.resolve(anim);
+        if (loading) return loading;
+
+        loading = Promise.all([
+          loadLottieLib(),
+          fetch(src).then((res) => {
+            if (!res.ok) throw new Error('Lottie fetch failed: ' + res.status);
+            return res.json();
+          }),
+        ])
+          .then(([lottie, data]) => new Promise((resolve, reject) => {
+            const instance = lottie.loadAnimation({
+              container,
+              renderer: 'svg',
+              loop: true,
+              autoplay: false,
+              animationData: data,
+              rendererSettings: { preserveAspectRatio: 'xMidYMid meet' },
+            });
+            instance.addEventListener('DOMLoaded', () => {
+              anim = instance;
+              resolve(instance);
+            });
+            instance.addEventListener('data_failed', () => reject(new Error('Lottie data failed')));
+          }))
+          .finally(() => {
+            loading = null;
+          });
+
+        return loading;
+      }
+
+      function play() {
+        wantsPlay = true;
+        loadLottie()
+          .then((instance) => {
+            if (!wantsPlay || !instance) return;
+            instance.goToAndPlay(0, true);
+          })
+          .catch(() => {});
+      }
+
+      function pause() {
+        wantsPlay = false;
+        if (!anim) return;
+        anim.pause();
+        anim.goToAndStop(0, true);
+      }
+
+      if (fine.matches) {
+        card.addEventListener('pointerenter', play);
+        card.addEventListener('pointerleave', pause);
+        card.addEventListener('focusin', play);
+        card.addEventListener('focusout', (e) => {
+          if (!card.contains(e.relatedTarget)) pause();
+        });
+      } else {
+        play();
+      }
+    })();
+
 
     window.addEventListener('load', scrollToHash);
     window.addEventListener('hashchange', scrollToHash);
 
   </script>
   <script src="/assets/cursor.js"></script>
+  <script src="/assets/ui-highlights.js"></script>
   <script src="/assets/nav.js"></script>
   <script src="/assets/copy-email.js"></script>
   <script src="/assets/resume-modal.js"></script>
