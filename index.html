@@ -20,23 +20,23 @@
   <meta name="twitter:image" content="https://hassanamin.net/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Micro+5&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Micro+5&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
     /* ── Tokens ── */
     :root {
-      --bg:      #f5f5f5;
+      --bg:      #fafafa;
       --surface: #ffffff;
-      --text:    #121212;
-      --muted:   #828282;
-      --border:  rgba(18, 18, 18, 0.1);
-      --accent:  #4f46e5;
+      --text:    #09090b;
+      --muted:   #52525b;
+      --border:  rgba(9, 9, 11, 0.08);
+      --accent:  #2563eb;
       --content-w: min(1200px, 92%);
-      --display: 'Inter', system-ui, sans-serif;
-      --serif:   'Inter', system-ui, sans-serif;
-      --mono:    'Inter', system-ui, sans-serif;
-      --pixel:   'Micro 5', 'Inter', system-ui, sans-serif;
+      --display: 'Space Grotesk', system-ui, sans-serif;
+      --serif:   'Archivo', system-ui, sans-serif;
+      --mono:    'Space Grotesk', system-ui, sans-serif;
+      --pixel:   'Micro 5', 'Space Grotesk', system-ui, sans-serif;
       --script:  'Amsterdam Two', 'Snell Roundhand', cursive;
     }
     @font-face {
@@ -69,7 +69,7 @@
       display: block;
       height: 100%;
       width: 0%;
-      background: #000;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
       transition: width 0.08s linear;
     }
 
@@ -111,11 +111,11 @@
     }
     .header__nav-indicator {
       position: absolute;
-      bottom: 0;
+      bottom: 0.55rem;
       left: 0;
       height: 2px;
       width: 0;
-      background: #000;
+      background: #2563eb;
       border-radius: 2px;
       pointer-events: none;
       opacity: 0;
@@ -165,64 +165,137 @@
     .header__cta { display: none; }
 
     /* ════════════════════
-       HERO — composite art (portrait + signature)
+       HERO — Figma 5224:17386
     ════════════════════ */
     .hero {
       position: relative;
-      overflow: visible;
+      overflow: hidden;
       isolation: isolate;
-      min-height: calc(100svh - 3.35rem);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(1.5rem, 4vh, 3rem) 0;
-      background: #fff;
+      padding: 0;
+      background-color: #f5f5f5;
+      background-image: radial-gradient(circle, rgba(0, 0, 0, 0.09) 1px, transparent 1px);
+      background-size: 18px 18px;
     }
     .hero__inner {
       position: relative;
       z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      text-align: center;
-      gap: 0;
-      width: var(--content-w);
-      max-width: none;
+      width: min(100%, 3022px);
       margin: 0 auto;
+      aspect-ratio: 3022 / 1536;
+      container-type: inline-size;
     }
-    .hero__frame {
-      position: relative;
-      width: 100%;
+    .hero__title {
+      position: absolute;
+      z-index: 1;
+      top: 1.432%; /* 22/1536 */
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      padding: 0;
+      font-family: var(--pixel);
+      font-size: 23.15cqw; /* Figma 700/3022 */
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0;
+      text-align: center;
+      color: #000;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hero__portrait {
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      top: 18.164%; /* 279/1536 */
+      width: 43.581%; /* 1317/3022 */
+      height: 81.836%; /* 1257/1536 */
+      transform: translateX(-50%);
+      overflow: hidden;
+      pointer-events: none;
       line-height: 0;
     }
-    .hero__art {
-      width: 100%;
-      height: auto;
-      display: block;
-      aspect-ratio: 1024 / 473;
-    }
-    .hero__name {
+    .hero__portrait img {
       position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
+      left: -50.73%;
+      top: 0;
+      width: 201.46%;
+      height: 133.08%;
+      max-width: none;
+      display: block;
+      mix-blend-mode: lighten;
+    }
+    .hero__forest {
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      width: 100%;
+      top: 66.081%; /* 1015/1536 */
+      height: 33.919%; /* 521/1536 */
       overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+      pointer-events: none;
+    }
+    .hero__forest img {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 580.04%;
+      top: -347.32%;
+      max-width: none;
+      display: block;
     }
 
     /* legacy cycler styles unused in section 1 */
     .heading-block,
-    .heading-cycler,
-    .hero__portrait { display: none; }
+    .heading-cycler { display: none; }
 
     /* ════════════════════
        PROJECT GRID, 3 in a row
     ════════════════════ */
     .cards-section {
-      padding: 2rem 0 6rem;
+      padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(4rem, 8vw, 6.5rem);
+    }
+
+    .case-cards {
+      --case-stack-gap: clamp(2.75rem, 6vw, 4.5rem);
+      --case-sticky-top: clamp(5.5rem, 11vh, 7.25rem);
+      display: flex;
+      flex-direction: column;
+      gap: var(--case-stack-gap);
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+      .case-cards--sticky {
+        gap: 0;
+      }
+
+      .case-card-sticky {
+        position: sticky;
+        top: var(--case-sticky-top);
+        padding-bottom: var(--case-stack-gap);
+      }
+
+      .case-card-sticky:nth-child(1) { z-index: 1; }
+      .case-card-sticky:nth-child(2) { z-index: 2; }
+      .case-card-sticky:nth-child(3) { z-index: 3; }
+
+      .case-card-sticky:last-child {
+        padding-bottom: clamp(5rem, 14vh, 10rem);
+      }
+
+      .case-cards--sticky .case-card {
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+        transition:
+          transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .case-cards--sticky .case-card:hover,
+      .case-cards--sticky .case-card:focus-visible {
+        transform: translateY(-3px);
+        box-shadow: 0 28px 56px rgba(15, 23, 42, 0.14);
+      }
     }
 
     .project-grid {
@@ -239,20 +312,26 @@
 
     /* ΓöÇΓöÇ Full-width case card ΓÇö Figma 1410├ù748 ΓöÇΓöÇ */
     .case-card {
-      /* Figma frame 1410×748 — 20% smaller on web */
+      /* Figma 1410×748 — full content width, height locked to previous 846px display size */
+      --case-layout-pad-left: 9.078cqw;   /* 128/1410 */
+      --case-layout-pad-right: 15.886cqw; /* 224/1410 */
+      --case-layout-gap: 6.738cqw;        /* 95/1410 */
+      --case-card-height: calc(846px * 748 / 1410);
+      --case-media-slot: calc(846px * 763 / 1410); /* widest mockup at card height — locks copy alignment */
+      --case-copy-max: 43.262cqw;         /* 610/1410 */
       --case-ease: cubic-bezier(0.22, 1, 0.36, 1);
       --case-dur: 0.7s;
       --mark-x: 50%;
       --mark-y: 50%;
-      --mark-w: min(17.4%, 245px);
+      --mark-w: min(17.4%, 147px);
       --mark-fs: 32.057cqw;
       position: relative;
       display: block;
-      width: min(100%, 1128px); /* 1410 × 0.8 */
-      max-width: 1128px;
-      margin-inline: auto;
-      aspect-ratio: 1410 / 748;
-      border-radius: 80px;
+      width: 100%;
+      max-width: none;
+      height: var(--case-card-height);
+      margin-inline: 0;
+      border-radius: 40px;
       overflow: hidden;
       background: #000;
       color: inherit;
@@ -264,7 +343,7 @@
     }
     .case-card + .case-card,
     .case-card + .project-grid {
-      margin-top: 1rem;
+      margin-top: 0;
     }
     .case-card:focus-visible {
       outline: 2px solid #ff5200;
@@ -344,69 +423,108 @@
       display: flex;
       flex-direction: row;
       align-items: stretch;
-      gap: 6.738cqw; /* 95/1410 — space between mockup and copy */
-      padding: 0 15.887cqw 0 2.837cqw; /* 224/40 — Figma pr/pl */
+      justify-content: flex-start;
+      padding: 0;
       box-sizing: border-box;
       overflow: hidden;
-      /* Figma 5033:7099 — diagonal gradient exact */
       background: linear-gradient(107.17deg, #000000 0%, #3c3c3c 100%);
       opacity: 0;
       transition: opacity var(--case-dur) var(--case-ease);
       pointer-events: none;
     }
-    /* Mockup hugs its rendered width — no reserved empty column */
+    .case-card__reveal-viewport {
+      flex: 1 1 auto;
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      min-height: 0;
+      overflow: visible;
+    }
+    .case-card__reveal-inner {
+      display: grid;
+      grid-template-columns: var(--case-media-slot) minmax(0, 1fr);
+      align-items: stretch;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      gap: var(--case-layout-gap);
+      padding-inline: var(--case-layout-pad-left) var(--case-layout-pad-right);
+    }
     .case-card__media {
       position: relative;
-      flex: 0 0 auto;
+      grid-column: 1;
+      grid-row: 1;
+      width: 100%;
+      min-width: 0;
       align-self: stretch;
       display: flex;
       align-items: stretch;
       justify-content: flex-start;
-      width: auto;
-      min-width: 0;
+      min-height: 100%;
+      margin-left: calc(-1 * var(--case-layout-pad-left));
       border-radius: 0;
-      overflow: visible;
+      overflow: hidden;
       background: transparent;
       pointer-events: none;
       opacity: 0;
       transition: opacity calc(var(--case-dur) * 0.45) ease;
     }
-    .case-card__media img,
-    .case-card__media .case-card__lottie {
+    .case-card__media img {
       display: block;
+      width: 100%;
       height: 100%;
-      width: auto;
-      max-width: none;
-      object-fit: contain;
+      object-fit: cover;
       object-position: left center;
       border: 0;
       border-radius: 0;
     }
-    .case-card__media .case-card__lottie {
-      overflow: hidden;
-      pointer-events: none;
-      aspect-ratio: 496 / 1073;
+    .case-card--icancare .case-card__media {
+      background: linear-gradient(107.17deg, #2f66ff 0%, #20437f 100.01%);
     }
-    .case-card__media .case-card__lottie svg {
-      display: block;
-      width: 100%;
-      height: 100%;
+    .case-card--icancare .case-card__media img {
+      /* PNG includes phone bezels — zoom uniformly to crop edges, no stretch */
+      object-position: left center;
+      transform: scale(1.24);
+      transform-origin: 38% center;
     }
     .case-card__copy {
       position: relative;
-      flex: 1;
+      grid-column: 2;
+      grid-row: 1;
       min-width: 0;
-      display: grid;
-      grid-template-columns: max-content;
-      place-content: center;
-      justify-items: start;
+      max-width: var(--case-copy-max);
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
       gap: 1.489cqw; /* 21/1410 */
-      padding-block: 5.348cqh; /* 40/748 — Figma py-40 on copy column */
+      padding-block: 0;
       padding-inline: 0;
       box-sizing: border-box;
       color: #f5f5f5;
       background: transparent;
       text-align: left;
+      overflow: visible;
+    }
+    /* Figma proportions as cqw (normalized to 1410 frame) */
+    .case-card__reveal-inner .case-card__title {
+      font-size: 4.539cqw; /* 64/1410 */
+      max-width: 100%;
+    }
+    .case-card__reveal-inner .case-card__lede {
+      font-size: 1.702cqw; /* 24/1410 */
+      max-width: 100%;
+      width: 100%;
+    }
+    .case-card__reveal-inner .case-card__tags {
+      gap: 1.489cqw;
+      max-width: 100%;
+    }
+    .case-card__reveal-inner .case-card__tag {
+      font-size: 1.135cqw;
+      padding: 0.567cqw 0.851cqw;
     }
     .case-card__title,
     .case-card__lede,
@@ -429,18 +547,18 @@
     }
     .case-card__lede {
       margin: 0;
-      width: auto;
-      max-width: none;
+      width: 100%;
+      max-width: 40.426cqw; /* 570/1410 */
       font-family: var(--display);
-      font-size: 1.702cqw; /* 24/1410 */
+      font-size: 1.702cqw;
       font-weight: 500;
       line-height: 1.25;
       color: #fff;
-      white-space: nowrap;
+      white-space: normal;
     }
     .case-card__tags {
       display: flex;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       gap: 1.489cqw; /* 21/1410 */
     }
     .case-card__tag {
@@ -455,200 +573,133 @@
       border-radius: 50px;
     }
     @media (hover: hover) and (pointer: fine) {
-      .case-card:hover .case-card__reveal,
-      .case-card:focus-visible .case-card__reveal,
-      .case-card.is-open .case-card__reveal {
+      .case-card {
+        cursor: pointer;
+        transition: transform 0.22s ease, box-shadow 0.22s ease;
+      }
+      .case-card:hover,
+      .case-card:focus-visible {
+        transform: scale(1.012);
+        box-shadow: 0 10px 36px rgba(0, 0, 0, 0.14);
+      }
+      .case-card__default,
+      .case-card > .case-card__mark {
+        display: none;
+      }
+      .case-card__reveal {
         opacity: 1;
+        pointer-events: auto;
+        transition: none;
       }
-      .case-card:hover .case-card__default-bg,
-      .case-card:focus-visible .case-card__default-bg,
-      .case-card.is-open .case-card__default-bg {
-        opacity: 0;
-      }
-      /* Mark stays visible ΓÇö CSS vars move it into the wordmark seat */
-      .case-card:hover .case-card__media,
-      .case-card:focus-visible .case-card__media,
-      .case-card.is-open .case-card__media {
+      .case-card__media {
         opacity: 1;
-        transition-delay: calc(var(--case-dur) * 0.12);
+        transition: none;
       }
-      .case-card:hover .case-card__wordmark-wrap,
-      .case-card:focus-visible .case-card__wordmark-wrap,
-      .case-card.is-open .case-card__wordmark-wrap {
+      .case-card__wordmark-wrap {
         visibility: visible;
         opacity: 1;
-        transition-delay: calc(var(--case-dur) * 0.08);
+        transition: none;
       }
-      .case-card:hover .case-card__title,
-      .case-card:focus-visible .case-card__title,
-      .case-card.is-open .case-card__title,
-      .case-card:hover .case-card__lede,
-      .case-card:focus-visible .case-card__lede,
-      .case-card.is-open .case-card__lede,
-      .case-card:hover .case-card__tags,
-      .case-card:focus-visible .case-card__tags,
-      .case-card.is-open .case-card__tags {
+      .case-card__title,
+      .case-card__lede,
+      .case-card__tags {
         opacity: 1;
         transform: none;
-        transition-delay: calc(var(--case-dur) * 0.35);
+        transition: none;
       }
     }
 
-    /* Safety Hub / Procore — Figma 5082:24503 default */
+    /* Safety Hub / Procore — Figma 5215:15796 hover */
     .case-card--safety .case-card__default-bg {
       background: linear-gradient(117.88deg, #000 49.86%, #666 98.02%);
     }
-    .case-card--safety.is-open > .case-card__mark,
-    .case-card--safety:hover > .case-card__mark,
-    .case-card--safety:focus-visible > .case-card__mark {
-      z-index: 4;
+    .case-card--safety .case-card__reveal {
+      background: linear-gradient(107.17deg, #000 0%, #3c3c3c 100.01%);
     }
-    .case-card--safety .case-card__wordmark-c {
-      visibility: hidden;
-    }
-    .case-card--safety.is-open .case-card__wordmark-c,
-    .case-card--safety:hover .case-card__wordmark-c,
-    .case-card--safety:focus-visible .case-card__wordmark-c {
-      visibility: visible;
+    .case-card--safety .case-card__reveal-inner .case-card__wordmark-wrap {
+      width: 8.298cqw; /* 117/1410 */
+      height: 1.964cqh; /* 14.695/748 */
     }
     .case-card--safety .case-card__wordmark-wrap {
-      display: inline-flex;
-      align-items: center;
-      width: auto;
-      height: 1.966cqh; /* 14.695/748 */
+      display: block;
       min-height: 0;
     }
-    .case-card--safety .case-card__wordmark-part {
+    .case-card--safety .case-card__wordmark {
+      width: 100%;
       height: 100%;
-      width: auto;
       display: block;
-      flex-shrink: 0;
-    }
-    .case-card--safety .case-card__wordmark-c {
-      height: 100%;
-      width: auto;
-      display: block;
-      flex-shrink: 0;
-      margin-left: 0.126cqw;
-      margin-right: 0.334cqw;
-    }
-    .case-card--safety .case-card__lede {
-      white-space: normal;
-      max-width: 40.426cqw; /* 570/1410 */
+      object-fit: contain;
+      object-position: left center;
     }
 
-    /* ΓöÇΓöÇ Meridian overrides ΓÇö Figma 5100:25899 / 5027:6481 ΓöÇΓöÇ */
+    /* ── Meridian — Figma 5215:15962 hover ── */
     .case-card--meridian .case-card__default-bg {
       background: linear-gradient(107.18deg, #000 50%, #002c2e 100.01%);
     }
     .case-card--meridian .case-card__reveal {
-      background: linear-gradient(107.17deg, #003031 0%, #00484b 100%);
-      padding-right: 2.837cqw; /* 40/1410 */
+      justify-content: flex-start;
+      background: linear-gradient(107.17deg, #003031 0%, #00484b 100.01%);
+    }
+    .case-card--meridian .case-card__reveal-inner .case-card__wordmark-wrap {
+      height: 3.61cqh; /* 27/748 */
+      font-size: 2.553cqw; /* 36/1410 */
+      letter-spacing: 0.204cqw; /* 2.88/1410 */
     }
     .case-card--meridian .case-card__mark {
       width: auto;
       height: auto;
       font-family: var(--pixel);
-      font-size: var(--mark-fs, 32.057cqw); /* 452/1410 */
+      font-size: var(--mark-fs, 32.057cqw);
       font-weight: 400;
       line-height: 1;
       letter-spacing: 0.08em;
       color: #2dd4bf;
       white-space: nowrap;
-      transition:
-        left var(--case-dur) var(--case-ease),
-        top var(--case-dur) var(--case-ease),
-        font-size var(--case-dur) var(--case-ease),
-        transform var(--case-dur) var(--case-ease);
-      will-change: left, top, font-size;
     }
     .case-card--meridian .case-card__wordmark-wrap {
-      display: flex;
-      align-items: center;
+      display: block;
       width: auto;
-      height: 4.539cqw; /* 64/1410 */
       font-family: var(--pixel);
-      font-size: 2.553cqw; /* 36/1410 */
       font-weight: 400;
-      letter-spacing: 0.08em; /* 2.88/36 */
       line-height: 1.4;
       color: #e5e5e5;
+      white-space: nowrap;
     }
-    .case-card--meridian .case-card__mark-slot {
-      position: relative;
-      left: auto;
-      top: auto;
-      width: 0.72em;
-      height: 1.4em;
-      flex-shrink: 0;
-    }
-    .case-card--meridian .case-card__wordmark-rest {
-      color: #e5e5e5;
-    }
-    .case-card--meridian .case-card__mark-fallback {
-      display: none;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: auto;
-      height: auto;
-      font-family: var(--pixel);
-      font-size: 2.553cqw;
-      line-height: 1;
-      letter-spacing: 0.08em;
+    .case-card--meridian .case-card__wordmark-m {
       color: #2dd4bf;
     }
     .case-card--meridian .case-card__lede {
-      white-space: normal;
-      max-width: 40.426cqw; /* 570/1410 */
+      max-width: 100%;
     }
 
-    /* ── ICan Care — Figma 5139:12126 default / 5141:11319 hover ── */
+    /* ── ICan Care — Figma 5141:11319 hover ── */
     .case-card--icancare .case-card__default-bg {
-      background: linear-gradient(118.6deg, #000 50%, #002169 98.955%);
+      background: linear-gradient(118.6deg, #000 50%, #001030 98.955%);
     }
     .case-card--icancare .case-card__reveal {
-      background: linear-gradient(107.17deg, #fff 0%, #e6e6e6 100.01%);
+      background: linear-gradient(107.17deg, #000 0%, #001e50 100.01%);
     }
-    .case-card--icancare .case-card__mark {
-      /* sized via --mark-w on .case-card */
-    }
-    .case-card--icancare .case-card__copy {
-      color: #000;
-    }
-    .case-card--icancare .case-card__wordmark-wrap {
-      display: block;
-      width: auto;
-      height: 2.674cqh; /* 20/748 — Figma 5141:11319 */
-      min-height: 0;
+    .case-card--icancare .case-card__reveal-inner .case-card__wordmark-wrap {
+      width: 11.915cqw; /* 168/1410 */
+      height: 2.674cqh; /* 20/748 */
     }
     .case-card--icancare .case-card__wordmark {
+      width: 100%;
       height: 100%;
-      width: auto;
       display: block;
-    }
-    .case-card--icancare.is-open > .case-card__mark,
-    .case-card--icancare:hover > .case-card__mark,
-    .case-card--icancare:focus-visible > .case-card__mark {
-      opacity: 0;
-      transition:
-        left var(--case-dur) var(--case-ease),
-        top var(--case-dur) var(--case-ease),
-        width var(--case-dur) var(--case-ease),
-        opacity calc(var(--case-dur) * 0.35) ease calc(var(--case-dur) * 0.42);
+      object-fit: contain;
+      object-position: left center;
     }
     .case-card--icancare .case-card__title {
-      color: #000;
+      color: #fff;
     }
     .case-card--icancare .case-card__lede {
-      color: #000;
-      white-space: normal;
-      max-width: 40.426cqw; /* 570/1410 */
+      color: #fff;
+      max-width: 100%;
     }
     .case-card--icancare .case-card__tag {
-      color: #000;
-      border-color: #000;
+      color: #fff;
+      border-color: #fff;
     }
 
     /* Touch / no-hover: show reveal (tap → case study) */
@@ -671,6 +722,23 @@
         padding: 0;
         min-height: 0;
       }
+      .case-card__reveal-viewport {
+        width: 100% !important;
+        height: auto !important;
+        max-width: none;
+        max-height: none;
+        margin-left: 0 !important;
+        overflow: visible;
+      }
+      .case-card__reveal-inner {
+        transform: none !important;
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        gap: 0;
+        padding: 0 !important;
+      }
+      .case-card__reveal-inner .case-card__media,
       .case-card__media {
         position: relative;
         left: auto;
@@ -682,17 +750,12 @@
         opacity: 1;
         transition: none;
       }
-      .case-card__media img,
-      .case-card__media .case-card__lottie {
+      .case-card__media img {
         width: auto;
         height: 100%;
         max-width: 100%;
         object-fit: contain;
         object-position: center center;
-      }
-      .case-card__media .case-card__lottie svg {
-        width: 100%;
-        height: 100%;
       }
       .case-card__copy {
         position: relative;
@@ -726,7 +789,7 @@
         max-width: none;
       }
       .case-card--icancare .case-card__copy {
-        background: linear-gradient(107.17deg, #fff 0%, #e6e6e6 100.01%);
+        background: linear-gradient(107.17deg, #2f66ff 0%, #20437f 100.01%);
       }
       .case-card--icancare .case-card__wordmark-wrap {
         width: auto;
@@ -740,9 +803,6 @@
         height: 1rem;
         visibility: visible;
         opacity: 1;
-      }
-      .case-card--safety .case-card__wordmark-c {
-        visibility: visible;
       }
       .case-card__wordmark-wrap,
       .case-card__title,
@@ -798,17 +858,12 @@
         opacity: 1;
         transition: none;
       }
-      .case-card__media img,
-      .case-card__media .case-card__lottie {
+      .case-card__media img {
         width: auto;
         height: 100%;
         max-width: 100%;
         object-fit: contain;
         object-position: center center;
-      }
-      .case-card__media .case-card__lottie svg {
-        width: 100%;
-        height: 100%;
       }
       .case-card__copy {
         position: relative;
@@ -841,7 +896,7 @@
         max-width: none;
       }
       .case-card--icancare .case-card__copy {
-        background: linear-gradient(107.17deg, #fff 0%, #e6e6e6 100.01%);
+        background: linear-gradient(107.17deg, #2f66ff 0%, #20437f 100.01%);
       }
       .case-card--icancare .case-card__wordmark-wrap {
         width: auto;
@@ -855,9 +910,6 @@
         height: 1rem;
         visibility: visible;
         opacity: 1;
-      }
-      .case-card--safety .case-card__wordmark-c {
-        visibility: visible;
       }
       .case-card__wordmark-wrap,
       .case-card__title,
@@ -1026,7 +1078,7 @@
     .about__body { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
     .about__body p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 54ch; }
     .about__image { position: sticky; top: 120px; align-self: stretch; min-height: 0; }
-    .about__image img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 20px; border: 1px solid var(--border); display: block; image-rendering: pixelated; }
+    .about__image img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 0; border: 1px solid var(--border); display: block; image-rendering: pixelated; }
     .about__tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
     .tool-pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.3rem 0.75rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); }
 
@@ -1077,9 +1129,19 @@
       .footer__nav, .footer__social { justify-content: flex-start; }
       .cta__actions { flex-direction: column; align-items: stretch; }
       .cta__actions .btn { justify-content: center; width: 100%; }
-      .hero {
-        min-height: calc(100svh - 3rem);
-        padding: 1.25rem 0 2rem;
+      .hero__inner {
+        aspect-ratio: 3022 / 1536;
+      }
+      .hero__title {
+        font-size: clamp(3.5rem, 23.15cqw, 8.5rem);
+        white-space: normal;
+        line-height: 0.95;
+        top: 2%;
+      }
+      .hero__portrait {
+        width: 52%;
+        height: 72%;
+        top: 20%;
       }
       .header__bar {
         display: flex;
@@ -1106,23 +1168,25 @@
   <link rel="stylesheet" href="/assets/theme.css" />
   <link rel="stylesheet" href="/assets/cursor.css" />
   <style>
-    /* Homepage section-1 lock — mockup background, no paper dots */
+    /* Homepage section-1 lock */
     :root {
-      --bg: #f5f5f5;
+      --bg: #fafafa;
       --surface: #ffffff;
-      --text: #121212;
-      --muted: #828282;
+      --text: #09090b;
+      --muted: #52525b;
     }
     body {
       background-color: var(--bg);
       background-image: none;
     }
     .header {
-      background: rgba(255, 255, 255, 0.92) !important;
+      background: rgba(255, 255, 255, 0.82) !important;
       border-bottom: none !important;
     }
     .hero {
-      background: #fff !important;
+      background-color: var(--bg) !important;
+      background-image: radial-gradient(circle, rgba(9, 9, 11, 0.06) 1px, transparent 1px) !important;
+      background-size: 20px 20px !important;
     }
     .header__brand {
       font-weight: 700 !important;
@@ -1182,93 +1246,88 @@
       border-top: 1px solid var(--border);
     }
 
-    .about-brands__label {
-      display: block;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
     .brands-marquee {
       overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      width: 100%;
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     }
 
     .brands-marquee__track {
       display: flex;
       width: max-content;
-      animation: brands-marquee 42s linear infinite;
+      will-change: transform;
+      animation: brands-marquee 28s linear infinite;
+    }
+
+    .brands-marquee:hover .brands-marquee__track {
+      animation-play-state: paused;
     }
 
     .brands-marquee__set {
       display: flex;
+      align-items: flex-start;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      padding-right: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .brands-marquee__item {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: clamp(2.5rem, 5vw, 4.5rem);
-      padding-right: clamp(2.5rem, 5vw, 4.5rem);
+      gap: 0.65rem;
+      width: clamp(6.5rem, 11vw, 8.5rem);
+      margin: 0;
     }
 
     .brands-marquee__logo {
-      flex-shrink: 0;
-      width: clamp(5rem, 9vw, 7rem);
-      height: 2.5rem;
+      width: 100%;
+      height: 2.75rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0.72;
-      transition: opacity 0.2s ease;
-    }
-
-    .brands-marquee__logo:hover {
-      opacity: 1;
     }
 
     .brands-marquee__logo img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      mix-blend-mode: multiply;
-    }
-
-    .brands-marquee__logo--color img {
+      filter: none;
       mix-blend-mode: normal;
       opacity: 1;
     }
 
-    .brands-marquee__logo--invert img {
-      filter: invert(1);
-      mix-blend-mode: normal;
+    .brands-marquee__label {
+      font-family: var(--display);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      text-align: center;
+      color: var(--muted);
     }
 
     @keyframes brands-marquee {
+      from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
 
     /* Let's Talk */
     .lets-talk {
       position: relative;
-      padding: clamp(4.5rem, 10vw, 7.5rem) 0;
-      background: #121212;
+      z-index: 1;
+      padding: clamp(4.5rem, 10vw, 7.5rem) 0 clamp(2rem, 4vw, 3rem);
+      background: transparent;
       color: #f5f5f5;
-      overflow: hidden;
     }
 
-    .lets-talk::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 12% 20%, rgba(45, 212, 191, 0.14), transparent 42%),
-        radial-gradient(circle at 88% 78%, rgba(79, 70, 229, 0.12), transparent 38%);
-      pointer-events: none;
+    .lets-talk .container {
+      position: relative;
+      z-index: 1;
     }
 
     .lets-talk__inner {
-      position: relative;
-      z-index: 1;
       display: grid;
       grid-template-columns: 1.15fr minmax(260px, 0.85fr);
       gap: clamp(2rem, 5vw, 4rem);
@@ -1397,6 +1456,7 @@
 
   </style>
   <link rel="stylesheet" href="/assets/ui-highlights.css" />
+  <link rel="stylesheet" href="/assets/portfolio-redesign.css" />
 </head>
 <body>
 
@@ -1409,7 +1469,6 @@
       <a class="header__brand" href="/">h.</a>
       <nav class="header__nav" aria-label="Primary">
         <a href="#projects">Case Studies</a>
-        <a href="#highlights">UI Highlights</a>
         <a href="#about">About Me</a>
         <a href="#contact">Let&rsquo;s Talk</a>
       </nav>
@@ -1426,7 +1485,6 @@
     <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
     <a href="/">Home</a>
     <a href="#projects">Case Studies</a>
-    <a href="#highlights">UI Highlights</a>
     <a href="#about">About Me</a>
     <a href="#contact">Let&rsquo;s Talk</a>
   </nav>
@@ -1436,27 +1494,43 @@
     <!-- HERO -->
     <section class="hero" aria-label="Introduction">
       <div class="hero__inner">
-        <div class="hero__frame">
+        <h1 class="hero__title">Hassan Amin</h1>
+        <div class="hero__portrait" aria-hidden="true">
           <img
-            class="hero__art"
-            src="/assets/home-hero.png?v=aug28b"
+            src="/assets/hero-portrait-figma5224.png"
             alt=""
-            width="1024"
-            height="473"
+            width="1317"
+            height="1257"
             fetchpriority="high"
             decoding="async"
           />
-          <h1 class="hero__name">Hassan Amin</h1>
+        </div>
+        <div class="hero__forest" aria-hidden="true">
+          <img
+            src="/assets/hero-forest-figma5224.png"
+            alt=""
+            width="3022"
+            height="521"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
 
     <!-- PROJECT GRID -->
-    <section class="cards-section" id="projects" aria-label="Featured projects">
+    <section class="cards-section" id="projects" aria-labelledby="section-title-projects">
       <div class="container">
+        <header class="section-title reveal" id="section-title-projects">
+          <span class="section-title__index" aria-hidden="true">01</span>
+          <div class="section-title__body">
+            <h2 class="section-title__heading">Case Studies</h2>
+          </div>
+        </header>
+        <div class="case-cards case-cards--sticky">
+        <div class="case-card-sticky">
         <a
           class="case-card case-card--safety"
-          href="/case-study-safety-hub"
+          href="/preview/procore-case-study/"
           data-case-card
           aria-label="Safety Hub case study — Case Study"
         >
@@ -1472,9 +1546,11 @@
             <div class="case-card__default-bg"></div>
           </div>
           <div class="case-card__reveal">
+            <div class="case-card__reveal-viewport">
+              <div class="case-card__reveal-inner">
             <div class="case-card__media">
               <img
-                src="/assets/safety-hub-card-phone-bezel.png"
+                src="/assets/safety-hub-card-phone-figma5215.png"
                 alt=""
                 width="571"
                 height="748"
@@ -1485,26 +1561,10 @@
             <div class="case-card__copy">
               <div class="case-card__wordmark-wrap">
                 <img
-                  class="case-card__wordmark-part"
-                  src="/assets/procore-wordmark-pro.svg"
-                  alt=""
-                  width="49"
-                  height="15"
-                  decoding="async"
-                />
-                <img
-                  class="case-card__wordmark-part case-card__wordmark-c"
-                  src="/assets/procore-wordmark-c.svg"
-                  alt=""
-                  width="15"
-                  height="15"
-                  decoding="async"
-                />
-                <img
-                  class="case-card__wordmark-part"
-                  src="/assets/procore-wordmark-ore.svg"
+                  class="case-card__wordmark"
+                  src="/assets/procore-wordmark-figma5215.svg"
                   alt="Procore"
-                  width="46"
+                  width="117"
                   height="15"
                   decoding="async"
                 />
@@ -1518,9 +1578,13 @@
                 <span class="case-card__tag">#AI</span>
               </div>
             </div>
+              </div>
+            </div>
           </div>
         </a>
+        </div>
 
+        <div class="case-card-sticky">
         <a
           class="case-card case-card--meridian"
           href="/case-study-meridian"
@@ -1532,11 +1596,13 @@
             <div class="case-card__default-bg"></div>
           </div>
           <div class="case-card__reveal">
+            <div class="case-card__reveal-viewport">
+              <div class="case-card__reveal-inner">
             <div class="case-card__media">
               <img
-                src="/assets/meridian-card-tablet.png"
+                src="/assets/meridian-card-tablet-figma5215.png"
                 alt=""
-                width="758"
+                width="763"
                 height="748"
                 loading="lazy"
                 decoding="async"
@@ -1544,22 +1610,24 @@
             </div>
             <div class="case-card__copy">
               <div class="case-card__wordmark-wrap">
-                <span class="case-card__mark-slot" aria-hidden="true">
-                  <span class="case-card__mark-fallback">M</span>
-                </span>
-                <span class="case-card__wordmark-rest">eridian</span>
+                <span class="case-card__wordmark-m" aria-hidden="true">M</span><span>eridian</span>
               </div>
               <h2 class="case-card__title">Super App</h2>
               <p class="case-card__lede">A Multi-user, cross-platform app, calendar organization, event hosting, and a lot more.</p>
               <div class="case-card__tags">
-                <span class="case-card__tag">Construction Tech</span>
-                <span class="case-card__tag">Cross-Platform</span>
-                <span class="case-card__tag">Research</span>
+                <span class="case-card__tag">Events</span>
+                <span class="case-card__tag">Calendar</span>
+                <span class="case-card__tag">SaaS</span>
+                <span class="case-card__tag">Team Leadership</span>
+              </div>
+            </div>
               </div>
             </div>
           </div>
         </a>
+        </div>
 
+        <div class="case-card-sticky">
         <a
           class="case-card case-card--icancare"
           href="/case-study-icancare"
@@ -1578,81 +1646,56 @@
             <div class="case-card__default-bg"></div>
           </div>
           <div class="case-card__reveal">
+            <div class="case-card__reveal-viewport">
+              <div class="case-card__reveal-inner">
             <div class="case-card__media">
-              <div
-                class="case-card__lottie"
-                data-lottie-src="/assets/icancare-card-flow-lottie.json"
-                aria-hidden="true"
-              ></div>
+              <img
+                src="/assets/icancare-card-phone-figma5141.png"
+                alt=""
+                width="708"
+                height="748"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="case-card__copy">
               <div class="case-card__wordmark-wrap">
                 <img
                   class="case-card__wordmark"
-                  src="/assets/novartis-wordmark.svg"
+                  src="/assets/novartis-wordmark-white-figma5141.svg"
                   alt="Novartis"
-                  width="169"
-                  height="21"
+                  width="168"
+                  height="20"
                   decoding="async"
                 />
               </div>
               <h2 class="case-card__title">Icancare</h2>
-              <p class="case-card__lede">Language-first onboarding, medication reminders, trusted education, and nearby care centres for patients and carers.</p>
+              <p class="case-card__lede">How I helped shape the future of construction tech.</p>
               <div class="case-card__tags">
                 <span class="case-card__tag">Healthcare</span>
-                <span class="case-card__tag">A11y</span>
+                <span class="case-card__tag">UX</span>
                 <span class="case-card__tag">Research</span>
                 <span class="case-card__tag">Medical</span>
               </div>
             </div>
+              </div>
+            </div>
           </div>
         </a>
-
-        <!-- Qualifications + ICan Care hidden until next case card is ready
-        <div class="project-grid">
-          <a class="project-card" href="/case-study-qualifications">
-            <div class="project-card__thumb">
-              <picture>
-                <source srcset="/assets/qualifications-hero.webp" type="image/webp" />
-                <img src="/assets/qualifications-hero.png" alt="" width="1920" height="1152" loading="lazy" decoding="async" />
-              </picture>
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__meta">2026 · Product Designer · Construction SaaS</p>
-              <h2 class="project-card__title">Qualifications</h2>
-              <p class="project-card__desc">Customer-driven credential management: mobile Safety Cards, a workers table for 1,000+ people, bulk assign, and tags across four surfaces.</p>
-              <div class="project-card__tags">
-                <span class="project-card__tag">Mobile &amp; Web</span>
-                <span class="project-card__tag">Enterprise</span>
-                <span class="project-card__tag">Safety</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="project-card" href="/case-study-icancare">
-            <div class="project-card__thumb" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center;">
-              <span style="font-family:var(--mono);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:#2563eb;">Image coming</span>
-              <span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);">assets/icancare-hero.png</span>
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__meta">2022 – 2023 · UI/UX Designer · Healthcare</p>
-              <h2 class="project-card__title">ICan Care</h2>
-              <p class="project-card__desc">Novartis oncology companion: language-first onboarding, medication reminders, trusted education, and nearby care centres for patients and carers.</p>
-              <div class="project-card__tags">
-                <span class="project-card__tag">Healthcare</span>
-                <span class="project-card__tag">Mobile</span>
-                <span class="project-card__tag">Privacy-first</span>
-              </div>
-            </div>
-          </a>
         </div>
-        -->
+        </div>
       </div>
     </section>
 
-    <!-- UI HIGHLIGHTS -->
-    <section class="ui-highlights" id="highlights" aria-label="UI highlights">
+    <!-- UI HIGHLIGHTS (hidden for now) -->
+    <section class="ui-highlights" id="highlights" aria-labelledby="section-title-highlights" hidden>
       <div class="container">
+        <header class="section-title reveal" id="section-title-highlights">
+          <span class="section-title__index" aria-hidden="true">02</span>
+          <div class="section-title__body">
+            <h2 class="section-title__heading">UI Highlights</h2>
+          </div>
+        </header>
         <div class="ui-highlights__grid reveal" data-ui-highlights-grid>
           <div class="ui-highlight-card" data-ui-highlight>
             <div class="ui-highlight-card__thumb">
@@ -1669,31 +1712,22 @@
               <img src="/assets/meridian-card-tablet.png?v=figma5027" alt="" width="745" height="748" loading="lazy" decoding="async" />
             </div>
           </div>
-          <div class="ui-highlight-card" data-ui-highlight>
-            <div class="ui-highlight-card__thumb">
-              <img src="/assets/ms-dashboard.mockup.webp" alt="" width="1920" height="1080" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <div class="ui-highlight-card" data-ui-highlight>
-            <div class="ui-highlight-card__thumb">
-              <img src="/assets/ms-home-views.webp" alt="" width="1920" height="1080" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <div class="ui-highlight-card" data-ui-highlight>
-            <div class="ui-highlight-card__thumb ui-highlight-card__thumb--icancare">
-              <img src="/assets/icancare-brand-mark.png" alt="" width="282" height="282" loading="lazy" decoding="async" />
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
     <!-- ABOUT TEASER -->
-    <section class="section" id="about">
+    <section class="section" id="about" aria-labelledby="section-title-about">
       <div class="container">
+        <header class="section-title reveal" id="section-title-about">
+          <span class="section-title__index" aria-hidden="true">02</span>
+          <div class="section-title__body">
+            <h2 class="section-title__heading">About Me</h2>
+          </div>
+        </header>
         <div class="about-grid">
           <div class="about__copy reveal">
-            <h2 class="about__intro">Obsessed with how things work, and how people find their way.</h2>
+            <p class="about__intro" id="about-intro">Obsessed with how things work, and how people find their way.</p>
             <div class="about__body">
               <p>My path to design clicked after years on the frontlines of customer service. I wanted to fix the roads, not just direct the traffic. UI/UX was the intersection: digital spaces are simply modern maps, and every interaction is a signpost.</p>
               <p>Today I dismantle workflows instead of toys. I believe the best designs don't rely on flashy technology. They rely on empathy and simplicity.</p>
@@ -1704,42 +1738,62 @@
             <img src="/assets/about-macintosh.gif" alt="Recursive Macintosh MacPaint animation" loading="lazy" />
           </div>
         </div>
+      </div>
 
-        <div class="about-brands reveal" style="transition-delay:0.2s;" aria-label="Companies I've worked with">
-          <div class="brands-marquee">
-            <div class="brands-marquee__track">
-              <div class="brands-marquee__set">
-                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-novartis.png" alt="Novartis" /></div>
-                <div class="brands-marquee__logo"><img src="/assets/logo-petronas.png" alt="Petronas" /></div>
-                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-vodafone.png" alt="Vodafone" /></div>
-                <div class="brands-marquee__logo"><img src="/assets/logo-procore.png" alt="Procore" /></div>
-                <div class="brands-marquee__logo"><img src="/assets/logo-cma.png" alt="Saudi Capital Market Authority" /></div>
-                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-investview.png" alt="Investview" /></div>
-                <div class="brands-marquee__logo brands-marquee__logo--invert"><img src="/assets/logo-malaysia.png" alt="Ministry of Digital Malaysia" /></div>
-                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-deloitte.svg" alt="Deloitte" /></div>
-              </div>
-              <div class="brands-marquee__set" aria-hidden="true">
-                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-novartis.png" alt="" /></div>
-                <div class="brands-marquee__logo"><img src="/assets/logo-petronas.png" alt="" /></div>
-                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-vodafone.png" alt="" /></div>
-                <div class="brands-marquee__logo"><img src="/assets/logo-procore.png" alt="" /></div>
-                <div class="brands-marquee__logo"><img src="/assets/logo-cma.png" alt="" /></div>
-                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-investview.png" alt="" /></div>
-                <div class="brands-marquee__logo brands-marquee__logo--invert"><img src="/assets/logo-malaysia.png" alt="" /></div>
-                <div class="brands-marquee__logo brands-marquee__logo--color"><img src="/assets/logo-deloitte.svg" alt="" /></div>
-              </div>
+      <div class="about-brands reveal" style="transition-delay:0.2s;" aria-label="Companies I've worked with">
+        <div class="brands-marquee">
+          <div class="brands-marquee__track">
+            <div class="brands-marquee__set">
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-novartis.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Novartis</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-petronas.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Petronas</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-vodafone.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Vodafone</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-procore.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Procore</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-cma.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Capital Market Authority</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-investview.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Investview</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-malaysia.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Ministry of Digital</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-deloitte.svg" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Deloitte</figcaption></figure>
+            </div>
+            <div class="brands-marquee__set" aria-hidden="true">
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-novartis.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Novartis</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-petronas.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Petronas</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-vodafone.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Vodafone</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-procore.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Procore</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-cma.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Capital Market Authority</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-investview.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Investview</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-malaysia.png" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Ministry of Digital</figcaption></figure>
+              <figure class="brands-marquee__item"><div class="brands-marquee__logo"><img src="/assets/logo-deloitte.svg" alt="" width="120" height="40" loading="lazy" decoding="async" /></div><figcaption class="brands-marquee__label">Deloitte</figcaption></figure>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+  </main>
+
+  <div class="page-closer">
+    <div class="page-closer__art" aria-hidden="true">
+      <img
+        src="/assets/footer-pixel.png"
+        alt=""
+        width="6060"
+        height="2202"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
     <!-- LET'S TALK -->
-    <section class="lets-talk" id="contact" aria-label="Let's talk">
+    <section class="lets-talk" id="contact" aria-labelledby="section-title-contact">
       <div class="container">
+        <header class="section-title section-title--on-dark reveal" id="section-title-contact">
+          <span class="section-title__index" aria-hidden="true">03</span>
+          <div class="section-title__body">
+            <h2 class="section-title__heading">Let&rsquo;s Talk</h2>
+          </div>
+        </header>
         <div class="lets-talk__inner">
           <div class="lets-talk__copy reveal">
-            <h2 class="lets-talk__headline">Got a product challenge? Let&rsquo;s figure it out together.</h2>
+            <p class="lets-talk__headline" id="contact-headline">Got a product challenge? Let&rsquo;s figure it out together.</p>
             <p class="lets-talk__lede">Open to full-time roles and freelance partnerships. Whether you need a design lead, a product designer for a critical flow, or just want to compare notes — I&rsquo;m easy to reach.</p>
           </div>
           <div class="lets-talk__actions reveal" style="transition-delay:0.1s;">
@@ -1769,18 +1823,15 @@
       </div>
     </section>
 
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer__grid">
+    <footer class="footer">
+    <div class="container footer__content">
+      <div class="footer__grid">
       <div>
         <span class="footer__brand">hassanamin.net</span>
         <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
       <nav class="footer__nav" aria-label="Footer">
         <a href="#projects">Case Studies</a>
-        <a href="#highlights">UI Highlights</a>
         <a href="#about">About</a>
         <a href="#contact">Let&rsquo;s Talk</a>
       </nav>
@@ -1788,8 +1839,10 @@
         <a href="https://www.linkedin.com/in/hassan-mo-amin/" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="#" class="copy-email-btn" data-copy-email data-copy-label="Email" data-copied-label="Copied">Email</a>
       </div>
+      </div>
     </div>
-  </footer>
+    </footer>
+  </div>
 
   <script>
     /* ── Lenis smooth scroll ── */
@@ -1800,12 +1853,12 @@
       wheelMultiplier: isApple ? 1.35 : 1.25,
       syncTouch: false
     });
+    window.lenis = lenis;
 
     /* Scroll progress bar + progressive nav link color */
     const bar = document.getElementById('progress');
     const navSectionMap = [
       { id: 'projects', href: '#projects' },
-      { id: 'highlights', href: '#highlights' },
       { id: 'about', href: '#about' },
       { id: 'contact', href: '#contact' }
     ].map(({ id, href }) => ({
@@ -1935,239 +1988,6 @@
 
     updateNavProgress();
     window.addEventListener('resize', updateNavProgress);
-
-    /* Case card: mark FLIPs into the wordmark logo seat */
-    (function () {
-      const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
-      /* Orange hex bbox inside procore-mark-figma5082 (fallback sizing) */
-      const PROCORE_HEX_RATIO_W = 90.118 / 238.024;
-      /* Novartis flame width vs icancare heart mark (5141:11319) */
-      const ICANCARE_MARK_RATIO = 18.5 / 174;
-
-      const ICANCARE_MARK_ASPECT = 174 / 196.688;
-
-      function safetyMarkWidthPct(card, seat, cardRect) {
-        const s = seat.getBoundingClientRect();
-        return (s.width / cardRect.width) * 100;
-      }
-
-      function icancareMarkWidthPct(card, cardRect) {
-        const wrap = card.querySelector('.case-card__wordmark-wrap');
-        if (!wrap) return 1;
-        const h = wrap.getBoundingClientRect().height;
-        if (h <= 0) return 1;
-        return ((h * ICANCARE_MARK_ASPECT) / cardRect.width) * 100;
-      }
-
-      function getMarkSeat(card) {
-        if (card.classList.contains('case-card--safety')) {
-          return card.querySelector('.case-card__wordmark-c');
-        }
-        if (card.classList.contains('case-card--icancare')) {
-          return card.querySelector('.case-card__wordmark-wrap');
-        }
-        return card.querySelector('.case-card__mark-slot');
-      }
-
-      function getMarkHomeSize(card) {
-        if (card.classList.contains('case-card--icancare')) {
-          return 'min(12.34cqw, 174px)';
-        }
-        if (card.classList.contains('case-card--meridian')) {
-          return null;
-        }
-        return 'min(17.376cqw, 245px)';
-      }
-
-      function getMarkRatio(card) {
-        if (card.classList.contains('case-card--icancare')) return ICANCARE_MARK_RATIO;
-        if (card.classList.contains('case-card--meridian')) return null;
-        return PROCORE_HEX_RATIO_W;
-      }
-
-      function applyMarkPosition(card) {
-        const mark = card.querySelector(':scope > .case-card__mark');
-        if (!mark) return;
-
-        const seat = getMarkSeat(card);
-        if (!seat) return;
-        const c = card.getBoundingClientRect();
-        const s = seat.getBoundingClientRect();
-        if (c.width < 8 || s.width < 1) return;
-
-        const x = ((s.left + s.width / 2) - c.left) / c.width * 100;
-        const y = ((s.top + s.height / 2) - c.top) / c.height * 100;
-        mark.style.left = x.toFixed(3) + '%';
-        mark.style.top = y.toFixed(3) + '%';
-
-        if (card.classList.contains('case-card--meridian')) {
-          const brand = card.querySelector('.case-card__wordmark-wrap');
-          const fs = brand ? getComputedStyle(brand).fontSize : (s.height / 1.4) + 'px';
-          mark.style.width = '';
-          mark.style.fontSize = fs;
-        } else if (card.classList.contains('case-card--safety')) {
-          mark.style.width = safetyMarkWidthPct(card, seat, c).toFixed(3) + '%';
-          mark.style.fontSize = '';
-        } else if (card.classList.contains('case-card--icancare')) {
-          mark.style.width = icancareMarkWidthPct(card, c).toFixed(3) + '%';
-          mark.style.fontSize = '';
-        } else {
-          const ratio = getMarkRatio(card);
-          const markW = (s.width / ratio) / c.width * 100;
-          mark.style.width = markW.toFixed(3) + '%';
-          mark.style.fontSize = '';
-        }
-      }
-
-      function setMarkHome(card) {
-        const mark = card.querySelector(':scope > .case-card__mark');
-        if (!mark) return;
-        mark.style.left = '50%';
-        mark.style.top = '50%';
-        mark.style.opacity = '';
-        if (card.classList.contains('case-card--meridian')) {
-          mark.style.width = '';
-          mark.style.fontSize = '32.057cqw';
-        } else {
-          mark.style.fontSize = '';
-          mark.style.width = getMarkHomeSize(card);
-        }
-      }
-
-      function setMarkToSlot(card) {
-        applyMarkPosition(card);
-      }
-
-      function scheduleMarkToSlot(card) {
-        const run = () => setMarkToSlot(card);
-        requestAnimationFrame(() => {
-          requestAnimationFrame(run);
-        });
-        card.addEventListener('transitionend', run, { once: true });
-        setTimeout(run, 120);
-        setTimeout(run, 420);
-      }
-
-      document.querySelectorAll('[data-case-card]').forEach((card) => {
-        setMarkHome(card);
-
-        const open = () => {
-          if (!fine.matches) return;
-          card.classList.add('is-open');
-          scheduleMarkToSlot(card);
-        };
-        const close = () => {
-          card.classList.remove('is-open');
-          setMarkHome(card);
-        };
-
-        card.addEventListener('pointerenter', open);
-        card.addEventListener('pointerleave', close);
-        card.addEventListener('focusin', open);
-        card.addEventListener('focusout', (e) => {
-          if (!card.contains(e.relatedTarget)) close();
-        });
-      });
-
-      window.addEventListener('resize', () => {
-        document.querySelectorAll('[data-case-card].is-open').forEach(scheduleMarkToSlot);
-      });
-
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(() => {
-          document.querySelectorAll('[data-case-card].is-open').forEach(scheduleMarkToSlot);
-        });
-      }
-    })();
-
-    /* ICan Care card: Lottie mockup replaces static phone on hover reveal */
-    (function () {
-      const card = document.querySelector('.case-card--icancare');
-      if (!card) return;
-
-      const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
-      const container = card.querySelector('.case-card__lottie');
-      const src = container?.dataset.lottieSrc;
-      if (!container || !src) return;
-
-      let anim = null;
-      let loading = null;
-      let wantsPlay = false;
-
-      function loadLottieLib() {
-        if (window.lottie) return Promise.resolve(window.lottie);
-        return new Promise((resolve, reject) => {
-          const script = document.createElement('script');
-          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
-          script.async = true;
-          script.onload = () => resolve(window.lottie);
-          script.onerror = reject;
-          document.head.appendChild(script);
-        });
-      }
-
-      function loadLottie() {
-        if (anim) return Promise.resolve(anim);
-        if (loading) return loading;
-
-        loading = Promise.all([
-          loadLottieLib(),
-          fetch(src).then((res) => {
-            if (!res.ok) throw new Error('Lottie fetch failed: ' + res.status);
-            return res.json();
-          }),
-        ])
-          .then(([lottie, data]) => new Promise((resolve, reject) => {
-            const instance = lottie.loadAnimation({
-              container,
-              renderer: 'svg',
-              loop: true,
-              autoplay: false,
-              animationData: data,
-              rendererSettings: { preserveAspectRatio: 'xMidYMid meet' },
-            });
-            instance.addEventListener('DOMLoaded', () => {
-              anim = instance;
-              resolve(instance);
-            });
-            instance.addEventListener('data_failed', () => reject(new Error('Lottie data failed')));
-          }))
-          .finally(() => {
-            loading = null;
-          });
-
-        return loading;
-      }
-
-      function play() {
-        wantsPlay = true;
-        loadLottie()
-          .then((instance) => {
-            if (!wantsPlay || !instance) return;
-            instance.goToAndPlay(0, true);
-          })
-          .catch(() => {});
-      }
-
-      function pause() {
-        wantsPlay = false;
-        if (!anim) return;
-        anim.pause();
-        anim.goToAndStop(0, true);
-      }
-
-      if (fine.matches) {
-        card.addEventListener('pointerenter', play);
-        card.addEventListener('pointerleave', pause);
-        card.addEventListener('focusin', play);
-        card.addEventListener('focusout', (e) => {
-          if (!card.contains(e.relatedTarget)) pause();
-        });
-      } else {
-        play();
-      }
-    })();
-
 
     window.addEventListener('load', scrollToHash);
     window.addEventListener('hashchange', scrollToHash);

@@ -2,16 +2,28 @@
   var bar = document.querySelector('.cs-progress__bar');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  function scrollY() {
+    return window.lenis ? window.lenis.scroll : window.scrollY;
+  }
+
   function updateProgress() {
     if (!bar) return;
     var doc = document.documentElement;
     var max = doc.scrollHeight - doc.clientHeight;
-    bar.style.width = max > 0 ? (window.scrollY / max) * 100 + '%' : '0%';
+    bar.style.width = max > 0 ? (scrollY() / max) * 100 + '%' : '0%';
   }
 
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  window.addEventListener('resize', updateProgress, { passive: true });
+  function onScroll() {
+    updateProgress();
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
   updateProgress();
+
+  if (window.lenis) {
+    window.lenis.on('scroll', onScroll);
+  }
 
   if (reduced) return;
 

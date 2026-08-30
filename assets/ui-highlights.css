@@ -1,63 +1,41 @@
 /* UI Highlights — image-only grid */
 
 .ui-highlights {
-
-  padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 6rem);
-
-  border-top: 1px solid var(--border);
-
-  background: var(--surface);
-
+  padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(4rem, 8vw, 6.5rem);
+  border-top: none;
+  background: var(--bg, #fafafa);
 }
-
-
 
 .ui-highlights__grid {
-
   display: grid;
-
   grid-template-columns: repeat(12, minmax(0, 1fr));
-
-  gap: 1rem;
-
+  gap: 1.125rem;
 }
-
-
 
 .ui-highlight-card {
-
   grid-column: span 4;
-
   position: relative;
-
   display: block;
-
   min-height: 0;
-
-  border: 1px solid var(--border);
-
-  border-radius: 0;
-
-  background: #fafafa;
-
+  border: 1px solid var(--border, rgba(9, 9, 11, 0.08));
+  border-radius: 20px;
+  background: var(--surface, #fff);
   overflow: hidden;
-
-  cursor: none;
-
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(9, 9, 11, 0.06);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
-
+.ui-highlight-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(9, 9, 11, 0.1);
+}
 
 .ui-highlight-card__thumb {
-
   position: relative;
-
   aspect-ratio: 1 / 1;
-
   overflow: hidden;
-
-  background: #ececec;
-
+  background: #f4f4f5;
 }
 
 

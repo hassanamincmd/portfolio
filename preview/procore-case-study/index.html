@@ -48,20 +48,40 @@
       <div class="cs-wrap">
         <dl class="cs-meta__grid">
           <div class="cs-meta__item">
-            <dt class="cs-meta__label">Duration</dt>
-            <dd class="cs-meta__value">1 year</dd>
+            <div class="cs-meta__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <div class="cs-meta__copy">
+              <dt class="cs-meta__label">Duration</dt>
+              <dd class="cs-meta__value">1 year</dd>
+            </div>
           </div>
           <div class="cs-meta__item">
-            <dt class="cs-meta__label">Collaborators</dt>
-            <dd class="cs-meta__value">Research · Product · Engineering</dd>
+            <div class="cs-meta__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19v-1a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v1"/><circle cx="9" cy="7" r="3"/><path d="M22 19v-1a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="cs-meta__copy">
+              <dt class="cs-meta__label">Collaborators</dt>
+              <dd class="cs-meta__value">Research · PM · ENG</dd>
+            </div>
           </div>
           <div class="cs-meta__item">
-            <dt class="cs-meta__label">Platforms</dt>
-            <dd class="cs-meta__value">Web · iOS · Android</dd>
+            <div class="cs-meta__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <div class="cs-meta__copy">
+              <dt class="cs-meta__label">Platforms</dt>
+              <dd class="cs-meta__value">Web · iOS · Android</dd>
+            </div>
           </div>
           <div class="cs-meta__item">
-            <dt class="cs-meta__label">Role</dt>
-            <dd class="cs-meta__value">Product Design Lead</dd>
+            <div class="cs-meta__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+            </div>
+            <div class="cs-meta__copy">
+              <dt class="cs-meta__label">Role</dt>
+              <dd class="cs-meta__value">Product Design Lead</dd>
+            </div>
           </div>
         </dl>
       </div>
@@ -169,23 +189,21 @@
           </div>
         </div>
 
-        <div class="cs-sub cs-reveal">
-          <h3 class="cs-sub__label"><span class="cs-sub__num">2.</span> I added data: safety scores, incidents, and status</h3>
-          <p class="cs-sub__body">I explored how to layer data onto the command center: safety score trends, open incident counts, critical items, and equipment status.</p>
-          <div class="cs-gallery cs-gallery--3">
-            <img src="/assets/procore-cs-wireframe-home.svg" alt="Safety Hub home wireframe with safety score and module list" width="375" height="586" loading="lazy" decoding="async" />
-            <img src="/assets/procore-cs-wireframe-stats.svg" alt="Safety Hub wireframe with incident and observation stats" width="375" height="586" loading="lazy" decoding="async" />
-            <img src="/assets/procore-cs-wireframe-detail.svg" alt="Safety Hub wireframe with inspection detail list" width="375" height="586" loading="lazy" decoding="async" />
+        <div class="cs-sub-row cs-reveal">
+          <div class="cs-sub cs-sub--pair">
+            <h3 class="cs-sub__label"><span class="cs-sub__num">2.</span> I added data: safety scores, incidents, and status</h3>
+            <p class="cs-sub__body">I explored how to layer data onto the command center: safety score trends, open incident counts, critical items, and equipment status.</p>
+            <div class="cs-gallery cs-gallery--pair">
+              <img src="/assets/procore-cs-research-sketch-set-1.svg" alt="Safety Hub wireframe explorations: home, stats, and inspection detail screens" width="1411" height="707" loading="lazy" decoding="async" />
+            </div>
           </div>
-        </div>
 
-        <div class="cs-sub cs-reveal">
-          <h3 class="cs-sub__label"><span class="cs-sub__num">3.</span> I mapped one pattern across every safety module</h3>
-          <p class="cs-sub__body">A three-tap path from the command center into hazards, observations, incidents, inspections, and safety checks. Managers see status at the top and act at the bottom.</p>
-          <div class="cs-gallery cs-gallery--3">
-            <img src="/assets/procore-cs-mobile-1.svg" alt="Safety Hub mobile observations drill-down screen" width="375" height="707" loading="lazy" decoding="async" />
-            <img src="/assets/procore-cs-mobile-2.svg" alt="Safety Hub mobile top overdue projects screen" width="375" height="707" loading="lazy" decoding="async" />
-            <img src="/assets/procore-cs-mobile-3.svg" alt="Safety Hub mobile observation cards screen" width="375" height="707" loading="lazy" decoding="async" />
+          <div class="cs-sub cs-sub--pair">
+            <h3 class="cs-sub__label"><span class="cs-sub__num">3.</span> I mapped one pattern across every safety module</h3>
+            <p class="cs-sub__body">The same three-tap path into every safety module: status at the top, next action at the bottom.</p>
+            <div class="cs-gallery cs-gallery--pair">
+              <img src="/assets/procore-cs-research-sketch-set-2.svg" alt="Safety Hub mobile drill-down explorations: overdue projects and observations" width="1410" height="707" loading="lazy" decoding="async" />
+            </div>
           </div>
         </div>
 
@@ -212,7 +230,8 @@
             <div class="cs-stat"><div class="cs-stat__num">2</div><p class="cs-stat__label">platforms delivered: web and mobile in parallel</p></div>
           </div>
 
-          <article class="cs-finding cs-reveal">
+          <div class="cs-findings-row cs-reveal">
+          <article class="cs-finding">
             <div class="cs-finding__tag">Finding 01</div>
             <h3>Don&rsquo;t make users do math</h3>
             <p class="cs-finding__lede">Hours lost should be a number, not a calculation.</p>
@@ -221,7 +240,7 @@
             <dl><dt>Guess-free fix</dt><dd>Direct monthly bar chart showing hours lost. Title matches the unit. The number is the message.</dd></dl>
           </article>
 
-          <article class="cs-finding cs-reveal">
+          <article class="cs-finding">
             <div class="cs-finding__tag">Finding 02</div>
             <h3>Seeing isn&rsquo;t solving</h3>
             <p class="cs-finding__lede">Status without context is just noise.</p>
@@ -229,7 +248,7 @@
             <dl><dt>Guess-free fix</dt><dd>Semicircular gauge with clarified labels, timeframe context, and percentages paired with raw counts.</dd></dl>
           </article>
 
-          <article class="cs-finding cs-reveal">
+          <article class="cs-finding">
             <div class="cs-finding__tag">Finding 03</div>
             <h3>Right data, wrong frame</h3>
             <p class="cs-finding__lede">If the title doesn&rsquo;t say injury, users read billing.</p>
@@ -237,6 +256,7 @@
             <blockquote class="cs-finding__quote">&ldquo;This looks like it&rsquo;s tracking money. Is this contractor payments?&rdquo;</blockquote>
             <dl><dt>Guess-free fix</dt><dd>Injury context made explicit in naming. Trend sparkline for at-a-glance direction. Attendance replaced with a single percentage bar.</dd></dl>
           </article>
+          </div>
         </div>
       </div>
     </section>
@@ -244,28 +264,95 @@
     <section class="cs-section cs-section--surface" aria-labelledby="ch-3">
       <div class="cs-wrap cs-prose">
         <h2 class="cs-chapter" id="ch-3">3 · User interface</h2>
-
-        <div class="cs-ui-block cs-reveal">
-          <h3><span class="cs-sub__num">1.</span> Mobile command center</h3>
-          <div class="cs-mockup-row">
-            <img src="/assets/procore-cs-mobile-1.svg" alt="Safety Hub mobile observations overview" width="375" height="707" loading="lazy" decoding="async" />
-            <img src="/assets/procore-cs-mobile-2.svg" alt="Safety Hub mobile overdue projects list" width="375" height="707" loading="lazy" decoding="async" />
-            <img src="/assets/procore-cs-mobile-3.svg" alt="Safety Hub mobile observation cards" width="375" height="707" loading="lazy" decoding="async" />
-          </div>
+        <div class="cs-body cs-reveal">
+          <p>Safety Hub works at two scales. At company level, managers triage safety across every active project. At project level, they drill into one job site and act on observations, incidents, inspections, and hazards without leaving the hub.</p>
         </div>
 
-        <div class="cs-ui-block cs-reveal">
-          <h3><span class="cs-sub__num">2.</span> Phase 2 dashboard cards, mobile</h3>
-          <div class="cs-mockup-wide">
-            <img src="/assets/safety-hub-p2-mobile-guess-free.webp" alt="Guess-free Safety Hub dashboard cards on mobile" width="390" height="844" loading="lazy" decoding="async" />
-          </div>
+        <div class="cs-sub cs-reveal">
+          <h3 class="cs-sub__label"><span class="cs-sub__num">1.</span> Company level</h3>
+          <p class="cs-sub__body">The portfolio command center surfaces safety scores, overdue projects, and module entry points across the company. Managers see what needs attention before they pick a project.</p>
+          <figure class="cs-ui-showcase">
+            <img src="/assets/procore-cs-ui-safety-hub-showcase.svg" alt="Safety Hub company-level mobile command center with portfolio overview and module cards" width="2347" height="2793" loading="lazy" decoding="async" />
+          </figure>
         </div>
 
-        <div class="cs-ui-block cs-reveal">
-          <h3><span class="cs-sub__num">3.</span> Phase 2 dashboard cards, web</h3>
-          <div class="cs-mockup-wide">
-            <img src="/assets/safety-hub-p2-web-guess-free.webp" alt="Guess-free Safety Hub dashboard cards on web" width="1440" height="900" loading="lazy" decoding="async" />
-          </div>
+        <div class="cs-sub cs-reveal">
+          <h3 class="cs-sub__label"><span class="cs-sub__num">2.</span> Project level</h3>
+          <p class="cs-sub__body">Inside a single project, the same command center grammar narrows to that site: safety score, open items, and one-tap paths into each safety module.</p>
+          <figure class="cs-ui-showcase">
+            <img src="/assets/procore-cs-ui-safety-hub-project-showcase.svg" alt="Safety Hub project-level mobile command center with on-site module drill-downs" width="1816" height="2728" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+
+        <div class="cs-sub cs-reveal">
+          <h3 class="cs-sub__label"><span class="cs-sub__num">3.</span> Phase 2 dashboard cards</h3>
+          <p class="cs-sub__body">Guess-free dashboard cards at company level on web and mobile, redesigned after synthesis.</p>
+          <figure class="cs-ui-showcase">
+            <img src="/assets/procore-cs-ui-phase2-showcase.svg" alt="Guess-free Safety Hub Phase 2 dashboard cards on web and mobile" width="3018" height="1806" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section" aria-labelledby="ch-4">
+      <div class="cs-wrap cs-prose">
+        <h2 class="cs-chapter" id="ch-4">4 · What this demonstrates</h2>
+        <div class="cs-body cs-reveal">
+          <p>This was a year of design leadership on a complex enterprise product. It was research-heavy, cross-platform, and multi-phase. The work was shaped by real user behavior.</p>
+        </div>
+
+        <div class="cs-demo-grid cs-reveal">
+        <div class="cs-sub">
+          <h3 class="cs-sub__label"><span class="cs-sub__num">01.</span> Requirements to brief to screens</h3>
+          <p class="cs-sub__body">Phase 1 started with user feedback and PM requirements. I turned those into a design brief and a mobile command center. In Phase 2, I took a new requirements doc, built a research plan, tested the first iteration, and redesigned based on synthesis. I owned the translation from requirements to design decisions in both phases.</p>
+        </div>
+
+        <div class="cs-sub">
+          <h3 class="cs-sub__label"><span class="cs-sub__num">02.</span> End-to-end UX research</h3>
+          <p class="cs-sub__body">In Phase 2, I planned the study, set up UserTesting, built first-iteration prototypes, ran unmoderated sessions, and wrote the synthesis doc. I organized findings by failure mode, not by card. That turned a list of problems into a redesign brief with clear principles.</p>
+        </div>
+
+        <div class="cs-sub">
+          <h3 class="cs-sub__label"><span class="cs-sub__num">03.</span> Cross-platform execution</h3>
+          <p class="cs-sub__body">Phase 1 was mobile-only. Phase 2 delivered the same five dashboard cards on web and mobile at the same time. The data grammar was the same, but the density and layout were different for each surface. I treated them as two separate design problems.</p>
+        </div>
+
+        <div class="cs-sub">
+          <h3 class="cs-sub__label"><span class="cs-sub__num">04.</span> Multi-phase systems thinking</h3>
+          <p class="cs-sub__body">The Phase 1 command center architecture (category overview, process drill-down, report detail) informed how I structured the Phase 2 cards. I kept status at the top and action at the bottom. That hierarchy carried from mobile navigation into dashboard data visualization on both platforms.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--surface" aria-labelledby="ch-5">
+      <div class="cs-wrap cs-prose">
+        <h2 class="cs-chapter" id="ch-5">5 · Reflections</h2>
+
+        <div class="cs-reflect-grid cs-reveal">
+        <article class="cs-finding">
+          <div class="cs-finding__tag">Reflection 01</div>
+          <h3>Write the brief before you design</h3>
+          <p class="cs-finding__lede">Phase 1 worked because I translated PM requirements into a design brief first. I defined hierarchy, card grammar, and navigation depth before any screens existed. That brief became the reference point for every iteration decision.</p>
+        </article>
+
+        <article class="cs-finding">
+          <div class="cs-finding__tag">Reflection 02</div>
+          <h3>Turn requirements into a study</h3>
+          <p class="cs-finding__lede">Phase 2 could have gone straight to final designs. Instead, I built a UserTesting study first. Testing before committing caught comprehension failures in four of five cards that looked fine on paper.</p>
+        </article>
+
+        <article class="cs-finding">
+          <div class="cs-finding__tag">Reflection 03</div>
+          <h3>Synthesis structure determines what gets fixed</h3>
+          <p class="cs-finding__lede">I organized findings by failure mode (math, misread labels, mismatched titles) instead of by card. That turned a research report into a redesign brief. How you organize what you learned determines what people can act on.</p>
+        </article>
+
+        <article class="cs-finding">
+          <div class="cs-finding__tag">Reflection 04</div>
+          <h3>Guess-free is a design standard</h3>
+          <p class="cs-finding__lede">The guess-free redesign was a comprehension standard. Every card had to pass one test: can a manager understand this in 10 seconds without inferring anything? I applied that principle to both web and mobile, even though the layouts were different.</p>
+        </article>
         </div>
       </div>
     </section>
@@ -286,6 +373,8 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="/assets/smooth-scroll.js"></script>
   <script src="/preview/procore-case-study/main.js"></script>
 </body>
 </html>
