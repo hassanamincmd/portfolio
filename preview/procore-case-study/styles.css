@@ -9,7 +9,7 @@
   --cs-border: #eadfd6;
   --cs-accent: #ff5200;
   --cs-band: #18181b;
-  --cs-max: var(--content-w, min(1200px, 92%));
+  --cs-max: min(1200px, 92%);
   --cs-gutter: 0;
   --cs-display: "Archivo", system-ui, sans-serif;
   --cs-body: "Space Grotesk", system-ui, sans-serif;
@@ -93,12 +93,20 @@ main a:hover,
 
 .cs-wrap {
   width: var(--cs-max);
+  max-width: 100%;
   margin-inline: auto;
   padding-inline: 0;
 }
 
+.cs-wrap.cs-prose {
+  width: var(--cs-max);
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+/* Prose blocks sit inside .cs-wrap — do not set width here (overrides container). */
 .cs-prose {
-  width: 100%;
+  max-width: 100%;
 }
 
 .cs-hero {
