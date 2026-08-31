@@ -10,7 +10,7 @@
   --m-band-mid: #005355;
   --m-glass: rgba(255, 255, 255, 0.72);
   --m-glass-border: rgba(255, 255, 255, 0.35);
-  --m-max: min(1200px, 92%);
+  --m-max: var(--content-w, min(1200px, 92%));
   --m-gutter: 0;
   --m-display: "Archivo", system-ui, sans-serif;
   --m-body: "Space Grotesk", system-ui, sans-serif;

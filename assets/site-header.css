@@ -1,4 +1,4 @@
-/* Shared site header + progress — matches homepage (index.html) */
+/* Case study header — floating pill nav matching homepage (portfolio-redesign.css) */
 
 :root {
   --content-w: min(1200px, 92%);
@@ -6,6 +6,9 @@
   --muted: #52525b;
   --border: rgba(9, 9, 11, 0.08);
   --display: "Space Grotesk", system-ui, sans-serif;
+  --serif: "Archivo", system-ui, sans-serif;
+  --radius-pill: 999px;
+  --shadow-sm: 0 4px 20px rgba(9, 9, 11, 0.06);
 }
 
 .progress-track {
@@ -29,99 +32,99 @@
 
 .header {
   position: sticky;
-  top: 0;
+  top: 0.875rem;
   z-index: 100;
+  width: var(--content-w);
+  max-width: var(--content-w);
+  margin: 0.875rem auto 0;
+  padding: 0;
   background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: none;
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
 }
 
 .header__bar {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0;
-  width: var(--content-w);
-  margin: 0 auto;
-  height: clamp(2.75rem, 5.5vw, 3.35rem);
-  padding: 0;
-  overflow: visible;
+  gap: 1rem;
+  width: 100%;
+  height: clamp(2.85rem, 5vw, 3.25rem);
+  padding-inline: 0.35rem 0.5rem;
   box-sizing: border-box;
 }
 
 .header__brand {
-  font-family: var(--display);
-  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 1.4vw, 1.25rem);
   font-weight: 700;
   color: var(--text);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
   line-height: 1;
+  padding-left: 0.85rem;
   flex-shrink: 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
-.header__nav {
-  display: contents;
+.header__brand:hover {
+  color: var(--text);
 }
 
-.header__nav-indicator {
-  position: absolute;
-  bottom: 0.55rem;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background: #2563eb;
-  border-radius: 2px;
-  pointer-events: none;
-  transition: left 0.28s cubic-bezier(0.22, 1, 0.36, 1), width 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.header__nav a {
-  --nav-p: 0;
+.header__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-family: var(--display);
   font-size: clamp(0.8125rem, 1.1vw, 0.9375rem);
-  font-weight: calc(400 + (var(--nav-p) * 350));
-  color: color-mix(in srgb, #000 calc(var(--nav-p) * 100%), var(--muted) calc((1 - var(--nav-p)) * 100%));
+  font-weight: 500;
+  color: var(--muted);
   letter-spacing: -0.02em;
-  transition: color 0.15s linear;
+  padding: 0.45rem 0.85rem 0.45rem 0.65rem;
+  margin-right: 0.15rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
   white-space: nowrap;
 }
 
-.header__nav a:hover {
+.header__back svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.header__back:hover {
   color: var(--text);
+  background: rgba(9, 9, 11, 0.06);
 }
 
-.header__nav a.is-section-active {
-  --nav-p: 1;
-}
-
-.header__actions {
-  display: none;
-}
-
-.header__cta {
-  display: none;
+.header__back:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
 }
 
 @media (max-width: 768px) {
-  .header__bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 3rem;
-    width: var(--content-w);
+  .header {
+    top: 0.5rem;
+    margin-top: 0.5rem;
   }
 
-  .header__actions {
-    display: flex !important;
-    align-items: center;
+  .header__bar {
+    padding-inline: 0.25rem 0.35rem;
+  }
+
+  .header__brand {
+    padding-left: 0.65rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .header__nav-indicator,
-  .header__nav a.is-section-changed {
+  .header__brand,
+  .header__back {
     transition: none;
   }
 }

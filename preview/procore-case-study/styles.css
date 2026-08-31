@@ -9,7 +9,7 @@
   --cs-border: #eadfd6;
   --cs-accent: #ff5200;
   --cs-band: #18181b;
-  --cs-max: min(1200px, 92%);
+  --cs-max: var(--content-w, min(1200px, 92%));
   --cs-gutter: 0;
   --cs-display: "Archivo", system-ui, sans-serif;
   --cs-body: "Space Grotesk", system-ui, sans-serif;
@@ -62,7 +62,8 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+main a:hover,
+.cs-footer a:hover {
   color: var(--cs-accent);
 }
 
@@ -264,7 +265,7 @@ a:hover {
 @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
   .cs-chapter {
     position: sticky;
-    top: calc(3.6rem + 0.65rem);
+    top: calc(0.875rem + 3.25rem + 0.65rem);
     z-index: 12;
     margin-bottom: 2.5rem;
     padding: 0.35rem 0 0.85rem;
