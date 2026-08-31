@@ -572,7 +572,7 @@
       border: 1px solid #fff;
       border-radius: 50px;
     }
-    @media (hover: hover) and (pointer: fine) {
+    @media (min-width: 900px) and (hover: hover) and (pointer: fine) {
       .case-card {
         cursor: pointer;
         transition: transform 0.22s ease, box-shadow 0.22s ease;
@@ -702,232 +702,249 @@
       border-color: #fff;
     }
 
-    /* Touch / no-hover: show reveal (tap → case study) */
-    @media (hover: none), (pointer: coarse) {
-      .case-card {
-        cursor: pointer;
-        aspect-ratio: auto;
+    /* Mobile + tablet: stacked layouts (mobile-first overrides) */
+    @media (max-width: 899px) {
+      :root {
+        --content-w: min(40rem, 92vw);
       }
+
+      html,
+      body {
+        overflow-x: clip;
+        max-width: 100%;
+      }
+
+      /* Disable custom cursor on touch / narrow viewports */
+      html.has-site-cursor,
+      html.has-site-cursor * {
+        cursor: auto !important;
+      }
+
+      .site-cursor {
+        display: none !important;
+      }
+
+      /* ── Hero: keep Figma proportional layout — scales with width ── */
+      .hero__inner {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        aspect-ratio: 3022 / 1536;
+        min-height: clamp(260px, 68vw, 420px);
+        height: auto;
+      }
+
+      .hero__portrait img,
+      .hero__forest img {
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+      }
+
+      .case-cards--sticky {
+        gap: var(--case-stack-gap);
+      }
+
+      .case-card-sticky {
+        position: static;
+        padding-bottom: 0;
+      }
+
+      .case-card {
+        height: auto;
+        min-height: 0;
+        cursor: pointer;
+        border-radius: 24px;
+        container-type: normal;
+      }
+
       .case-card > .case-card__mark {
         display: none;
       }
-      .case-card__default { display: none; }
+
+      .case-card__default {
+        display: none;
+      }
+
       .case-card__reveal {
         position: relative;
+        inset: auto;
         opacity: 1;
+        display: block;
+        pointer-events: auto;
+        min-height: 0;
+        padding: 0;
+      }
+
+      .case-card--safety .case-card__reveal {
+        background: linear-gradient(107.17deg, #000 0%, #3c3c3c 100.01%);
+      }
+
+      .case-card--meridian .case-card__reveal {
+        background: linear-gradient(107.17deg, #003031 0%, #00484b 100.01%);
+      }
+
+      .case-card--icancare .case-card__reveal {
+        background: linear-gradient(107.17deg, #000 0%, #001e50 100.01%);
+      }
+
+      .case-card__reveal-viewport {
+        width: 100%;
+        height: auto;
+        max-width: none;
+        max-height: none;
+        margin-left: 0;
+        overflow: visible;
+      }
+
+      /* Vertical card: mockup → wordmark → title → lede → tags */
+      .case-card__reveal-inner {
         display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-        padding: 0;
-        min-height: 0;
-      }
-      .case-card__reveal-viewport {
-        width: 100% !important;
-        height: auto !important;
-        max-width: none;
-        max-height: none;
-        margin-left: 0 !important;
-        overflow: visible;
-      }
-      .case-card__reveal-inner {
-        transform: none !important;
-        flex-direction: column;
         height: auto;
         width: 100%;
-        gap: 0;
-        padding: 0 !important;
+        padding: 0;
+        box-sizing: border-box;
       }
+
       .case-card__reveal-inner .case-card__media,
       .case-card__media {
         position: relative;
+        grid-column: auto;
+        grid-row: auto;
         left: auto;
         top: auto;
         bottom: auto;
-        margin-left: 0;
+        margin: 0;
         width: 100%;
-        height: min(58vw, 320px);
+        height: auto;
+        aspect-ratio: unset;
+        min-height: 0;
         opacity: 1;
         transition: none;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent !important;
+        padding: 1.25rem 1.25rem 0.75rem;
+        box-sizing: border-box;
       }
+
       .case-card__media img {
         width: auto;
-        height: 100%;
-        max-width: 100%;
+        height: auto;
+        max-width: min(56vw, 220px);
+        max-height: min(56vw, 260px);
         object-fit: contain;
         object-position: center center;
+        transform: none;
+        display: block;
       }
+
+      .case-card--meridian .case-card__media img {
+        max-width: min(78vw, 300px);
+        max-height: min(48vw, 200px);
+      }
+
+      .case-card--icancare .case-card__media img {
+        max-width: min(52vw, 200px);
+      }
+
       .case-card__copy {
         position: relative;
-        left: auto;
-        right: auto;
-        top: auto;
-        bottom: auto;
+        grid-column: auto;
+        grid-row: auto;
         flex: none;
         width: 100%;
-        margin-left: 0;
+        max-width: none;
+        margin: 0;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        place-content: start;
-        padding: 1.35rem 1.25rem 1.6rem;
-        gap: 0.85rem;
-        background: #111;
+        justify-content: flex-start;
+        padding: 0 1.25rem 1.35rem;
+        gap: 0.6rem;
+        background: transparent;
+        color: #f5f5f5;
+        min-width: 0;
+        box-sizing: border-box;
       }
-      .case-card--meridian .case-card__copy {
-        background: linear-gradient(107.17deg, #003031 0%, #00484b 100%);
-      }
-      .case-card--meridian .case-card__wordmark-wrap {
-        width: auto;
-        height: auto;
-        font-size: 1.75rem;
-      }
-      .case-card--meridian .case-card__mark-fallback {
-        font-size: 1.75rem;
-      }
-      .case-card--meridian .case-card__lede {
-        max-width: none;
-      }
-      .case-card--icancare .case-card__copy {
-        background: linear-gradient(107.17deg, #2f66ff 0%, #20437f 100.01%);
-      }
-      .case-card--icancare .case-card__wordmark-wrap {
-        width: auto;
-        height: auto;
-        min-height: 0;
-        visibility: visible;
-        opacity: 1;
-      }
-      .case-card--safety .case-card__wordmark-wrap {
-        width: auto;
-        height: 1rem;
-        visibility: visible;
-        opacity: 1;
-      }
+
       .case-card__wordmark-wrap,
       .case-card__title,
       .case-card__lede,
       .case-card__tags {
+        visibility: visible;
         opacity: 1;
         transform: none;
         transition: none;
       }
-      .case-card--meridian .case-card__wordmark-wrap,
-      .case-card--icancare .case-card__wordmark-wrap {
-        width: 7.5rem;
-      }
-      .case-card__mark-fallback {
-        display: block;
-      }
-      .case-card__title {
-        font-size: clamp(1.8rem, 8vw, 2.4rem);
-        white-space: normal;
-      }
-      .case-card__lede {
-        font-size: 1rem;
-        max-width: none;
-      }
-      .case-card__tags { flex-wrap: wrap; }
-    }
 
-    @media (max-width: 768px) and (hover: hover) {
-      .case-card {
-        aspect-ratio: auto;
-        min-height: 520px;
+      .case-card--meridian .case-card__wordmark-wrap {
+        width: auto;
+        height: auto;
+        font-size: 1.35rem;
+        letter-spacing: 0.06em;
       }
-      .case-card > .case-card__mark {
+
+      .case-card--icancare .case-card__wordmark-wrap {
+        width: 6.5rem;
+        height: auto;
+        min-height: 0;
+      }
+
+      .case-card--safety .case-card__wordmark-wrap {
+        width: 5.75rem;
+        height: auto;
+        min-height: 0;
+      }
+
+      .case-card__wordmark {
+        width: 100%;
+        height: auto;
+      }
+
+      .case-card__mark-fallback {
         display: none;
       }
-      .case-card__reveal {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 0;
-        opacity: 1;
-      }
-      .case-card__default { display: none; }
-      .case-card__media {
-        position: relative;
-        left: auto;
-        top: auto;
-        bottom: auto;
-        margin-left: 0;
-        width: 100%;
-        height: 280px;
-        opacity: 1;
-        transition: none;
-      }
-      .case-card__media img {
-        width: auto;
-        height: 100%;
-        max-width: 100%;
-        object-fit: contain;
-        object-position: center center;
-      }
-      .case-card__copy {
-        position: relative;
-        left: auto;
-        right: auto;
-        top: auto;
-        bottom: auto;
-        flex: none;
-        width: 100%;
-        margin-left: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        place-content: start;
-        padding: 1.35rem 1.25rem 1.75rem;
-        background: #111;
-      }
-      .case-card--meridian .case-card__copy {
-        background: linear-gradient(107.17deg, #003031 0%, #00484b 100%);
-      }
-      .case-card--meridian .case-card__wordmark-wrap {
-        width: auto;
-        height: auto;
-        font-size: 1.75rem;
-      }
-      .case-card--meridian .case-card__mark-fallback {
-        font-size: 1.75rem;
-      }
-      .case-card--meridian .case-card__lede {
+
+      .case-card__reveal-inner .case-card__title,
+      .case-card__title {
+        font-size: 1.625rem;
+        white-space: normal;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
         max-width: none;
       }
-      .case-card--icancare .case-card__copy {
-        background: linear-gradient(107.17deg, #2f66ff 0%, #20437f 100.01%);
-      }
-      .case-card--icancare .case-card__wordmark-wrap {
+
+      .case-card__reveal-inner .case-card__lede,
+      .case-card__lede {
+        font-size: 1rem;
+        line-height: 1.45;
+        max-width: none;
         width: auto;
-        height: auto;
-        min-height: 0;
-        visibility: visible;
-        opacity: 1;
-      }
-      .case-card--safety .case-card__wordmark-wrap {
-        width: auto;
-        height: 1rem;
-        visibility: visible;
-        opacity: 1;
-      }
-      .case-card__wordmark-wrap,
-      .case-card__title,
-      .case-card__lede,
-      .case-card__tags {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
-      .case-card--meridian .case-card__wordmark-wrap,
-      .case-card--icancare .case-card__wordmark-wrap {
-        width: 7.5rem;
-      }
-      .case-card__mark-fallback {
+        color: rgba(255, 255, 255, 0.92);
         display: block;
+        overflow: visible;
       }
-      .case-card__title { white-space: normal; }
-      .case-card__tags { flex-wrap: wrap; }
+
+      .case-card__reveal-inner .case-card__tags,
+      .case-card__tags {
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-top: 0.15rem;
+        max-width: none;
+      }
+
+      .case-card__reveal-inner .case-card__tag,
+      .case-card__tag {
+        font-size: 0.8125rem;
+        white-space: nowrap;
+        padding: 0.35rem 0.65rem;
+        line-height: 1.2;
+      }
     }
 
     .project-card {
@@ -1119,9 +1136,6 @@
        RESPONSIVE
     ════════════════════ */
     @media (max-width: 768px) {
-      :root {
-        --content-w: min(40rem, 92vw);
-      }
       .about-grid { grid-template-columns: 1fr; }
       .about__image { position: static; }
       .about__image img { height: auto; aspect-ratio: 4 / 5; max-height: 480px; }
@@ -1129,20 +1143,6 @@
       .footer__nav, .footer__social { justify-content: flex-start; }
       .cta__actions { flex-direction: column; align-items: stretch; }
       .cta__actions .btn { justify-content: center; width: 100%; }
-      .hero__inner {
-        aspect-ratio: 3022 / 1536;
-      }
-      .hero__title {
-        font-size: clamp(3.5rem, 23.15cqw, 8.5rem);
-        white-space: normal;
-        line-height: 0.95;
-        top: 2%;
-      }
-      .hero__portrait {
-        width: 52%;
-        height: 72%;
-        top: 20%;
-      }
       .header__bar {
         display: flex;
         justify-content: space-between;
