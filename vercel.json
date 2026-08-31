@@ -40,6 +40,16 @@
       "permanent": true
     },
     {
+      "source": "/case-study-meridian",
+      "destination": "/preview/meridian-case-study/",
+      "permanent": false
+    },
+    {
+      "source": "/case-study-meridian.html",
+      "destination": "/preview/meridian-case-study/",
+      "permanent": false
+    },
+    {
       "source": "/icancare",
       "destination": "/case-study-icancare",
       "permanent": true

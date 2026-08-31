@@ -186,7 +186,7 @@
     }
     .hero__title {
       position: absolute;
-      z-index: 1;
+      z-index: 4;
       top: 1.432%; /* 22/1536 */
       left: 50%;
       transform: translateX(-50%);
@@ -243,6 +243,49 @@
       top: -347.32%;
       max-width: none;
       display: block;
+    }
+
+    .hero__marquee {
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      width: 100%;
+      top: 47%;
+      transform: translateY(-50%);
+      overflow: hidden;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero__marquee-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: hero-marquee 40s linear infinite;
+    }
+
+    .hero__marquee-set {
+      display: flex;
+      align-items: center;
+      gap: clamp(2rem, 5.5cqw, 4.25rem);
+      padding-right: clamp(2rem, 5.5cqw, 4.25rem);
+      flex-shrink: 0;
+    }
+
+    .hero__marquee-item {
+      font-family: var(--pixel);
+      font-size: clamp(0.875rem, 2.425cqw, 1.925rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0;
+      color: #000;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    @keyframes hero-marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
 
     /* legacy cycler styles unused in section 1 */
@@ -817,7 +860,26 @@
         line-height: 1;
         white-space: nowrap;
         margin: 0 0 clamp(1rem, 4.5vw, 1.65rem);
+        z-index: 4;
+      }
+
+      .hero__marquee {
+        grid-area: scene;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 40%;
+        transform: translateY(-50%);
         z-index: 2;
+      }
+
+      .hero__marquee-item {
+        font-size: clamp(0.675rem, 2.9vw, 1rem);
+      }
+
+      .hero__marquee-set {
+        gap: clamp(1.25rem, 4.5vw, 2rem);
+        padding-right: clamp(1.25rem, 4.5vw, 2rem);
       }
 
       .hero__portrait {
@@ -1637,6 +1699,11 @@
       .brands-marquee__track {
         animation: none;
       }
+
+      /* Hero skills strip is core branding — keep moving, just slower */
+      .hero__marquee-track {
+        animation: hero-marquee 90s linear infinite;
+      }
     }
 
   </style>
@@ -1680,6 +1747,66 @@
     <section class="hero" aria-label="Introduction">
       <div class="hero__inner">
         <h1 class="hero__title">Hassan Amin</h1>
+        <div class="hero__marquee" aria-hidden="true">
+          <div class="hero__marquee-track">
+            <div class="hero__marquee-set">
+              <span class="hero__marquee-item">Figma</span>
+              <span class="hero__marquee-item">Claude</span>
+              <span class="hero__marquee-item">Cursor</span>
+              <span class="hero__marquee-item">NotebookLM</span>
+              <span class="hero__marquee-item">Framer</span>
+              <span class="hero__marquee-item">No-code Builders</span>
+              <span class="hero__marquee-item">Jira</span>
+              <span class="hero__marquee-item">Trello</span>
+              <span class="hero__marquee-item">Notion</span>
+              <span class="hero__marquee-item">FigJam</span>
+              <span class="hero__marquee-item">Atlassian</span>
+              <span class="hero__marquee-item">Wireframing</span>
+              <span class="hero__marquee-item">Prototyping</span>
+              <span class="hero__marquee-item">Interaction Design</span>
+              <span class="hero__marquee-item">Information Architecture</span>
+              <span class="hero__marquee-item">Design Systems</span>
+              <span class="hero__marquee-item">Accessibility</span>
+              <span class="hero__marquee-item">UX Writing</span>
+              <span class="hero__marquee-item">Prompt Engineering</span>
+              <span class="hero__marquee-item">AI Integration</span>
+              <span class="hero__marquee-item">WCAG</span>
+              <span class="hero__marquee-item">User Research</span>
+              <span class="hero__marquee-item">Usability Testing</span>
+              <span class="hero__marquee-item">Data-Driven Design</span>
+              <span class="hero__marquee-item">Agile / Scrum</span>
+              <span class="hero__marquee-item">Design Thinking</span>
+            </div>
+            <div class="hero__marquee-set">
+              <span class="hero__marquee-item">Figma</span>
+              <span class="hero__marquee-item">Claude</span>
+              <span class="hero__marquee-item">Cursor</span>
+              <span class="hero__marquee-item">NotebookLM</span>
+              <span class="hero__marquee-item">Framer</span>
+              <span class="hero__marquee-item">No-code Builders</span>
+              <span class="hero__marquee-item">Jira</span>
+              <span class="hero__marquee-item">Trello</span>
+              <span class="hero__marquee-item">Notion</span>
+              <span class="hero__marquee-item">FigJam</span>
+              <span class="hero__marquee-item">Atlassian</span>
+              <span class="hero__marquee-item">Wireframing</span>
+              <span class="hero__marquee-item">Prototyping</span>
+              <span class="hero__marquee-item">Interaction Design</span>
+              <span class="hero__marquee-item">Information Architecture</span>
+              <span class="hero__marquee-item">Design Systems</span>
+              <span class="hero__marquee-item">Accessibility</span>
+              <span class="hero__marquee-item">UX Writing</span>
+              <span class="hero__marquee-item">Prompt Engineering</span>
+              <span class="hero__marquee-item">AI Integration</span>
+              <span class="hero__marquee-item">WCAG</span>
+              <span class="hero__marquee-item">User Research</span>
+              <span class="hero__marquee-item">Usability Testing</span>
+              <span class="hero__marquee-item">Data-Driven Design</span>
+              <span class="hero__marquee-item">Agile / Scrum</span>
+              <span class="hero__marquee-item">Design Thinking</span>
+            </div>
+          </div>
+        </div>
         <div class="hero__portrait" aria-hidden="true">
           <img
             src="/assets/hero-portrait-figma5224.png"
@@ -1779,7 +1906,7 @@
         <div class="case-card-sticky">
         <a
           class="case-card case-card--meridian"
-          href="/case-study-meridian"
+          href="/preview/meridian-case-study/"
           data-case-card
           aria-label="Meridian case study — Case Study"
         >
