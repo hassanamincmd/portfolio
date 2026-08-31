@@ -10,19 +10,39 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/nav.css" />
+  <link rel="stylesheet" href="/assets/site-header.css" />
   <link rel="stylesheet" href="/preview/meridian-case-study/styles.css" />
 </head>
 <body>
   <a class="m-skip" href="#main">Skip to content</a>
 
-  <div class="m-progress" aria-hidden="true"><span class="m-progress__bar"></span></div>
+  <div class="progress-track" aria-hidden="true"><div id="progress"></div></div>
 
-  <header class="m-header">
-    <div class="m-header__inner">
-      <a class="m-brand" href="/">h.</a>
-      <a class="m-back" href="/#projects">← All case studies</a>
+  <header class="header">
+    <div class="header__bar">
+      <span class="header__nav-indicator" aria-hidden="true"></span>
+      <a class="header__brand" href="/">h.</a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="/#projects" class="active">Case Studies</a>
+        <a href="/#about">About Me</a>
+        <a href="/#contact">Let&rsquo;s Talk</a>
+      </nav>
+      <div class="header__actions">
+        <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
+    <a href="/">Home</a>
+    <a href="/#projects" class="active">Case Studies</a>
+    <a href="/#about">About Me</a>
+    <a href="/#contact">Let&rsquo;s Talk</a>
+  </nav>
 
   <main id="main">
     <section class="m-hero" aria-labelledby="hero-title">
@@ -302,6 +322,7 @@
 
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="/assets/smooth-scroll.js"></script>
+  <script src="/assets/nav.js"></script>
   <script src="/preview/meridian-case-study/main.js"></script>
 </body>
 </html>

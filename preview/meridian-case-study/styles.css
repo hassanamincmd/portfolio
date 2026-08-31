@@ -10,8 +10,8 @@
   --m-band-mid: #005355;
   --m-glass: rgba(255, 255, 255, 0.72);
   --m-glass-border: rgba(255, 255, 255, 0.35);
-  --m-max: 1280px;
-  --m-gutter: clamp(1rem, 4vw, 1.5rem);
+  --m-max: min(1200px, 92%);
+  --m-gutter: 0;
   --m-display: "Archivo", system-ui, sans-serif;
   --m-body: "Space Grotesk", system-ui, sans-serif;
   --m-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -87,73 +87,15 @@ a:hover {
   top: 1rem;
 }
 
-.m-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 300;
-  width: 100%;
-  height: 2px;
-  pointer-events: none;
-}
-
-.m-progress__bar {
-  display: block;
-  width: 0%;
-  height: 100%;
+.m-progress,
+.progress-track #progress {
   background: linear-gradient(90deg, var(--m-accent), var(--m-accent-dim));
-  transition: width 80ms linear;
-}
-
-/* ── Header (glass) ── */
-.m-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 200;
-  padding: 0.75rem var(--m-gutter);
-  pointer-events: none;
-}
-
-.m-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  max-width: var(--m-max);
-  margin-inline: auto;
-  padding: 0.65rem 1.25rem;
-  background: var(--m-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--m-glass-border);
-  border-radius: 999px;
-  box-shadow: var(--m-shadow);
-  pointer-events: auto;
-}
-
-.m-brand {
-  font-family: var(--m-display);
-  font-size: 1.0625rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
-.m-back {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--m-muted);
-}
-
-.m-back:hover {
-  color: var(--m-ink);
 }
 
 /* ── Hero (immersive dark + mesh) ── */
 .m-hero {
   position: relative;
-  padding: calc(5.5rem + var(--m-gutter)) var(--m-gutter) clamp(2.5rem, 5vw, 3.5rem);
+  padding: clamp(2.5rem, 5vw, 3.5rem) 0;
   overflow: hidden;
   color: #fff;
   background:
@@ -163,8 +105,7 @@ a:hover {
 }
 
 .m-hero__inner {
-  width: 100%;
-  max-width: var(--m-max);
+  width: var(--m-max);
   margin-inline: auto;
 }
 
@@ -262,7 +203,7 @@ a:hover {
 
 /* ── Meta bento (below hero) ── */
 .m-meta {
-  padding: 0 var(--m-gutter) clamp(2.5rem, 5vw, 3.5rem);
+  padding: 0 0 clamp(2.5rem, 5vw, 3.5rem);
   background: var(--m-bg);
 }
 
@@ -270,7 +211,7 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.875rem;
-  max-width: var(--m-max);
+  width: var(--m-max);
   margin-inline: auto;
 }
 
@@ -328,10 +269,8 @@ a:hover {
 
 /* ── Layout shell ── */
 .m-wrap {
-  width: 100%;
-  max-width: var(--m-max);
+  width: var(--m-max);
   margin-inline: auto;
-  padding-inline: var(--m-gutter);
 }
 
 .m-section {
@@ -725,9 +664,8 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  max-width: var(--m-max);
+  width: var(--m-max);
   margin-inline: auto;
-  padding-inline: var(--m-gutter);
 }
 
 .m-footer__brand {
@@ -770,10 +708,6 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-  .m-header__inner {
-    border-radius: var(--m-radius);
-  }
-
   .m-meta__grid,
   .m-bento--problems,
   .m-bento--process,

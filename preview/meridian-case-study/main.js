@@ -1,5 +1,5 @@
 (function () {
-  var bar = document.querySelector('.m-progress__bar');
+  var bar = document.querySelector('#progress');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function scrollY() {

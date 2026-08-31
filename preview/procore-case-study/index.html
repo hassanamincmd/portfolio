@@ -9,19 +9,39 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/nav.css" />
+  <link rel="stylesheet" href="/assets/site-header.css" />
   <link rel="stylesheet" href="/preview/procore-case-study/styles.css" />
 </head>
 <body>
   <a class="cs-skip" href="#main">Skip to content</a>
 
-  <div class="cs-progress" aria-hidden="true"><span class="cs-progress__bar"></span></div>
+  <div class="progress-track" aria-hidden="true"><div id="progress"></div></div>
 
-  <header class="cs-header">
-    <div class="cs-header__inner">
-      <a class="cs-brand" href="/">h.</a>
-      <a class="cs-back" href="/#projects">← All case studies</a>
+  <header class="header">
+    <div class="header__bar">
+      <span class="header__nav-indicator" aria-hidden="true"></span>
+      <a class="header__brand" href="/">h.</a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="/#projects" class="active">Case Studies</a>
+        <a href="/#about">About Me</a>
+        <a href="/#contact">Let&rsquo;s Talk</a>
+      </nav>
+      <div class="header__actions">
+        <button class="header__menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
+    <a href="/">Home</a>
+    <a href="/#projects" class="active">Case Studies</a>
+    <a href="/#about">About Me</a>
+    <a href="/#contact">Let&rsquo;s Talk</a>
+  </nav>
 
   <main id="main">
     <div class="cs-hero">
@@ -375,6 +395,7 @@
 
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="/assets/smooth-scroll.js"></script>
+  <script src="/assets/nav.js"></script>
   <script src="/preview/procore-case-study/main.js"></script>
 </body>
 </html>
