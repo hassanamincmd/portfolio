@@ -21,8 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Micro+5&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="/assets/smooth-scroll.js"></script>
+  <script src="/assets/smooth-scroll.js" defer></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
     /* ── Tokens ── */
@@ -302,45 +301,106 @@
 
     .case-cards {
       --case-stack-gap: clamp(2.75rem, 6vw, 4.5rem);
-      --case-sticky-top: clamp(5.5rem, 11vh, 7.25rem);
       display: flex;
       flex-direction: column;
       gap: var(--case-stack-gap);
-      margin-top: 1rem;
     }
 
-    @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
-      .case-cards--sticky {
-        gap: 0;
-      }
+  .work-block {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 4.75rem);
+    margin-top: 1rem;
+  }
 
-      .case-card-sticky {
-        position: sticky;
-        top: var(--case-sticky-top);
-        padding-bottom: var(--case-stack-gap);
-      }
+  .work-block__group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
 
-      .case-card-sticky:nth-child(1) { z-index: 1; }
-      .case-card-sticky:nth-child(2) { z-index: 2; }
-      .case-card-sticky:nth-child(3) { z-index: 3; }
+  .work-block__label {
+    margin: 0;
+    font-family: var(--display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-      .case-card-sticky:last-child {
-        padding-bottom: clamp(5rem, 14vh, 10rem);
-      }
+  .work-ui-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.125rem;
+  }
 
-      .case-cards--sticky .case-card {
-        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-        transition:
-          transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-          box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-      }
+  .work-ui-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--surface);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(9, 9, 11, 0.06);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
 
-      .case-cards--sticky .case-card:hover,
-      .case-cards--sticky .case-card:focus-visible {
-        transform: translateY(-3px);
-        box-shadow: 0 28px 56px rgba(15, 23, 42, 0.14);
-      }
+  .work-ui-card:hover {
+    border-color: rgba(9, 9, 11, 0.14);
+    box-shadow: 0 12px 32px rgba(9, 9, 11, 0.1);
+  }
+
+  .work-ui-card__thumb {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #f4f4f5;
+  }
+
+  .work-ui-card__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .work-ui-card__body {
+    padding: 1rem 1.125rem 1.125rem;
+  }
+
+  .work-ui-card__title {
+    margin: 0 0 0.35rem;
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .work-ui-card__meta {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  .work-anchor {
+    height: 0;
+    scroll-margin-top: 5.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .work-ui-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+  }
+
+  @media (max-width: 640px) {
+    .work-ui-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 
     .project-grid {
       display: grid;
@@ -357,7 +417,7 @@
     /* ── Full-width case card — Figma 1410×748 ── */
     .case-card {
       --case-ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --case-dur: 0.7s;
+      --case-dur: 0.2s;
       --mark-x: 50%;
       --mark-y: 50%;
       --mark-w: min(17.4%, 147px);
@@ -428,9 +488,9 @@
       width: 8.298cqw; /* 117/1410 */
       min-height: 1.042cqw; /* 14.695/1410 */
       flex-shrink: 0;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity calc(var(--case-dur) * 0.45) ease;
+      visibility: visible;
+      opacity: 1;
+      transition: none;
     }
     .case-card__wordmark {
       width: 100%;
@@ -467,9 +527,9 @@
       box-sizing: border-box;
       overflow: hidden;
       background: linear-gradient(107.17deg, #000000 0%, #3c3c3c 100%);
-      opacity: 0;
-      transition: opacity var(--case-dur) var(--case-ease);
-      pointer-events: none;
+      opacity: 1;
+      pointer-events: auto;
+      transition: none;
     }
     .case-card__reveal-viewport {
       flex: 1 1 auto;
@@ -509,8 +569,8 @@
       overflow: visible;
       background: transparent;
       pointer-events: none;
-      opacity: 0;
-      transition: opacity calc(var(--case-dur) * 0.45) ease;
+      opacity: 1;
+      transition: none;
     }
     .case-card__media img {
       display: block;
@@ -583,11 +643,9 @@
     .case-card__title,
     .case-card__lede,
     .case-card__tags {
-      opacity: 0;
-      transform: translateY(0.4em);
-      transition:
-        opacity calc(var(--case-dur) * 0.4) ease,
-        transform calc(var(--case-dur) * 0.4) var(--case-ease);
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
     .case-card__title {
       margin: 0;
@@ -946,15 +1004,6 @@
       .hero__forest img {
         image-rendering: pixelated;
         image-rendering: crisp-edges;
-      }
-
-      .case-cards--sticky {
-        gap: var(--case-stack-gap);
-      }
-
-      .case-card-sticky {
-        position: static;
-        padding-bottom: 0;
       }
 
       .case-card {
@@ -1338,12 +1387,104 @@
     /* ════════════════════
        ABOUT
     ════════════════════ */
-    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: stretch; }
-    .about__intro { font-family: var(--serif); font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 500; line-height: 1.25; letter-spacing: -0.03em; margin-bottom: 2rem; max-width: 18ch; }
-    .about__body { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
-    .about__body p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 54ch; }
-    .about__image { position: sticky; top: 120px; align-self: stretch; min-height: 0; }
-    .about__image img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 0; border: 1px solid var(--border); display: block; image-rendering: pixelated; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+    .about__intro { font-family: var(--serif); font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 500; line-height: 1.25; letter-spacing: -0.03em; margin-bottom: 1.75rem; max-width: 22ch; }
+    .about__body { display: flex; flex-direction: column; gap: 1.15rem; }
+    .about__body p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 56ch; margin: 0; }
+
+    .about-carousel {
+      position: sticky;
+      top: 120px;
+      max-width: min(100%, 380px);
+      margin-inline: auto;
+    }
+
+    .about-carousel__viewport {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: #f4f4f5;
+      aspect-ratio: 4 / 5;
+      box-shadow: 0 8px 32px rgba(9, 9, 11, 0.06);
+    }
+
+    .about-carousel__track {
+      display: flex;
+      height: 100%;
+      will-change: transform;
+    }
+
+    .about-carousel__slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    .about-carousel__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .about-carousel__slide:has(img) .about-carousel__placeholder {
+      display: none;
+    }
+
+    .about-carousel__placeholder {
+      width: 100%;
+      height: 100%;
+      background:
+        linear-gradient(160deg, rgba(9, 9, 11, 0.04), rgba(9, 9, 11, 0.08)),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 10px,
+          rgba(9, 9, 11, 0.02) 10px,
+          rgba(9, 9, 11, 0.02) 20px
+        );
+    }
+
+    .about-carousel__dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.85rem;
+      padding: 0.25rem 0;
+    }
+
+    .about-carousel__dot {
+      width: 6px;
+      height: 6px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: #d4d4d8;
+      cursor: pointer;
+      transition: width 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    }
+
+    .about-carousel__dot.is-active {
+      width: 8px;
+      height: 8px;
+      background: #18181b;
+    }
+
+    .about-carousel__dot:focus-visible {
+      outline: 2px solid #18181b;
+      outline-offset: 3px;
+    }
     .about__tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
     .tool-pill { font-family: var(--mono); font-size: 0.75rem; font-weight: 300; padding: 0.3rem 0.75rem; border: 1px solid var(--border); border-radius: 2rem; color: var(--muted); }
 
@@ -1375,18 +1516,11 @@
     .footer__social a:hover { color: var(--text); }
 
     /* ════════════════════
-       REVEAL
-    ════════════════════ */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.is-visible { opacity: 1; transform: none; }
-
-    /* ════════════════════
        RESPONSIVE
     ════════════════════ */
     @media (max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; }
-      .about__image { position: static; }
-      .about__image img { height: auto; aspect-ratio: 4 / 5; max-height: 480px; }
+      .about-carousel { position: static; max-width: min(100%, 420px); }
       .footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .footer__nav, .footer__social { justify-content: flex-start; }
       .cta__actions { flex-direction: column; align-items: stretch; }
@@ -1708,7 +1842,6 @@
     }
 
   </style>
-  <link rel="stylesheet" href="/assets/ui-highlights.css" />
   <link rel="stylesheet" href="/assets/portfolio-redesign.css" />
 </head>
 <body>
@@ -1721,7 +1854,7 @@
       <span class="header__nav-indicator" aria-hidden="true"></span>
       <a class="header__brand" href="/">h.</a>
       <nav class="header__nav" aria-label="Primary">
-        <a href="#projects">Case Studies</a>
+        <a href="#work">Work</a>
         <a href="#about">About Me</a>
         <a href="#contact">Let&rsquo;s Talk</a>
       </nav>
@@ -1737,7 +1870,7 @@
   <nav class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
     <button class="mobile-nav__close" aria-label="Close menu"><span></span><span></span></button>
     <a href="/">Home</a>
-    <a href="#projects">Case Studies</a>
+    <a href="#work">Work</a>
     <a href="#about">About Me</a>
     <a href="#contact">Let&rsquo;s Talk</a>
   </nav>
@@ -1830,17 +1963,21 @@
       </div>
     </section>
 
-    <!-- PROJECT GRID -->
-    <section class="cards-section" id="projects" aria-labelledby="section-title-projects">
+    <!-- WORK -->
+    <section class="cards-section work-section" id="work" aria-labelledby="section-title-work">
+      <div id="projects" class="work-anchor" aria-hidden="true"></div>
       <div class="container">
-        <header class="section-title reveal" id="section-title-projects">
+        <header class="section-title" id="section-title-work">
           <span class="section-title__index" aria-hidden="true">01</span>
           <div class="section-title__body">
-            <h2 class="section-title__heading">Case Studies</h2>
+            <h2 class="section-title__heading">Work</h2>
           </div>
         </header>
-        <div class="case-cards case-cards--sticky">
-        <div class="case-card-sticky">
+
+        <div class="work-block">
+          <div class="work-block__group">
+            <p class="work-block__label">Case studies</p>
+            <div class="case-cards">
         <a
           class="case-card case-card--safety"
           href="/preview/procore-case-study/"
@@ -1902,9 +2039,7 @@
             </div>
           </div>
         </a>
-        </div>
 
-        <div class="case-card-sticky">
         <a
           class="case-card case-card--meridian"
           href="/preview/meridian-case-study/"
@@ -1952,12 +2087,10 @@
             </div>
           </div>
         </a>
-        </div>
 
-        <div class="case-card-sticky">
         <a
           class="case-card case-card--icancare"
-          href="/case-study-icancare"
+          href="/preview/icancare-case-study/"
           data-case-card
           aria-label="ICan Care case study — Case Study"
         >
@@ -2016,34 +2149,39 @@
             </div>
           </div>
         </a>
-        </div>
-        </div>
-      </div>
-    </section>
+            </div>
+          </div>
 
-    <!-- UI HIGHLIGHTS (hidden for now) -->
-    <section class="ui-highlights" id="highlights" aria-labelledby="section-title-highlights" hidden>
-      <div class="container">
-        <header class="section-title reveal" id="section-title-highlights">
-          <span class="section-title__index" aria-hidden="true">02</span>
-          <div class="section-title__body">
-            <h2 class="section-title__heading">UI Highlights</h2>
-          </div>
-        </header>
-        <div class="ui-highlights__grid reveal" data-ui-highlights-grid>
-          <div class="ui-highlight-card" data-ui-highlight>
-            <div class="ui-highlight-card__thumb">
-              <img src="/assets/safety-hub-p2-mobile-guess-free.webp" alt="" width="390" height="844" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <div class="ui-highlight-card" data-ui-highlight>
-            <div class="ui-highlight-card__thumb">
-              <img src="/assets/safety-hub-p2-web-guess-free.webp" alt="" width="1440" height="900" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <div class="ui-highlight-card" data-ui-highlight>
-            <div class="ui-highlight-card__thumb">
-              <img src="/assets/meridian-card-tablet.png?v=figma5027" alt="" width="745" height="748" loading="lazy" decoding="async" />
+          <div class="work-block__group">
+            <p class="work-block__label">UI work</p>
+            <div class="work-ui-grid">
+              <article class="work-ui-card">
+                <div class="work-ui-card__thumb">
+                  <img src="/assets/safety-hub-p2-mobile-guess-free.webp" alt="Safety Hub mobile quiz interface" width="390" height="844" loading="lazy" decoding="async" />
+                </div>
+                <div class="work-ui-card__body">
+                  <h3 class="work-ui-card__title">Safety Hub · Mobile</h3>
+                  <p class="work-ui-card__meta">AI-assisted quiz flow for field crews</p>
+                </div>
+              </article>
+              <article class="work-ui-card">
+                <div class="work-ui-card__thumb">
+                  <img src="/assets/safety-hub-p2-web-guess-free.webp" alt="Safety Hub web dashboard interface" width="1440" height="900" loading="lazy" decoding="async" />
+                </div>
+                <div class="work-ui-card__body">
+                  <h3 class="work-ui-card__title">Safety Hub · Web</h3>
+                  <p class="work-ui-card__meta">Inspection hub and drill-down patterns</p>
+                </div>
+              </article>
+              <article class="work-ui-card">
+                <div class="work-ui-card__thumb">
+                  <img src="/assets/meridian-card-tablet.png?v=figma5027" alt="Meridian tablet scheduling interface" width="745" height="748" loading="lazy" decoding="async" />
+                </div>
+                <div class="work-ui-card__body">
+                  <h3 class="work-ui-card__title">Meridian · Tablet</h3>
+                  <p class="work-ui-card__meta">Calendar views for independent pros</p>
+                </div>
+              </article>
             </div>
           </div>
         </div>
@@ -2053,28 +2191,66 @@
     <!-- ABOUT TEASER -->
     <section class="section" id="about" aria-labelledby="section-title-about">
       <div class="container">
-        <header class="section-title reveal" id="section-title-about">
+        <header class="section-title" id="section-title-about">
           <span class="section-title__index" aria-hidden="true">02</span>
           <div class="section-title__body">
             <h2 class="section-title__heading">About Me</h2>
           </div>
         </header>
         <div class="about-grid">
-          <div class="about__copy reveal">
-            <p class="about__intro" id="about-intro">Obsessed with how things work, and how people find their way.</p>
-            <div class="about__body">
-              <p>My path to design clicked after years on the frontlines of customer service. I wanted to fix the roads, not just direct the traffic. UI/UX was the intersection: digital spaces are simply modern maps, and every interaction is a signpost.</p>
-              <p>Today I dismantle workflows instead of toys. I believe the best designs don't rely on flashy technology. They rely on empathy and simplicity.</p>
-              <p>I've been curious about how things work for as long as I can remember: taking toys apart as a kid, studying geodetic surveying at university, learning how people move through space before I ever designed a screen. Design wasn't a pivot. It was the moment I realised I could help build the map, not just point at it.</p>
+          <div
+            class="about-carousel"
+            data-about-carousel
+            tabindex="0"
+            aria-label="Personal photo gallery"
+            aria-roledescription="carousel"
+          >
+            <div class="about-carousel__viewport">
+              <div class="about-carousel__track">
+                <figure class="about-carousel__slide is-active">
+                  <span class="about-carousel__placeholder" aria-hidden="true"></span>
+                  <!-- <img src="/assets/about/personal-01.jpg" alt="Personal photo 1" loading="lazy" decoding="async" /> -->
+                </figure>
+                <figure class="about-carousel__slide">
+                  <span class="about-carousel__placeholder" aria-hidden="true"></span>
+                  <!-- <img src="/assets/about/personal-02.jpg" alt="Personal photo 2" loading="lazy" decoding="async" /> -->
+                </figure>
+                <figure class="about-carousel__slide">
+                  <span class="about-carousel__placeholder" aria-hidden="true"></span>
+                  <!-- <img src="/assets/about/personal-03.jpg" alt="Personal photo 3" loading="lazy" decoding="async" /> -->
+                </figure>
+                <figure class="about-carousel__slide">
+                  <span class="about-carousel__placeholder" aria-hidden="true"></span>
+                  <!-- <img src="/assets/about/personal-04.jpg" alt="Personal photo 4" loading="lazy" decoding="async" /> -->
+                </figure>
+                <figure class="about-carousel__slide">
+                  <span class="about-carousel__placeholder" aria-hidden="true"></span>
+                  <!-- <img src="/assets/about/personal-05.jpg" alt="Personal photo 5" loading="lazy" decoding="async" /> -->
+                </figure>
+              </div>
+            </div>
+            <div class="about-carousel__dots" role="tablist" aria-label="Choose photo">
+              <button type="button" class="about-carousel__dot is-active" role="tab" aria-selected="true" aria-label="Photo 1"></button>
+              <button type="button" class="about-carousel__dot" role="tab" aria-selected="false" aria-label="Photo 2"></button>
+              <button type="button" class="about-carousel__dot" role="tab" aria-selected="false" aria-label="Photo 3"></button>
+              <button type="button" class="about-carousel__dot" role="tab" aria-selected="false" aria-label="Photo 4"></button>
+              <button type="button" class="about-carousel__dot" role="tab" aria-selected="false" aria-label="Photo 5"></button>
             </div>
           </div>
-          <div class="about__image reveal" style="transition-delay:0.15s;">
-            <img src="/assets/about-macintosh.gif" alt="Recursive Macintosh MacPaint animation" loading="lazy" />
+          <div class="about__copy">
+            <p class="about__intro" id="about-intro">A tinkerer at heart, now taking apart pixels and workflows.</p>
+            <div class="about__body">
+              <p>I have always been the kid who would dismantle toys just to see how they worked, then rebuild them into something wildly impractical but fun. That curiosity never left. It just evolved. Now, instead of toys, I take apart pixels and workflows, asking, &ldquo;How can this feel more alive?&rdquo;</p>
+              <p>My path to design was not a straight line. I studied maps and landscapes in university, fascinated by how they quietly guide us through the world. That obsession with clarity and connection stuck with me. When I stumbled into UI/UX, it clicked: digital spaces are just another kind of map. Every button, every transition, is a signpost helping someone find their way.</p>
+              <p>Along the way, I have learned that the best designs start with stories, not wireframes. Like the time I stayed up sketching a feature for a healthcare app, only to realize halfway through that what users truly needed was not flashy tech, but simplicity. Or the thrill of watching a shy junior designer on my team pitch an idea that lit up the room. Design, for me, is about those quiet victories: the nod of understanding from a user, the spark of collaboration, the moment something clicks.</p>
+              <p>When I am not designing, I am probably making matcha with more care than strictly necessary, experimenting with AI tools just to see their &ldquo;personality,&rdquo; or scribbling app ideas on napkins. (Spoiler: most are terrible. But every now and then, there is gold.) I spend a lot of time with my wife, who is also my best friend, and we love travelling whenever we can.</p>
+              <p>I am drawn to the messy, human side of tech, the gaps where empathy meets innovation. Whether I am mentoring, brainstorming, or geeking out over a slick interaction, I am happiest when solving puzzles that make life a little kinder and a little smoother.</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="about-brands reveal" style="transition-delay:0.2s;" aria-label="Companies I've worked with">
+      <div class="about-brands" aria-label="Companies I've worked with">
         <div class="brands-marquee">
           <div class="brands-marquee__track">
             <div class="brands-marquee__set">
@@ -2119,18 +2295,18 @@
     <!-- LET'S TALK -->
     <section class="lets-talk" id="contact" aria-labelledby="section-title-contact">
       <div class="container">
-        <header class="section-title section-title--on-dark reveal" id="section-title-contact">
+        <header class="section-title section-title--on-dark" id="section-title-contact">
           <span class="section-title__index" aria-hidden="true">03</span>
           <div class="section-title__body">
             <h2 class="section-title__heading">Let&rsquo;s Talk</h2>
           </div>
         </header>
         <div class="lets-talk__inner">
-          <div class="lets-talk__copy reveal">
+          <div class="lets-talk__copy">
             <p class="lets-talk__headline" id="contact-headline">Got a product challenge? Let&rsquo;s figure it out together.</p>
             <p class="lets-talk__lede">Open to full-time roles and freelance partnerships. Whether you need a design lead, a product designer for a critical flow, or just want to compare notes — I&rsquo;m easy to reach.</p>
           </div>
-          <div class="lets-talk__actions reveal" style="transition-delay:0.1s;">
+          <div class="lets-talk__actions">
             <a class="lets-talk__primary copy-email-btn" href="#" data-copy-email>
               <span>
                 <span class="lets-talk__primary-label">Email</span>
@@ -2165,7 +2341,7 @@
         <p class="footer__copy">&copy; 2026 Hassan Amin</p>
       </div>
       <nav class="footer__nav" aria-label="Footer">
-        <a href="#projects">Case Studies</a>
+        <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#contact">Let&rsquo;s Talk</a>
       </nav>
@@ -2179,12 +2355,10 @@
   </div>
 
   <script>
-    window.__smoothScrollCustom = true;
-
     /* Scroll progress bar + progressive nav link color */
     const bar = document.getElementById('progress');
     const navSectionMap = [
-      { id: 'projects', href: '#projects' },
+      { id: 'work', href: '#work' },
       { id: 'about', href: '#about' },
       { id: 'contact', href: '#contact' }
     ].map(({ id, href }) => ({
@@ -2268,7 +2442,7 @@
     }
 
     function onScrollFrame() {
-      const scrollY = window.getScrollY();
+      const scrollY = window.scrollY;
       const doc = document.documentElement;
       const maxScroll = doc.scrollHeight - doc.clientHeight;
       if (maxScroll > 0) {
@@ -2277,15 +2451,9 @@
       updateNavProgress();
     }
 
-    /* Hero 8-bit portrait / cycler removed for section-1 rebuild */
-
-    /* Reveal on scroll */
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-    window.initSmoothScroll(onScrollFrame);
+    onScrollFrame();
+    window.addEventListener('scroll', onScrollFrame, { passive: true });
+    window.addEventListener('resize', onScrollFrame, { passive: true });
 
     function scrollToHash() {
       const id = window.location.hash.slice(1);
@@ -2313,11 +2481,11 @@
     window.addEventListener('hashchange', scrollToHash);
 
   </script>
-  <script src="/assets/cursor.js"></script>
-  <script src="/assets/ui-highlights.js"></script>
-  <script src="/assets/nav.js"></script>
-  <script src="/assets/copy-email.js"></script>
-  <script src="/assets/resume-modal.js"></script>
+  <script src="/assets/cursor.js" defer></script>
+  <script src="/assets/about-carousel.js" defer></script>
+  <script src="/assets/nav.js" defer></script>
+  <script src="/assets/copy-email.js" defer></script>
+  <script src="/assets/resume-modal.js" defer></script>
 
 </body>
 </html>

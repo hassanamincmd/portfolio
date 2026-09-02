@@ -19,6 +19,7 @@
 
   function animateCount(el) {
     var target = parseInt(el.getAttribute('data-count'), 10);
+    var prefix = el.getAttribute('data-prefix') || '';
     var suffix = el.getAttribute('data-suffix') || '';
     if (isNaN(target)) return;
 
@@ -28,7 +29,7 @@
     function tick(now) {
       var progress = Math.min((now - start) / duration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      el.textContent = prefix + Math.round(target * eased) + suffix;
       if (progress < 1) requestAnimationFrame(tick);
     }
 

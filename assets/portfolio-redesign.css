@@ -142,18 +142,6 @@ body {
   margin-top: 1rem;
 }
 
-@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
-  .case-cards--sticky {
-    gap: 0;
-  }
-
-  .case-cards--sticky .case-card:hover,
-  .case-cards--sticky .case-card:focus-visible {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-  }
-}
-
 .case-card {
   width: 100%;
   max-width: none;
@@ -174,11 +162,6 @@ body {
     transform: scale(1.008);
     box-shadow: var(--shadow-md);
   }
-
-  .case-cards--sticky .case-card:hover,
-  .case-cards--sticky .case-card:focus-visible {
-    transform: translateY(-3px);
-  }
 }
 
 .case-card__title {
@@ -187,6 +170,7 @@ body {
   letter-spacing: -0.03em;
 }
 
+#work,
 #projects,
 #highlights,
 #about,

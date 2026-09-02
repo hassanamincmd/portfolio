@@ -6,12 +6,12 @@
   "redirects": [
     {
       "source": "/work",
-      "destination": "/#projects",
+      "destination": "/#work",
       "permanent": true
     },
     {
       "source": "/work.html",
-      "destination": "/#projects",
+      "destination": "/#work",
       "permanent": true
     },
     {
@@ -60,13 +60,23 @@
       "permanent": false
     },
     {
+      "source": "/case-study-icancare",
+      "destination": "/preview/icancare-case-study/",
+      "permanent": false
+    },
+    {
+      "source": "/case-study-icancare.html",
+      "destination": "/preview/icancare-case-study/",
+      "permanent": false
+    },
+    {
       "source": "/icancare",
-      "destination": "/case-study-icancare",
+      "destination": "/preview/icancare-case-study/",
       "permanent": true
     },
     {
       "source": "/icancare.html",
-      "destination": "/case-study-icancare",
+      "destination": "/preview/icancare-case-study/",
       "permanent": true
     }
   ],

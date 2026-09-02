@@ -833,17 +833,6 @@ main a:hover,
   font-weight: 500;
 }
 
-.cs-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.55s var(--cs-ease), transform 0.55s var(--cs-ease);
-}
-
-.cs-reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
 @media (max-width: 1024px) {
   .cs-flow,
   .cs-timeline {
@@ -902,15 +891,5 @@ main a:hover,
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .cs-reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .cs-contrib__card:hover {
-    transform: none;
   }
 }

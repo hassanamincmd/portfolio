@@ -688,17 +688,6 @@ a:hover {
 }
 
 /* ── Reveal animation ── */
-.m-reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s var(--m-ease), transform 0.5s var(--m-ease);
-}
-
-.m-reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .m-meta__grid,
@@ -721,16 +710,5 @@ a:hover {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .m-reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .m-meta__card:hover,
-  .m-card:hover {
-    transform: none;
   }
 }
