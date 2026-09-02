@@ -1,4 +1,8 @@
-"""Extract embedded raster images from ICan Care SVGs and compress to WebP."""
+"""Extract embedded raster images from ICan Care SVGs and compress to WebP.
+
+Note: external /assets/*.webp refs do NOT render when SVGs are used via <img>.
+After running this script, run inline-icancare-svg-images.py before deploy.
+"""
 import base64
 import io
 import re
