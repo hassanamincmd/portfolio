@@ -1,8 +1,8 @@
 {
   "cleanUrls": true,
   "framework": null,
-  "buildCommand": null,
-  "outputDirectory": ".",
+  "buildCommand": "npm install --prefix web && node scripts/build-site.mjs",
+  "outputDirectory": "dist",
   "redirects": [
     {
       "source": "/work",

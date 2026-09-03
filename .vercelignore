@@ -4,4 +4,9 @@ cover-image/
 node_modules/
 .git/
 .agents/
+.agent/
+.claude/
 .cursor/
+dist/
+web/.next/
+web/out/

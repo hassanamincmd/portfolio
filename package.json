@@ -4,8 +4,13 @@
   "description": "Modern, fast, static portfolio website designed to compete with senior product design portfolios.",
   "main": "index.js",
   "dependencies": {
+    "@radix-ui/react-slot": "^1.3.3",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "detect-libc": "^2.1.2",
+    "embla-carousel": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "framer-motion": "^13.1.1",
     "lucide-react": "^0.542.0",
     "next": "^15.5.2",
     "react": "^19.1.1",
@@ -26,7 +31,11 @@
   },
   "scripts": {
     "dev:gallery": "npm run dev --prefix web",
+    "dev:draft": "npm run dev:draft --prefix web",
+    "dev:draft:clean": "npm run dev:draft:clean --prefix web",
+    "build": "node scripts/build-site.mjs",
     "build:gallery": "npm run build --prefix web",
+    "build:site": "node scripts/build-site.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

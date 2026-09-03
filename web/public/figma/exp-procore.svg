@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="procore 1">
+<g clip-path="url(#clip0_0_4)">
+<rect width="80" height="80" rx="16" fill="#EBDFD6"/>
+<g id="Layer 2">
+<g id="Layer 3">
+</g>
+</g>
+<path id="Vector" d="M59.4189 9.79688H20.2669C12.8909 9.79688 7.82422 14.8689 7.82422 22.2395V58.1862C7.82422 65.5569 12.8909 70.6289 20.2669 70.6289H59.4349C66.8056 70.6289 71.8776 65.5569 71.8776 58.1862V48.0529H57.1149L50.6669 59.0929H28.5442L17.4829 40.2129L28.5442 21.3169H50.6669L57.1202 32.3782H71.8669V22.2449C71.8616 14.8689 66.7896 9.79688 59.4189 9.79688Z" fill="black"/>
+<path id="Vector_2" d="M34.0753 29.6162L28.0859 40.2135L34.0753 50.3522H46.0539L52.0433 40.2135L46.0539 29.6162H34.0753Z" fill="#FF5200"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="80" height="80" rx="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

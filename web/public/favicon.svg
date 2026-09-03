@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label=".h">
+  <circle cx="16" cy="16" r="16" fill="#000000"/>
+  <text
+    x="16"
+    y="17"
+    text-anchor="middle"
+    fill="#ffffff"
+    font-family="ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', monospace"
+    font-size="13"
+    font-weight="300"
+  >.h</text>
+</svg>
