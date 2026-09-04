@@ -276,66 +276,28 @@
 
 .figma-sidebar__footer {
   flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 36px;
-  padding-top: clamp(8px, 1.2vh, 12px);
-  border-top: 2px solid #ececec;
-  font-size: clamp(0.65rem, 0.85vw, 0.75rem);
-  line-height: 1;
-  color: #828282;
-}
-
-.figma-sidebar__footer > span {
-  display: flex;
-  align-items: center;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.figma-sidebar__social {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-shrink: 0;
-}
-
-.figma-sidebar__social a {
-  color: #828282;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  line-height: 0;
-  cursor: pointer;
-  transition: color 200ms ease, opacity 200ms ease;
-}
-
-.figma-sidebar__social a:hover,
-.figma-sidebar__social a:focus-visible {
-  color: #000;
-}
-
-.figma-sidebar__social a:focus-visible {
-  outline: 2px solid #000;
-  outline-offset: 2px;
-}
-
-.figma-sidebar__social img {
   display: block;
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  object-position: center;
-  transition: filter 200ms ease, opacity 200ms ease;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 44px;
+  padding-top: clamp(10px, 1.4vh, 14px);
+  border-top: 2px solid #ececec;
+  color: #52525b;
 }
 
-.figma-sidebar__social a:hover img,
-.figma-sidebar__social a:focus-visible img {
-  filter: brightness(0);
+.figma-sidebar__copyright {
+  margin: 0;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ── Main column — generous margins, smaller cards ── */
@@ -822,7 +784,7 @@
 .figma-about-media {
   position: relative;
   min-width: 0;
-  min-height: 0;
+  min-height: min(420px, 62vh);
   align-self: stretch;
 }
 
@@ -957,16 +919,20 @@
 }
 
 .figma-exp-row {
-  display: grid;
-  grid-template-columns: clamp(48px, 5vw, 64px) 1fr;
-  gap: clamp(16px, 2vw, 28px);
-  align-items: start;
+  display: block;
 }
 
 .figma-exp-row + .figma-exp-row {
   border-top: 1px solid #e8e8e8;
   padding-top: clamp(12px, 1.6vh, 18px);
   margin-top: clamp(12px, 1.6vh, 18px);
+}
+
+.figma-exp-row__head {
+  display: grid;
+  grid-template-columns: clamp(48px, 5vw, 64px) 1fr;
+  gap: clamp(16px, 2vw, 28px);
+  align-items: center;
 }
 
 .figma-exp-row__logo {
@@ -986,14 +952,11 @@
   object-fit: contain;
 }
 
-.figma-exp-row__body {
-  min-width: 0;
-}
-
 .figma-exp-row__toggle {
   width: 100%;
+  min-height: 44px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 0;
@@ -1029,9 +992,9 @@
 }
 
 .figma-exp-row__icon {
-  flex: 0 0 36px;
-  width: 36px;
-  height: 36px;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
   border-radius: 10px;
   border: 1px solid #d8d8d8;
   background: #fff;
@@ -1042,7 +1005,7 @@
   font-weight: 500;
   line-height: 1;
   color: #111;
-  transition: background-color 200ms ease, border-color 200ms ease;
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
 .figma-exp-row__toggle:hover .figma-exp-row__icon,
@@ -1054,6 +1017,7 @@
 
 .figma-exp-row__detail {
   overflow: hidden;
+  margin-left: calc(clamp(48px, 5vw, 64px) + clamp(16px, 2vw, 28px));
 }
 
 .figma-exp-row__detail p {
@@ -1091,198 +1055,257 @@
   cursor: pointer;
 }
 
-/* ── Modern Let's Talk ── */
+/* ── Let's Talk — icon cards (default gray, per-card hover) ── */
 .figma-contact {
-  min-height: min(70vh, 680px);
+  position: relative;
+  overflow: hidden;
+  min-height: min(62vh, 560px);
+  background: #111;
+  color: #fff;
+  isolation: isolate;
 }
 
-.figma-contact__panel {
+.figma-contact__theme {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.02);
+}
+
+.figma-contact__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    155deg,
+    rgba(9, 9, 11, 0.78) 0%,
+    rgba(9, 9, 11, 0.42) 37%,
+    rgba(9, 9, 11, 0.74) 71%
+  );
+  pointer-events: none;
+}
+
+.figma-contact__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 3vh, 28px);
   flex: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
-  gap: clamp(28px, 4vw, 56px);
-  align-items: stretch;
   min-height: 0;
-  padding: clamp(32px, 4vw, 52px);
-  border-radius: var(--radius);
-  background:
-    linear-gradient(165deg, #f7f7f7 0%, #f0f0f0 48%, #ebebeb 100%);
-  box-sizing: border-box;
 }
 
-.figma-contact__intro {
+.figma-contact__title {
+  color: #fff;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
+}
+
+.figma-contact__blocks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.8vw, 16px);
+  flex: 1;
+  align-content: stretch;
+  min-height: min(48vh, 433px);
+  isolation: isolate;
+}
+
+.figma-contact-block {
+  --contact-hover-bg: #1f1f1f;
+  appearance: none;
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(12px, 1.6vh, 18px);
-  min-height: 100%;
-}
-
-.figma-contact__eyebrow {
-  margin: 0;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #6b6b6b;
-}
-
-.figma-contact__headline {
-  margin: 0;
-  font-size: clamp(1.5rem, 2.8vw, 2.35rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: #000;
-  max-width: 16ch;
-}
-
-.figma-contact__lede {
-  margin: 0;
-  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
-  font-weight: 400;
-  line-height: 1.55;
-  color: #4d4d4d;
-  max-width: 42ch;
-}
-
-.figma-contact__points {
-  margin: 8px 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.figma-contact__points li {
-  position: relative;
-  padding-left: 18px;
-  font-size: clamp(0.8rem, 1.1vw, 0.92rem);
-  line-height: 1.45;
-  color: #3a3a3a;
-}
-
-.figma-contact__points li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 7px;
-  height: 7px;
-  border-radius: 2px;
-  background: #111;
-}
-
-.figma-contact__actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-height: 100%;
-}
-
-.figma-contact__primary,
-.figma-contact__link {
-  appearance: none;
-  border: 0;
-  width: 100%;
-  font: inherit;
+  align-items: stretch;
+  gap: 0;
+  min-height: 220px;
+  padding: 22px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background: transparent;
+  color: #fff;
   text-align: left;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 64px;
-  padding: clamp(16px, 2vh, 22px) 20px;
-  border-radius: 14px;
   text-decoration: none;
   cursor: pointer;
+  font: inherit;
   box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+  /* Own compositor layer — avoids backdrop-filter seams when siblings/page transform */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
   transition:
-    background-color 200ms ease,
-    transform 200ms ease,
-    box-shadow 200ms ease,
-    color 200ms ease;
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 300ms ease;
 }
 
-.figma-contact__primary {
-  background: #111;
+/* Frost lives on a non-layout pseudo so transforms don’t tear the blur */
+.figma-contact-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(250, 250, 250, 0.14);
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .figma-contact-block::before {
+    background: rgba(80, 80, 84, 0.72);
+  }
+}
+
+.figma-contact-block--email {
+  --contact-hover-bg: #1f1f1f;
+}
+
+.figma-contact-block--linkedin {
+  --contact-hover-bg: #0077b5;
+}
+
+.figma-contact-block--resume {
+  --contact-hover-bg: #0e9e6c;
+}
+
+.figma-contact-block__icon {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  pointer-events: none;
+}
+
+.figma-contact-block__icon img {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.figma-contact-block--email .figma-contact-block__icon img {
+  width: 62px;
+  height: 62px;
+  max-width: 62px;
+  max-height: 62px;
+}
+
+.figma-contact-block--resume .figma-contact-block__icon img {
+  width: 60px;
+  height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.figma-contact-block--linkedin .figma-contact-block__icon img {
+  width: 48px;
+  height: 48px;
+  max-width: 48px;
+  max-height: 48px;
+}
+
+.figma-contact-block__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition:
+    opacity 200ms ease,
+    max-height 220ms ease,
+    margin-top 220ms ease;
+}
+
+.figma-contact-block__label {
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.15;
   color: #fff;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
 }
 
-.figma-contact__primary:hover,
-.figma-contact__primary:focus-visible {
-  background: #000;
-  transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+.figma-contact-block__action {
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
 }
 
-.figma-contact__primary:focus-visible,
-.figma-contact__link:focus-visible {
-  outline: 2px solid #000;
+/* Per-card hover / keyboard focus — others stay frosty glass */
+.figma-contact-block.is-hovered,
+.figma-contact-block:focus-visible,
+.figma-contact-block.is-done {
+  background: var(--contact-hover-bg);
+  border-color: transparent;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+  justify-content: space-between;
+}
+
+.figma-contact-block.is-hovered::before,
+.figma-contact-block:focus-visible::before,
+.figma-contact-block.is-done::before {
+  opacity: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.figma-contact-block.is-hovered .figma-contact-block__footer,
+.figma-contact-block:focus-visible .figma-contact-block__footer,
+.figma-contact-block.is-done .figma-contact-block__footer {
+  max-height: 40px;
+  margin-top: 8px;
+  opacity: 1;
+}
+
+.figma-contact-block:focus-visible {
+  outline: 2px solid #fff;
   outline-offset: 3px;
 }
 
-.figma-contact__primary-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
-  flex: 1;
+@media (hover: hover) {
+  .figma-contact-block:hover {
+    background: var(--contact-hover-bg);
+    border-color: transparent;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+    justify-content: space-between;
+  }
+
+  .figma-contact-block:hover::before {
+    opacity: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .figma-contact-block:hover .figma-contact-block__footer {
+    max-height: 40px;
+    margin-top: 8px;
+    opacity: 1;
+  }
 }
 
-.figma-contact__primary-label {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.figma-contact__primary-value {
-  font-size: clamp(0.9rem, 1.25vw, 1.05rem);
-  font-weight: 500;
-  line-height: 1.3;
-  word-break: break-word;
-}
-
-.figma-contact__link {
-  background: rgba(255, 255, 255, 0.72);
-  color: #000;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.figma-contact__link:hover,
-.figma-contact__link:focus-visible {
-  background: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-}
-
-.figma-contact__link-label {
-  flex: 0 0 auto;
-  font-size: clamp(0.95rem, 1.25vw, 1.05rem);
-  font-weight: 600;
-  min-width: 7.5rem;
-}
-
-.figma-contact__link-value {
-  flex: 1;
-  min-width: 0;
-  font-size: clamp(0.8rem, 1.1vw, 0.925rem);
-  color: #4d4d4d;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.figma-contact__arrow {
-  flex-shrink: 0;
-  font-size: 1.15rem;
-  line-height: 1;
-  opacity: 0.7;
+@media (prefers-reduced-motion: reduce) {
+  .figma-contact-block,
+  .figma-contact-block__footer {
+    transition: none;
+  }
 }
 
 @media (max-width: 900px) {
@@ -1290,63 +1313,75 @@
     min-height: 0;
   }
 
-  .figma-contact__panel {
+  .figma-contact__blocks {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: clamp(20px, 5vw, 28px);
-  }
-
-  .figma-contact__intro {
     min-height: 0;
-    gap: 12px;
   }
 
-  .figma-contact__headline {
-    max-width: none;
-    font-size: clamp(1.35rem, 6.5vw, 1.85rem);
+  .figma-contact-block {
+    min-height: 140px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
   }
 
-  .figma-contact__lede {
-    max-width: none;
-  }
-
-  .figma-contact__actions {
-    min-height: 0;
-    gap: 10px;
-  }
-
-  .figma-contact__primary,
-  .figma-contact__link {
+  .figma-contact-block__icon {
     flex: 0 0 auto;
-    min-height: 56px;
-    padding: 14px 16px;
+    justify-content: flex-start;
   }
 
-  .figma-contact__link {
-    flex-wrap: wrap;
-    row-gap: 4px;
+  .figma-contact-block--email .figma-contact-block__icon img {
+    width: 48px;
+    height: 48px;
+    max-width: 48px;
+    max-height: 48px;
   }
 
-  .figma-contact__link-label {
-    min-width: 0;
-    flex: 1 1 auto;
+  .figma-contact-block--resume .figma-contact-block__icon img {
+    width: 44px;
+    height: 44px;
+    max-width: 44px;
+    max-height: 44px;
   }
 
-  .figma-contact__link-value {
-    flex: 1 1 100%;
-    order: 3;
-    margin-left: 0;
-    text-decoration: none;
-    font-size: 0.85rem;
-    opacity: 0.75;
+  .figma-contact-block--linkedin .figma-contact-block__icon img {
+    width: 40px;
+    height: 40px;
+    max-width: 40px;
+    max-height: 40px;
   }
 
-  .figma-contact__primary-value {
-    word-break: break-word;
+  /* On small screens always show footer (no reliable hover) */
+  .figma-contact-block__footer {
+    max-height: 40px;
+    opacity: 1;
+    flex: 1;
+    margin-top: 0;
   }
 
-  .figma-contact__arrow {
-    margin-left: auto;
+  .figma-contact-block--email {
+    background: #1f1f1f;
+    border-color: transparent;
+  }
+
+  .figma-contact-block--email::before,
+  .figma-contact-block--linkedin::before,
+  .figma-contact-block--resume::before {
+    opacity: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .figma-contact-block--linkedin {
+    background: #0077b5;
+    border-color: transparent;
+  }
+
+  .figma-contact-block--resume {
+    background: #0e9e6c;
+    border-color: transparent;
   }
 }
 
@@ -1451,6 +1486,7 @@
   .figma-about-media {
     position: relative;
     height: auto;
+    min-height: 0;
     aspect-ratio: 3 / 4;
     max-height: 520px;
   }
@@ -1467,16 +1503,17 @@
   .figma-case-card__media img,
   .figma-card-sm__rings,
   .figma-sidebar__nav a,
-  .figma-sidebar__social a,
   .figma-exp-row__icon,
   .figma-sidebar__burger span,
+  .figma-contact-block,
   .resume-modal,
   .resume-modal__panel {
     transition: none;
   }
 
   .figma-case-card:hover .figma-case-card__media img,
-  .figma-card-sm--rings:hover .figma-card-sm__rings {
+  .figma-card-sm--rings:hover .figma-card-sm__rings,
+  .figma-contact__theme {
     transform: none;
   }
 

@@ -259,20 +259,7 @@ export function FigmaSidebar() {
       </div>
 
       <footer className="figma-sidebar__footer">
-        <span>hassanamin.net © 2026</span>
-        <div className="figma-sidebar__social">
-          <a
-            href="https://www.linkedin.com/in/hassan-mo-amin/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-          >
-            <img src={FIGMA.iconLinkedIn} alt="" width={18} height={18} />
-          </a>
-          <a href="mailto:contact.hassan.amin@gmail.com" aria-label="Email">
-            <img src={FIGMA.iconEmail} alt="" width={18} height={18} />
-          </a>
-        </div>
+        <p className="figma-sidebar__copyright">hassanamin.net © 2026</p>
       </footer>
 
       <div

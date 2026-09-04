@@ -9,6 +9,7 @@ import {
   type MouseEvent,
 } from "react";
 
+/** Story duration — progress bar + auto-advance stay in sync */
 const STORY_MS = 3000;
 
 const PHOTOS = [
@@ -45,24 +46,25 @@ const PHOTOS = [
 export function AboutStoriesGallery() {
   const [index, setIndex] = useState(0);
   const [inView, setInView] = useState(true);
+  const [pageVisible, setPageVisible] = useState(true);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [cycle, setCycle] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
+  const indexRef = useRef(0);
 
   const count = PHOTOS.length;
-  const playing = inView && !reduceMotion;
+  const playing = inView && pageVisible && !reduceMotion;
 
-  const goTo = useCallback(
-    (next: number) => {
-      const wrapped = ((next % count) + count) % count;
-      setCycle((c) => c + 1);
-      setIndex(wrapped);
-    },
-    [count],
-  );
+  indexRef.current = index;
 
-  const goNext = useCallback(() => goTo(index + 1), [goTo, index]);
-  const goPrev = useCallback(() => goTo(index - 1), [goTo, index]);
+  const goTo = useCallback((next: number) => {
+    const wrapped = ((next % count) + count) % count;
+    setCycle((c) => c + 1);
+    setIndex(wrapped);
+  }, [count]);
+
+  const goNext = useCallback(() => goTo(indexRef.current + 1), [goTo]);
+  const goPrev = useCallback(() => goTo(indexRef.current - 1), [goTo]);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -73,12 +75,19 @@ export function AboutStoriesGallery() {
   }, []);
 
   useEffect(() => {
+    const sync = () => setPageVisible(document.visibilityState === "visible");
+    sync();
+    document.addEventListener("visibilitychange", sync);
+    return () => document.removeEventListener("visibilitychange", sync);
+  }, []);
+
+  useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting && entry.intersectionRatio > 0.2),
-      { threshold: [0, 0.2, 0.5] },
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: [0, 0.01, 0.1], rootMargin: "120px 0px 120px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -128,7 +137,11 @@ export function AboutStoriesGallery() {
               <span
                 key={state === "active" ? `active-${cycle}-${index}` : `${state}-${i}`}
                 className="figma-stories__bar-fill"
-                style={state === "active" ? { animationDuration: `${STORY_MS}ms` } : undefined}
+                style={
+                  state === "active" && !reduceMotion
+                    ? { animationDuration: `${STORY_MS}ms` }
+                    : undefined
+                }
               />
             </div>
           );
@@ -139,7 +152,7 @@ export function AboutStoriesGallery() {
         type="button"
         className="figma-stories__hit"
         onClick={onTap}
-        aria-label={`Photo ${index + 1} of ${count}. Click left side for previous, right side for next.`}
+        aria-label={`Photo ${index + 1} of ${count}. Click left for previous, right for next.`}
       >
         <img
           key={PHOTOS[index].src}
@@ -150,7 +163,7 @@ export function AboutStoriesGallery() {
         />
       </button>
 
-      <p className="sr-only" aria-live="polite">
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
         Showing photo {index + 1} of {count}
       </p>
     </div>

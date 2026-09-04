@@ -34,4 +34,13 @@ export const FIGMA = {
   expSpiritude: "/figma/exp-spiritude.svg",
   iconLinkedIn: "/figma/icon-linkedin.svg",
   iconEmail: "/figma/icon-email.svg",
+  aboutTheme: "/figma/about-theme.svg",
+  contact: {
+    email: "/figma/contact/icon-email.svg",
+    linkedin: "/figma/contact/icon-linkedin.svg",
+    paperclip: "/figma/contact/icon-paperclip.svg",
+    copy: "/figma/contact/icon-copy.svg",
+    arrowUpRight: "/figma/contact/icon-arrow-up-right.svg",
+    eye: "/figma/contact/icon-eye.svg",
+  },
 } as const;

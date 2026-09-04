@@ -103,10 +103,10 @@ export function FigmaExperienceSection() {
         const open = openId === row.id;
         return (
           <article key={row.id} className={`figma-exp-row${open ? " is-open" : ""}`}>
-            <div className="figma-exp-row__logo">
-              <img src={row.logo} alt="" width={80} height={80} loading="lazy" />
-            </div>
-            <div className="figma-exp-row__body">
+            <div className="figma-exp-row__head">
+              <div className="figma-exp-row__logo">
+                <img src={row.logo} alt="" width={80} height={80} loading="lazy" />
+              </div>
               <button
                 type="button"
                 className="figma-exp-row__toggle"
@@ -122,21 +122,21 @@ export function FigmaExperienceSection() {
                   {open ? "−" : "+"}
                 </span>
               </button>
-              <AnimatePresence initial={false}>
-                {open ? (
-                  <motion.div
-                    id={`exp-detail-${row.id}`}
-                    className="figma-exp-row__detail"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                  >
-                    <p>{row.detail}</p>
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
             </div>
+            <AnimatePresence initial={false}>
+              {open ? (
+                <motion.div
+                  id={`exp-detail-${row.id}`}
+                  className="figma-exp-row__detail"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                >
+                  <p>{row.detail}</p>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
           </article>
         );
       })}
@@ -147,6 +147,7 @@ export function FigmaExperienceSection() {
 export function FigmaContactSection() {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState<null | "email" | "linkedin" | "resume">(null);
 
   const closeResume = useCallback(() => setResumeOpen(false), []);
 
@@ -160,70 +161,113 @@ export function FigmaContactSection() {
     }
   }, []);
 
+  const hoverProps = (id: "email" | "linkedin" | "resume") => ({
+    onMouseEnter: () => setHovered(id),
+    onMouseLeave: () => setHovered((h) => (h === id ? null : h)),
+    onFocus: () => setHovered(id),
+    onBlur: () => setHovered((h) => (h === id ? null : h)),
+  });
+
+  const cardMotion = {
+    initial: { opacity: 0, y: 12 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-40px" as const },
+    /* y-only lift: scale + backdrop-filter causes Chromium glass seams on siblings */
+    whileHover: { y: -5 },
+    whileTap: { scale: 0.985 },
+  };
+
   return (
     <section className="figma-section figma-contact" id="contact" aria-labelledby="figma-contact-title">
-      <h2 className="figma-section__title" id="figma-contact-title">
-        Let&apos;s Talk
-      </h2>
+      <div
+        className="figma-contact__theme"
+        style={{ backgroundImage: `url(${FIGMA.aboutTheme})` }}
+        aria-hidden="true"
+      />
+      <div className="figma-contact__scrim" aria-hidden="true" />
 
-      <div className="figma-contact__panel">
-        <div className="figma-contact__intro">
-          <p className="figma-contact__headline">
-            Got a product challenge? Let&apos;s figure it out together.
-          </p>
-          <p className="figma-contact__lede">
-            Open to full-time roles and select freelance work. Design leadership, critical flows,
-            or a quick compare-notes chat — I&apos;m easy to reach.
-          </p>
-          <ul className="figma-contact__points">
-            <li>Product design &amp; design systems</li>
-            <li>Research-backed UX for complex flows</li>
-            <li>Remote-friendly, async-first collaboration</li>
-          </ul>
-        </div>
+      <div className="figma-contact__content">
+        <h2 className="figma-section__title figma-contact__title" id="figma-contact-title">
+          Let&apos;s Talk
+        </h2>
 
-        <div className="figma-contact__actions">
-          <button
+        <div className="figma-contact__blocks" role="group" aria-label="Contact actions">
+          <motion.button
             type="button"
-            className="figma-contact__primary"
+            className={`figma-contact-block figma-contact-block--email${hovered === "email" || copied ? " is-hovered" : ""}${copied ? " is-done" : ""}`}
             onClick={copyEmail}
+            aria-label={copied ? "Email address copied" : `Copy email ${CONTACT_EMAIL}`}
             aria-live="polite"
+            {...hoverProps("email")}
+            {...cardMotion}
+            transition={{ type: "spring", stiffness: 320, damping: 24 }}
           >
-            <span className="figma-contact__primary-meta">
-              <span className="figma-contact__primary-label">
-                {copied ? "Copied!" : "Copy Email"}
-              </span>
-              <span className="figma-contact__primary-value">{CONTACT_EMAIL}</span>
+            <span className="figma-contact-block__icon" aria-hidden="true">
+              <img src={FIGMA.contact.email} alt="" width={62} height={62} />
             </span>
-            <span className="figma-contact__arrow" aria-hidden="true">
-              {copied ? "✓" : "↗"}
+            <span className="figma-contact-block__footer">
+              <span className="figma-contact-block__label">{copied ? "Copied" : "Copy Email"}</span>
+              <img
+                className="figma-contact-block__action"
+                src={FIGMA.contact.copy}
+                alt=""
+                width={26}
+                height={26}
+                aria-hidden="true"
+              />
             </span>
-          </button>
+          </motion.button>
 
-          <a
-            className="figma-contact__link"
+          <motion.button
+            type="button"
+            className={`figma-contact-block figma-contact-block--resume${hovered === "resume" ? " is-hovered" : ""}`}
+            onClick={() => setResumeOpen(true)}
+            aria-label="View CV / Resume PDF"
+            {...hoverProps("resume")}
+            {...cardMotion}
+            transition={{ type: "spring", stiffness: 320, damping: 24, delay: 0.05 }}
+          >
+            <span className="figma-contact-block__icon" aria-hidden="true">
+              <img src={FIGMA.contact.paperclip} alt="" width={60} height={60} />
+            </span>
+            <span className="figma-contact-block__footer">
+              <span className="figma-contact-block__label">CV / Resume</span>
+              <img
+                className="figma-contact-block__action"
+                src={FIGMA.contact.eye}
+                alt=""
+                width={26}
+                height={26}
+                aria-hidden="true"
+              />
+            </span>
+          </motion.button>
+
+          <motion.a
+            className={`figma-contact-block figma-contact-block--linkedin${hovered === "linkedin" ? " is-hovered" : ""}`}
             href="https://www.linkedin.com/in/hassan-mo-amin/"
             target="_blank"
             rel="noreferrer"
+            aria-label="Open LinkedIn profile"
+            {...hoverProps("linkedin")}
+            {...cardMotion}
+            transition={{ type: "spring", stiffness: 320, damping: 24, delay: 0.1 }}
           >
-            <span className="figma-contact__link-label">LinkedIn</span>
-            <span className="figma-contact__link-value">/hassan-mo-amin</span>
-            <span className="figma-contact__arrow" aria-hidden="true">
-              ↗
+            <span className="figma-contact-block__icon" aria-hidden="true">
+              <img src={FIGMA.contact.linkedin} alt="" width={48} height={48} />
             </span>
-          </a>
-
-          <button
-            type="button"
-            className="figma-contact__link"
-            onClick={() => setResumeOpen(true)}
-          >
-            <span className="figma-contact__link-label">CV / Resume</span>
-            <span className="figma-contact__link-value">View resume</span>
-            <span className="figma-contact__arrow" aria-hidden="true">
-              ↗
+            <span className="figma-contact-block__footer">
+              <span className="figma-contact-block__label">LinkedIn</span>
+              <img
+                className="figma-contact-block__action"
+                src={FIGMA.contact.arrowUpRight}
+                alt=""
+                width={26}
+                height={26}
+                aria-hidden="true"
+              />
             </span>
-          </button>
+          </motion.a>
         </div>
       </div>
 

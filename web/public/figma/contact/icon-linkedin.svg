@@ -1,0 +1,10 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<g clip-path="url(#clip0_contact_linkedin)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M48 48H38.4V31.2023C38.4 26.5943 36.3672 24.0234 32.7216 24.0234C28.7544 24.0234 26.4 26.7023 26.4 31.2023V48H16.8V16.8H26.4V20.3086C26.4 20.3086 29.412 15.0234 36.1992 15.0234C42.9888 15.0234 48 19.1667 48 27.7395V48ZM5.8608 11.8102C2.6232 11.8102 0 9.16551 0 5.90391C0 2.64471 2.6232 0 5.8608 0C9.096 0 11.7192 2.64471 11.7192 5.90391C11.7216 9.16551 9.096 11.8102 5.8608 11.8102ZM0 48H12V16.8H0V48Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_contact_linkedin">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
+</svg>

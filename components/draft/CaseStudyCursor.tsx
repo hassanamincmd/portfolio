@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Floating “Case Study” pill with eye icon — follows pointer over [data-case-card].
- * Mirrors the live-site cursor.js behavior for the Figma draft preview.
+ * Re-samples the element under the pointer on scroll/resize so state stays correct
+ * without requiring mouse movement.
  */
 export function CaseStudyCursor() {
   const cursorRef = useRef<HTMLDivElement | null>(null);
@@ -24,6 +25,11 @@ export function CaseStudyCursor() {
 
     document.documentElement.classList.add("has-figma-site-cursor");
 
+    const sampleHit = (x: number, y: number) => {
+      const hit = document.elementFromPoint(x, y);
+      pos.current.active = Boolean(hit?.closest("[data-case-card]"));
+    };
+
     let raf = 0;
     const tick = () => {
       const el = cursorRef.current;
@@ -42,8 +48,12 @@ export function CaseStudyCursor() {
       pos.current.x = e.clientX;
       pos.current.y = e.clientY;
       pos.current.on = true;
-      const hit = document.elementFromPoint(e.clientX, e.clientY);
-      pos.current.active = Boolean(hit?.closest("[data-case-card]"));
+      sampleHit(e.clientX, e.clientY);
+    };
+
+    const onScrollOrResize = () => {
+      if (!pos.current.on) return;
+      sampleHit(pos.current.x, pos.current.y);
     };
 
     const onLeave = () => {
@@ -52,12 +62,16 @@ export function CaseStudyCursor() {
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("scroll", onScrollOrResize, { passive: true, capture: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
     window.addEventListener("blur", onLeave);
     document.addEventListener("mouseleave", onLeave);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("scroll", onScrollOrResize, true);
+      window.removeEventListener("resize", onScrollOrResize);
       window.removeEventListener("blur", onLeave);
       document.removeEventListener("mouseleave", onLeave);
       document.documentElement.classList.remove("has-figma-site-cursor");
