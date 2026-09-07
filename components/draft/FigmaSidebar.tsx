@@ -201,6 +201,19 @@ export function FigmaSidebar() {
 
   return (
     <aside className="figma-sidebar" aria-label="Site navigation">
+      <button
+        type="button"
+        className={`figma-sidebar__burger${menuOpen ? " is-open" : ""}`}
+        aria-expanded={menuOpen}
+        aria-controls="figma-mobile-nav"
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
       <div className="figma-sidebar__top">
         <div className="figma-sidebar__hero">
           <img src={FIGMA.sidebarHero} alt="" width={612} height={302} />
@@ -213,19 +226,6 @@ export function FigmaSidebar() {
               A product and UI/UX Designer with 5 years of experience in <StackTypewriter />
             </p>
           </div>
-
-          <button
-            type="button"
-            className={`figma-sidebar__burger${menuOpen ? " is-open" : ""}`}
-            aria-expanded={menuOpen}
-            aria-controls="figma-mobile-nav"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
         </div>
       </div>
 

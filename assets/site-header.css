@@ -1,4 +1,4 @@
-/* Case study header — floating pill nav matching homepage (portfolio-redesign.css) */
+/* Case study header — back-only floating pill */
 
 :root {
   --content-w: min(1200px, 92%);
@@ -18,7 +18,7 @@
   transform: translateX(-50%);
   width: var(--content-w);
   height: 2px;
-  z-index: 200;
+  z-index: 1100;
   pointer-events: none;
 }
 
@@ -33,45 +33,35 @@
 .header {
   position: sticky;
   top: 0.875rem;
-  z-index: 100;
-  width: var(--content-w);
+  z-index: 1000;
+  isolation: isolate;
+  width: fit-content;
   max-width: var(--content-w);
-  margin: 0.875rem auto 0;
+  margin: 0.875rem 0 0 max(0.875rem, calc((100% - var(--content-w)) / 2));
   padding: 0;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(18px) saturate(1.2);
-  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  /* Opaque enough to avoid backdrop-filter seams over imagery */
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-sm);
+  transform: translateZ(0);
 }
 
 .header__bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
+  justify-content: flex-start;
+  gap: 0;
+  width: auto;
   height: clamp(2.85rem, 5vw, 3.25rem);
-  padding-inline: 0.35rem 0.5rem;
+  padding-inline: 0.25rem 0.35rem;
   box-sizing: border-box;
 }
 
 .header__brand {
-  font-family: var(--serif);
-  font-size: clamp(1.1rem, 1.4vw, 1.25rem);
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.05em;
-  line-height: 1;
-  padding-left: 0.85rem;
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.header__brand:hover {
-  color: var(--text);
+  display: none;
 }
 
 .header__back {
@@ -83,8 +73,7 @@
   font-weight: 500;
   color: var(--muted);
   letter-spacing: -0.02em;
-  padding: 0.45rem 0.85rem 0.45rem 0.65rem;
-  margin-right: 0.15rem;
+  padding: 0.45rem 0.95rem 0.45rem 0.7rem;
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: color 0.2s ease, background 0.2s ease;
@@ -107,23 +96,25 @@
   outline-offset: 2px;
 }
 
+/* Clear stuck :hover transforms while the page is scrolling */
+html.is-scrolling,
+html.is-scrolling * {
+  pointer-events: none !important;
+}
+
 @media (max-width: 768px) {
   .header {
     top: 0.5rem;
     margin-top: 0.5rem;
+    margin-left: 0.5rem;
   }
 
   .header__bar {
-    padding-inline: 0.25rem 0.35rem;
-  }
-
-  .header__brand {
-    padding-left: 0.65rem;
+    padding-inline: 0.2rem 0.3rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .header__brand,
   .header__back {
     transition: none;
   }

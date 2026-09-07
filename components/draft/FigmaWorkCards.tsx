@@ -2,19 +2,9 @@
 
 import { FIGMA } from "@/components/draft/figma-assets";
 import { motion } from "framer-motion";
+import { useEffect, useState, type ReactNode } from "react";
 
-/** 21st.dev card-3 hover: lift + scale card, zoom media inside */
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: "easeInOut" as const,
-    },
-  },
-};
+const spring = { type: "spring" as const, stiffness: 320, damping: 24 };
 
 function ComingSoonBadge() {
   return (
@@ -102,21 +92,80 @@ const LARGE = [
   },
 ] as const;
 
+type HoverCardProps = {
+  children: ReactNode;
+  className?: string;
+  href?: string;
+  "aria-label"?: string;
+  "data-case-card"?: boolean;
+};
+
+/** Controlled hover so scroll-away clears lift (Framer whileHover sticks otherwise). */
+function HoverCard({ children, className, href, ...rest }: HoverCardProps) {
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    const clear = () => setHovered(false);
+    window.addEventListener("scroll", clear, { passive: true });
+    return () => window.removeEventListener("scroll", clear);
+  }, []);
+
+  const shared = {
+    className,
+    initial: { opacity: 0, y: 20, scale: 1 },
+    animate: {
+      opacity: 1,
+      y: hovered ? -5 : 0,
+      scale: hovered ? 1.03 : 1,
+    },
+    transition: spring,
+    onHoverStart: () => setHovered(true),
+    onHoverEnd: () => setHovered(false),
+    onBlur: () => setHovered(false),
+  };
+
+  if (href) {
+    return (
+      <motion.a href={href} {...shared} {...rest}>
+        {children}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.div {...shared} {...rest}>
+      {children}
+    </motion.div>
+  );
+}
+
 export function FigmaWorkCards() {
+  useEffect(() => {
+    let timer = 0;
+    const onScroll = () => {
+      document.documentElement.classList.add("is-scrolling");
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        document.documentElement.classList.remove("is-scrolling");
+      }, 140);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(timer);
+      document.documentElement.classList.remove("is-scrolling");
+    };
+  }, []);
+
   return (
     <section id="work" className="figma-work" aria-label="Work">
       {LARGE.map((item) => (
-        <motion.a
+        <HoverCard
           key={item.id}
           href={item.href}
           className={`figma-case-card group ${item.variant}`}
           data-case-card
           aria-label={item.studyLabel}
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          whileHover={{ scale: 1.03, y: -5 }}
-          transition={{ type: "spring", stiffness: 320, damping: 24 }}
         >
           <div className="figma-case-card__copy">
             {item.brand}
@@ -140,19 +189,11 @@ export function FigmaWorkCards() {
             />
           </div>
           <CaseStudyCta />
-        </motion.a>
+        </HoverCard>
       ))}
 
       <div className="figma-work-row-sm" aria-label="Featured work">
-        {/* Rings card */}
-        <motion.div
-          className="figma-card-sm figma-card-sm--rings group"
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          whileHover={{ scale: 1.03, y: -5 }}
-          transition={{ type: "spring", stiffness: 320, damping: 24 }}
-        >
+        <HoverCard className="figma-card-sm figma-card-sm--rings group">
           <div className="figma-card-sm__inner">
             <img
               className="figma-card-sm__rings"
@@ -168,41 +209,25 @@ export function FigmaWorkCards() {
             </div>
           </div>
           <ComingSoonBadge />
-        </motion.div>
+        </HoverCard>
 
-        {/* Malaysia card */}
-        <motion.div
-          className="figma-card-sm figma-card-sm--cover group"
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          whileHover={{ scale: 1.03, y: -5 }}
-          transition={{ type: "spring", stiffness: 320, damping: 24 }}
-        >
+        <HoverCard className="figma-card-sm figma-card-sm--cover group">
           <img
             src={FIGMA.cardMalaysia}
             alt="Malaysia coat of arms"
             className="figma-card-sm__cover-img"
           />
           <ComingSoonBadge />
-        </motion.div>
+        </HoverCard>
 
-        {/* Coming soon card */}
-        <motion.div
-          className="figma-card-sm figma-card-sm--cover group"
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          whileHover={{ scale: 1.03, y: -5 }}
-          transition={{ type: "spring", stiffness: 320, damping: 24 }}
-        >
+        <HoverCard className="figma-card-sm figma-card-sm--cover group">
           <img
             src={FIGMA.cardComingSoon}
             alt="Coming soon"
             className="figma-card-sm__cover-img"
           />
           <ComingSoonBadge />
-        </motion.div>
+        </HoverCard>
       </div>
     </section>
   );

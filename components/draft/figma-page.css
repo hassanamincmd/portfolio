@@ -171,17 +171,17 @@
   outline-offset: 2px;
 }
 
-/* Hamburger: hidden on desktop, shown in mobile media query */
+/* Hamburger: hidden on desktop, shown top-right on mobile */
 .figma-sidebar__burger {
   display: none;
   flex-shrink: 0;
   width: 44px;
   height: 44px;
-  margin-top: 8px;
   padding: 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 12px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -361,6 +361,21 @@
 
 .figma-case-card:hover {
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+html.is-scrolling,
+html.is-scrolling * {
+  pointer-events: none !important;
+}
+
+html.is-scrolling .figma-case-card:hover,
+html.is-scrolling .figma-card-sm:hover {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+html.is-scrolling .figma-case-card:hover .figma-case-card__media img,
+html.is-scrolling .figma-card-sm--rings:hover .figma-card-sm__rings {
+  transform: none;
 }
 
 .figma-case-card:focus-visible {
@@ -1438,19 +1453,19 @@
   }
 
   .figma-sidebar__identity {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
+    display: block;
   }
 
   .figma-sidebar__identity-text {
     min-width: 0;
-    flex: 1;
   }
 
   .figma-sidebar__burger {
     display: inline-flex;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 40;
   }
 
   .figma-sidebar__nav--desktop {
