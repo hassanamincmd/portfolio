@@ -47,13 +47,15 @@ export function AboutStoriesGallery() {
   const [index, setIndex] = useState(0);
   const [inView, setInView] = useState(true);
   const [pageVisible, setPageVisible] = useState(true);
-  const [reduceMotion, setReduceMotion] = useState(false);
   const [cycle, setCycle] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
+  const fillRef = useRef<HTMLSpanElement>(null);
   const indexRef = useRef(0);
+  const playingRef = useRef(true);
 
   const count = PHOTOS.length;
-  const playing = inView && pageVisible && !reduceMotion;
+  const playing = inView && pageVisible;
+  playingRef.current = playing;
 
   indexRef.current = index;
 
@@ -67,14 +69,6 @@ export function AboutStoriesGallery() {
   const goPrev = useCallback(() => goTo(indexRef.current - 1), [goTo]);
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduceMotion(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-
-  useEffect(() => {
     const sync = () => setPageVisible(document.visibilityState === "visible");
     sync();
     document.addEventListener("visibilitychange", sync);
@@ -86,18 +80,47 @@ export function AboutStoriesGallery() {
     if (!el) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: [0, 0.01, 0.1], rootMargin: "120px 0px 120px 0px" },
+      ([entry]) => {
+        setInView(entry.isIntersecting && entry.intersectionRatio > 0);
+      },
+      { threshold: [0, 0.01, 0.05, 0.1, 0.25], rootMargin: "80px 0px 80px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
+  /* JS-driven fill — survives prefers-reduced-motion CSS overrides */
   useEffect(() => {
-    if (!playing) return;
-    const id = window.setTimeout(() => goNext(), STORY_MS);
-    return () => window.clearTimeout(id);
-  }, [playing, goNext, index, cycle]);
+    const fill = fillRef.current;
+    if (!fill) return;
+
+    let raf = 0;
+    let start = performance.now();
+    let elapsed = 0;
+
+    fill.style.transform = "scaleX(0)";
+
+    const tick = (now: number) => {
+      if (!playingRef.current) {
+        start = now - elapsed;
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+
+      elapsed = now - start;
+      const t = Math.min(1, elapsed / STORY_MS);
+      fill.style.transform = `scaleX(${t})`;
+
+      if (t >= 1) {
+        goNext();
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [goNext, index, cycle]);
 
   const onTap = (event: MouseEvent<HTMLButtonElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -135,13 +158,8 @@ export function AboutStoriesGallery() {
           return (
             <div key={i} className={`figma-stories__bar figma-stories__bar--${state}`}>
               <span
-                key={state === "active" ? `active-${cycle}-${index}` : `${state}-${i}`}
+                ref={state === "active" ? fillRef : undefined}
                 className="figma-stories__bar-fill"
-                style={
-                  state === "active" && !reduceMotion
-                    ? { animationDuration: `${STORY_MS}ms` }
-                    : undefined
-                }
               />
             </div>
           );

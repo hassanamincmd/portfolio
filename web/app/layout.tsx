@@ -34,7 +34,9 @@ export const metadata: Metadata = {
     url: "https://hassanamin.net/",
     images: [
       {
-        url: "/assets/og-image.jpg",
+        url: "/website-thumbnail.png",
+        width: 1232,
+        height: 604,
         alt: "Hassan Amin, Product Designer",
       },
     ],
@@ -44,10 +46,15 @@ export const metadata: Metadata = {
     title: "Hassan Amin, Product Designer",
     description:
       "Hassan Amin, product designer. Software interfaces, design systems, and interactive experiences.",
-    images: ["/assets/og-image.jpg"],
+    images: ["/website-thumbnail.png"],
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: {
+      url: "/favicon.png",
+      type: "image/png",
+      sizes: "512x512",
+    },
+    apple: "/favicon.png",
   },
 };
 

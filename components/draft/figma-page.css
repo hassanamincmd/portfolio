@@ -859,22 +859,8 @@ html.is-scrolling .figma-card-sm--rings:hover .figma-card-sm__rings {
 }
 
 .figma-stories__bar--active .figma-stories__bar-fill {
-  animation-name: figma-stories-fill;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-.figma-stories.is-paused .figma-stories__bar--active .figma-stories__bar-fill {
-  animation-play-state: paused;
-}
-
-@keyframes figma-stories-fill {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+  /* Progress is driven in JS (scaleX) so it works with reduced-motion settings */
+  transform: scaleX(0);
 }
 
 .figma-stories__hit {
@@ -1530,11 +1516,6 @@ html.is-scrolling .figma-card-sm--rings:hover .figma-card-sm__rings {
   .figma-card-sm--rings:hover .figma-card-sm__rings,
   .figma-contact__theme {
     transform: none;
-  }
-
-  .figma-stories__bar--active .figma-stories__bar-fill {
-    animation: none;
-    transform: scaleX(1);
   }
 }
 
