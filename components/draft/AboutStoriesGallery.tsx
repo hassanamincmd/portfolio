@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   useCallback,
@@ -9,7 +9,7 @@ import {
   type MouseEvent,
 } from "react";
 
-/** Story duration — progress bar + auto-advance stay in sync */
+/** Per-photo duration — overall bar advances across the full set */
 const STORY_MS = 3000;
 
 const PHOTOS = [
@@ -43,23 +43,35 @@ export function AboutStoriesGallery() {
   const [index, setIndex] = useState(0);
   const [inView, setInView] = useState(true);
   const [pageVisible, setPageVisible] = useState(true);
-  const [cycle, setCycle] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
   const fillRef = useRef<HTMLSpanElement>(null);
   const indexRef = useRef(0);
   const playingRef = useRef(true);
+  const slideStartRef = useRef(0);
+  const slideElapsedRef = useRef(0);
 
   const count = PHOTOS.length;
   const playing = inView && pageVisible;
   playingRef.current = playing;
-
   indexRef.current = index;
 
-  const goTo = useCallback((next: number) => {
-    const wrapped = ((next % count) + count) % count;
-    setCycle((c) => c + 1);
-    setIndex(wrapped);
-  }, [count]);
+  const setFill = useCallback((overall: number) => {
+    const fill = fillRef.current;
+    if (!fill) return;
+    fill.style.transform = `scaleX(${Math.min(1, Math.max(0, overall))})`;
+  }, []);
+
+  const goTo = useCallback(
+    (next: number) => {
+      const wrapped = ((next % count) + count) % count;
+      indexRef.current = wrapped;
+      setIndex(wrapped);
+      slideStartRef.current = performance.now();
+      slideElapsedRef.current = 0;
+      setFill(wrapped / count);
+    },
+    [count, setFill],
+  );
 
   const goNext = useCallback(() => goTo(indexRef.current + 1), [goTo]);
   const goPrev = useCallback(() => goTo(indexRef.current - 1), [goTo]);
@@ -85,38 +97,41 @@ export function AboutStoriesGallery() {
     return () => observer.disconnect();
   }, []);
 
-  /* JS-driven fill — survives prefers-reduced-motion CSS overrides */
+  /* One continuous bar: (index + slide progress) / count */
   useEffect(() => {
     const fill = fillRef.current;
     if (!fill) return;
 
     let raf = 0;
-    let start = performance.now();
-    let elapsed = 0;
-
-    fill.style.transform = "scaleX(0)";
+    slideStartRef.current = performance.now() - slideElapsedRef.current;
+    setFill((indexRef.current + slideElapsedRef.current / STORY_MS) / count);
 
     const tick = (now: number) => {
       if (!playingRef.current) {
-        start = now - elapsed;
+        slideStartRef.current = now - slideElapsedRef.current;
         raf = requestAnimationFrame(tick);
         return;
       }
 
-      elapsed = now - start;
-      const t = Math.min(1, elapsed / STORY_MS);
-      fill.style.transform = `scaleX(${t})`;
+      slideElapsedRef.current = now - slideStartRef.current;
+      const local = Math.min(1, slideElapsedRef.current / STORY_MS);
+      setFill((indexRef.current + local) / count);
 
-      if (t >= 1) {
-        goNext();
-        return;
+      if (local >= 1) {
+        const next = (indexRef.current + 1) % count;
+        indexRef.current = next;
+        setIndex(next);
+        slideStartRef.current = now;
+        slideElapsedRef.current = 0;
+        setFill(next / count);
       }
+
       raf = requestAnimationFrame(tick);
     };
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [goNext, index, cycle]);
+  }, [count, setFill]);
 
   const onTap = (event: MouseEvent<HTMLButtonElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -146,20 +161,9 @@ export function AboutStoriesGallery() {
       onKeyDown={onKeyDown}
     >
       <div className="figma-stories__progress" aria-hidden="true">
-        {PHOTOS.map((_, i) => {
-          let state: "done" | "active" | "pending" = "pending";
-          if (i < index) state = "done";
-          else if (i === index) state = "active";
-
-          return (
-            <div key={i} className={`figma-stories__bar figma-stories__bar--${state}`}>
-              <span
-                ref={state === "active" ? fillRef : undefined}
-                className="figma-stories__bar-fill"
-              />
-            </div>
-          );
-        })}
+        <div className="figma-stories__bar">
+          <span ref={fillRef} className="figma-stories__bar-fill" />
+        </div>
       </div>
 
       <button
