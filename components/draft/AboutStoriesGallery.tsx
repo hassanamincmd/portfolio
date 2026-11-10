@@ -14,32 +14,28 @@ const STORY_MS = 3000;
 
 const PHOTOS = [
   {
-    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    alt: "Scenic travel road through mountains",
+    src: "/about/01-wedding.jpg",
+    alt: "Hassan and his wife on their wedding day, walking hand in hand outdoors",
   },
   {
-    src: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
-    alt: "Minimal workspace with laptop and coffee",
+    src: "/about/02-reflection.jpg",
+    alt: "Hassan and his wife reflected in glass during a day out together",
   },
   {
-    src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
-    alt: "Portrait placeholder with soft natural lighting",
+    src: "/about/03-waterfront.jpg",
+    alt: "Hassan by the waterfront with sailboats in the background",
   },
   {
-    src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
-    alt: "Collaborative team session around a table",
+    src: "/about/04-snorkeling.jpg",
+    alt: "Hassan snorkeling and giving a thumbs up in clear blue water",
   },
   {
-    src: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=1200&q=80",
-    alt: "Matcha setup and reading corner",
+    src: "/about/05-beach-gazebo.jpg",
+    alt: "Red-roofed beach gazebo on the sand by the sea",
   },
   {
-    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-    alt: "Landscape lake view at golden hour",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1200&q=80",
-    alt: "Busy city street with cafes and pedestrians",
+    src: "/about/06-desert-grill.jpg",
+    alt: "Hassan grilling over a fire pit in the desert",
   },
 ] as const;
 
